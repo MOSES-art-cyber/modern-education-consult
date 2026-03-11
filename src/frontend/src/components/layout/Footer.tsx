@@ -1,11 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  GraduationCap,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-} from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const footerLinks = [
   { label: "Home", to: "/" },
@@ -18,9 +12,6 @@ const footerLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const hostname =
-    typeof window !== "undefined" ? window.location.hostname : "";
-  const caffeineUrl = `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`;
 
   return (
     <footer className="brand-dark-bg text-white">
@@ -29,9 +20,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-                <GraduationCap size={20} className="text-white" />
-              </div>
+              <img
+                src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
+                alt="Modern Education Consult Logo"
+                className="w-12 h-12 object-contain rounded-lg bg-black"
+              />
               <span className="font-display font-bold text-white text-base leading-tight">
                 Modern Education
                 <br />
@@ -139,17 +132,17 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/50">
           <p>© {currentYear} Modern Education Consult. All rights reserved.</p>
-          <p>
-            Built with ♥ using{" "}
-            <a
-              href={caffeineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-            >
-              caffeine.ai
-            </a>
-          </p>
+          <div className="flex items-center gap-2">
+            <img
+              src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
+              alt="Modern Education Consult Logo"
+              className="w-7 h-7 object-contain rounded bg-black"
+            />
+            <span className="text-white/70">
+              Modern Education Consult &mdash; Where education meets
+              opportunities
+            </span>
+          </div>
         </div>
       </div>
     </footer>

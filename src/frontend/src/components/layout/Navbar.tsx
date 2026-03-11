@@ -1,22 +1,157 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const navLinks = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Countries", to: "/countries" },
-  { label: "Blog", to: "/blog" },
-  { label: "Contact", to: "/contact" },
+const languageSubItems = [
+  { label: "English", to: "/services/language-proficiency#english" },
+  { label: "French", to: "/services/language-proficiency#french" },
 ];
+
+const servicesDropdown = [
+  { label: "Study Abroad", to: "/services" },
+  { label: "International Job Placement", to: "/services" },
+  { label: "Visa Assistance", to: "/contact" },
+  { label: "Scholarship Guidance", to: "/services" },
+  { label: "Online Degree Courses", to: "/services/online-degree-courses" },
+  {
+    label: "Online Professional Courses",
+    to: "/services/online-professional-courses",
+  },
+  {
+    label: "Professional Internships",
+    to: "/services/professional-internships",
+  },
+  {
+    label: "Language Proficiency Programs",
+    to: "/services/language-proficiency",
+    subItems: languageSubItems,
+  },
+];
+
+const countriesDropdown = [
+  { label: "USA", to: "/countries" },
+  { label: "Canada", to: "/countries" },
+  { label: "United Kingdom", to: "/countries" },
+  { label: "United Arab Emirates", to: "/countries" },
+  { label: "European Countries", to: "/countries" },
+  { label: "China", to: "/countries" },
+  { label: "Australia", to: "/countries" },
+];
+
+function DropdownMenu({
+  items,
+  isOpen,
+}: {
+  items: {
+    label: string;
+    to: string;
+    subItems?: { label: string; to: string }[];
+  }[];
+  isOpen: boolean;
+}) {
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const subCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleSubEnter = (label: string) => {
+    if (subCloseTimer.current) clearTimeout(subCloseTimer.current);
+    setHoveredItem(label);
+  };
+
+  const handleSubLeave = () => {
+    subCloseTimer.current = setTimeout(() => setHoveredItem(null), 100);
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -8, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -8, scale: 0.97 }}
+          transition={{ duration: 0.18, ease: "easeOut" }}
+          className="absolute top-full left-0 mt-1 w-64 bg-white rounded-xl shadow-lg border border-border/60 py-2 z-50 overflow-visible"
+        >
+          {items.map((item, i) =>
+            item.subItems ? (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => handleSubEnter(item.label)}
+                onMouseLeave={handleSubLeave}
+              >
+                <Link
+                  to={item.to}
+                  data-ocid={`nav.dropdown.link.${i + 1}`}
+                  className="flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-foreground/80 hover:text-brand-blue hover:bg-blue-50 transition-colors duration-150 font-medium"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-blue/40 flex-shrink-0" />
+                    {item.label}
+                  </span>
+                  <ChevronRight
+                    size={13}
+                    className="text-brand-blue/60 flex-shrink-0"
+                  />
+                </Link>
+
+                {/* Sub-dropdown */}
+                <AnimatePresence>
+                  {hoveredItem === item.label && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -6, scale: 0.97 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: -6, scale: 0.97 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      onMouseEnter={() => handleSubEnter(item.label)}
+                      onMouseLeave={handleSubLeave}
+                      className="absolute left-full top-0 ml-1 w-44 bg-white rounded-xl shadow-lg border border-border/60 py-2 z-50"
+                    >
+                      <p className="px-4 pt-1 pb-1.5 text-[10px] font-semibold uppercase tracking-widest text-brand-blue/60">
+                        Select Language
+                      </p>
+                      {item.subItems.map((sub, j) => (
+                        <Link
+                          key={sub.label}
+                          to={sub.to}
+                          data-ocid={`nav.dropdown.sublanguage.link.${j + 1}`}
+                          className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground/80 hover:text-brand-blue hover:bg-blue-50 transition-colors duration-150 font-medium"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue flex-shrink-0" />
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.to}
+                data-ocid={`nav.dropdown.link.${i + 1}`}
+                className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground/80 hover:text-brand-blue hover:bg-blue-50 transition-colors duration-150 font-medium"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue/40 flex-shrink-0" />
+                {item.label}
+              </Link>
+            ),
+          )}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [mobileLanguageExpanded, setMobileLanguageExpanded] = useState(false);
   const location = useLocation();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,7 +162,17 @@ export default function Navbar() {
   // biome-ignore lint/correctness/useExhaustiveDependencies: close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
+    setActiveDropdown(null);
   }, [location.pathname]);
+
+  const handleMouseEnter = (key: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setActiveDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => setActiveDropdown(null), 120);
+  };
 
   return (
     <header
@@ -38,13 +183,17 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+          <Link
+            to="/"
+            className="flex items-center gap-2 flex-shrink-0"
+            data-ocid="nav.link.1"
+          >
             <img
-              src="/assets/generated/logo-transparent.dim_300x80.png"
+              src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
               alt="Modern Education Consult"
-              className="h-10 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
             <span className="hidden sm:block font-display font-bold text-base lg:text-lg text-brand-dark leading-tight max-w-[160px]">
               Modern Education Consult
@@ -52,21 +201,126 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link, i) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                data-ocid={`nav.link.${i + 1}`}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
-                  location.pathname === link.to
+          <div className="hidden lg:flex items-center gap-0.5">
+            {/* Home */}
+            <Link
+              to="/"
+              data-ocid="nav.link.2"
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                location.pathname === "/"
+                  ? "text-brand-blue font-semibold bg-accent"
+                  : "text-foreground/80"
+              }`}
+            >
+              Home
+            </Link>
+
+            {/* About */}
+            <Link
+              to="/about"
+              data-ocid="nav.link.3"
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                location.pathname === "/about"
+                  ? "text-brand-blue font-semibold bg-accent"
+                  : "text-foreground/80"
+              }`}
+            >
+              About
+            </Link>
+
+            {/* Services dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("services")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                type="button"
+                data-ocid="nav.services.toggle"
+                onClick={() =>
+                  setActiveDropdown(
+                    activeDropdown === "services" ? null : "services",
+                  )
+                }
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                  location.pathname.startsWith("/services")
                     ? "text-brand-blue font-semibold bg-accent"
                     : "text-foreground/80"
                 }`}
               >
-                {link.label}
-              </Link>
-            ))}
+                Services
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    activeDropdown === "services" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <DropdownMenu
+                items={servicesDropdown}
+                isOpen={activeDropdown === "services"}
+              />
+            </div>
+
+            {/* Countries dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("countries")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                type="button"
+                data-ocid="nav.countries.toggle"
+                onClick={() =>
+                  setActiveDropdown(
+                    activeDropdown === "countries" ? null : "countries",
+                  )
+                }
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                  location.pathname === "/countries"
+                    ? "text-brand-blue font-semibold bg-accent"
+                    : "text-foreground/80"
+                }`}
+              >
+                Countries
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    activeDropdown === "countries" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <DropdownMenu
+                items={countriesDropdown}
+                isOpen={activeDropdown === "countries"}
+              />
+            </div>
+
+            {/* Blog */}
+            <Link
+              to="/blog"
+              data-ocid="nav.link.4"
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                location.pathname === "/blog"
+                  ? "text-brand-blue font-semibold bg-accent"
+                  : "text-foreground/80"
+              }`}
+            >
+              Blog
+            </Link>
+
+            {/* Contact */}
+            <Link
+              to="/contact"
+              data-ocid="nav.link.5"
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent hover:text-brand-dark ${
+                location.pathname === "/contact"
+                  ? "text-brand-blue font-semibold bg-accent"
+                  : "text-foreground/80"
+              }`}
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Desktop CTA */}
@@ -86,6 +340,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg text-foreground hover:bg-accent transition-colors"
             aria-label="Toggle menu"
+            data-ocid="nav.toggle"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -103,20 +358,169 @@ export default function Navbar() {
             className="lg:hidden bg-white border-t border-border overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link, i) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  data-ocid={`nav.link.${i + 1}`}
-                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent ${
-                    location.pathname === link.to
-                      ? "text-brand-blue font-semibold bg-accent"
-                      : "text-foreground/80"
-                  }`}
+              <Link
+                to="/"
+                data-ocid="nav.mobile.link.1"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent ${location.pathname === "/" ? "text-brand-blue font-semibold bg-accent" : "text-foreground/80"}`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/about"
+                data-ocid="nav.mobile.link.2"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent ${location.pathname === "/about" ? "text-brand-blue font-semibold bg-accent" : "text-foreground/80"}`}
+              >
+                About
+              </Link>
+
+              {/* Mobile Services accordion */}
+              <div>
+                <button
+                  type="button"
+                  data-ocid="nav.mobile.services.toggle"
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "services" ? null : "services",
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
                 >
-                  {link.label}
-                </Link>
-              ))}
+                  Services
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${mobileExpanded === "services" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === "services" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.18 }}
+                      className="overflow-hidden pl-4"
+                    >
+                      {servicesDropdown.map((item, i) =>
+                        item.subItems ? (
+                          <div key={item.label}>
+                            <button
+                              type="button"
+                              data-ocid={`nav.mobile.services.link.${i + 1}`}
+                              onClick={() =>
+                                setMobileLanguageExpanded(
+                                  !mobileLanguageExpanded,
+                                )
+                              }
+                              className="w-full flex items-center justify-between gap-2 px-4 py-2.5 text-sm text-foreground/70 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue/40 flex-shrink-0" />
+                                {item.label}
+                              </span>
+                              <ChevronDown
+                                size={13}
+                                className={`transition-transform duration-200 text-brand-blue/60 ${mobileLanguageExpanded ? "rotate-180" : ""}`}
+                              />
+                            </button>
+                            <AnimatePresence>
+                              {mobileLanguageExpanded && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.15 }}
+                                  className="overflow-hidden pl-4"
+                                >
+                                  {item.subItems.map((sub, j) => (
+                                    <Link
+                                      key={sub.label}
+                                      to={sub.to}
+                                      data-ocid={`nav.mobile.language.link.${j + 1}`}
+                                      className="flex items-center gap-2 px-4 py-2 text-sm text-foreground/70 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-colors"
+                                    >
+                                      <span className="w-1.5 h-1.5 rounded-full bg-brand-blue flex-shrink-0" />
+                                      {sub.label}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : (
+                          <Link
+                            key={item.label}
+                            to={item.to}
+                            data-ocid={`nav.mobile.services.link.${i + 1}`}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground/70 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-colors"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue/40 flex-shrink-0" />
+                            {item.label}
+                          </Link>
+                        ),
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Mobile Countries accordion */}
+              <div>
+                <button
+                  type="button"
+                  data-ocid="nav.mobile.countries.toggle"
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "countries" ? null : "countries",
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
+                >
+                  Countries
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${mobileExpanded === "countries" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === "countries" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.18 }}
+                      className="overflow-hidden pl-4"
+                    >
+                      {countriesDropdown.map((item, i) => (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          data-ocid={`nav.mobile.countries.link.${i + 1}`}
+                          className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground/70 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-colors"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue/40 flex-shrink-0" />
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link
+                to="/blog"
+                data-ocid="nav.mobile.link.3"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent ${location.pathname === "/blog" ? "text-brand-blue font-semibold bg-accent" : "text-foreground/80"}`}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/contact"
+                data-ocid="nav.mobile.link.4"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent ${location.pathname === "/contact" ? "text-brand-blue font-semibold bg-accent" : "text-foreground/80"}`}
+              >
+                Contact
+              </Link>
+
               <div className="pt-2">
                 <Button
                   asChild

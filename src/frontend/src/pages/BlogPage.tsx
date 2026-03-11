@@ -1,10 +1,12 @@
+import AdminDropZone from "@/components/AdminDropZone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Calendar, User } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, Lock, User } from "lucide-react";
 import { motion } from "motion/react";
 import type { BlogPost } from "../backend.d.ts";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import { useGetAllBlogPosts } from "../hooks/useQueries";
 
 function formatDate(nanoseconds: bigint): string {
@@ -94,6 +96,8 @@ const categories = [
 
 export default function BlogPage() {
   const { data: posts, isLoading } = useGetAllBlogPosts();
+  const { identity } = useInternetIdentity();
+  const isAdmin = !!identity && !identity.getPrincipal().isAnonymous();
   const displayPosts = posts && posts.length > 0 ? posts : samplePosts;
 
   return (
@@ -126,6 +130,26 @@ export default function BlogPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Admin Banner (only visible to admins) ─────────── */}
+      {isAdmin && (
+        <div className="bg-amber-50 border-b border-amber-200 py-3 px-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <p className="text-sm font-semibold text-amber-800">
+              You are logged in as Admin. You can manage blog posts below.
+            </p>
+            <Button
+              asChild
+              size="sm"
+              className="bg-amber-600 hover:bg-amber-700 text-white font-semibold"
+            >
+              <a href="/admin" data-ocid="blog.admin.link">
+                Open Admin Panel
+              </a>
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* ── Blog Grid ─────────────────────────────────────── */}
       <section className="py-20 bg-white">
@@ -176,7 +200,6 @@ export default function BlogPage() {
                 >
                   <Card className="h-full border-0 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
                     <CardContent className="p-0 flex flex-col h-full">
-                      {/* Header image or gradient */}
                       <div
                         className="h-44 flex items-end relative overflow-hidden"
                         style={{
@@ -195,7 +218,6 @@ export default function BlogPage() {
                         </div>
                       </div>
 
-                      {/* Body */}
                       <div className="p-5 flex flex-col flex-1">
                         <h3 className="font-display font-bold text-base text-brand-dark mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors">
                           {post.title}
@@ -234,6 +256,35 @@ export default function BlogPage() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ── Admin-only Blog Resources Section ────────────── */}
+      <section className="py-16 bg-accent/30 border-t border-border">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Lock size={16} className="text-primary" />
+              <span className="text-xs font-bold tracking-widest uppercase text-foreground/50">
+                Admin Only
+              </span>
+            </div>
+            <h2 className="font-display font-bold text-2xl text-brand-dark mb-2">
+              Blog Resources &amp; Files
+            </h2>
+            <p className="text-sm text-foreground/60 mb-6">
+              Upload or link files and resources relevant to blog posts. Only
+              admins can add or edit content here.
+            </p>
+            <AdminDropZone
+              label="Blog Documents & Links"
+              ocidPrefix="blog_resources"
+            />
+          </motion.div>
         </div>
       </section>
 

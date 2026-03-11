@@ -33,10 +33,30 @@ const studyAbroadServices = [
 ];
 
 const studyAbroadExtra = [
-  "Online Degree Courses",
-  "Online Professional Courses",
-  "Professional Internships",
-  "Language Proficiency Programs",
+  {
+    title: "Online Degree Courses",
+    desc: "Accredited international degrees you can earn entirely online.",
+    path: "/services/online-degree-courses",
+    ocid: "services.online_degree.button",
+  },
+  {
+    title: "Online Professional Courses",
+    desc: "Industry-recognized certifications to boost your career.",
+    path: "/services/online-professional-courses",
+    ocid: "services.online_professional.button",
+  },
+  {
+    title: "Professional Internships",
+    desc: "Hands-on global work experience with vetted placements.",
+    path: "/services/professional-internships",
+    ocid: "services.internships.button",
+  },
+  {
+    title: "Language Proficiency Programs",
+    desc: "English & French test preparation for international success.",
+    path: "/services/language-proficiency",
+    ocid: "services.language.button",
+  },
 ];
 
 const jobPlacementServices = [
@@ -148,19 +168,31 @@ export default function ServicesPage() {
                   </motion.div>
                 ))}
               </div>
-              <div className="p-5 rounded-xl border-2 border-primary/20 bg-primary/5 mb-6">
+              <div className="mb-6">
                 <p className="font-semibold text-sm text-brand-dark mb-3">
                   Additional Programs
                 </p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {studyAbroadExtra.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-2 text-xs text-foreground/70"
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      data-ocid={item.ocid}
+                      className="group flex items-start gap-3 p-4 rounded-xl border-2 border-primary/20 bg-primary/5 hover:bg-primary hover:border-primary transition-all duration-200 cursor-pointer"
                     >
-                      <ArrowRight size={12} className="text-brand-blue" />
-                      {item}
-                    </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-brand-dark group-hover:text-white transition-colors line-clamp-1">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-foreground/60 group-hover:text-white/80 transition-colors mt-0.5 line-clamp-2">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <ArrowRight
+                        size={15}
+                        className="text-brand-blue group-hover:text-white transition-colors mt-0.5 shrink-0 group-hover:translate-x-0.5 duration-200"
+                      />
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -324,7 +324,7 @@ export default function HomePage() {
                 }}
               />
               <img
-                src="/assets/generated/about-team.dim_800x500.jpg"
+                src="/assets/uploads/WhatsApp-Image-2026-03-05-at-12.08.05-1.jpeg"
                 alt="Modern Education Consult team"
                 className="relative rounded-2xl w-full object-cover shadow-card-hover"
                 style={{ aspectRatio: "8/5" }}
