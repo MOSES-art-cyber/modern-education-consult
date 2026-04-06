@@ -17,6 +17,7 @@ export const BlogPost = IDL.Record({
   'author' : IDL.Text,
   'summary' : IDL.Text,
   'imageUrl' : IDL.Text,
+  'category' : IDL.Text,
 });
 export const ContactSubmission = IDL.Record({
   'fullName' : IDL.Text,
@@ -36,10 +37,16 @@ export const Testimonial = IDL.Record({
 export const idlService = IDL.Service({
   '_init' : IDL.Func([], [], []),
   'addBlogPost' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
       [],
       [],
     ),
+  'editBlogPost' : IDL.Func(
+      [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [],
+      [],
+    ),
+  'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
   'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
   'getAllContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
   'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
@@ -63,6 +70,7 @@ export const idlFactory = ({ IDL }) => {
     'author' : IDL.Text,
     'summary' : IDL.Text,
     'imageUrl' : IDL.Text,
+    'category' : IDL.Text,
   });
   const ContactSubmission = IDL.Record({
     'fullName' : IDL.Text,
@@ -82,10 +90,16 @@ export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     '_init' : IDL.Func([], [], []),
     'addBlogPost' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [],
         [],
       ),
+    'editBlogPost' : IDL.Func(
+        [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [],
+        [],
+      ),
+    'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
     'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
     'getAllContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
     'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),

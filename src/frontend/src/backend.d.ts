@@ -15,6 +15,7 @@ export interface BlogPost {
     author: string;
     summary: string;
     imageUrl: string;
+    category: string;
 }
 export type Time = bigint;
 export interface ContactSubmission {
@@ -32,7 +33,9 @@ export interface Testimonial {
     photoUrl: string;
 }
 export interface backendInterface {
-    addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string): Promise<void>;
+    addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    deleteBlogPost(id: bigint): Promise<void>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;

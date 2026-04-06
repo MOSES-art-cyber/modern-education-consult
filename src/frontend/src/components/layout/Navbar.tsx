@@ -184,21 +184,32 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
-          {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 flex-shrink-0"
-            data-ocid="nav.link.1"
-          >
-            <img
-              src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
-              alt="Modern Education Consult"
-              className="h-20 w-auto object-contain"
-            />
-            <span className="hidden sm:block font-display font-bold text-base lg:text-lg text-brand-dark leading-tight max-w-[160px]">
-              Modern Education Consult
-            </span>
-          </Link>
+          {/* Left side: Logo + Company Name */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            {/* Logo */}
+            <Link to="/" className="flex-shrink-0" data-ocid="nav.link.1">
+              <img
+                src="/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg"
+                alt="Modern Education Consult"
+                className="h-20 w-auto object-contain"
+              />
+            </Link>
+
+            {/* Company Name */}
+            <div className="hidden lg:flex flex-col justify-center border-l border-brand-blue/20 pl-3">
+              <div className="leading-tight">
+                <p className="font-display font-bold text-lg text-brand-dark leading-snug">
+                  Modern Education
+                </p>
+                <p className="font-display font-bold text-lg text-brand-dark leading-snug">
+                  Consult
+                </p>
+              </div>
+              <p className="text-xs text-brand-blue/70 font-medium tracking-wide mt-0.5">
+                Where Education Meets Opportunity
+              </p>
+            </div>
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-0.5">
@@ -334,16 +345,40 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-foreground hover:bg-accent transition-colors"
-            aria-label="Toggle menu"
-            data-ocid="nav.toggle"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: Logo + hamburger */}
+          <div className="lg:hidden flex items-center gap-2">
+            <Link
+              to="/"
+              data-ocid="nav.link.1"
+              className="flex items-center gap-2"
+            >
+              <img
+                src="/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg"
+                alt="Modern Education Consult"
+                className="h-12 w-auto object-contain"
+              />
+              <div className="flex flex-col justify-center">
+                <p className="font-display font-bold text-sm text-brand-dark leading-tight">
+                  Modern Education
+                </p>
+                <p className="font-display font-bold text-sm text-brand-dark leading-tight">
+                  Consult
+                </p>
+                <p className="text-[10px] text-brand-blue/70 font-medium leading-tight">
+                  Where Education Meets Opportunity
+                </p>
+              </div>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-foreground hover:bg-accent transition-colors"
+              aria-label="Toggle menu"
+              data-ocid="nav.toggle"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 

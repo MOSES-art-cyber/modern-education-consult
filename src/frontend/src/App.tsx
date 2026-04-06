@@ -8,8 +8,10 @@ import {
 } from "@tanstack/react-router";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
+import ScrollToTopButton from "./components/layout/ScrollToTopButton";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import AboutPage from "./pages/AboutPage";
+import AdminPage from "./pages/AdminPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import ContactPage from "./pages/ContactPage";
@@ -31,6 +33,7 @@ const rootRoute = createRootRoute({
       </div>
       <Footer />
       <WhatsAppButton />
+      <ScrollToTopButton />
       <Toaster />
     </div>
   ),
@@ -79,6 +82,12 @@ const contactRoute = createRoute({
   component: ContactPage,
 });
 
+const adminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin",
+  component: AdminPage,
+});
+
 const onlineDegreeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/services/online-degree-courses",
@@ -111,6 +120,7 @@ const routeTree = rootRoute.addChildren([
   blogRoute,
   blogPostRoute,
   contactRoute,
+  adminRoute,
   onlineDegreeRoute,
   onlineProfessionalRoute,
   professionalInternshipsRoute,

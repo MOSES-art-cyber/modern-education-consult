@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts ─────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wght].woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design Tokens ──────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Blue palette (light mode) */
+    /* White-blue bg: #EFF6FF ~ oklch(0.97 0.015 250) */
+    /* Blue: #3B82F6 ~ oklch(0.6 0.2 258) */
+    /* Dark blue: #1E3A8A ~ oklch(0.35 0.12 262) */
+
+    --background: 0.97 0.015 250;
+    --foreground: 0.22 0.06 262;
+
+    --card: 1 0 0;
+    --card-foreground: 0.22 0.06 262;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.22 0.06 262;
+
+    --primary: 0.58 0.2 258;
+    --primary-foreground: 1 0 0;
+
+    --secondary: 0.93 0.04 252;
+    --secondary-foreground: 0.35 0.12 262;
+
+    --muted: 0.93 0.04 252;
+    --muted-foreground: 0.52 0.06 258;
+
+    --accent: 0.85 0.08 252;
+    --accent-foreground: 0.35 0.12 262;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+
+    --border: 0.85 0.05 252;
+    --input: 0.88 0.05 252;
+    --ring: 0.58 0.2 258;
+
+    --chart-1: 0.58 0.2 258;
+    --chart-2: 0.5 0.15 262;
+    --chart-3: 0.4 0.12 262;
+    --chart-4: 0.7 0.15 240;
+    --chart-5: 0.75 0.12 220;
+
+    --sidebar: 0.35 0.12 262;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 0.58 0.2 258;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.42 0.14 262;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.28 0.1 262;
+    --sidebar-ring: 0.58 0.2 258;
+
+    /* Custom brand tokens */
+    --brand-dark-blue: 0.32 0.11 262;
+    --brand-blue: 0.58 0.2 258;
+    --brand-light-blue: 0.94 0.04 252;
+    --brand-white-blue: 0.97 0.015 250;
+    --brand-whatsapp: 0.72 0.18 149;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+}
+
+/* ── Utilities ──────────────────────────────────────────────────── */
+@layer utilities {
+  .brand-dark-bg {
+    background-color: oklch(0.32 0.11 262);
+  }
+  .brand-blue-bg {
+    background-color: oklch(0.58 0.2 258);
+  }
+  .brand-light-bg {
+    background-color: oklch(0.97 0.015 250);
+  }
+  .brand-white-blue-bg {
+    background-color: oklch(0.94 0.04 252);
+  }
+  .text-brand-dark {
+    color: oklch(0.32 0.11 262);
+  }
+  .text-brand-blue {
+    color: oklch(0.58 0.2 258);
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+}
+
+/* ── Smooth scroll ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.97 0.015 250);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0.1 258);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.58 0.2 258);
+}
+
+/* ── Rich Text Editor Styles ───────────────────────────────────── */
+.rich-editor:empty:before {
+  content: attr(data-placeholder);
+  color: oklch(0.7 0.01 258);
+  pointer-events: none;
+}
+
+.rich-editor a,
+.rich-content a {
+  color: oklch(0.58 0.2 258);
+  text-decoration: underline;
+}
+
+.rich-editor blockquote,
+.rich-content blockquote {
+  border-left: 4px solid oklch(0.58 0.2 258);
+  margin: 1rem 0;
+  color: oklch(0.45 0.05 258);
+  font-style: italic;
+  background: oklch(0.97 0.015 250);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.75rem 1rem;
+}
+
+.rich-editor hr,
+.rich-content hr {
+  border: none;
+  border-top: 2px solid oklch(0.9 0.02 258);
+  margin: 1.5rem 0;
+}
+
+.rich-editor ul,
+.rich-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.rich-editor ol,
+.rich-content ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+.rich-editor li,
+.rich-content li {
+  margin-bottom: 0.25rem;
+}
+
+.content-table,
+.rich-editor table,
+.rich-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+
+.content-table th,
+.content-table td,
+.rich-editor th,
+.rich-editor td,
+.rich-content th,
+.rich-content td {
+  border: 1px solid oklch(0.88 0.02 258);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.content-table th,
+.rich-editor th,
+.rich-content th {
+  background: oklch(0.94 0.04 252);
+  font-weight: 600;
+  color: oklch(0.32 0.11 262);
+}
+
+.content-figure,
+.rich-content figure {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-figure figcaption,
+.rich-content figcaption {
+  font-size: 0.8em;
+  color: oklch(0.6 0.05 258);
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.content-img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.content-img-left {
+  float: left;
+  width: 40%;
+  margin: 0 1rem 1rem 0;
+}
+
+.content-img-right {
+  float: right;
+  width: 40%;
+  margin: 0 0 1rem 1rem;
+}
+
+.content-img-center {
+  display: block;
+  margin: 0 auto;
+}
+
+/* CTA Buttons in content */
+.cta-btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95em;
+  text-decoration: none !important;
+  margin: 0.5rem 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.cta-btn:hover {
+  opacity: 0.85;
+}
+.cta-btn-primary {
+  background: oklch(0.58 0.2 258);
+  color: white;
+  border: 2px solid oklch(0.58 0.2 258);
+}
+.cta-btn-secondary {
+  background: oklch(0.6 0.02 258);
+  color: white;
+  border: 2px solid oklch(0.6 0.02 258);
+}
+.cta-btn-outline {
+  background: transparent;
+  color: oklch(0.58 0.2 258);
+  border: 2px solid oklch(0.58 0.2 258);
+}

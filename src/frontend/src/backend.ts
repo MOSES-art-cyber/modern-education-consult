@@ -97,6 +97,7 @@ export interface BlogPost {
     author: string;
     summary: string;
     imageUrl: string;
+    category: string;
 }
 export type Time = bigint;
 export interface ContactSubmission {
@@ -115,7 +116,9 @@ export interface Testimonial {
 }
 export interface backendInterface {
     _init(): Promise<void>;
-    addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string): Promise<void>;
+    addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    deleteBlogPost(id: bigint): Promise<void>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
@@ -138,17 +141,45 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async addBlogPost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string): Promise<void> {
+    async addBlogPost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4);
+                const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4);
+            const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
+            return result;
+        }
+    }
+    async editBlogPost(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            return result;
+        }
+    }
+    async deleteBlogPost(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteBlogPost(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteBlogPost(arg0);
             return result;
         }
     }

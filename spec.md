@@ -1,41 +1,35 @@
 # Modern Education Consult
 
 ## Current State
-New project — no existing pages or backend.
+- Blog admin panel at `/admin` with Internet Identity login
+- BlogForm component with auto-save to localStorage every 30s (new posts only)
+- Auto-save restore only offered for new posts, not edit mode
+- No export/import/backup feature for posts
+- All 12 seeded posts hardcoded in Motoko backend stable storage
+- User-added posts beyond the seeded 12 can be lost when a new draft is deployed (new canister)
 
 ## Requested Changes (Diff)
 
 ### Add
-- Multi-page website: Home, About Us, Services, Countries, Blog, Contact
-- Navigation bar with links to all pages including Blog
-- Home page with:
-  - Hero section (headline, subheadline, Apply Now + WhatsApp CTA buttons)
-  - About Preview section (brief company description)
-  - Services section (Study Abroad + International Job Placement cards, each clickable to Services page)
-  - Countries section (USA, Canada, UK, UAE, Europe, China, Australia)
-  - Testimonials section with client quotes and photos
-  - Why Choose Us section (5 bullet points)
-  - Bottom CTA section (Apply Now + WhatsApp Us)
-  - Floating WhatsApp button on bottom-right corner
-- About Us page: Who We Are, Vision, Mission sections
-- Services page: Study Abroad and International Job Placement detailed service lists
-- Countries page: list of countries with brief descriptions
-- Contact page: contact details (phone, WhatsApp, email, office location) + contact form (Full Name, Phone, Email, Country of Interest, Message, Send Application button)
-- Blog section in main menu with a blog listing page (placeholder posts)
-- Color scheme: white-blue, blue, dark blue throughout
+- **Export All Posts** button in admin header: downloads all current blog posts as a JSON file for offline backup
+- **Import Posts from Backup** button: upload a previously exported JSON file and restore posts to the backend
+- **Auto-save on every form change** (debounced 2s) in addition to the interval
+- **Auto-save for edit mode** (not just new posts) — restore prompt when re-opening an edit
+- **Visual auto-save indicator** — show a pulsing green dot and timestamp when saving, "All changes saved" confirmation
+- **Unsaved changes warning** — browser `beforeunload` prompt if leaving with unsaved edits
+- **Auto-save interval reduced to 5 seconds** (from 30s)
 
 ### Modify
-- N/A (new project)
+- `BlogForm` — reduce auto-save interval from 30s to 5s, add onChange debounced save, fix restore to work for both new and edit post IDs, add beforeunload guard
+- `AdminPage` — add Export and Import buttons with clear backup/restore UX
 
 ### Remove
-- N/A
+- Nothing removed
 
 ## Implementation Plan
-1. Rename project to "Modern Education Consult"
-2. Generate Motoko backend for contact form submissions and blog posts storage
-3. Build React frontend with React Router for all pages
-4. Implement navigation with all menu items
-5. Build each page component with correct content and design tokens (white/blue/dark-blue palette)
-6. Add floating WhatsApp button on all pages
-7. Wire contact form to backend
-8. Deploy
+1. In `AdminPage.tsx` `BlogForm`: reduce auto-save interval to 5s; add `useEffect` watching form changes with 2s debounced save; fix restore logic to offer restore for both new and edit modes
+2. Add `beforeunload` event listener in `BlogForm` that warns if form is dirty
+3. Update auto-save status indicator to show live pulsing dot while saving
+4. In `AdminPage` main component: add `handleExportPosts` that serializes `posts` array to JSON and triggers download
+5. Add `handleImportPosts` that reads an uploaded JSON file and calls `addMutation` for each post not already in the current list
+6. Add Export and Import buttons in the admin header section with tooltips explaining their purpose

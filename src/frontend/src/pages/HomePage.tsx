@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@tanstack/react-router";
 import {
+  ArrowRight,
   BookOpen,
   Briefcase,
   CheckCircle,
@@ -16,7 +17,8 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { SiWhatsapp } from "react-icons/si";
-import { useGetAllTestimonials } from "../hooks/useQueries";
+import type { BlogPost } from "../backend.d.ts";
+import { useGetAllBlogPosts, useGetAllTestimonials } from "../hooks/useQueries";
 
 const studyAbroadServices = [
   "University Admissions Assistance",
@@ -104,6 +106,90 @@ const localPhotos = [
   "/assets/generated/testimonial-3.dim_200x200.jpg",
 ];
 
+function isRecentPost(post: BlogPost): boolean {
+  const ms = Number(post.publishedDate) / 1_000_000;
+  return (Date.now() - ms) / (1000 * 60 * 60 * 24) <= 21;
+}
+
+function UpdatesSection() {
+  const { data: allPosts } = useGetAllBlogPosts();
+  const updatesPosts = (allPosts ?? [])
+    .filter((p) => p.category === "Updates")
+    .sort((a, b) => Number(b.publishedDate - a.publishedDate))
+    .slice(0, 4);
+
+  if (updatesPosts.length === 0) return null;
+
+  return (
+    <section className="py-16 bg-gradient-to-b from-blue-50 to-white border-t border-blue-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-[#1e3a5f]">
+              Latest Updates
+            </h2>
+            <p className="text-gray-500 text-sm mt-1">
+              Immigration news, policy changes &amp; scholarship deadlines
+            </p>
+          </div>
+          <Link
+            to="/blog"
+            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-900 border border-blue-200 hover:border-blue-400 rounded-lg px-4 py-2 transition-all"
+          >
+            View All <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {updatesPosts.map((post, i) => (
+            <Link
+              key={post.id.toString()}
+              to="/blog/$id"
+              params={{ id: post.id.toString() }}
+              data-ocid={`updates.item.${i + 1}`}
+              className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col"
+            >
+              <div className="relative h-40 overflow-hidden bg-gradient-to-br from-[#1e3a5f] to-[#1d4ed8]">
+                <img
+                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80"
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                {isRecentPost(post) && (
+                  <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow">
+                    NEW
+                  </span>
+                )}
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <p className="text-xs text-gray-400 mb-1">
+                  {new Date(
+                    Number(post.publishedDate) / 1_000_000,
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+                <h3 className="font-bold text-[#1e3a5f] text-sm line-clamp-2 group-hover:text-blue-700 transition-colors flex-1">
+                  {post.title}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="sm:hidden mt-6 text-center">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-900 border border-blue-200 rounded-lg px-4 py-2"
+          >
+            View All Updates <ArrowRight size={14} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 export default function HomePage() {
   const { data: testimonials, isLoading: testimonialsLoading } =
     useGetAllTestimonials();
@@ -120,7 +206,7 @@ export default function HomePage() {
     <main>
       {/* ── Hero ──────────────────────────────────────────── */}
       <section
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-start justify-center overflow-hidden pt-24 lg:pt-28"
         style={{
           background:
             "linear-gradient(135deg, oklch(0.22 0.08 262) 0%, oklch(0.35 0.12 262) 50%, oklch(0.28 0.1 258) 100%)",
@@ -158,7 +244,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-16 lg:py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -683,6 +769,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Updates Section ─────────────────────────────── */}
+      <UpdatesSection />
       {/* ── Bottom CTA ────────────────────────────────────── */}
       <section className="py-20 brand-dark-bg">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
