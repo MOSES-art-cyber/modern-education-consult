@@ -646,7 +646,7 @@ Contact us today:
     stableContacts := contactsMap.values().toArray();
   };
 
-  var testimonialsArray = [
+  stable var testimonialsArray : [Testimonial] = [
     {
       clientName = "John Doe";
       quote = "Modern Education Consult helped me achieve my dream of studying in the UK!";
@@ -664,6 +664,12 @@ Contact us today:
       quote = "Thanks to Mec, I am now studying engineering in Australia.";
       country = "Australia";
       photoUrl = "https://example.com/photo3.jpg";
+    },
+    {
+      clientName = "Nsengiyumva Ibasumba Alain Aristide";
+      quote = "Modern Education Consult guided me through every step — from credential recognition to German B2 preparation and landing my engineering job in Stuttgart. Their support made my dream of working in Germany a reality.";
+      country = "Now working in Germany";
+      photoUrl = "/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg";
     },
   ];
 

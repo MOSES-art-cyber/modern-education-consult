@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import {
   ChevronDown,
   ChevronUp,
@@ -53,7 +54,6 @@ import {
   parsePostContent,
   serializePostContent,
 } from "../components/blog/postMetaUtils";
-import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import {
   useAddBlogPost,
   useDeleteBlogPost,

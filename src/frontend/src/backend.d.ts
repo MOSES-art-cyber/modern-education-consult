@@ -34,8 +34,8 @@ export interface Testimonial {
 }
 export interface backendInterface {
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
-    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
     deleteBlogPost(id: bigint): Promise<void>;
+    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;

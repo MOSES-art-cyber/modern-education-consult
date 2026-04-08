@@ -115,10 +115,9 @@ export interface Testimonial {
     photoUrl: string;
 }
 export interface backendInterface {
-    _init(): Promise<void>;
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
-    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
     deleteBlogPost(id: bigint): Promise<void>;
+    editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
@@ -127,20 +126,6 @@ export interface backendInterface {
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async _init(): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor._init();
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor._init();
-            return result;
-        }
-    }
     async addBlogPost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<void> {
         if (this.processError) {
             try {
@@ -155,20 +140,6 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async editBlogPost(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-            return result;
-        }
-    }
     async deleteBlogPost(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
@@ -180,6 +151,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.deleteBlogPost(arg0);
+            return result;
+        }
+    }
+    async editBlogPost(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
             return result;
         }
     }

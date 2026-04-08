@@ -1,9 +1,10 @@
+import { useActor } from "@caffeineai/core-infrastructure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createActor } from "../backend";
 import type { BlogPost, Testimonial } from "../backend.d.ts";
-import { useActor } from "./useActor";
 
 export function useGetAllBlogPosts() {
-  const { actor, isFetching } = useActor();
+  const { actor, isFetching } = useActor(createActor);
   return useQuery<BlogPost[]>({
     queryKey: ["blogPosts"],
     queryFn: async () => {
@@ -15,7 +16,7 @@ export function useGetAllBlogPosts() {
 }
 
 export function useGetBlogPostById(id: bigint) {
-  const { actor, isFetching } = useActor();
+  const { actor, isFetching } = useActor(createActor);
   return useQuery<BlogPost | null>({
     queryKey: ["blogPost", id.toString()],
     queryFn: async () => {
@@ -27,7 +28,7 @@ export function useGetBlogPostById(id: bigint) {
 }
 
 export function useGetAllTestimonials() {
-  const { actor, isFetching } = useActor();
+  const { actor, isFetching } = useActor(createActor);
   return useQuery<Testimonial[]>({
     queryKey: ["testimonials"],
     queryFn: async () => {
@@ -39,7 +40,7 @@ export function useGetAllTestimonials() {
 }
 
 export function useAddBlogPost() {
-  const { actor } = useActor();
+  const { actor } = useActor(createActor);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -74,7 +75,7 @@ export function useAddBlogPost() {
 }
 
 export function useEditBlogPost() {
-  const { actor } = useActor();
+  const { actor } = useActor(createActor);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -112,7 +113,7 @@ export function useEditBlogPost() {
 }
 
 export function useDeleteBlogPost() {
-  const { actor } = useActor();
+  const { actor } = useActor(createActor);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: bigint) => {
@@ -126,7 +127,7 @@ export function useDeleteBlogPost() {
 }
 
 export function useSubmitContact() {
-  const { actor } = useActor();
+  const { actor } = useActor(createActor);
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({

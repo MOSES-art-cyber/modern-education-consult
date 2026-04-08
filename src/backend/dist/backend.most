@@ -1,0 +1,55 @@
+// Version: 1.0.0
+type BlogPost__543622485 =
+  {
+    author : Text;
+    category : Text;
+    content : Text;
+    id : Nat;
+    imageUrl : Text;
+    publishedDate : Time__900049286;
+    summary : Text;
+    title : Text
+  };
+type ContactSubmission__390548495 =
+  {
+    countryOfInterest : Text;
+    email : Text;
+    fullName : Text;
+    message : Text;
+    phoneNumber : Text;
+    timestamp : Time__900049286
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Testimonial__393323594 =
+  {clientName : Text; country : Text; photoUrl : Text; quote : Text};
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+actor {
+  stable var blogsMap :
+    {
+      var root : Node__46230540<Nat, BlogPost__543622485>;
+      var size : Nat__490723111
+    };
+  stable var contactsMap :
+    {
+      var root : Node__46230540<Nat, ContactSubmission__390548495>;
+      var size : Nat__490723111
+    };
+  stable var nextBlogPostId : Nat;
+  stable var nextContactId : Nat;
+  stable var seedVersion : Nat;
+  stable var seeded : Bool;
+  stable var stableBlogPosts : [BlogPost__543622485];
+  stable var stableContacts : [ContactSubmission__390548495];
+  stable var testimonialsArray : [Testimonial__393323594]
+};

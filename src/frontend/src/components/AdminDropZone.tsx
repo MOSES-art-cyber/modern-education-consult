@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import { Lock, LogIn } from "lucide-react";
-import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import DropZone from "./DropZone";
 
 interface AdminDropZoneProps {

@@ -36,16 +36,15 @@ export interface Testimonial {
 }
 export type Time = bigint;
 export interface _SERVICE {
-  '_init' : ActorMethod<[], undefined>,
   'addBlogPost' : ActorMethod<
     [string, string, string, string, string, string],
     undefined
   >,
+  'deleteBlogPost' : ActorMethod<[bigint], undefined>,
   'editBlogPost' : ActorMethod<
     [bigint, string, string, string, string, string, string],
     undefined
   >,
-  'deleteBlogPost' : ActorMethod<[bigint], undefined>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
   'getAllContacts' : ActorMethod<[], Array<ContactSubmission>>,
   'getAllTestimonials' : ActorMethod<[], Array<Testimonial>>,

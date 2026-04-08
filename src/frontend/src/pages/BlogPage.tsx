@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -14,7 +15,6 @@ import {
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import type { BlogPost } from "../backend.d.ts";
-import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import { useGetAllBlogPosts } from "../hooks/useQueries";
 
 function formatDate(nanoseconds: bigint): string {

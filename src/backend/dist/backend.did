@@ -1,0 +1,41 @@
+type Time = int;
+type Testimonial = 
+ record {
+   clientName: text;
+   country: text;
+   photoUrl: text;
+   quote: text;
+ };
+type ContactSubmission = 
+ record {
+   countryOfInterest: text;
+   email: text;
+   fullName: text;
+   message: text;
+   phoneNumber: text;
+   timestamp: Time;
+ };
+type BlogPost = 
+ record {
+   author: text;
+   category: text;
+   content: text;
+   id: nat;
+   imageUrl: text;
+   publishedDate: Time;
+   summary: text;
+   title: text;
+ };
+service : {
+  addBlogPost: (title: text, summary: text, content: text, author: text,
+   imageUrl: text, category: text) -> ();
+  deleteBlogPost: (id: nat) -> ();
+  editBlogPost: (id: nat, title: text, summary: text, content: text, author:
+   text, imageUrl: text, category: text) -> ();
+  getAllBlogPosts: () -> (vec BlogPost) query;
+  getAllContacts: () -> (vec ContactSubmission) query;
+  getAllTestimonials: () -> (vec Testimonial) query;
+  getBlogPostById: (id: nat) -> (BlogPost) query;
+  submitContact: (fullName: text, phoneNumber: text, email: text,
+   countryOfInterest: text, message: text) -> ();
+}
