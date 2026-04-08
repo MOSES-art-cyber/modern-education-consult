@@ -98,12 +98,20 @@ const fallbackTestimonials = [
       "The scholarship support they provided saved me thousands. I couldn't have navigated the UK university application process without them.",
     photoUrl: "/assets/generated/testimonial-3.dim_200x200.jpg",
   },
+  {
+    clientName: "Nsengiyumva Ibasumba Alain Aristide",
+    country: "Now working in Germany",
+    quote:
+      "Modern Education Consult guided me through every step — from credential recognition and German B2 preparation to landing my engineering job in Stuttgart. They made my German dream a reality.",
+    photoUrl: "/assets/generated/testimonial-4.dim_200x200.jpg",
+  },
 ];
 
 const localPhotos = [
   "/assets/generated/testimonial-1.dim_200x200.jpg",
   "/assets/generated/testimonial-2.dim_200x200.jpg",
   "/assets/generated/testimonial-3.dim_200x200.jpg",
+  "/assets/generated/testimonial-4.dim_200x200.jpg",
 ];
 
 function isRecentPost(post: BlogPost): boolean {
@@ -196,7 +204,7 @@ export default function HomePage() {
 
   const displayTestimonials =
     testimonials && testimonials.length > 0
-      ? testimonials.slice(0, 3).map((t, i) => ({
+      ? testimonials.slice(0, 4).map((t, i) => ({
           ...t,
           photoUrl: t.photoUrl || localPhotos[i] || "",
         }))
@@ -627,9 +635,9 @@ export default function HomePage() {
           {testimonialsLoading ? (
             <div
               data-ocid="testimonials.loading_state"
-              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {[1, 2, 3].map((i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="bg-white/10 rounded-2xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <Skeleton className="w-12 h-12 rounded-full bg-white/20" />
@@ -643,7 +651,7 @@ export default function HomePage() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {displayTestimonials.map((testimonial, i) => (
                 <motion.div
                   key={testimonial.clientName}
