@@ -20,6 +20,16 @@ export interface BlogPost {
   'imageUrl' : string,
   'category' : string,
 }
+export interface Comment {
+  'id' : bigint,
+  'content' : string,
+  'authorEmail' : string,
+  'createdAt' : bigint,
+  'authorName' : string,
+  'approved' : boolean,
+  'parentId' : [] | [bigint],
+  'postId' : string,
+}
 export interface ContactSubmission {
   'fullName' : string,
   'email' : string,
@@ -40,15 +50,26 @@ export interface _SERVICE {
     [string, string, string, string, string, string],
     undefined
   >,
+  'approveComment' : ActorMethod<[bigint], boolean>,
   'deleteBlogPost' : ActorMethod<[bigint], undefined>,
+  'deleteComment' : ActorMethod<[bigint], boolean>,
   'editBlogPost' : ActorMethod<
     [bigint, string, string, string, string, string, string],
     undefined
   >,
+  'editComment' : ActorMethod<[bigint, string], boolean>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
   'getAllContacts' : ActorMethod<[], Array<ContactSubmission>>,
   'getAllTestimonials' : ActorMethod<[], Array<Testimonial>>,
+  'getApprovedComments' : ActorMethod<[string], Array<Comment>>,
   'getBlogPostById' : ActorMethod<[bigint], BlogPost>,
+  'getPendingCommentCount' : ActorMethod<[], bigint>,
+  'getPendingComments' : ActorMethod<[], Array<Comment>>,
+  'rejectComment' : ActorMethod<[bigint], boolean>,
+  'submitComment' : ActorMethod<
+    [string, [] | [bigint], string, string, string],
+    bigint
+  >,
   'submitContact' : ActorMethod<
     [string, string, string, string, string],
     undefined

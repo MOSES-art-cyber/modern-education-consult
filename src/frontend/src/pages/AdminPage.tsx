@@ -28,6 +28,7 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import {
+  Check,
   ChevronDown,
   ChevronUp,
   Download,
@@ -37,6 +38,7 @@ import {
   Info,
   LogIn,
   LogOut,
+  MessageSquare,
   Plus,
   Save,
   Trash2,
@@ -45,7 +47,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import type { BlogPost } from "../backend.d.ts";
+import type { BlogPost, Comment } from "../backend.d.ts";
 import ImageSliderEditor from "../components/blog/ImageSliderEditor";
 import RichTextEditor from "../components/blog/RichTextEditor";
 import {
@@ -56,9 +58,16 @@ import {
 } from "../components/blog/postMetaUtils";
 import {
   useAddBlogPost,
+  useApproveComment,
   useDeleteBlogPost,
+  useDeleteComment,
   useEditBlogPost,
+  useEditComment,
   useGetAllBlogPosts,
+  useGetApprovedComments,
+  useGetPendingCommentCount,
+  useGetPendingComments,
+  useRejectComment,
 } from "../hooks/useQueries";
 
 const CATEGORIES = [
@@ -75,6 +84,8 @@ const CATEGORIES = [
 ];
 
 const AUTOSAVE_KEY = (id: string) => `blog-autosave-${id}`;
+
+type AdminTab = "posts" | "comments";
 
 interface FormData {
   title: string;
@@ -141,7 +152,6 @@ function BlogForm({
     setForm((f) => ({ ...f, [field]: value }));
   };
 
-  // Restore from autosave for any postId
   useEffect(() => {
     const saved = localStorage.getItem(AUTOSAVE_KEY(postId));
     if (saved) {
@@ -159,7 +169,6 @@ function BlogForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
-  // Debounced auto-save on form changes (2s debounce)
   useEffect(() => {
     isDirtyRef.current = true;
     setIsSaving(true);
@@ -178,7 +187,6 @@ function BlogForm({
     };
   }, [form, postId]);
 
-  // Interval auto-save every 5 seconds as backup
   useEffect(() => {
     const id = setInterval(() => {
       localStorage.setItem(AUTOSAVE_KEY(postId), JSON.stringify(form));
@@ -192,7 +200,6 @@ function BlogForm({
     return () => clearInterval(id);
   }, [form, postId]);
 
-  // Beforeunload warning when form is dirty
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
       if (isDirtyRef.current) {
@@ -266,7 +273,6 @@ function BlogForm({
       ...form.meta,
       lastUpdated: new Date().toISOString(),
     };
-    // If bilingual, merge en content into main content with meta
     const rawContent = form.meta.bilingualEnabled
       ? form.enContent
       : form.content;
@@ -289,7 +295,6 @@ function BlogForm({
 
   return (
     <div className="space-y-6">
-      {/* Preview Dialog */}
       <Dialog open={showPreview} onOpenChange={setShowPreview}>
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -332,7 +337,6 @@ function BlogForm({
         </DialogContent>
       </Dialog>
 
-      {/* CTA Builder Dialog */}
       <Dialog open={showCta} onOpenChange={setShowCta}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -393,9 +397,8 @@ function BlogForm({
       </Dialog>
 
       <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
-        {/* ─── Left column: content ─── */}
+        {/* ─── Left column ─── */}
         <div className="xl:col-span-3 space-y-5">
-          {/* Title(s) */}
           {bilingualEnabled ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -437,7 +440,6 @@ function BlogForm({
             </div>
           )}
 
-          {/* Summary */}
           <div className="space-y-1.5">
             <Label className="text-sm font-semibold text-[#1e3a5f]">
               Summary *
@@ -451,7 +453,6 @@ function BlogForm({
             />
           </div>
 
-          {/* Content Editor(s) */}
           {bilingualEnabled ? (
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm font-semibold text-[#1e3a5f] border-b pb-2">
@@ -507,7 +508,6 @@ function BlogForm({
             </div>
           )}
 
-          {/* Image Slider */}
           <div className="space-y-2">
             <Button
               type="button"
@@ -525,14 +525,12 @@ function BlogForm({
           </div>
         </div>
 
-        {/* ─── Right column: settings ─── */}
+        {/* ─── Right column ─── */}
         <div className="xl:col-span-2 space-y-4">
-          {/* Category */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-4">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Post Settings
             </h3>
-
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold text-[#1e3a5f]">
                 Category
@@ -550,8 +548,6 @@ function BlogForm({
                 ))}
               </select>
             </div>
-
-            {/* Tags */}
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold text-[#1e3a5f]">
                 Tags
@@ -584,12 +580,10 @@ function BlogForm({
             </div>
           </div>
 
-          {/* Featured Image */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Featured Image
             </h3>
-
             <input
               ref={fileInputRef}
               type="file"
@@ -632,8 +626,6 @@ function BlogForm({
                 onError={() => setImgError(true)}
               />
             )}
-
-            {/* Image position */}
             <div>
               <Label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
                 Position
@@ -644,11 +636,7 @@ function BlogForm({
                     key={pos}
                     type="button"
                     onClick={() => setMeta({ featuredImagePos: pos })}
-                    className={`px-3 py-1 text-xs rounded-md border font-medium capitalize transition-colors ${
-                      form.meta.featuredImagePos === pos
-                        ? "bg-blue-700 text-white border-blue-700"
-                        : "border-gray-200 text-gray-600 hover:bg-gray-50"
-                    }`}
+                    className={`px-3 py-1 text-xs rounded-md border font-medium capitalize transition-colors ${form.meta.featuredImagePos === pos ? "bg-blue-700 text-white border-blue-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
                   >
                     {pos}
                   </button>
@@ -657,7 +645,6 @@ function BlogForm({
             </div>
           </div>
 
-          {/* Bilingual */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
@@ -680,11 +667,7 @@ function BlogForm({
                       key={order}
                       type="button"
                       onClick={() => setMeta({ langOrder: order })}
-                      className={`px-3 py-1 text-xs rounded-md border font-medium transition-colors ${
-                        form.meta.langOrder === order
-                          ? "bg-blue-700 text-white border-blue-700"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
-                      }`}
+                      className={`px-3 py-1 text-xs rounded-md border font-medium transition-colors ${form.meta.langOrder === order ? "bg-blue-700 text-white border-blue-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
                     >
                       {order === "en-fr"
                         ? "EN left · FR right"
@@ -696,7 +679,6 @@ function BlogForm({
             )}
           </div>
 
-          {/* Author & Display */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Author & Display
@@ -728,7 +710,6 @@ function BlogForm({
             </div>
           </div>
 
-          {/* Publish Controls */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Publish Controls
@@ -772,7 +753,6 @@ function BlogForm({
                 />
               </div>
             )}
-            {/* Auto-save status indicator */}
             <div className="flex items-center gap-2 min-h-[20px]">
               {isSaving ? (
                 <>
@@ -792,7 +772,6 @@ function BlogForm({
             </div>
           </div>
 
-          {/* SEO Section */}
           <Collapsible open={seoOpen} onOpenChange={setSeoOpen}>
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
               <CollapsibleTrigger asChild>
@@ -871,7 +850,6 @@ function BlogForm({
         </div>
       </div>
 
-      {/* Action buttons */}
       <div className="flex items-center gap-3 pt-2 border-t border-gray-100 flex-wrap">
         <Button
           onClick={handleSubmit}
@@ -925,6 +903,361 @@ function BlogForm({
   );
 }
 
+// ── Comments Panel ──────────────────────────────────────────────────
+
+function timeAgo(nanoseconds: bigint): string {
+  const ms = Number(nanoseconds) / 1_000_000;
+  const diff = Date.now() - ms;
+  const mins = Math.floor(diff / 60_000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ago`;
+}
+
+interface CommentRowProps {
+  comment: Comment;
+  posts: BlogPost[];
+  pending: boolean;
+}
+
+function CommentRow({ comment, posts, pending }: CommentRowProps) {
+  const approveMutation = useApproveComment();
+  const rejectMutation = useRejectComment();
+  const editMutation = useEditComment();
+  const deleteMutation = useDeleteComment();
+  const [editing, setEditing] = useState(false);
+  const [editContent, setEditContent] = useState(comment.content);
+
+  const postTitle =
+    posts.find((p) => p.id.toString() === comment.postId)?.title ??
+    `Post #${comment.postId}`;
+  const excerpt =
+    comment.content.length > 100
+      ? `${comment.content.slice(0, 100)}…`
+      : comment.content;
+
+  const handleApprove = async () => {
+    try {
+      await approveMutation.mutateAsync(comment.id);
+      toast.success("Comment approved and published.");
+    } catch {
+      toast.error("Failed to approve comment.");
+    }
+  };
+
+  const handleReject = async () => {
+    try {
+      await rejectMutation.mutateAsync(comment.id);
+      toast.success("Comment rejected.");
+    } catch {
+      toast.error("Failed to reject comment.");
+    }
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editContent.trim()) return;
+    try {
+      await editMutation.mutateAsync({
+        id: comment.id,
+        content: editContent.trim(),
+      });
+      toast.success("Comment updated.");
+      setEditing(false);
+    } catch {
+      toast.error("Failed to update comment.");
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteMutation.mutateAsync(comment.id);
+      toast.success("Comment deleted.");
+    } catch {
+      toast.error("Failed to delete comment.");
+    }
+  };
+
+  return (
+    <div
+      className={`bg-white rounded-xl border shadow-sm px-5 py-4 space-y-3 ${pending ? "border-amber-200 bg-amber-50/30" : "border-gray-200"}`}
+      data-ocid={`admin.comment.item.${comment.id}`}
+    >
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="space-y-0.5 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-sm text-[#1e3a5f]">
+              {comment.authorName}
+            </span>
+            <span className="text-xs text-gray-400">{comment.authorEmail}</span>
+            <span className="text-xs text-gray-300">·</span>
+            <span className="text-xs text-gray-400">
+              {timeAgo(comment.createdAt)}
+            </span>
+            {comment.parentId !== undefined && comment.parentId !== null && (
+              <Badge
+                variant="outline"
+                className="text-xs text-purple-600 border-purple-200 bg-purple-50"
+              >
+                Reply
+              </Badge>
+            )}
+          </div>
+          <p className="text-xs text-blue-600 truncate">
+            On: <span className="font-medium">{postTitle}</span>
+          </p>
+        </div>
+        {pending ? (
+          <div className="flex gap-2 flex-shrink-0">
+            <Button
+              size="sm"
+              onClick={handleApprove}
+              disabled={approveMutation.isPending}
+              className="bg-green-600 hover:bg-green-700 text-white gap-1.5 h-8 px-3 text-xs font-semibold"
+              data-ocid={`admin.comment.approve.${comment.id}`}
+            >
+              <Check size={12} /> Approve
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleReject}
+              disabled={rejectMutation.isPending}
+              className="text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs font-semibold"
+              data-ocid={`admin.comment.reject.${comment.id}`}
+            >
+              <X size={12} /> Reject
+            </Button>
+          </div>
+        ) : (
+          <div className="flex gap-2 flex-shrink-0">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                setEditing((v) => !v);
+                setEditContent(comment.content);
+              }}
+              className="text-blue-700 border-blue-200 hover:bg-blue-50 gap-1.5 h-8 px-3 text-xs"
+              data-ocid={`admin.comment.edit.${comment.id}`}
+            >
+              <Edit2 size={12} /> Edit
+            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs"
+                  data-ocid={`admin.comment.delete.${comment.id}`}
+                >
+                  <Trash2 size={12} /> Delete
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete this comment?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        )}
+      </div>
+
+      {editing ? (
+        <div className="space-y-2">
+          <Textarea
+            value={editContent}
+            onChange={(e) => setEditContent(e.target.value)}
+            rows={3}
+            className="text-sm border-gray-200 resize-none"
+            data-ocid={`admin.comment.edit_textarea.${comment.id}`}
+          />
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={handleSaveEdit}
+              disabled={editMutation.isPending}
+              className="bg-blue-700 hover:bg-blue-800 text-white h-8 px-4 text-xs"
+            >
+              {editMutation.isPending ? "Saving..." : "Save"}
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setEditing(false)}
+              className="h-8 px-3 text-xs text-gray-500"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <p className="text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2 border border-gray-100">
+          {excerpt}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function CommentsTab({ posts }: { posts: BlogPost[] }) {
+  const { data: pendingComments = [], isLoading: isPendingLoading } =
+    useGetPendingComments();
+  const [viewMode, setViewMode] = useState<"pending" | "approved">("pending");
+
+  return (
+    <div className="space-y-5">
+      {/* Toggle */}
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setViewMode("pending")}
+          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "pending" ? "bg-amber-500 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+          data-ocid="admin.comments.pending_tab"
+        >
+          Pending
+          {pendingComments.length > 0 && (
+            <span className="ml-2 bg-white text-amber-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+              {pendingComments.length}
+            </span>
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={() => setViewMode("approved")}
+          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "approved" ? "bg-[#1e3a5f] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+          data-ocid="admin.comments.approved_tab"
+        >
+          Approved
+        </button>
+      </div>
+
+      {viewMode === "pending" && (
+        <div className="space-y-3" data-ocid="admin.comments.pending.list">
+          {isPendingLoading ? (
+            <div className="text-center py-10 text-gray-400">Loading...</div>
+          ) : pendingComments.length === 0 ? (
+            <div
+              className="text-center py-14 bg-white rounded-2xl border border-dashed border-gray-200"
+              data-ocid="admin.comments.pending.empty"
+            >
+              <MessageSquare size={32} className="text-gray-300 mx-auto mb-2" />
+              <p className="font-semibold text-gray-400 text-sm">
+                No pending comments
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                All comments have been reviewed.
+              </p>
+            </div>
+          ) : (
+            pendingComments.map((c) => (
+              <CommentRow
+                key={c.id.toString()}
+                comment={c}
+                posts={posts}
+                pending
+              />
+            ))
+          )}
+        </div>
+      )}
+
+      {viewMode === "approved" && <ApprovedCommentsList posts={posts} />}
+    </div>
+  );
+}
+
+function ApprovedCommentsList({ posts }: { posts: BlogPost[] }) {
+  return <ApprovedByPost posts={posts} />;
+}
+
+function ApprovedByPost({ posts }: { posts: BlogPost[] }) {
+  const [selectedPostId, setSelectedPostId] = useState<string>(
+    posts[0]?.id.toString() ?? "",
+  );
+
+  return (
+    <div className="space-y-4">
+      <div className="space-y-1.5">
+        <Label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+          Select Post
+        </Label>
+        <select
+          value={selectedPostId}
+          onChange={(e) => setSelectedPostId(e.target.value)}
+          className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          data-ocid="admin.comments.post_filter"
+        >
+          {posts.map((p) => (
+            <option key={p.id.toString()} value={p.id.toString()}>
+              {p.title}
+            </option>
+          ))}
+        </select>
+      </div>
+      {selectedPostId && (
+        <ApprovedCommentsForPost postId={selectedPostId} posts={posts} />
+      )}
+    </div>
+  );
+}
+
+function ApprovedCommentsForPost({
+  postId,
+  posts,
+}: { postId: string; posts: BlogPost[] }) {
+  const { data: comments = [], isLoading } = useGetApprovedComments(postId);
+
+  if (isLoading)
+    return (
+      <div className="text-center py-8 text-gray-400 text-sm">Loading...</div>
+    );
+
+  if (comments.length === 0) {
+    return (
+      <div
+        className="text-center py-10 bg-white rounded-2xl border border-dashed border-gray-200"
+        data-ocid="admin.comments.approved.empty"
+      >
+        <MessageSquare size={28} className="text-gray-300 mx-auto mb-2" />
+        <p className="text-sm font-semibold text-gray-400">
+          No approved comments for this post
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3" data-ocid="admin.comments.approved.list">
+      {comments.map((c) => (
+        <CommentRow
+          key={c.id.toString()}
+          comment={c}
+          posts={posts}
+          pending={false}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ── Main AdminPage ──────────────────────────────────────────────────
+
 export default function AdminPage() {
   const { identity, login, clear, isInitializing, isLoggingIn } =
     useInternetIdentity();
@@ -938,13 +1271,17 @@ export default function AdminPage() {
   const addMutation = useAddBlogPost();
   const editMutation = useEditBlogPost();
   const deleteMutation = useDeleteBlogPost();
+  const { data: pendingCount } = useGetPendingCommentCount();
 
+  const [activeTab, setActiveTab] = useState<AdminTab>("posts");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [showDataBanner, setShowDataBanner] = useState(true);
   const editFormRef = useRef<HTMLDivElement>(null);
   const autoEditApplied = useRef(false);
   const importFileRef = useRef<HTMLInputElement>(null);
+
+  const pendingNum = pendingCount !== undefined ? Number(pendingCount) : 0;
 
   useEffect(() => {
     if (autoEditApplied.current || !posts || posts.length === 0) return;
@@ -955,12 +1292,14 @@ export default function AdminPage() {
       autoEditApplied.current = true;
       setEditingPost(target);
       setShowAddForm(false);
-      setTimeout(() => {
-        editFormRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 100);
+      setTimeout(
+        () =>
+          editFormRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          }),
+        100,
+      );
     }
   }, [posts]);
 
@@ -1032,24 +1371,20 @@ export default function AdminPage() {
         imageUrl: string;
         category: string;
       }>;
-
       if (!Array.isArray(imported)) {
         toast.error("Invalid backup file format.");
         return;
       }
-
       const existingTitles = new Set(
         (posts ?? []).map((p) => p.title.trim().toLowerCase()),
       );
       const newPosts = imported.filter(
         (p) => !existingTitles.has(p.title.trim().toLowerCase()),
       );
-
       if (newPosts.length === 0) {
         toast.info("All posts already exist — nothing imported.");
         return;
       }
-
       for (const p of newPosts) {
         await addMutation.mutateAsync({
           title: p.title,
@@ -1060,7 +1395,6 @@ export default function AdminPage() {
           category: p.category || "Study Abroad",
         });
       }
-
       await refetchPosts();
       toast.success(
         `Imported ${newPosts.length} new post${newPosts.length > 1 ? "s" : ""} successfully!`,
@@ -1114,7 +1448,6 @@ export default function AdminPage() {
 
   return (
     <main className="pt-16 lg:pt-20 min-h-screen bg-gray-50 pb-16">
-      {/* Hidden file input for import */}
       <input
         ref={importFileRef}
         type="file"
@@ -1131,42 +1464,42 @@ export default function AdminPage() {
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold text-[#1e3a5f]">
-              Blog Management
-            </h1>
+            <h1 className="text-2xl font-bold text-[#1e3a5f]">Admin Panel</h1>
             <p className="text-sm text-gray-500 mt-0.5">
-              Add, edit, or delete blog posts that appear on the Blog page.
+              Manage blog posts and moderate comments.
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Button
-              onClick={() => {
-                setShowAddForm(true);
-                setEditingPost(null);
-              }}
-              className="bg-blue-700 hover:bg-blue-800 text-white font-semibold gap-2"
-              data-ocid="admin.new_post.button"
-            >
-              <Plus size={16} /> New Post
-            </Button>
-            <Button
-              variant="outline"
-              onClick={handleExportPosts}
-              title="Download all blog posts as a JSON backup file"
-              className="gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50"
-              data-ocid="admin.export.button"
-            >
-              <Download size={15} /> Export Backup
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => importFileRef.current?.click()}
-              title="Import blog posts from a JSON backup file"
-              className="gap-2 text-blue-700 border-blue-200 hover:bg-blue-50"
-              data-ocid="admin.import.button"
-            >
-              <Upload size={15} /> Import Backup
-            </Button>
+            {activeTab === "posts" && (
+              <>
+                <Button
+                  onClick={() => {
+                    setShowAddForm(true);
+                    setEditingPost(null);
+                  }}
+                  className="bg-blue-700 hover:bg-blue-800 text-white font-semibold gap-2"
+                  data-ocid="admin.new_post.button"
+                >
+                  <Plus size={16} /> New Post
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleExportPosts}
+                  className="gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50"
+                  data-ocid="admin.export.button"
+                >
+                  <Download size={15} /> Export Backup
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => importFileRef.current?.click()}
+                  className="gap-2 text-blue-700 border-blue-200 hover:bg-blue-50"
+                  data-ocid="admin.import.button"
+                >
+                  <Upload size={15} /> Import Backup
+                </Button>
+              </>
+            )}
             <Button
               variant="outline"
               onClick={clear}
@@ -1177,10 +1510,38 @@ export default function AdminPage() {
             </Button>
           </div>
         </div>
+
+        {/* Tab bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex border-t border-gray-100">
+            <button
+              type="button"
+              onClick={() => setActiveTab("posts")}
+              className={`px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "posts" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+              data-ocid="admin.tab.posts"
+            >
+              Blog Posts {posts ? `(${posts.length})` : ""}
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("comments")}
+              className={`px-5 py-3 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${activeTab === "comments" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+              data-ocid="admin.tab.comments"
+            >
+              <MessageSquare size={14} />
+              Comments
+              {pendingNum > 0 && (
+                <span className="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center leading-none">
+                  {pendingNum > 99 ? "99+" : pendingNum}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Data Protection Banner */}
-      {showDataBanner && (
+      {showDataBanner && activeTab === "posts" && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div
             className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-blue-700"
@@ -1206,190 +1567,192 @@ export default function AdminPage() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Add form */}
-        {showAddForm && (
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-            <h2 className="text-lg font-bold text-[#1e3a5f] mb-5">
-              New Blog Post
-            </h2>
-            <BlogForm
-              key="new"
-              initial={emptyForm}
-              postId="new"
-              onSubmit={handleAdd}
-              onCancel={() => setShowAddForm(false)}
-              isPending={addMutation.isPending}
-              submitLabel="Publish Post"
-            />
-          </div>
-        )}
+        {activeTab === "posts" && (
+          <>
+            {showAddForm && (
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                <h2 className="text-lg font-bold text-[#1e3a5f] mb-5">
+                  New Blog Post
+                </h2>
+                <BlogForm
+                  key="new"
+                  initial={emptyForm}
+                  postId="new"
+                  onSubmit={handleAdd}
+                  onCancel={() => setShowAddForm(false)}
+                  isPending={addMutation.isPending}
+                  submitLabel="Publish Post"
+                />
+              </div>
+            )}
 
-        {/* Edit form */}
-        {editingPost && (
-          <div
-            ref={editFormRef}
-            className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6"
-          >
-            <h2 className="text-lg font-bold text-[#1e3a5f] mb-5">
-              Edit Post:{" "}
-              <span className="text-blue-700">{editingPost.title}</span>
-            </h2>
-            <BlogForm
-              key={editingPost.id.toString()}
-              initial={getInitialFormFromPost(editingPost)}
-              postId={editingPost.id.toString()}
-              onSubmit={handleEdit}
-              onCancel={() => setEditingPost(null)}
-              isPending={editMutation.isPending}
-              submitLabel="Save Changes"
-            />
-          </div>
-        )}
-
-        {/* Posts list */}
-        <div>
-          <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">
-            {isLoading
-              ? "Loading posts..."
-              : `All Posts (${posts?.length ?? 0})`}
-          </h2>
-
-          {!isLoading && (!posts || posts.length === 0) && (
-            <div className="text-center py-16 text-gray-400 bg-white rounded-2xl border border-gray-100">
-              <p className="font-semibold">No blog posts yet.</p>
-              <p className="text-sm mt-1">
-                Click "New Post" above to create your first one.
-              </p>
-            </div>
-          )}
-
-          <div className="space-y-3" data-ocid="admin.posts.list">
-            {posts?.map((post, idx) => (
+            {editingPost && (
               <div
-                key={post.id.toString()}
-                data-ocid={`admin.posts.item.${idx + 1}`}
-                className="bg-white rounded-xl border border-gray-200 shadow-sm px-5 py-4 flex items-start gap-4 hover:shadow-md transition-shadow"
+                ref={editFormRef}
+                className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6"
               >
-                {post.imageUrl && (
-                  <img
-                    src={post.imageUrl}
-                    alt={post.title}
-                    className="w-16 h-16 object-cover rounded-lg flex-shrink-0 border border-gray-100"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                    }}
-                  />
-                )}
+                <h2 className="text-lg font-bold text-[#1e3a5f] mb-5">
+                  Edit Post:{" "}
+                  <span className="text-blue-700">{editingPost.title}</span>
+                </h2>
+                <BlogForm
+                  key={editingPost.id.toString()}
+                  initial={getInitialFormFromPost(editingPost)}
+                  postId={editingPost.id.toString()}
+                  onSubmit={handleEdit}
+                  onCancel={() => setEditingPost(null)}
+                  isPending={editMutation.isPending}
+                  submitLabel="Save Changes"
+                />
+              </div>
+            )}
 
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
-                      {post.category || "General"}
-                    </span>
-                    <span className="text-xs text-gray-400">
-                      {new Date(
-                        Number(post.publishedDate) / 1_000_000,
-                      ).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-                    {(() => {
-                      const { meta } = parsePostContent(post.content);
-                      return (
-                        <>
-                          {meta.bilingualEnabled && (
-                            <Badge
-                              variant="outline"
-                              className="text-xs text-purple-700 border-purple-200 bg-purple-50"
-                            >
-                              Bilingual
-                            </Badge>
-                          )}
-                          {meta.status === "draft" && (
-                            <Badge
-                              variant="outline"
-                              className="text-xs text-gray-500 border-gray-200"
-                            >
-                              Draft
-                            </Badge>
-                          )}
-                          {meta.tags.slice(0, 2).map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </>
-                      );
-                    })()}
-                  </div>
-                  <h3 className="font-bold text-[#1e3a5f] text-base truncate">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 line-clamp-2 mt-0.5">
-                    {post.summary}
+            <div>
+              <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">
+                {isLoading
+                  ? "Loading posts..."
+                  : `All Posts (${posts?.length ?? 0})`}
+              </h2>
+
+              {!isLoading && (!posts || posts.length === 0) && (
+                <div className="text-center py-16 text-gray-400 bg-white rounded-2xl border border-gray-100">
+                  <p className="font-semibold">No blog posts yet.</p>
+                  <p className="text-sm mt-1">
+                    Click "New Post" above to create your first one.
                   </p>
                 </div>
+              )}
 
-                <div className="flex items-center gap-2 flex-shrink-0 mt-1">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50 hover:border-blue-400"
-                    data-ocid={`admin.posts.edit_button.${idx + 1}`}
-                    onClick={() => {
-                      setEditingPost(post);
-                      setShowAddForm(false);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
+              <div className="space-y-3" data-ocid="admin.posts.list">
+                {posts?.map((post, idx) => (
+                  <div
+                    key={post.id.toString()}
+                    data-ocid={`admin.posts.item.${idx + 1}`}
+                    className="bg-white rounded-xl border border-gray-200 shadow-sm px-5 py-4 flex items-start gap-4 hover:shadow-md transition-shadow"
                   >
-                    <Edit2 size={13} /> Edit
-                  </Button>
-
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
+                    {post.imageUrl && (
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        className="w-16 h-16 object-cover rounded-lg flex-shrink-0 border border-gray-100"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display =
+                            "none";
+                        }}
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
+                          {post.category || "General"}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          {new Date(
+                            Number(post.publishedDate) / 1_000_000,
+                          ).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </span>
+                        {(() => {
+                          const { meta } = parsePostContent(post.content);
+                          return (
+                            <>
+                              {meta.bilingualEnabled && (
+                                <Badge
+                                  variant="outline"
+                                  className="text-xs text-purple-700 border-purple-200 bg-purple-50"
+                                >
+                                  Bilingual
+                                </Badge>
+                              )}
+                              {meta.status === "draft" && (
+                                <Badge
+                                  variant="outline"
+                                  className="text-xs text-gray-500 border-gray-200"
+                                >
+                                  Draft
+                                </Badge>
+                              )}
+                              {meta.tags.slice(0, 2).map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="text-xs text-gray-400 bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded-full"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </>
+                          );
+                        })()}
+                      </div>
+                      <h3 className="font-bold text-[#1e3a5f] text-base truncate">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 line-clamp-2 mt-0.5">
+                        {post.summary}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0 mt-1">
                       <Button
                         size="sm"
                         variant="outline"
-                        className="gap-1.5 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400"
-                        disabled={deleteMutation.isPending}
-                        data-ocid={`admin.posts.delete_button.${idx + 1}`}
+                        className="gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50 hover:border-blue-400"
+                        data-ocid={`admin.posts.edit_button.${idx + 1}`}
+                        onClick={() => {
+                          setEditingPost(post);
+                          setShowAddForm(false);
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
-                        <Trash2 size={13} /> Delete
+                        <Edit2 size={13} /> Edit
                       </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Delete this post?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          "{post.title}" will be permanently removed. This
-                          cannot be undone.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel data-ocid="admin.delete.cancel_button">
-                          Cancel
-                        </AlertDialogCancel>
-                        <AlertDialogAction
-                          className="bg-red-600 hover:bg-red-700 text-white"
-                          onClick={() => handleDelete(post.id)}
-                          data-ocid="admin.delete.confirm_button"
-                        >
-                          Delete
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="gap-1.5 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400"
+                            disabled={deleteMutation.isPending}
+                            data-ocid={`admin.posts.delete_button.${idx + 1}`}
+                          >
+                            <Trash2 size={13} /> Delete
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Delete this post?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              "{post.title}" will be permanently removed. This
+                              cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel data-ocid="admin.delete.cancel_button">
+                              Cancel
+                            </AlertDialogCancel>
+                            <AlertDialogAction
+                              className="bg-red-600 hover:bg-red-700 text-white"
+                              onClick={() => handleDelete(post.id)}
+                              data-ocid="admin.delete.confirm_button"
+                            >
+                              Delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "comments" && <CommentsTab posts={posts ?? []} />}
       </div>
     </main>
   );

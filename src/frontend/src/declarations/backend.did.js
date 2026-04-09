@@ -33,6 +33,16 @@ export const Testimonial = IDL.Record({
   'quote' : IDL.Text,
   'photoUrl' : IDL.Text,
 });
+export const Comment = IDL.Record({
+  'id' : IDL.Nat,
+  'content' : IDL.Text,
+  'authorEmail' : IDL.Text,
+  'createdAt' : IDL.Int,
+  'authorName' : IDL.Text,
+  'approved' : IDL.Bool,
+  'parentId' : IDL.Opt(IDL.Nat),
+  'postId' : IDL.Text,
+});
 
 export const idlService = IDL.Service({
   'addBlogPost' : IDL.Func(
@@ -40,16 +50,28 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
+  'approveComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
   'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
+  'deleteComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
   'editBlogPost' : IDL.Func(
       [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
       [],
       [],
     ),
+  'editComment' : IDL.Func([IDL.Nat, IDL.Text], [IDL.Bool], []),
   'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
   'getAllContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
   'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
+  'getApprovedComments' : IDL.Func([IDL.Text], [IDL.Vec(Comment)], ['query']),
   'getBlogPostById' : IDL.Func([IDL.Nat], [BlogPost], ['query']),
+  'getPendingCommentCount' : IDL.Func([], [IDL.Nat], ['query']),
+  'getPendingComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+  'rejectComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+  'submitComment' : IDL.Func(
+      [IDL.Text, IDL.Opt(IDL.Nat), IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Nat],
+      [],
+    ),
   'submitContact' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
       [],
@@ -85,6 +107,16 @@ export const idlFactory = ({ IDL }) => {
     'quote' : IDL.Text,
     'photoUrl' : IDL.Text,
   });
+  const Comment = IDL.Record({
+    'id' : IDL.Nat,
+    'content' : IDL.Text,
+    'authorEmail' : IDL.Text,
+    'createdAt' : IDL.Int,
+    'authorName' : IDL.Text,
+    'approved' : IDL.Bool,
+    'parentId' : IDL.Opt(IDL.Nat),
+    'postId' : IDL.Text,
+  });
   
   return IDL.Service({
     'addBlogPost' : IDL.Func(
@@ -92,16 +124,28 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
+    'approveComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
     'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
+    'deleteComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
     'editBlogPost' : IDL.Func(
         [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [],
         [],
       ),
+    'editComment' : IDL.Func([IDL.Nat, IDL.Text], [IDL.Bool], []),
     'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
     'getAllContacts' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
     'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
+    'getApprovedComments' : IDL.Func([IDL.Text], [IDL.Vec(Comment)], ['query']),
     'getBlogPostById' : IDL.Func([IDL.Nat], [BlogPost], ['query']),
+    'getPendingCommentCount' : IDL.Func([], [IDL.Nat], ['query']),
+    'getPendingComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+    'rejectComment' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'submitComment' : IDL.Func(
+        [IDL.Text, IDL.Opt(IDL.Nat), IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
     'submitContact' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [],

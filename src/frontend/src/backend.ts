@@ -100,6 +100,16 @@ export interface BlogPost {
     category: string;
 }
 export type Time = bigint;
+export interface Comment {
+    id: bigint;
+    content: string;
+    authorEmail: string;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    parentId?: bigint;
+    postId: string;
+}
 export interface ContactSubmission {
     fullName: string;
     email: string;
@@ -116,14 +126,23 @@ export interface Testimonial {
 }
 export interface backendInterface {
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    approveComment(id: bigint): Promise<boolean>;
     deleteBlogPost(id: bigint): Promise<void>;
+    deleteComment(id: bigint): Promise<boolean>;
     editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    editComment(id: bigint, content: string): Promise<boolean>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
+    getApprovedComments(postId: string): Promise<Array<Comment>>;
     getBlogPostById(id: bigint): Promise<BlogPost>;
+    getPendingCommentCount(): Promise<bigint>;
+    getPendingComments(): Promise<Array<Comment>>;
+    rejectComment(id: bigint): Promise<boolean>;
+    submitComment(postId: string, parentId: bigint | null, authorName: string, authorEmail: string, content: string): Promise<bigint>;
     submitContact(fullName: string, phoneNumber: string, email: string, countryOfInterest: string, message: string): Promise<void>;
 }
+import type { Comment as _Comment } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async addBlogPost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<void> {
@@ -137,6 +156,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
+            return result;
+        }
+    }
+    async approveComment(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.approveComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.approveComment(arg0);
             return result;
         }
     }
@@ -154,6 +187,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async deleteComment(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteComment(arg0);
+            return result;
+        }
+    }
     async editBlogPost(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string): Promise<void> {
         if (this.processError) {
             try {
@@ -165,6 +212,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            return result;
+        }
+    }
+    async editComment(arg0: bigint, arg1: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editComment(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editComment(arg0, arg1);
             return result;
         }
     }
@@ -210,6 +271,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getApprovedComments(arg0: string): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getApprovedComments(arg0);
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getApprovedComments(arg0);
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
     async getBlogPostById(arg0: bigint): Promise<BlogPost> {
         if (this.processError) {
             try {
@@ -221,6 +296,62 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getBlogPostById(arg0);
+            return result;
+        }
+    }
+    async getPendingCommentCount(): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPendingCommentCount();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPendingCommentCount();
+            return result;
+        }
+    }
+    async getPendingComments(): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPendingComments();
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPendingComments();
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async rejectComment(arg0: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.rejectComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.rejectComment(arg0);
+            return result;
+        }
+    }
+    async submitComment(arg0: string, arg1: bigint | null, arg2: string, arg3: string, arg4: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitComment(arg0, to_candid_opt_n5(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitComment(arg0, to_candid_opt_n5(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
             return result;
         }
     }
@@ -238,6 +369,48 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+}
+function from_candid_Comment_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Comment): Comment {
+    return from_candid_record_n3(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [bigint]): bigint | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: bigint;
+    content: string;
+    authorEmail: string;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    parentId: [] | [bigint];
+    postId: string;
+}): {
+    id: bigint;
+    content: string;
+    authorEmail: string;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    parentId?: bigint;
+    postId: string;
+} {
+    return {
+        id: value.id,
+        content: value.content,
+        authorEmail: value.authorEmail,
+        createdAt: value.createdAt,
+        authorName: value.authorName,
+        approved: value.approved,
+        parentId: record_opt_to_undefined(from_candid_opt_n4(_uploadFile, _downloadFile, value.parentId)),
+        postId: value.postId
+    };
+}
+function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Comment>): Array<Comment> {
+    return value.map((x)=>from_candid_Comment_n2(_uploadFile, _downloadFile, x));
+}
+function to_candid_opt_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: bigint | null): [] | [bigint] {
+    return value === null ? candid_none() : candid_some(value);
 }
 export interface CreateActorOptions {
     agent?: Agent;

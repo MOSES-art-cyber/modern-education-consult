@@ -10,6 +10,17 @@ type BlogPost__543622485 =
     summary : Text;
     title : Text
   };
+type Comment__473346131 =
+  {
+    approved : Bool;
+    authorEmail : Text;
+    authorName : Text;
+    content : Text;
+    createdAt : Int;
+    id : Nat;
+    parentId : ?Nat;
+    postId : Text
+  };
 type ContactSubmission__390548495 =
   {
     countryOfInterest : Text;
@@ -40,16 +51,23 @@ actor {
       var root : Node__46230540<Nat, BlogPost__543622485>;
       var size : Nat__490723111
     };
+  stable var commentsMap :
+    {
+      var root : Node__46230540<Nat, Comment__473346131>;
+      var size : Nat__490723111
+    };
   stable var contactsMap :
     {
       var root : Node__46230540<Nat, ContactSubmission__390548495>;
       var size : Nat__490723111
     };
   stable var nextBlogPostId : Nat;
+  stable var nextCommentId : Nat;
   stable var nextContactId : Nat;
   stable var seedVersion : Nat;
   stable var seeded : Bool;
   stable var stableBlogPosts : [BlogPost__543622485];
+  stable var stableComments : [Comment__473346131];
   stable var stableContacts : [ContactSubmission__390548495];
   stable var testimonialsArray : [Testimonial__393323594]
 };

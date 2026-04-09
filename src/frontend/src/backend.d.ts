@@ -18,6 +18,16 @@ export interface BlogPost {
     category: string;
 }
 export type Time = bigint;
+export interface Comment {
+    id: bigint;
+    content: string;
+    authorEmail: string;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    parentId?: bigint;
+    postId: string;
+}
 export interface ContactSubmission {
     fullName: string;
     email: string;
@@ -34,11 +44,19 @@ export interface Testimonial {
 }
 export interface backendInterface {
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    approveComment(id: bigint): Promise<boolean>;
     deleteBlogPost(id: bigint): Promise<void>;
+    deleteComment(id: bigint): Promise<boolean>;
     editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    editComment(id: bigint, content: string): Promise<boolean>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
     getAllContacts(): Promise<Array<ContactSubmission>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
+    getApprovedComments(postId: string): Promise<Array<Comment>>;
     getBlogPostById(id: bigint): Promise<BlogPost>;
+    getPendingCommentCount(): Promise<bigint>;
+    getPendingComments(): Promise<Array<Comment>>;
+    rejectComment(id: bigint): Promise<boolean>;
+    submitComment(postId: string, parentId: bigint | null, authorName: string, authorEmail: string, content: string): Promise<bigint>;
     submitContact(fullName: string, phoneNumber: string, email: string, countryOfInterest: string, message: string): Promise<void>;
 }

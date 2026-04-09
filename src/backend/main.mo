@@ -1,6 +1,7 @@
 import Map "mo:core/Map";
 import Time "mo:core/Time";
 import Nat "mo:core/Nat";
+import Int "mo:core/Int";
 import Order "mo:core/Order";
 import Runtime "mo:core/Runtime";
 
@@ -32,21 +33,39 @@ actor {
     photoUrl : Text;
   };
 
+  type Comment = {
+    id : Nat;
+    postId : Text;
+    parentId : ?Nat;
+    authorName : Text;
+    authorEmail : Text;
+    content : Text;
+    createdAt : Int;
+    approved : Bool;
+  };
+
   func compareBlogPost(a : BlogPost, b : BlogPost) : Order.Order {
     Nat.compare(a.id, b.id);
+  };
+
+  func compareComment(a : Comment, b : Comment) : Order.Order {
+    Int.compare(a.createdAt, b.createdAt);
   };
 
   // Stable storage — persists across upgrades and redeployments
   stable var stableBlogPosts : [BlogPost] = [];
   stable var stableContacts : [ContactSubmission] = [];
+  stable var stableComments : [Comment] = [];
   stable var nextBlogPostId : Nat = 1;
   stable var nextContactId : Nat = 1;
+  stable var nextCommentId : Nat = 1;
   stable var seeded : Bool = false; // retained for upgrade compatibility
   stable var seedVersion : Nat = 0;
 
   // Working data structures rebuilt from stable storage on startup
   var blogsMap = Map.empty<Nat, BlogPost>();
   var contactsMap = Map.empty<Nat, ContactSubmission>();
+  var commentsMap = Map.empty<Nat, Comment>();
 
   // Rebuild blogs map from stable data
   for (post in stableBlogPosts.vals()) {
@@ -60,6 +79,14 @@ actor {
   for (contact in stableContacts.vals()) {
     contactsMap.add(nextContactId, contact);
     nextContactId += 1;
+  };
+
+  // Rebuild comments map from stable data
+  for (comment in stableComments.vals()) {
+    commentsMap.add(comment.id, comment);
+    if (comment.id >= nextCommentId) {
+      nextCommentId := comment.id + 1;
+    };
   };
 
   // Seed all 8 blog posts if storage is empty
@@ -644,6 +671,7 @@ Contact us today:
   system func preupgrade() {
     stableBlogPosts := blogsMap.values().toArray();
     stableContacts := contactsMap.values().toArray();
+    stableComments := commentsMap.values().toArray();
   };
 
   stable var testimonialsArray : [Testimonial] = [
@@ -746,5 +774,92 @@ Contact us today:
 
   public query func getAllTestimonials() : async [Testimonial] {
     testimonialsArray;
+  };
+
+  // --- Comment Methods ---
+
+  public shared func submitComment(postId : Text, parentId : ?Nat, authorName : Text, authorEmail : Text, content : Text) : async Nat {
+    let id = nextCommentId;
+    let comment : Comment = {
+      id;
+      postId;
+      parentId;
+      authorName;
+      authorEmail;
+      content;
+      createdAt = Time.now();
+      approved = false;
+    };
+    commentsMap.add(id, comment);
+    nextCommentId += 1;
+    stableComments := commentsMap.values().toArray();
+    id;
+  };
+
+  public query func getApprovedComments(postId : Text) : async [Comment] {
+    let filtered = commentsMap.values().toArray().filter(
+      func(c : Comment) : Bool { c.postId == postId and c.approved }
+    );
+    filtered.sort(compareComment);
+  };
+
+  public query func getPendingComments() : async [Comment] {
+    commentsMap.values().toArray().filter(
+      func(c : Comment) : Bool { not c.approved }
+    );
+  };
+
+  public shared func approveComment(id : Nat) : async Bool {
+    switch (commentsMap.get(id)) {
+      case (null) { false };
+      case (?c) {
+        let updated : Comment = { c with approved = true };
+        commentsMap.remove(id);
+        commentsMap.add(id, updated);
+        stableComments := commentsMap.values().toArray();
+        true;
+      };
+    };
+  };
+
+  public shared func rejectComment(id : Nat) : async Bool {
+    switch (commentsMap.get(id)) {
+      case (null) { false };
+      case (?_) {
+        commentsMap.remove(id);
+        stableComments := commentsMap.values().toArray();
+        true;
+      };
+    };
+  };
+
+  public shared func editComment(id : Nat, content : Text) : async Bool {
+    switch (commentsMap.get(id)) {
+      case (null) { false };
+      case (?c) {
+        let updated : Comment = { c with content };
+        commentsMap.remove(id);
+        commentsMap.add(id, updated);
+        stableComments := commentsMap.values().toArray();
+        true;
+      };
+    };
+  };
+
+  public shared func deleteComment(id : Nat) : async Bool {
+    switch (commentsMap.get(id)) {
+      case (null) { false };
+      case (?_) {
+        commentsMap.remove(id);
+        stableComments := commentsMap.values().toArray();
+        true;
+      };
+    };
+  };
+
+  public query func getPendingCommentCount() : async Nat {
+    commentsMap.values().toArray().filter(
+      func(c : Comment) : Bool { not c.approved }
+    ).size();
   };
 };

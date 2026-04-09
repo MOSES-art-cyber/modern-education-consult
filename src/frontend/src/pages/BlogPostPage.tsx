@@ -5,21 +5,30 @@ import {
   AlertCircle,
   ArrowLeft,
   Calendar,
+  Check,
   Clock,
   Copy,
   Linkedin,
   MessageCircle,
+  MessageSquare,
+  Reply,
   Share2,
   Tag,
   Twitter,
   User,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
+import type { Comment } from "../backend.d.ts";
 import ImageSlider from "../components/blog/ImageSlider";
 import { parsePostContent } from "../components/blog/postMetaUtils";
-import { useGetAllBlogPosts, useGetBlogPostById } from "../hooks/useQueries";
+import {
+  useGetAllBlogPosts,
+  useGetApprovedComments,
+  useGetBlogPostById,
+  useSubmitComment,
+} from "../hooks/useQueries";
 
 function formatDate(nanoseconds: bigint): string {
   const ms = Number(nanoseconds) / 1_000_000;
@@ -28,6 +37,20 @@ function formatDate(nanoseconds: bigint): string {
     month: "long",
     day: "numeric",
   });
+}
+
+function timeAgo(nanoseconds: bigint): string {
+  const ms = Number(nanoseconds) / 1_000_000;
+  const diff = Date.now() - ms;
+  const mins = Math.floor(diff / 60_000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins} minute${mins !== 1 ? "s" : ""} ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs} hour${hrs !== 1 ? "s" : ""} ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days} day${days !== 1 ? "s" : ""} ago`;
+  const months = Math.floor(days / 30);
+  return `${months} month${months !== 1 ? "s" : ""} ago`;
 }
 
 function getPostImage(imageUrl: string, category: string): string {
@@ -51,11 +74,7 @@ type ContentSegment =
   | { type: "html"; value: string }
   | { type: "slider"; data: SliderData };
 
-/**
- * Replace [CTA:{...}] markers with button HTML, then parse [SLIDER:{...}] into segments
- */
 function processContent(rawContent: string): ContentSegment[] {
-  // First replace CTA markers with HTML
   const withCta = rawContent.replace(/\[CTA:(\{[^\]]+\})\]/g, (_, json) => {
     try {
       const { text, url, style } = JSON.parse(json) as {
@@ -75,7 +94,6 @@ function processContent(rawContent: string): ContentSegment[] {
     }
   });
 
-  // Then parse slider markers
   const segments: ContentSegment[] = [];
   const MARKER_PREFIX = "[SLIDER:";
   let remaining = withCta;
@@ -114,6 +132,409 @@ function processContent(rawContent: string): ContentSegment[] {
   return segments;
 }
 
+// ── Math CAPTCHA ──────────────────────────────────────────────────
+
+function generateCaptcha(): { question: string; answer: number } {
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+  const useAdd = Math.random() > 0.5;
+  if (useAdd) {
+    return { question: `${a} + ${b}`, answer: a + b };
+  }
+  const hi = Math.max(a, b);
+  const lo = Math.min(a, b);
+  return { question: `${hi} − ${lo}`, answer: hi - lo };
+}
+
+// ── Comment Form ──────────────────────────────────────────────────
+
+interface CommentFormProps {
+  postId: string;
+  parentId?: bigint | null;
+  onSuccess: () => void;
+  onCancel?: () => void;
+  compact?: boolean;
+}
+
+function CommentForm({
+  postId,
+  parentId = null,
+  onSuccess,
+  onCancel,
+  compact = false,
+}: CommentFormProps) {
+  const submitMutation = useSubmitComment();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [content, setContent] = useState("");
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const captcha = useRef(generateCaptcha());
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!name.trim()) e.name = "Name is required";
+    if (!email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      e.email = "Enter a valid email";
+    if (!content.trim()) e.content = "Comment is required";
+    if (content.trim().length < 5) e.content = "Comment is too short";
+    const ans = Number.parseInt(captchaInput, 10);
+    if (Number.isNaN(ans) || ans !== captcha.current.answer)
+      e.captcha = "Incorrect answer";
+    return e;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    try {
+      await submitMutation.mutateAsync({
+        postId,
+        parentId,
+        authorName: name.trim(),
+        authorEmail: email.trim(),
+        content: content.trim(),
+      });
+      setSubmitted(true);
+      onSuccess();
+    } catch {
+      toast.error("Failed to submit comment. Please try again.");
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-xl">
+        <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+          <Check size={14} className="text-green-600" />
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-green-800">
+            Comment submitted!
+          </p>
+          <p className="text-xs text-green-600 mt-0.5">
+            Your comment is awaiting admin approval and will appear once
+            reviewed.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+      <div
+        className={`grid gap-3 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}
+      >
+        <div>
+          <input
+            type="text"
+            placeholder="Your name *"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              setErrors((p) => ({ ...p, name: "" }));
+            }}
+            className={`w-full h-10 rounded-lg border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${
+              errors.name
+                ? "border-red-400 bg-red-50"
+                : "border-gray-200 bg-white"
+            }`}
+            data-ocid="comment.name.input"
+          />
+          {errors.name && (
+            <p className="text-xs text-red-500 mt-1">{errors.name}</p>
+          )}
+        </div>
+        <div>
+          <input
+            type="email"
+            placeholder="Your email * (not displayed)"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors((p) => ({ ...p, email: "" }));
+            }}
+            className={`w-full h-10 rounded-lg border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${
+              errors.email
+                ? "border-red-400 bg-red-50"
+                : "border-gray-200 bg-white"
+            }`}
+            data-ocid="comment.email.input"
+          />
+          {errors.email && (
+            <p className="text-xs text-red-500 mt-1">{errors.email}</p>
+          )}
+        </div>
+      </div>
+      <div>
+        <textarea
+          placeholder={
+            parentId
+              ? "Write your reply..."
+              : "Share your thoughts on this post..."
+          }
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+            setErrors((p) => ({ ...p, content: "" }));
+          }}
+          rows={compact ? 3 : 4}
+          className={`w-full rounded-lg border px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 resize-none ${
+            errors.content
+              ? "border-red-400 bg-red-50"
+              : "border-gray-200 bg-white"
+          }`}
+          data-ocid="comment.content.textarea"
+        />
+        {errors.content && (
+          <p className="text-xs text-red-500 mt-1">{errors.content}</p>
+        )}
+      </div>
+      {/* CAPTCHA */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-semibold text-[#1e3a5f] bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg min-w-[80px] text-center select-none">
+            {captcha.current.question} = ?
+          </span>
+          <input
+            type="number"
+            placeholder="Answer"
+            value={captchaInput}
+            onChange={(e) => {
+              setCaptchaInput(e.target.value);
+              setErrors((p) => ({ ...p, captcha: "" }));
+            }}
+            className={`w-20 h-9 rounded-lg border px-2 text-sm text-center focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${
+              errors.captcha
+                ? "border-red-400 bg-red-50"
+                : "border-gray-200 bg-white"
+            }`}
+            data-ocid="comment.captcha.input"
+          />
+        </div>
+        {errors.captcha && (
+          <p className="text-xs text-red-500">{errors.captcha}</p>
+        )}
+        <div className="flex gap-2 ml-auto">
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="text-sm text-gray-500 hover:text-gray-700 px-3 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+          )}
+          <button
+            type="submit"
+            disabled={submitMutation.isPending}
+            className="text-sm font-semibold text-white bg-[#1e3a5f] hover:bg-[#152d4a] px-4 py-1.5 rounded-lg transition-colors disabled:opacity-60"
+            data-ocid="comment.submit.button"
+          >
+            {submitMutation.isPending
+              ? "Submitting..."
+              : parentId
+                ? "Post Reply"
+                : "Post Comment"}
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+// ── Single Comment ─────────────────────────────────────────────────
+
+interface CommentItemProps {
+  comment: Comment;
+  replies: Comment[];
+  postId: string;
+  depth?: number;
+}
+
+function CommentItem({
+  comment,
+  replies,
+  postId,
+  depth = 0,
+}: CommentItemProps) {
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const initials = comment.authorName
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+
+  return (
+    <div className={depth > 0 ? "ml-8 sm:ml-12 mt-3" : ""}>
+      <div className="flex gap-3">
+        {/* Avatar */}
+        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#00bcd4] flex items-center justify-center flex-shrink-0 text-white text-xs font-bold">
+          {initials}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm">
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span className="font-semibold text-sm text-[#1e3a5f]">
+                {comment.authorName}
+              </span>
+              <span className="text-xs text-gray-400">
+                {timeAgo(comment.createdAt)}
+              </span>
+              {depth > 0 && (
+                <span className="text-xs text-[#00bcd4] font-medium flex items-center gap-1">
+                  <Reply size={10} /> Reply
+                </span>
+              )}
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+              {comment.content}
+            </p>
+          </div>
+          {depth === 0 && (
+            <button
+              type="button"
+              onClick={() => setShowReplyForm((v) => !v)}
+              className="mt-1.5 flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#1e3a5f] transition-colors px-1"
+              data-ocid="comment.reply.button"
+            >
+              <Reply size={12} /> Reply
+            </button>
+          )}
+          {showReplyForm && (
+            <div className="mt-2 bg-blue-50/60 rounded-xl p-3 border border-blue-100">
+              <CommentForm
+                postId={postId}
+                parentId={comment.id}
+                onSuccess={() => setShowReplyForm(false)}
+                onCancel={() => setShowReplyForm(false)}
+                compact
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      {/* Nested replies */}
+      {replies.map((reply) => (
+        <CommentItem
+          key={reply.id.toString()}
+          comment={reply}
+          replies={[]}
+          postId={postId}
+          depth={1}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ── Comment Section ────────────────────────────────────────────────
+
+function CommentSection({ postId }: { postId: string }) {
+  const { data: comments = [], isLoading } = useGetApprovedComments(postId);
+  const [formKey, setFormKey] = useState(0);
+
+  const topLevel = useMemo(
+    () =>
+      comments.filter((c) => c.parentId === undefined || c.parentId === null),
+    [comments],
+  );
+  const repliesByParent = useMemo(() => {
+    const map = new Map<string, Comment[]>();
+    for (const c of comments) {
+      if (c.parentId !== undefined && c.parentId !== null) {
+        const key = c.parentId.toString();
+        const arr = map.get(key) ?? [];
+        arr.push(c);
+        map.set(key, arr);
+      }
+    }
+    return map;
+  }, [comments]);
+
+  return (
+    <section
+      className="mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 sm:p-8"
+      data-ocid="comments.section"
+    >
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+        <MessageSquare size={20} className="text-[#00bcd4]" />
+        <h2 className="text-lg font-bold text-[#1e3a5f]">
+          Comments
+          {comments.length > 0 && (
+            <span className="ml-2 text-sm font-normal text-gray-400">
+              ({comments.length})
+            </span>
+          )}
+        </h2>
+      </div>
+
+      {/* Comment list */}
+      {isLoading ? (
+        <div className="space-y-4 mb-8">
+          {[1, 2].map((i) => (
+            <div key={i} className="flex gap-3">
+              <Skeleton className="w-9 h-9 rounded-full flex-shrink-0" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-3 w-32" />
+                <Skeleton className="h-12 w-full rounded-xl" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : topLevel.length === 0 ? (
+        <div
+          className="text-center py-8 mb-8 bg-gray-50 rounded-xl border border-dashed border-gray-200"
+          data-ocid="comments.empty.state"
+        >
+          <MessageSquare size={32} className="text-gray-300 mx-auto mb-2" />
+          <p className="text-sm text-gray-500 font-medium">
+            Be the first to share your thoughts on this post!
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-5 mb-8" data-ocid="comments.list">
+          {topLevel.map((c) => (
+            <CommentItem
+              key={c.id.toString()}
+              comment={c}
+              replies={repliesByParent.get(c.id.toString()) ?? []}
+              postId={postId}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* New comment form */}
+      <div className="border-t border-gray-100 pt-6">
+        <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide mb-4">
+          Leave a Comment
+        </h3>
+        <CommentForm
+          key={formKey}
+          postId={postId}
+          onSuccess={() => setFormKey((k) => k + 1)}
+        />
+        <p className="text-xs text-gray-400 mt-3 flex items-center gap-1">
+          <AlertCircle size={11} />
+          Comments are reviewed before appearing publicly.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ── Main Page ──────────────────────────────────────────────────────
+
 export default function BlogPostPage() {
   const { id } = useParams({ from: "/blog/$id" });
   const postId = BigInt(id);
@@ -122,18 +543,14 @@ export default function BlogPostPage() {
   const [copied, setCopied] = useState(false);
   const [activeLang, setActiveLang] = useState<"en" | "fr">("en");
 
-  // Parse meta from content
   const { meta, content: parsedContent } = post
     ? parsePostContent(post.content)
     : { meta: null, content: "" };
 
-  // SEO meta tags
   useEffect(() => {
     if (!post || !meta) return;
-
     document.title =
       meta.metaTitle || `${post.title} | Modern Education Consult`;
-
     const setMeta = (name: string, content: string, property = false) => {
       const attr = property ? "property" : "name";
       let el = document.querySelector(
@@ -146,7 +563,6 @@ export default function BlogPostPage() {
       }
       el.setAttribute("content", content);
     };
-
     const canonical = `${window.location.origin}/blog/${post.id}`;
     setMeta("description", meta.metaDesc || post.summary);
     if (meta.keywords) setMeta("keywords", meta.keywords);
@@ -158,7 +574,6 @@ export default function BlogPostPage() {
     setMeta("twitter:card", post.imageUrl ? "summary_large_image" : "summary");
     setMeta("twitter:title", post.title);
     setMeta("twitter:description", meta.metaDesc || post.summary);
-
     let canonicalEl = document.querySelector(
       "link[rel='canonical']",
     ) as HTMLLinkElement | null;
@@ -168,7 +583,6 @@ export default function BlogPostPage() {
       document.head.appendChild(canonicalEl);
     }
     canonicalEl.setAttribute("href", canonical);
-
     return () => {
       document.title = "Modern Education Consult";
     };
@@ -188,7 +602,6 @@ export default function BlogPostPage() {
   const shareUrl = encodeURIComponent(window.location.href);
   const shareTitle = encodeURIComponent(post?.title ?? "");
 
-  // Related posts
   const relatedPosts =
     allPosts
       ?.filter((p) => p.id !== post?.id && p.category === post?.category)
@@ -254,7 +667,6 @@ export default function BlogPostPage() {
           >
             {/* Article header */}
             <header className="mb-6">
-              {/* Language toggle — only shown when bilingual enabled */}
               {meta?.bilingualEnabled &&
                 meta.frenchTitle &&
                 meta.frenchContent && (
@@ -289,7 +701,6 @@ export default function BlogPostPage() {
                   </div>
                 )}
 
-              {/* Category + date */}
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 {post.category && (
                   <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
@@ -319,18 +730,13 @@ export default function BlogPostPage() {
                 )}
               </div>
 
-              {/* Title — bilingual or single */}
               {meta?.bilingualEnabled && meta.frenchTitle ? (
                 <>
-                  {/* Mobile: show active lang title */}
                   <h1 className="font-bold text-3xl sm:text-4xl text-[#1e3a5f] mb-4 leading-tight md:hidden">
                     {activeLang === "en" ? post.title : meta.frenchTitle}
                   </h1>
-                  {/* Desktop: show both side by side */}
                   <div
-                    className={`hidden md:grid gap-6 mb-4 ${
-                      meta.langOrder === "en-fr" ? "" : ""
-                    }`}
+                    className="hidden md:grid gap-6 mb-4"
                     style={{ gridTemplateColumns: "1fr 1fr" }}
                   >
                     <h1 className="font-bold text-2xl text-[#1e3a5f] leading-tight">
@@ -351,7 +757,6 @@ export default function BlogPostPage() {
                 </h1>
               )}
 
-              {/* Tags */}
               {meta?.tags && meta.tags.length > 0 && (
                 <div
                   className="flex flex-wrap items-center gap-1.5 mb-4"
@@ -369,7 +774,6 @@ export default function BlogPostPage() {
                 </div>
               )}
 
-              {/* Social sharing */}
               <div className="flex flex-wrap items-center gap-2 pb-5 border-b border-gray-200">
                 <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide mr-1">
                   Share:
@@ -439,7 +843,6 @@ export default function BlogPostPage() {
               meta.frenchTitle &&
               meta.frenchContent ? (
                 <>
-                  {/* Mobile: show active language */}
                   <div className="md:hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                     <ContentRenderer
                       content={
@@ -452,7 +855,6 @@ export default function BlogPostPage() {
                       }
                     />
                   </div>
-                  {/* Desktop: side-by-side */}
                   <div
                     className="hidden md:grid gap-6"
                     style={{ gridTemplateColumns: "1fr 1fr" }}
@@ -552,9 +954,12 @@ export default function BlogPostPage() {
               </div>
             </div>
 
+            {/* Comment Section */}
+            <CommentSection postId={id} />
+
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
-              <div data-ocid="blog_post.related.panel">
+              <div data-ocid="blog_post.related.panel" className="mt-10">
                 <h2 className="text-xl font-bold text-[#1e3a5f] mb-4">
                   Related Articles
                 </h2>
@@ -642,7 +1047,6 @@ function ContentRenderer({
             />
           );
         }
-        // HTML segment
         return (
           <div
             // biome-ignore lint/suspicious/noArrayIndexKey: stable index
