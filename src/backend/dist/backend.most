@@ -10,16 +10,18 @@ type BlogPost__543622485 =
     summary : Text;
     title : Text
   };
-type Comment__473346131 =
+type ContactSubmissionV3__132682056 =
   {
-    approved : Bool;
-    authorEmail : Text;
-    authorName : Text;
-    content : Text;
-    createdAt : Int;
-    id : Nat;
-    parentId : ?Nat;
-    postId : Text
+    attachedFiles : [FileAttachment__335541979];
+    countryOfInterest : Text;
+    email : Text;
+    fullName : Text;
+    message : Text;
+    phoneNumber : Text;
+    preferredContactMethod : ?Text;
+    privacyConsent : Bool;
+    serviceOfInterest : ?Text;
+    timestamp : Time__900049286
   };
 type ContactSubmission__390548495 =
   {
@@ -28,10 +30,13 @@ type ContactSubmission__390548495 =
     fullName : Text;
     message : Text;
     phoneNumber : Text;
+    serviceOfInterest : ?Text;
     timestamp : Time__900049286
   };
 type Data__791452850<K, V> =
   {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type FileAttachment__335541979 =
+  {fileName : Text; fileSize : Nat; fileType : Text; fileUrl : Text};
 type Int__270357528 = Int__616954475;
 type Int__616954475 = Int;
 type Internal__8484328<K, V> =
@@ -41,6 +46,15 @@ type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
 type Node__46230540<K, V> =
   {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldContactSubmission__332110608 =
+  {
+    countryOfInterest : Text;
+    email : Text;
+    fullName : Text;
+    message : Text;
+    phoneNumber : Text;
+    timestamp : Time__900049286
+  };
 type Testimonial__393323594 =
   {clientName : Text; country : Text; photoUrl : Text; quote : Text};
 type Time__796480547 = Int__270357528;
@@ -51,23 +65,23 @@ actor {
       var root : Node__46230540<Nat, BlogPost__543622485>;
       var size : Nat__490723111
     };
-  stable var commentsMap :
+  stable var contactsMap :
     {
-      var root : Node__46230540<Nat, Comment__473346131>;
+      var root : Node__46230540<Nat, OldContactSubmission__332110608>;
       var size : Nat__490723111
     };
-  stable var contactsMap :
+  stable var contactsMapV2 :
     {
       var root : Node__46230540<Nat, ContactSubmission__390548495>;
       var size : Nat__490723111
     };
+  stable var contactsMapV3 :
+    {
+      var root : Node__46230540<Nat, ContactSubmissionV3__132682056>;
+      var size : Nat__490723111
+    };
   stable var nextBlogPostId : Nat;
-  stable var nextCommentId : Nat;
   stable var nextContactId : Nat;
   stable var seedVersion : Nat;
-  stable var seeded : Bool;
-  stable var stableBlogPosts : [BlogPost__543622485];
-  stable var stableComments : [Comment__473346131];
-  stable var stableContacts : [ContactSubmission__390548495];
   stable var testimonialsArray : [Testimonial__393323594]
 };

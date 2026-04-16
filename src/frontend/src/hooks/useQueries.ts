@@ -1,10 +1,14 @@
-import { useActor } from "@caffeineai/core-infrastructure";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createActor } from "../backend";
-import type { BlogPost, Comment, Testimonial } from "../backend.d.ts";
+import type {
+  BlogPost,
+  ContactSubmission,
+  FileAttachment,
+  Testimonial,
+} from "../types/index";
+import { useActor } from "./useActor";
 
 export function useGetAllBlogPosts() {
-  const { actor, isFetching } = useActor(createActor);
+  const { actor, isFetching } = useActor();
   return useQuery<BlogPost[]>({
     queryKey: ["blogPosts"],
     queryFn: async () => {
@@ -16,7 +20,7 @@ export function useGetAllBlogPosts() {
 }
 
 export function useGetBlogPostById(id: bigint) {
-  const { actor, isFetching } = useActor(createActor);
+  const { actor, isFetching } = useActor();
   return useQuery<BlogPost | null>({
     queryKey: ["blogPost", id.toString()],
     queryFn: async () => {
@@ -28,7 +32,7 @@ export function useGetBlogPostById(id: bigint) {
 }
 
 export function useGetAllTestimonials() {
-  const { actor, isFetching } = useActor(createActor);
+  const { actor, isFetching } = useActor();
   return useQuery<Testimonial[]>({
     queryKey: ["testimonials"],
     queryFn: async () => {
@@ -39,8 +43,64 @@ export function useGetAllTestimonials() {
   });
 }
 
+export function parseContactMeta(rawMessage: string): {
+  cleanMessage: string;
+  preferredContactMethod?: string;
+  privacyConsent?: boolean;
+  attachedFiles?: FileAttachment[];
+} {
+  const marker = "\n\n---[META]---\n";
+  const idx = rawMessage.indexOf(marker);
+  if (idx === -1) return { cleanMessage: rawMessage };
+  try {
+    const meta = JSON.parse(rawMessage.slice(idx + marker.length)) as {
+      preferredContactMethod?: string;
+      privacyConsent?: boolean;
+      attachedFiles?: FileAttachment[];
+    };
+    return {
+      cleanMessage: rawMessage.slice(0, idx),
+      preferredContactMethod: meta.preferredContactMethod,
+      privacyConsent: meta.privacyConsent,
+      attachedFiles: meta.attachedFiles,
+    };
+  } catch {
+    return { cleanMessage: rawMessage };
+  }
+}
+
+export function useGetAllContacts() {
+  const { actor, isFetching } = useActor();
+  return useQuery<ContactSubmission[]>({
+    queryKey: ["contacts"],
+    queryFn: async () => {
+      if (!actor) return [];
+      const raw = await actor.getAllContacts();
+      return raw.map(([id, c]) => ({
+        id,
+        fullName: c.fullName,
+        phoneNumber: c.phoneNumber,
+        email: c.email,
+        countryOfInterest: c.countryOfInterest,
+        serviceOfInterest: c.serviceOfInterest,
+        message: c.message,
+        timestamp: c.timestamp,
+        preferredContactMethod: c.preferredContactMethod,
+        privacyConsent: c.privacyConsent,
+        attachedFiles: c.attachedFiles?.map((f) => ({
+          fileName: f.fileName,
+          fileSize: Number(f.fileSize),
+          fileType: f.fileType,
+          fileUrl: f.fileUrl,
+        })),
+      }));
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
 export function useAddBlogPost() {
-  const { actor } = useActor(createActor);
+  const { actor } = useActor();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -75,7 +135,7 @@ export function useAddBlogPost() {
 }
 
 export function useEditBlogPost() {
-  const { actor } = useActor(createActor);
+  const { actor } = useActor();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -113,7 +173,7 @@ export function useEditBlogPost() {
 }
 
 export function useDeleteBlogPost() {
-  const { actor } = useActor(createActor);
+  const { actor } = useActor();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: bigint) => {
@@ -126,31 +186,13 @@ export function useDeleteBlogPost() {
   });
 }
 
-export function useSubmitContact() {
-  const { actor } = useActor(createActor);
+export function useDeleteContact() {
+  const { actor } = useActor();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      fullName,
-      phoneNumber,
-      email,
-      countryOfInterest,
-      message,
-    }: {
-      fullName: string;
-      phoneNumber: string;
-      email: string;
-      countryOfInterest: string;
-      message: string;
-    }) => {
+    mutationFn: async (id: bigint) => {
       if (!actor) throw new Error("Not connected");
-      return actor.submitContact(
-        fullName,
-        phoneNumber,
-        email,
-        countryOfInterest,
-        message,
-      );
+      return actor.deleteContact(id);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["contacts"] });
@@ -158,133 +200,52 @@ export function useSubmitContact() {
   });
 }
 
-// ── Comment Hooks ──────────────────────────────────────────────────
-
-export function useGetApprovedComments(postId: string) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery<Comment[]>({
-    queryKey: ["comments", "approved", postId],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getApprovedComments(postId);
-    },
-    enabled: !!actor && !isFetching && !!postId,
-  });
-}
-
-export function useSubmitComment() {
-  const { actor } = useActor(createActor);
+export function useSubmitContact() {
+  const { actor } = useActor();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
-      postId,
-      parentId,
-      authorName,
-      authorEmail,
-      content,
+      fullName,
+      phoneNumber,
+      email,
+      serviceOfInterest,
+      countryOfInterest,
+      message,
+      preferredContactMethod,
+      privacyConsent,
+      attachedFiles,
     }: {
-      postId: string;
-      parentId: bigint | null;
-      authorName: string;
-      authorEmail: string;
-      content: string;
+      fullName: string;
+      phoneNumber: string;
+      email: string;
+      serviceOfInterest: string;
+      countryOfInterest: string;
+      message: string;
+      preferredContactMethod?: string;
+      privacyConsent?: boolean;
+      attachedFiles?: FileAttachment[];
     }) => {
       if (!actor) throw new Error("Not connected");
-      return actor.submitComment(
-        postId,
-        parentId,
-        authorName,
-        authorEmail,
-        content,
+      const backendFiles = (attachedFiles ?? []).map((f) => ({
+        fileName: f.fileName,
+        fileSize: BigInt(f.fileSize),
+        fileType: f.fileType,
+        fileUrl: f.fileUrl,
+      })) as unknown as Parameters<typeof actor.submitContact>[8];
+      return actor.submitContact(
+        fullName,
+        phoneNumber,
+        email,
+        countryOfInterest,
+        serviceOfInterest || null,
+        message,
+        preferredContactMethod || null,
+        privacyConsent ?? false,
+        backendFiles,
       );
     },
-    onSuccess: (_data, vars) => {
-      queryClient.invalidateQueries({
-        queryKey: ["comments", "approved", vars.postId],
-      });
-      queryClient.invalidateQueries({ queryKey: ["comments", "pending"] });
-      queryClient.invalidateQueries({ queryKey: ["comments", "pendingCount"] });
-    },
-  });
-}
-
-export function useGetPendingComments() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery<Comment[]>({
-    queryKey: ["comments", "pending"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getPendingComments();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-export function useGetPendingCommentCount() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery<bigint>({
-    queryKey: ["comments", "pendingCount"],
-    queryFn: async () => {
-      if (!actor) return BigInt(0);
-      return actor.getPendingCommentCount();
-    },
-    enabled: !!actor && !isFetching,
-    refetchInterval: 30_000,
-  });
-}
-
-export function useApproveComment() {
-  const { actor } = useActor(createActor);
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (id: bigint) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.approveComment(id);
-    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments"] });
-    },
-  });
-}
-
-export function useRejectComment() {
-  const { actor } = useActor(createActor);
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (id: bigint) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.rejectComment(id);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments"] });
-    },
-  });
-}
-
-export function useEditComment() {
-  const { actor } = useActor(createActor);
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ id, content }: { id: bigint; content: string }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.editComment(id, content);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments"] });
-    },
-  });
-}
-
-export function useDeleteComment() {
-  const { actor } = useActor(createActor);
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (id: bigint) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.deleteComment(id);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["comments"] });
+      queryClient.invalidateQueries({ queryKey: ["contacts"] });
     },
   });
 }

@@ -20,23 +20,23 @@ export interface BlogPost {
   'imageUrl' : string,
   'category' : string,
 }
-export interface Comment {
-  'id' : bigint,
-  'content' : string,
-  'authorEmail' : string,
-  'createdAt' : bigint,
-  'authorName' : string,
-  'approved' : boolean,
-  'parentId' : [] | [bigint],
-  'postId' : string,
-}
-export interface ContactSubmission {
+export interface ContactSubmissionV3 {
+  'attachedFiles' : Array<FileAttachment>,
   'fullName' : string,
   'email' : string,
   'message' : string,
   'timestamp' : Time,
+  'serviceOfInterest' : [] | [string],
   'phoneNumber' : string,
+  'preferredContactMethod' : [] | [string],
   'countryOfInterest' : string,
+  'privacyConsent' : boolean,
+}
+export interface FileAttachment {
+  'fileName' : string,
+  'fileSize' : bigint,
+  'fileType' : string,
+  'fileUrl' : string,
 }
 export interface Testimonial {
   'country' : string,
@@ -50,28 +50,28 @@ export interface _SERVICE {
     [string, string, string, string, string, string],
     undefined
   >,
-  'approveComment' : ActorMethod<[bigint], boolean>,
   'deleteBlogPost' : ActorMethod<[bigint], undefined>,
-  'deleteComment' : ActorMethod<[bigint], boolean>,
+  'deleteContact' : ActorMethod<[bigint], undefined>,
   'editBlogPost' : ActorMethod<
     [bigint, string, string, string, string, string, string],
     undefined
   >,
-  'editComment' : ActorMethod<[bigint, string], boolean>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
-  'getAllContacts' : ActorMethod<[], Array<ContactSubmission>>,
+  'getAllContacts' : ActorMethod<[], Array<[bigint, ContactSubmissionV3]>>,
   'getAllTestimonials' : ActorMethod<[], Array<Testimonial>>,
-  'getApprovedComments' : ActorMethod<[string], Array<Comment>>,
   'getBlogPostById' : ActorMethod<[bigint], BlogPost>,
-  'getPendingCommentCount' : ActorMethod<[], bigint>,
-  'getPendingComments' : ActorMethod<[], Array<Comment>>,
-  'rejectComment' : ActorMethod<[bigint], boolean>,
-  'submitComment' : ActorMethod<
-    [string, [] | [bigint], string, string, string],
-    bigint
-  >,
   'submitContact' : ActorMethod<
-    [string, string, string, string, string],
+    [
+      string,
+      string,
+      string,
+      string,
+      [] | [string],
+      string,
+      [] | [string],
+      boolean,
+      Array<FileAttachment>,
+    ],
     undefined
   >,
 }

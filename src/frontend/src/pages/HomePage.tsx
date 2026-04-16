@@ -17,8 +17,8 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { SiWhatsapp } from "react-icons/si";
-import type { BlogPost } from "../backend.d.ts";
 import { useGetAllBlogPosts, useGetAllTestimonials } from "../hooks/useQueries";
+import type { BlogPost } from "../types/index";
 
 const studyAbroadServices = [
   "University Admissions Assistance",

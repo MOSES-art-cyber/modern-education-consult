@@ -6,25 +6,25 @@ type Testimonial =
    photoUrl: text;
    quote: text;
  };
-type ContactSubmission = 
+type FileAttachment = 
  record {
+   fileName: text;
+   fileSize: nat;
+   fileType: text;
+   fileUrl: text;
+ };
+type ContactSubmissionV3 = 
+ record {
+   attachedFiles: vec FileAttachment;
    countryOfInterest: text;
    email: text;
    fullName: text;
    message: text;
    phoneNumber: text;
+   preferredContactMethod: opt text;
+   privacyConsent: bool;
+   serviceOfInterest: opt text;
    timestamp: Time;
- };
-type Comment = 
- record {
-   approved: bool;
-   authorEmail: text;
-   authorName: text;
-   content: text;
-   createdAt: int;
-   id: nat;
-   parentId: opt nat;
-   postId: text;
  };
 type BlogPost = 
  record {
@@ -40,22 +40,19 @@ type BlogPost =
 service : {
   addBlogPost: (title: text, summary: text, content: text, author: text,
    imageUrl: text, category: text) -> ();
-  approveComment: (id: nat) -> (bool);
   deleteBlogPost: (id: nat) -> ();
-  deleteComment: (id: nat) -> (bool);
+  deleteContact: (id: nat) -> ();
   editBlogPost: (id: nat, title: text, summary: text, content: text, author:
    text, imageUrl: text, category: text) -> ();
-  editComment: (id: nat, content: text) -> (bool);
   getAllBlogPosts: () -> (vec BlogPost) query;
-  getAllContacts: () -> (vec ContactSubmission) query;
+  getAllContacts: () -> (vec record {
+                               nat;
+                               ContactSubmissionV3;
+                             }) query;
   getAllTestimonials: () -> (vec Testimonial) query;
-  getApprovedComments: (postId: text) -> (vec Comment) query;
   getBlogPostById: (id: nat) -> (BlogPost) query;
-  getPendingCommentCount: () -> (nat) query;
-  getPendingComments: () -> (vec Comment) query;
-  rejectComment: (id: nat) -> (bool);
-  submitComment: (postId: text, parentId: opt nat, authorName: text,
-   authorEmail: text, content: text) -> (nat);
   submitContact: (fullName: text, phoneNumber: text, email: text,
-   countryOfInterest: text, message: text) -> ();
+   countryOfInterest: text, serviceOfInterest: opt text, message: text,
+   preferredContactMethod: opt text, privacyConsent: bool, attachedFiles:
+   vec FileAttachment) -> ();
 }

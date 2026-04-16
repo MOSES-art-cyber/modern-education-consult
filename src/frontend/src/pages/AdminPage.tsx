@@ -26,19 +26,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import {
-  Check,
   ChevronDown,
   ChevronUp,
   Download,
   Edit2,
   Eye,
+  FileText,
   Images,
+  Inbox,
   Info,
   LogIn,
   LogOut,
-  MessageSquare,
+  Mail,
+  Paperclip,
+  Phone,
   Plus,
   Save,
   Trash2,
@@ -46,8 +48,8 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { SiWhatsapp } from "react-icons/si";
 import { toast } from "sonner";
-import type { BlogPost, Comment } from "../backend.d.ts";
 import ImageSliderEditor from "../components/blog/ImageSliderEditor";
 import RichTextEditor from "../components/blog/RichTextEditor";
 import {
@@ -56,19 +58,16 @@ import {
   parsePostContent,
   serializePostContent,
 } from "../components/blog/postMetaUtils";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import {
   useAddBlogPost,
-  useApproveComment,
   useDeleteBlogPost,
-  useDeleteComment,
+  useDeleteContact,
   useEditBlogPost,
-  useEditComment,
   useGetAllBlogPosts,
-  useGetApprovedComments,
-  useGetPendingCommentCount,
-  useGetPendingComments,
-  useRejectComment,
+  useGetAllContacts,
 } from "../hooks/useQueries";
+import type { BlogPost, ContactSubmission } from "../types/index";
 
 const CATEGORIES = [
   "Study Abroad",
@@ -84,8 +83,6 @@ const CATEGORIES = [
 ];
 
 const AUTOSAVE_KEY = (id: string) => `blog-autosave-${id}`;
-
-type AdminTab = "posts" | "comments";
 
 interface FormData {
   title: string;
@@ -152,6 +149,7 @@ function BlogForm({
     setForm((f) => ({ ...f, [field]: value }));
   };
 
+  // Restore from autosave for any postId
   useEffect(() => {
     const saved = localStorage.getItem(AUTOSAVE_KEY(postId));
     if (saved) {
@@ -169,6 +167,7 @@ function BlogForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
+  // Debounced auto-save on form changes (2s debounce)
   useEffect(() => {
     isDirtyRef.current = true;
     setIsSaving(true);
@@ -187,6 +186,7 @@ function BlogForm({
     };
   }, [form, postId]);
 
+  // Interval auto-save every 5 seconds as backup
   useEffect(() => {
     const id = setInterval(() => {
       localStorage.setItem(AUTOSAVE_KEY(postId), JSON.stringify(form));
@@ -200,6 +200,7 @@ function BlogForm({
     return () => clearInterval(id);
   }, [form, postId]);
 
+  // Beforeunload warning when form is dirty
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
       if (isDirtyRef.current) {
@@ -273,6 +274,7 @@ function BlogForm({
       ...form.meta,
       lastUpdated: new Date().toISOString(),
     };
+    // If bilingual, merge en content into main content with meta
     const rawContent = form.meta.bilingualEnabled
       ? form.enContent
       : form.content;
@@ -295,6 +297,7 @@ function BlogForm({
 
   return (
     <div className="space-y-6">
+      {/* Preview Dialog */}
       <Dialog open={showPreview} onOpenChange={setShowPreview}>
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -337,6 +340,7 @@ function BlogForm({
         </DialogContent>
       </Dialog>
 
+      {/* CTA Builder Dialog */}
       <Dialog open={showCta} onOpenChange={setShowCta}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -397,8 +401,9 @@ function BlogForm({
       </Dialog>
 
       <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
-        {/* ─── Left column ─── */}
+        {/* ─── Left column: content ─── */}
         <div className="xl:col-span-3 space-y-5">
+          {/* Title(s) */}
           {bilingualEnabled ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -440,6 +445,7 @@ function BlogForm({
             </div>
           )}
 
+          {/* Summary */}
           <div className="space-y-1.5">
             <Label className="text-sm font-semibold text-[#1e3a5f]">
               Summary *
@@ -453,6 +459,7 @@ function BlogForm({
             />
           </div>
 
+          {/* Content Editor(s) */}
           {bilingualEnabled ? (
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm font-semibold text-[#1e3a5f] border-b pb-2">
@@ -508,6 +515,7 @@ function BlogForm({
             </div>
           )}
 
+          {/* Image Slider */}
           <div className="space-y-2">
             <Button
               type="button"
@@ -525,12 +533,14 @@ function BlogForm({
           </div>
         </div>
 
-        {/* ─── Right column ─── */}
+        {/* ─── Right column: settings ─── */}
         <div className="xl:col-span-2 space-y-4">
+          {/* Category */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-4">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Post Settings
             </h3>
+
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold text-[#1e3a5f]">
                 Category
@@ -548,6 +558,8 @@ function BlogForm({
                 ))}
               </select>
             </div>
+
+            {/* Tags */}
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold text-[#1e3a5f]">
                 Tags
@@ -580,10 +592,12 @@ function BlogForm({
             </div>
           </div>
 
+          {/* Featured Image */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Featured Image
             </h3>
+
             <input
               ref={fileInputRef}
               type="file"
@@ -626,6 +640,8 @@ function BlogForm({
                 onError={() => setImgError(true)}
               />
             )}
+
+            {/* Image position */}
             <div>
               <Label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
                 Position
@@ -636,7 +652,11 @@ function BlogForm({
                     key={pos}
                     type="button"
                     onClick={() => setMeta({ featuredImagePos: pos })}
-                    className={`px-3 py-1 text-xs rounded-md border font-medium capitalize transition-colors ${form.meta.featuredImagePos === pos ? "bg-blue-700 text-white border-blue-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                    className={`px-3 py-1 text-xs rounded-md border font-medium capitalize transition-colors ${
+                      form.meta.featuredImagePos === pos
+                        ? "bg-blue-700 text-white border-blue-700"
+                        : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                    }`}
                   >
                     {pos}
                   </button>
@@ -645,6 +665,7 @@ function BlogForm({
             </div>
           </div>
 
+          {/* Bilingual */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
@@ -667,7 +688,11 @@ function BlogForm({
                       key={order}
                       type="button"
                       onClick={() => setMeta({ langOrder: order })}
-                      className={`px-3 py-1 text-xs rounded-md border font-medium transition-colors ${form.meta.langOrder === order ? "bg-blue-700 text-white border-blue-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                      className={`px-3 py-1 text-xs rounded-md border font-medium transition-colors ${
+                        form.meta.langOrder === order
+                          ? "bg-blue-700 text-white border-blue-700"
+                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                      }`}
                     >
                       {order === "en-fr"
                         ? "EN left · FR right"
@@ -679,6 +704,7 @@ function BlogForm({
             )}
           </div>
 
+          {/* Author & Display */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Author & Display
@@ -710,6 +736,7 @@ function BlogForm({
             </div>
           </div>
 
+          {/* Publish Controls */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
             <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
               Publish Controls
@@ -753,6 +780,7 @@ function BlogForm({
                 />
               </div>
             )}
+            {/* Auto-save status indicator */}
             <div className="flex items-center gap-2 min-h-[20px]">
               {isSaving ? (
                 <>
@@ -772,6 +800,7 @@ function BlogForm({
             </div>
           </div>
 
+          {/* SEO Section */}
           <Collapsible open={seoOpen} onOpenChange={setSeoOpen}>
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
               <CollapsibleTrigger asChild>
@@ -850,6 +879,7 @@ function BlogForm({
         </div>
       </div>
 
+      {/* Action buttons */}
       <div className="flex items-center gap-3 pt-2 border-t border-gray-100 flex-wrap">
         <Button
           onClick={handleSubmit}
@@ -903,360 +933,258 @@ function BlogForm({
   );
 }
 
-// ── Comments Panel ──────────────────────────────────────────────────
-
-function timeAgo(nanoseconds: bigint): string {
-  const ms = Number(nanoseconds) / 1_000_000;
-  const diff = Date.now() - ms;
-  const mins = Math.floor(diff / 60_000);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
-  const days = Math.floor(hrs / 24);
-  return `${days}d ago`;
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-interface CommentRowProps {
-  comment: Comment;
-  posts: BlogPost[];
-  pending: boolean;
+function ContactMethodIcon({ method }: { method?: string }) {
+  if (!method) return null;
+  if (method === "WhatsApp")
+    return <SiWhatsapp size={13} className="text-green-600" />;
+  if (method === "Phone Call")
+    return <Phone size={13} className="text-blue-600" />;
+  if (method === "Email") return <Mail size={13} className="text-purple-600" />;
+  return <Inbox size={13} className="text-gray-500" />;
 }
 
-function CommentRow({ comment, posts, pending }: CommentRowProps) {
-  const approveMutation = useApproveComment();
-  const rejectMutation = useRejectComment();
-  const editMutation = useEditComment();
-  const deleteMutation = useDeleteComment();
-  const [editing, setEditing] = useState(false);
-  const [editContent, setEditContent] = useState(comment.content);
+function ApplicationsPanel() {
+  const { data: contacts, isLoading } = useGetAllContacts();
+  const deleteContact = useDeleteContact();
 
-  const postTitle =
-    posts.find((p) => p.id.toString() === comment.postId)?.title ??
-    `Post #${comment.postId}`;
-  const excerpt =
-    comment.content.length > 100
-      ? `${comment.content.slice(0, 100)}…`
-      : comment.content;
+  // Track "last seen" timestamp so badge can compute unread count
+  useEffect(() => {
+    const now = Date.now().toString();
+    localStorage.setItem("mecLastSeenApplications", now);
+  }, []);
 
-  const handleApprove = async () => {
-    try {
-      await approveMutation.mutateAsync(comment.id);
-      toast.success("Comment approved and published.");
-    } catch {
-      toast.error("Failed to approve comment.");
-    }
-  };
+  const sorted = [...(contacts ?? [])].sort(
+    (a, b) => Number(b.timestamp) - Number(a.timestamp),
+  );
 
-  const handleReject = async () => {
-    try {
-      await rejectMutation.mutateAsync(comment.id);
-      toast.success("Comment rejected.");
-    } catch {
-      toast.error("Failed to reject comment.");
-    }
-  };
-
-  const handleSaveEdit = async () => {
-    if (!editContent.trim()) return;
-    try {
-      await editMutation.mutateAsync({
-        id: comment.id,
-        content: editContent.trim(),
-      });
-      toast.success("Comment updated.");
-      setEditing(false);
-    } catch {
-      toast.error("Failed to update comment.");
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      await deleteMutation.mutateAsync(comment.id);
-      toast.success("Comment deleted.");
-    } catch {
-      toast.error("Failed to delete comment.");
-    }
-  };
-
-  return (
-    <div
-      className={`bg-white rounded-xl border shadow-sm px-5 py-4 space-y-3 ${pending ? "border-amber-200 bg-amber-50/30" : "border-gray-200"}`}
-      data-ocid={`admin.comment.item.${comment.id}`}
-    >
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div className="space-y-0.5 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-sm text-[#1e3a5f]">
-              {comment.authorName}
-            </span>
-            <span className="text-xs text-gray-400">{comment.authorEmail}</span>
-            <span className="text-xs text-gray-300">·</span>
-            <span className="text-xs text-gray-400">
-              {timeAgo(comment.createdAt)}
-            </span>
-            {comment.parentId !== undefined && comment.parentId !== null && (
-              <Badge
-                variant="outline"
-                className="text-xs text-purple-600 border-purple-200 bg-purple-50"
-              >
-                Reply
-              </Badge>
-            )}
-          </div>
-          <p className="text-xs text-blue-600 truncate">
-            On: <span className="font-medium">{postTitle}</span>
-          </p>
-        </div>
-        {pending ? (
-          <div className="flex gap-2 flex-shrink-0">
-            <Button
-              size="sm"
-              onClick={handleApprove}
-              disabled={approveMutation.isPending}
-              className="bg-green-600 hover:bg-green-700 text-white gap-1.5 h-8 px-3 text-xs font-semibold"
-              data-ocid={`admin.comment.approve.${comment.id}`}
-            >
-              <Check size={12} /> Approve
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={handleReject}
-              disabled={rejectMutation.isPending}
-              className="text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs font-semibold"
-              data-ocid={`admin.comment.reject.${comment.id}`}
-            >
-              <X size={12} /> Reject
-            </Button>
-          </div>
-        ) : (
-          <div className="flex gap-2 flex-shrink-0">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                setEditing((v) => !v);
-                setEditContent(comment.content);
-              }}
-              className="text-blue-700 border-blue-200 hover:bg-blue-50 gap-1.5 h-8 px-3 text-xs"
-              data-ocid={`admin.comment.edit.${comment.id}`}
-            >
-              <Edit2 size={12} /> Edit
-            </Button>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs"
-                  data-ocid={`admin.comment.delete.${comment.id}`}
-                >
-                  <Trash2 size={12} /> Delete
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Delete this comment?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        )}
-      </div>
-
-      {editing ? (
-        <div className="space-y-2">
-          <Textarea
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-            rows={3}
-            className="text-sm border-gray-200 resize-none"
-            data-ocid={`admin.comment.edit_textarea.${comment.id}`}
+  if (isLoading) {
+    return (
+      <div className="space-y-3">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-32"
           />
-          <div className="flex gap-2">
-            <Button
-              size="sm"
-              onClick={handleSaveEdit}
-              disabled={editMutation.isPending}
-              className="bg-blue-700 hover:bg-blue-800 text-white h-8 px-4 text-xs"
-            >
-              {editMutation.isPending ? "Saving..." : "Save"}
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => setEditing(false)}
-              className="h-8 px-3 text-xs text-gray-500"
-            >
-              Cancel
-            </Button>
-          </div>
-        </div>
-      ) : (
-        <p className="text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2 border border-gray-100">
-          {excerpt}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function CommentsTab({ posts }: { posts: BlogPost[] }) {
-  const { data: pendingComments = [], isLoading: isPendingLoading } =
-    useGetPendingComments();
-  const [viewMode, setViewMode] = useState<"pending" | "approved">("pending");
-
-  return (
-    <div className="space-y-5">
-      {/* Toggle */}
-      <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={() => setViewMode("pending")}
-          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "pending" ? "bg-amber-500 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
-          data-ocid="admin.comments.pending_tab"
-        >
-          Pending
-          {pendingComments.length > 0 && (
-            <span className="ml-2 bg-white text-amber-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
-              {pendingComments.length}
-            </span>
-          )}
-        </button>
-        <button
-          type="button"
-          onClick={() => setViewMode("approved")}
-          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "approved" ? "bg-[#1e3a5f] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`}
-          data-ocid="admin.comments.approved_tab"
-        >
-          Approved
-        </button>
-      </div>
-
-      {viewMode === "pending" && (
-        <div className="space-y-3" data-ocid="admin.comments.pending.list">
-          {isPendingLoading ? (
-            <div className="text-center py-10 text-gray-400">Loading...</div>
-          ) : pendingComments.length === 0 ? (
-            <div
-              className="text-center py-14 bg-white rounded-2xl border border-dashed border-gray-200"
-              data-ocid="admin.comments.pending.empty"
-            >
-              <MessageSquare size={32} className="text-gray-300 mx-auto mb-2" />
-              <p className="font-semibold text-gray-400 text-sm">
-                No pending comments
-              </p>
-              <p className="text-xs text-gray-400 mt-1">
-                All comments have been reviewed.
-              </p>
-            </div>
-          ) : (
-            pendingComments.map((c) => (
-              <CommentRow
-                key={c.id.toString()}
-                comment={c}
-                posts={posts}
-                pending
-              />
-            ))
-          )}
-        </div>
-      )}
-
-      {viewMode === "approved" && <ApprovedCommentsList posts={posts} />}
-    </div>
-  );
-}
-
-function ApprovedCommentsList({ posts }: { posts: BlogPost[] }) {
-  return <ApprovedByPost posts={posts} />;
-}
-
-function ApprovedByPost({ posts }: { posts: BlogPost[] }) {
-  const [selectedPostId, setSelectedPostId] = useState<string>(
-    posts[0]?.id.toString() ?? "",
-  );
-
-  return (
-    <div className="space-y-4">
-      <div className="space-y-1.5">
-        <Label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-          Select Post
-        </Label>
-        <select
-          value={selectedPostId}
-          onChange={(e) => setSelectedPostId(e.target.value)}
-          className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          data-ocid="admin.comments.post_filter"
-        >
-          {posts.map((p) => (
-            <option key={p.id.toString()} value={p.id.toString()}>
-              {p.title}
-            </option>
-          ))}
-        </select>
-      </div>
-      {selectedPostId && (
-        <ApprovedCommentsForPost postId={selectedPostId} posts={posts} />
-      )}
-    </div>
-  );
-}
-
-function ApprovedCommentsForPost({
-  postId,
-  posts,
-}: { postId: string; posts: BlogPost[] }) {
-  const { data: comments = [], isLoading } = useGetApprovedComments(postId);
-
-  if (isLoading)
-    return (
-      <div className="text-center py-8 text-gray-400 text-sm">Loading...</div>
-    );
-
-  if (comments.length === 0) {
-    return (
-      <div
-        className="text-center py-10 bg-white rounded-2xl border border-dashed border-gray-200"
-        data-ocid="admin.comments.approved.empty"
-      >
-        <MessageSquare size={28} className="text-gray-300 mx-auto mb-2" />
-        <p className="text-sm font-semibold text-gray-400">
-          No approved comments for this post
-        </p>
+        ))}
       </div>
     );
   }
 
   return (
-    <div className="space-y-3" data-ocid="admin.comments.approved.list">
-      {comments.map((c) => (
-        <CommentRow
-          key={c.id.toString()}
-          comment={c}
-          posts={posts}
-          pending={false}
-        />
-      ))}
+    <div className="space-y-4">
+      {/* Info note: email notifications not available */}
+      <div className="flex items-start gap-2 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-blue-700">
+        <Info size={15} className="mt-0.5 flex-shrink-0 text-blue-500" />
+        <p className="text-xs leading-relaxed">
+          Email notifications are not available on your current plan. New
+          submissions are tracked here with the notification badge above.
+        </p>
+      </div>
+
+      {sorted.length === 0 ? (
+        <div
+          data-ocid="admin.applications.empty_state"
+          className="text-center py-20 bg-white rounded-2xl border border-gray-100"
+        >
+          <Inbox size={36} className="text-gray-300 mx-auto mb-3" />
+          <p className="font-semibold text-gray-500">No applications yet.</p>
+          <p className="text-sm text-gray-400 mt-1">
+            Applications submitted through the Contact page will appear here.
+          </p>
+        </div>
+      ) : (
+        <div data-ocid="admin.applications.list">
+          <p className="text-sm text-gray-500 mb-3">
+            {sorted.length} application{sorted.length !== 1 ? "s" : ""} received
+          </p>
+          {sorted.map((app, idx) => (
+            <ApplicationCard
+              key={app.timestamp.toString()}
+              app={app}
+              index={idx + 1}
+              onDelete={() => deleteContact.mutate(app.id)}
+              isDeleting={deleteContact.isPending}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-// ── Main AdminPage ──────────────────────────────────────────────────
+function ApplicationCard({
+  app,
+  index,
+  onDelete,
+  isDeleting,
+}: {
+  app: ContactSubmission;
+  index: number;
+  onDelete: () => void;
+  isDeleting: boolean;
+}) {
+  const date = new Date(Number(app.timestamp) / 1_000_000);
+
+  return (
+    <div
+      data-ocid={`admin.applications.item.${index}`}
+      className="bg-white rounded-xl border border-gray-200 shadow-sm p-5 space-y-4 mb-4"
+    >
+      {/* Header row */}
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="min-w-0">
+          <h3 className="font-bold text-[#1e3a5f] text-base truncate">
+            {app.fullName}
+          </h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
+            <a
+              href={`mailto:${app.email}`}
+              className="text-sm text-blue-600 hover:underline flex items-center gap-1"
+            >
+              <Mail size={12} /> {app.email}
+            </a>
+            <a
+              href={`tel:${app.phoneNumber}`}
+              className="text-sm text-gray-600 flex items-center gap-1"
+            >
+              <Phone size={12} /> {app.phoneNumber}
+            </a>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
+          {app.privacyConsent && (
+            <Badge className="bg-green-100 text-green-700 border-green-200 text-xs font-semibold">
+              ✓ Agreed
+            </Badge>
+          )}
+          <span className="text-xs text-gray-400 whitespace-nowrap">
+            {date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}{" "}
+            {date.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+          {/* Delete button */}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                size="sm"
+                variant="outline"
+                disabled={isDeleting}
+                data-ocid={`admin.applications.delete_button.${index}`}
+                className="gap-1 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400 h-7 px-2 text-xs"
+              >
+                <Trash2 size={12} /> Delete
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent data-ocid="admin.applications.dialog">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete this application?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Delete this application? This cannot be undone.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel data-ocid="admin.applications.cancel_button">
+                  Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-red-600 hover:bg-red-700 text-white"
+                  onClick={onDelete}
+                  data-ocid="admin.applications.confirm_button"
+                >
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </div>
+
+      {/* Service & Country */}
+      <div className="flex flex-wrap gap-2">
+        {app.serviceOfInterest && (
+          <span className="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
+            {app.serviceOfInterest}
+          </span>
+        )}
+        {app.countryOfInterest && (
+          <span className="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200">
+            📍 {app.countryOfInterest}
+          </span>
+        )}
+      </div>
+
+      {/* Preferred Contact Method */}
+      {app.preferredContactMethod && (
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-gray-500 font-medium">
+            Preferred contact:
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-gray-50 border border-gray-200 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">
+            <ContactMethodIcon method={app.preferredContactMethod} />
+            {app.preferredContactMethod}
+          </span>
+        </div>
+      )}
+
+      {/* Message */}
+      <div>
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">
+          Message
+        </p>
+        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap break-words">
+          {app.message}
+        </p>
+      </div>
+
+      {/* Attached Files */}
+      {app.attachedFiles && app.attachedFiles.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            Attached Files ({app.attachedFiles.length})
+          </p>
+          <ul className="space-y-1.5">
+            {app.attachedFiles.map((file, fi) => (
+              <li
+                key={`${file.fileName}-${fi}`}
+                className="flex items-center gap-2 bg-gray-50 rounded-md px-3 py-2 text-sm border border-gray-100"
+              >
+                <Paperclip size={13} className="text-blue-500 flex-shrink-0" />
+                <span className="flex-1 truncate min-w-0 text-gray-700">
+                  {file.fileName}
+                </span>
+                <span className="text-gray-400 text-xs flex-shrink-0">
+                  {formatFileSize(file.fileSize)}
+                </span>
+                {file.fileUrl.startsWith("data:") && (
+                  <a
+                    href={file.fileUrl}
+                    download={file.fileName}
+                    className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium flex-shrink-0"
+                    aria-label={`Download ${file.fileName}`}
+                  >
+                    <Download size={12} /> Download
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function AdminPage() {
   const { identity, login, clear, isInitializing, isLoggingIn } =
@@ -1268,12 +1196,12 @@ export default function AdminPage() {
     isLoading,
     refetch: refetchPosts,
   } = useGetAllBlogPosts();
+  const { data: contacts } = useGetAllContacts();
   const addMutation = useAddBlogPost();
   const editMutation = useEditBlogPost();
   const deleteMutation = useDeleteBlogPost();
-  const { data: pendingCount } = useGetPendingCommentCount();
 
-  const [activeTab, setActiveTab] = useState<AdminTab>("posts");
+  const [activeTab, setActiveTab] = useState<"blog" | "applications">("blog");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [showDataBanner, setShowDataBanner] = useState(true);
@@ -1281,7 +1209,23 @@ export default function AdminPage() {
   const autoEditApplied = useRef(false);
   const importFileRef = useRef<HTMLInputElement>(null);
 
-  const pendingNum = pendingCount !== undefined ? Number(pendingCount) : 0;
+  // Notification badge: count submissions newer than last seen timestamp
+  const [lastSeen, setLastSeen] = useState<number>(() => {
+    const stored = localStorage.getItem("mecLastSeenApplications");
+    return stored ? Number(stored) : 0;
+  });
+
+  const newApplicationsCount = (contacts ?? []).filter((c) => {
+    // timestamp is nanoseconds, lastSeen is milliseconds
+    return Number(c.timestamp) / 1_000_000 > lastSeen;
+  }).length;
+
+  function handleApplicationsTabClick() {
+    setActiveTab("applications");
+    const now = Date.now();
+    setLastSeen(now);
+    localStorage.setItem("mecLastSeenApplications", now.toString());
+  }
 
   useEffect(() => {
     if (autoEditApplied.current || !posts || posts.length === 0) return;
@@ -1292,14 +1236,12 @@ export default function AdminPage() {
       autoEditApplied.current = true;
       setEditingPost(target);
       setShowAddForm(false);
-      setTimeout(
-        () =>
-          editFormRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          }),
-        100,
-      );
+      setTimeout(() => {
+        editFormRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
     }
   }, [posts]);
 
@@ -1371,20 +1313,24 @@ export default function AdminPage() {
         imageUrl: string;
         category: string;
       }>;
+
       if (!Array.isArray(imported)) {
         toast.error("Invalid backup file format.");
         return;
       }
+
       const existingTitles = new Set(
         (posts ?? []).map((p) => p.title.trim().toLowerCase()),
       );
       const newPosts = imported.filter(
         (p) => !existingTitles.has(p.title.trim().toLowerCase()),
       );
+
       if (newPosts.length === 0) {
         toast.info("All posts already exist — nothing imported.");
         return;
       }
+
       for (const p of newPosts) {
         await addMutation.mutateAsync({
           title: p.title,
@@ -1395,6 +1341,7 @@ export default function AdminPage() {
           category: p.category || "Study Abroad",
         });
       }
+
       await refetchPosts();
       toast.success(
         `Imported ${newPosts.length} new post${newPosts.length > 1 ? "s" : ""} successfully!`,
@@ -1448,6 +1395,7 @@ export default function AdminPage() {
 
   return (
     <main className="pt-16 lg:pt-20 min-h-screen bg-gray-50 pb-16">
+      {/* Hidden file input for import */}
       <input
         ref={importFileRef}
         type="file"
@@ -1466,11 +1414,11 @@ export default function AdminPage() {
           <div>
             <h1 className="text-2xl font-bold text-[#1e3a5f]">Admin Panel</h1>
             <p className="text-sm text-gray-500 mt-0.5">
-              Manage blog posts and moderate comments.
+              Manage blog posts and view contact applications.
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            {activeTab === "posts" && (
+            {activeTab === "blog" && (
               <>
                 <Button
                   onClick={() => {
@@ -1485,6 +1433,7 @@ export default function AdminPage() {
                 <Button
                   variant="outline"
                   onClick={handleExportPosts}
+                  title="Download all blog posts as a JSON backup file"
                   className="gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50"
                   data-ocid="admin.export.button"
                 >
@@ -1493,6 +1442,7 @@ export default function AdminPage() {
                 <Button
                   variant="outline"
                   onClick={() => importFileRef.current?.click()}
+                  title="Import blog posts from a JSON backup file"
                   className="gap-2 text-blue-700 border-blue-200 hover:bg-blue-50"
                   data-ocid="admin.import.button"
                 >
@@ -1512,36 +1462,41 @@ export default function AdminPage() {
         </div>
 
         {/* Tab bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex border-t border-gray-100">
-            <button
-              type="button"
-              onClick={() => setActiveTab("posts")}
-              className={`px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "posts" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-              data-ocid="admin.tab.posts"
-            >
-              Blog Posts {posts ? `(${posts.length})` : ""}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("comments")}
-              className={`px-5 py-3 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${activeTab === "comments" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-              data-ocid="admin.tab.comments"
-            >
-              <MessageSquare size={14} />
-              Comments
-              {pendingNum > 0 && (
-                <span className="bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center leading-none">
-                  {pendingNum > 99 ? "99+" : pendingNum}
-                </span>
-              )}
-            </button>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-0 border-t border-gray-100">
+          <button
+            type="button"
+            data-ocid="admin.blog.tab"
+            onClick={() => setActiveTab("blog")}
+            className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === "blog"
+                ? "border-blue-700 text-blue-700"
+                : "border-transparent text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            <FileText size={15} /> Blog Posts
+          </button>
+          <button
+            type="button"
+            data-ocid="admin.applications.tab"
+            onClick={handleApplicationsTabClick}
+            className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === "applications"
+                ? "border-blue-700 text-blue-700"
+                : "border-transparent text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            <Inbox size={15} /> Applications &amp; Leads
+            {newApplicationsCount > 0 && (
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs font-bold leading-none">
+                {newApplicationsCount > 99 ? "99+" : newApplicationsCount}
+              </span>
+            )}
+          </button>
         </div>
       </div>
 
       {/* Data Protection Banner */}
-      {showDataBanner && activeTab === "posts" && (
+      {showDataBanner && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div
             className="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-blue-700"
@@ -1567,8 +1522,11 @@ export default function AdminPage() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {activeTab === "posts" && (
+        {activeTab === "applications" ? (
+          <ApplicationsPanel />
+        ) : (
           <>
+            {/* Add form */}
             {showAddForm && (
               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                 <h2 className="text-lg font-bold text-[#1e3a5f] mb-5">
@@ -1586,6 +1544,7 @@ export default function AdminPage() {
               </div>
             )}
 
+            {/* Edit form */}
             {editingPost && (
               <div
                 ref={editFormRef}
@@ -1607,6 +1566,7 @@ export default function AdminPage() {
               </div>
             )}
 
+            {/* Posts list */}
             <div>
               <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">
                 {isLoading
@@ -1641,6 +1601,7 @@ export default function AdminPage() {
                         }}
                       />
                     )}
+
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
@@ -1694,6 +1655,7 @@ export default function AdminPage() {
                         {post.summary}
                       </p>
                     </div>
+
                     <div className="flex items-center gap-2 flex-shrink-0 mt-1">
                       <Button
                         size="sm"
@@ -1708,6 +1670,7 @@ export default function AdminPage() {
                       >
                         <Edit2 size={13} /> Edit
                       </Button>
+
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button
@@ -1751,8 +1714,6 @@ export default function AdminPage() {
             </div>
           </>
         )}
-
-        {activeTab === "comments" && <CommentsTab posts={posts ?? []} />}
       </div>
     </main>
   );

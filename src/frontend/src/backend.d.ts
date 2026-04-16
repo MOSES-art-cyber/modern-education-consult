@@ -17,24 +17,24 @@ export interface BlogPost {
     imageUrl: string;
     category: string;
 }
-export type Time = bigint;
-export interface Comment {
-    id: bigint;
-    content: string;
-    authorEmail: string;
-    createdAt: bigint;
-    authorName: string;
-    approved: boolean;
-    parentId?: bigint;
-    postId: string;
+export interface FileAttachment {
+    fileName: string;
+    fileSize: bigint;
+    fileType: string;
+    fileUrl: string;
 }
-export interface ContactSubmission {
+export type Time = bigint;
+export interface ContactSubmissionV3 {
+    attachedFiles: Array<FileAttachment>;
     fullName: string;
     email: string;
     message: string;
     timestamp: Time;
+    serviceOfInterest?: string;
     phoneNumber: string;
+    preferredContactMethod?: string;
     countryOfInterest: string;
+    privacyConsent: boolean;
 }
 export interface Testimonial {
     country: string;
@@ -44,19 +44,12 @@ export interface Testimonial {
 }
 export interface backendInterface {
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
-    approveComment(id: bigint): Promise<boolean>;
     deleteBlogPost(id: bigint): Promise<void>;
-    deleteComment(id: bigint): Promise<boolean>;
+    deleteContact(id: bigint): Promise<void>;
     editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
-    editComment(id: bigint, content: string): Promise<boolean>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
-    getAllContacts(): Promise<Array<ContactSubmission>>;
+    getAllContacts(): Promise<Array<[bigint, ContactSubmissionV3]>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
-    getApprovedComments(postId: string): Promise<Array<Comment>>;
     getBlogPostById(id: bigint): Promise<BlogPost>;
-    getPendingCommentCount(): Promise<bigint>;
-    getPendingComments(): Promise<Array<Comment>>;
-    rejectComment(id: bigint): Promise<boolean>;
-    submitComment(postId: string, parentId: bigint | null, authorName: string, authorEmail: string, content: string): Promise<bigint>;
-    submitContact(fullName: string, phoneNumber: string, email: string, countryOfInterest: string, message: string): Promise<void>;
+    submitContact(fullName: string, phoneNumber: string, email: string, countryOfInterest: string, serviceOfInterest: string | null, message: string, preferredContactMethod: string | null, privacyConsent: boolean, attachedFiles: Array<FileAttachment>): Promise<void>;
 }
