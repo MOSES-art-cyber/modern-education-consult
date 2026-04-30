@@ -1,3 +1,13 @@
+type WebsitePage = 
+ record {
+   createdAt: int;
+   id: nat;
+   isDefault: bool;
+   sections: vec PageSection;
+   slug: text;
+   title: text;
+   updatedAt: int;
+ };
 type Time = int;
 type Testimonial = 
  record {
@@ -5,6 +15,65 @@ type Testimonial =
    country: text;
    photoUrl: text;
    quote: text;
+ };
+type SectionField = 
+ record {
+   key: text;
+   value: text;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: vec PageVersionSummary;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type PageVersionSummary = 
+ record {
+   sectionCount: nat;
+   timestamp: int;
+   version: nat;
+ };
+type PageSection = 
+ record {
+   fields: vec SectionField;
+   id: nat;
+   order: nat;
+   sectionType: text;
+ };
+type NavMenuItem = 
+ record {
+   id: nat;
+   order: nat;
+   "text": text;
+   url: text;
+ };
+type MediaItem = 
+ record {
+   base64Data: text;
+   filename: text;
+   id: nat;
+   mimeType: text;
+   uploadedAt: int;
+ };
+type GlobalConfig = 
+ record {
+   contactAddress: text;
+   contactEmail: text;
+   contactPhone: text;
+   footerContent: text;
+   logoMediaId: opt nat;
+   navigationMenu: vec NavMenuItem;
+   siteTitle: text;
+   updatedAt: int;
  };
 type FileAttachment = 
  record {
@@ -26,6 +95,19 @@ type ContactSubmissionV3 =
    serviceOfInterest: opt text;
    timestamp: Time;
  };
+type Comment = 
+ record {
+   approved: bool;
+   authorEmail: text;
+   authorName: text;
+   content: text;
+   createdAt: int;
+   edited: bool;
+   id: text;
+   parentId: opt text;
+   postId: text;
+   rejected: bool;
+ };
 type BlogPost = 
  record {
    author: text;
@@ -40,19 +122,47 @@ type BlogPost =
 service : {
   addBlogPost: (title: text, summary: text, content: text, author: text,
    imageUrl: text, category: text) -> ();
+  approveComment: (commentId: text) -> (bool);
+  createWebsitePage: (title: text, slug: text) -> (Result);
   deleteBlogPost: (id: nat) -> ();
+  deleteComment: (commentId: text) -> (bool);
   deleteContact: (id: nat) -> ();
+  deleteMediaItem: (id: nat) -> (Result_1);
+  deleteWebsitePage: (id: nat) -> (Result_1);
   editBlogPost: (id: nat, title: text, summary: text, content: text, author:
    text, imageUrl: text, category: text) -> ();
+  editComment: (commentId: text, newContent: text) -> (bool);
+  editWebsitePage: (id: nat, title: text, slug: text) -> (Result_1);
   getAllBlogPosts: () -> (vec BlogPost) query;
+  getAllComments: () -> (vec Comment) query;
   getAllContacts: () -> (vec record {
                                nat;
                                ContactSubmissionV3;
                              }) query;
   getAllTestimonials: () -> (vec Testimonial) query;
+  getAllWebsitePages: () -> (vec WebsitePage) query;
   getBlogPostById: (id: nat) -> (BlogPost) query;
+  getCommentCount: () -> (nat) query;
+  getCommentsForPost: (postId: text) -> (vec Comment) query;
+  getGlobalConfig: () -> (opt GlobalConfig) query;
+  getMediaLibrary: () -> (vec MediaItem) query;
+  getPageVersions: (slug: text) -> (Result_2) query;
+  getPendingComments: () -> (vec Comment) query;
+  getRejectedComments: () -> (vec Comment) query;
+  getUnreadApplicationCount: () -> (nat) query;
+  getWebsitePageById: (id: nat) -> (opt WebsitePage) query;
+  markApplicationsAsRead: () -> ();
+  rejectComment: (commentId: text) -> (bool);
+  restorePageVersion: (slug: text, version: nat) -> (Result_1);
+  savePageSections: (pageId: nat, sections: vec PageSection) -> (Result_1);
+  submitComment: (postId: text, parentId: opt text, authorName: text,
+   authorEmail: text, content: text) -> (text);
   submitContact: (fullName: text, phoneNumber: text, email: text,
    countryOfInterest: text, serviceOfInterest: opt text, message: text,
    preferredContactMethod: opt text, privacyConsent: bool, attachedFiles:
    vec FileAttachment) -> ();
+  unapproveComment: (commentId: text) -> (bool);
+  updateGlobalConfig: (config: GlobalConfig) -> (Result_1);
+  uploadMediaItem: (filename: text, mimeType: text, base64Data: text) ->
+   (Result);
 }

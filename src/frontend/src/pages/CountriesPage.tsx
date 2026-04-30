@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import PageSectionRenderer from "../components/admin/PageSectionRenderer";
+import { useGetAllWebsitePages } from "../hooks/useQueries";
 
 const countries = [
   {
@@ -92,6 +94,29 @@ const countries = [
 ];
 
 export default function CountriesPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages?.find((p) => p.slug === "countries");
+  const dynamicSections =
+    pageData?.sections && pageData.sections.length > 0
+      ? [...pageData.sections].sort((a, b) => Number(a.order) - Number(b.order))
+      : null;
+
+  if (dynamicSections) {
+    return (
+      <main className="pt-16 lg:pt-20">
+        {dynamicSections.map((section) => (
+          <PageSectionRenderer
+            key={section.id.toString()}
+            section={section}
+            isEditing={false}
+            onEditField={() => {}}
+            onImagePick={() => {}}
+          />
+        ))}
+      </main>
+    );
+  }
+
   return (
     <main className="pt-16 lg:pt-20">
       {/* ── Hero ─────────────────────────────────────────── */}
@@ -185,7 +210,9 @@ export default function CountriesPage() {
                         size="sm"
                         className="w-full bg-primary hover:bg-primary/90 text-white font-semibold text-xs"
                       >
-                        <Link to="/contact">Apply for {country.name}</Link>
+                        <Link to="/contact" search={{ country: country.name }}>
+                          Apply for {country.name}
+                        </Link>
                       </Button>
                     </div>
                   </CardContent>

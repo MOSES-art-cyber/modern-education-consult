@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Award, BookOpen, Globe, GraduationCap } from "lucide-react";
 import { motion } from "motion/react";
+import PageSectionRenderer from "../components/admin/PageSectionRenderer";
+import { useGetAllWebsitePages } from "../hooks/useQueries";
 
 const highlights = [
   {
@@ -23,6 +25,29 @@ const highlights = [
 ];
 
 export default function OnlineDegreePage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages?.find((p) => p.slug === "online-degree-courses");
+  const dynamicSections =
+    pageData?.sections && pageData.sections.length > 0
+      ? [...pageData.sections].sort((a, b) => Number(a.order) - Number(b.order))
+      : null;
+
+  if (dynamicSections) {
+    return (
+      <main className="pt-16 lg:pt-20">
+        {dynamicSections.map((section) => (
+          <PageSectionRenderer
+            key={section.id.toString()}
+            section={section}
+            isEditing={false}
+            onEditField={() => {}}
+            onImagePick={() => {}}
+          />
+        ))}
+      </main>
+    );
+  }
+
   return (
     <main className="pt-16 lg:pt-20">
       {/* Hero */}

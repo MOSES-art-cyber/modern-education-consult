@@ -20,6 +20,18 @@ export interface BlogPost {
   'imageUrl' : string,
   'category' : string,
 }
+export interface Comment {
+  'id' : string,
+  'content' : string,
+  'authorEmail' : string,
+  'edited' : boolean,
+  'createdAt' : bigint,
+  'authorName' : string,
+  'approved' : boolean,
+  'rejected' : boolean,
+  'parentId' : [] | [string],
+  'postId' : string,
+}
 export interface ContactSubmissionV3 {
   'attachedFiles' : Array<FileAttachment>,
   'fullName' : string,
@@ -38,6 +50,47 @@ export interface FileAttachment {
   'fileType' : string,
   'fileUrl' : string,
 }
+export interface GlobalConfig {
+  'siteTitle' : string,
+  'logoMediaId' : [] | [bigint],
+  'navigationMenu' : Array<NavMenuItem>,
+  'updatedAt' : bigint,
+  'contactEmail' : string,
+  'footerContent' : string,
+  'contactAddress' : string,
+  'contactPhone' : string,
+}
+export interface MediaItem {
+  'id' : bigint,
+  'base64Data' : string,
+  'mimeType' : string,
+  'filename' : string,
+  'uploadedAt' : bigint,
+}
+export interface NavMenuItem {
+  'id' : bigint,
+  'url' : string,
+  'order' : bigint,
+  'text' : string,
+}
+export interface PageSection {
+  'id' : bigint,
+  'order' : bigint,
+  'sectionType' : string,
+  'fields' : Array<SectionField>,
+}
+export interface PageVersionSummary {
+  'version' : bigint,
+  'timestamp' : bigint,
+  'sectionCount' : bigint,
+}
+export type Result = { 'ok' : bigint } |
+  { 'err' : string };
+export type Result_1 = { 'ok' : null } |
+  { 'err' : string };
+export type Result_2 = { 'ok' : Array<PageVersionSummary> } |
+  { 'err' : string };
+export interface SectionField { 'key' : string, 'value' : string }
 export interface Testimonial {
   'country' : string,
   'clientName' : string,
@@ -45,21 +98,56 @@ export interface Testimonial {
   'photoUrl' : string,
 }
 export type Time = bigint;
+export interface WebsitePage {
+  'id' : bigint,
+  'title' : string,
+  'createdAt' : bigint,
+  'slug' : string,
+  'updatedAt' : bigint,
+  'isDefault' : boolean,
+  'sections' : Array<PageSection>,
+}
 export interface _SERVICE {
   'addBlogPost' : ActorMethod<
     [string, string, string, string, string, string],
     undefined
   >,
+  'approveComment' : ActorMethod<[string], boolean>,
+  'createWebsitePage' : ActorMethod<[string, string], Result>,
   'deleteBlogPost' : ActorMethod<[bigint], undefined>,
+  'deleteComment' : ActorMethod<[string], boolean>,
   'deleteContact' : ActorMethod<[bigint], undefined>,
+  'deleteMediaItem' : ActorMethod<[bigint], Result_1>,
+  'deleteWebsitePage' : ActorMethod<[bigint], Result_1>,
   'editBlogPost' : ActorMethod<
     [bigint, string, string, string, string, string, string],
     undefined
   >,
+  'editComment' : ActorMethod<[string, string], boolean>,
+  'editWebsitePage' : ActorMethod<[bigint, string, string], Result_1>,
   'getAllBlogPosts' : ActorMethod<[], Array<BlogPost>>,
+  'getAllComments' : ActorMethod<[], Array<Comment>>,
   'getAllContacts' : ActorMethod<[], Array<[bigint, ContactSubmissionV3]>>,
   'getAllTestimonials' : ActorMethod<[], Array<Testimonial>>,
+  'getAllWebsitePages' : ActorMethod<[], Array<WebsitePage>>,
   'getBlogPostById' : ActorMethod<[bigint], BlogPost>,
+  'getCommentCount' : ActorMethod<[], bigint>,
+  'getCommentsForPost' : ActorMethod<[string], Array<Comment>>,
+  'getGlobalConfig' : ActorMethod<[], [] | [GlobalConfig]>,
+  'getMediaLibrary' : ActorMethod<[], Array<MediaItem>>,
+  'getPageVersions' : ActorMethod<[string], Result_2>,
+  'getPendingComments' : ActorMethod<[], Array<Comment>>,
+  'getRejectedComments' : ActorMethod<[], Array<Comment>>,
+  'getUnreadApplicationCount' : ActorMethod<[], bigint>,
+  'getWebsitePageById' : ActorMethod<[bigint], [] | [WebsitePage]>,
+  'markApplicationsAsRead' : ActorMethod<[], undefined>,
+  'rejectComment' : ActorMethod<[string], boolean>,
+  'restorePageVersion' : ActorMethod<[string, bigint], Result_1>,
+  'savePageSections' : ActorMethod<[bigint, Array<PageSection>], Result_1>,
+  'submitComment' : ActorMethod<
+    [string, [] | [string], string, string, string],
+    string
+  >,
   'submitContact' : ActorMethod<
     [
       string,
@@ -74,6 +162,9 @@ export interface _SERVICE {
     ],
     undefined
   >,
+  'unapproveComment' : ActorMethod<[string], boolean>,
+  'updateGlobalConfig' : ActorMethod<[GlobalConfig], Result_1>,
+  'uploadMediaItem' : ActorMethod<[string, string, string], Result>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

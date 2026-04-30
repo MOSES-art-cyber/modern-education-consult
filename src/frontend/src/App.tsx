@@ -80,6 +80,9 @@ const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact",
   component: ContactPage,
+  validateSearch: (search: Record<string, unknown>): { country?: string } => ({
+    country: (search.country as string) || undefined,
+  }),
 });
 
 const adminRoute = createRoute({

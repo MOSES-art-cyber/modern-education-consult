@@ -3,6 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useGetGlobalConfig } from "../../hooks/useQueries";
 
 const languageSubItems = [
   { label: "English", to: "/services/language-proficiency#english" },
@@ -152,6 +153,10 @@ export default function Navbar() {
   const [mobileLanguageExpanded, setMobileLanguageExpanded] = useState(false);
   const location = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { data: globalConfig } = useGetGlobalConfig();
+
+  const logoUrl = "/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg";
+  const siteTitle = globalConfig?.siteTitle || "Modern Education Consult";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -189,8 +194,8 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex-shrink-0" data-ocid="nav.link.1">
               <img
-                src="/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg"
-                alt="Modern Education Consult"
+                src={logoUrl}
+                alt={siteTitle}
                 className="h-20 w-auto object-contain"
               />
             </Link>
@@ -199,10 +204,10 @@ export default function Navbar() {
             <div className="hidden lg:flex flex-col justify-center border-l border-brand-blue/20 pl-3">
               <div className="leading-tight">
                 <p className="font-display font-bold text-lg text-brand-dark leading-snug">
-                  Modern Education
+                  {siteTitle.split(" ").slice(0, 2).join(" ")}
                 </p>
                 <p className="font-display font-bold text-lg text-brand-dark leading-snug">
-                  Consult
+                  {siteTitle.split(" ").slice(2).join(" ") || "Consult"}
                 </p>
               </div>
               <p className="text-xs text-brand-blue/70 font-medium tracking-wide mt-0.5">
@@ -353,16 +358,16 @@ export default function Navbar() {
               className="flex items-center gap-2"
             >
               <img
-                src="/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg"
-                alt="Modern Education Consult"
+                src={logoUrl}
+                alt={siteTitle}
                 className="h-12 w-auto object-contain"
               />
               <div className="flex flex-col justify-center">
                 <p className="font-display font-bold text-sm text-brand-dark leading-tight">
-                  Modern Education
+                  {siteTitle.split(" ").slice(0, 2).join(" ")}
                 </p>
                 <p className="font-display font-bold text-sm text-brand-dark leading-tight">
-                  Consult
+                  {siteTitle.split(" ").slice(2).join(" ") || "Consult"}
                 </p>
                 <p className="text-[10px] text-brand-blue/70 font-medium leading-tight">
                   Where Education Meets Opportunity

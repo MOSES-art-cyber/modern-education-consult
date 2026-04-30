@@ -17,6 +17,7 @@ import {
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import CommentSection from "../components/blog/CommentSection";
 import ImageSlider from "../components/blog/ImageSlider";
 import { parsePostContent } from "../components/blog/postMetaUtils";
 import { useGetAllBlogPosts, useGetBlogPostById } from "../hooks/useQueries";
@@ -52,28 +53,38 @@ type ContentSegment =
   | { type: "slider"; data: SliderData };
 
 /**
- * Replace [CTA:{...}] markers with button HTML, then parse [SLIDER:{...}] into segments
+ * Replace [CTA:{...}] markers with button HTML, then parse [SLIDER:{...}] into segments.
+ * Also strips any editor placeholder divs (data-type="slider") that may appear in legacy content.
  */
 function processContent(rawContent: string): ContentSegment[] {
-  // First replace CTA markers with HTML
-  const withCta = rawContent.replace(/\[CTA:(\{[^\]]+\})\]/g, (_, json) => {
-    try {
-      const { text, url, style } = JSON.parse(json) as {
-        text: string;
-        url: string;
-        style: string;
-      };
-      const cls =
-        style === "primary"
-          ? "cta-btn cta-btn-primary"
-          : style === "secondary"
-            ? "cta-btn cta-btn-secondary"
-            : "cta-btn cta-btn-outline";
-      return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-    } catch {
-      return "";
-    }
-  });
+  // Strip editor placeholder blocks if accidentally saved in content
+  const withoutPlaceholders = rawContent.replace(
+    /<div[^>]*data-type="slider"[^>]*>[\s\S]*?<\/div>/gi,
+    "",
+  );
+
+  // Replace CTA markers with HTML
+  const withCta = withoutPlaceholders.replace(
+    /\[CTA:(\{[^\]]+\})\]/g,
+    (_, json) => {
+      try {
+        const { text, url, style } = JSON.parse(json) as {
+          text: string;
+          url: string;
+          style: string;
+        };
+        const cls =
+          style === "primary"
+            ? "cta-btn cta-btn-primary"
+            : style === "secondary"
+              ? "cta-btn cta-btn-secondary"
+              : "cta-btn cta-btn-outline";
+        return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      } catch {
+        return "";
+      }
+    },
+  );
 
   // Then parse slider markers
   const segments: ContentSegment[] = [];
@@ -552,9 +563,12 @@ export default function BlogPostPage() {
               </div>
             </div>
 
+            {/* Comments Section */}
+            <CommentSection postId={post.id.toString()} />
+
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
-              <div data-ocid="blog_post.related.panel">
+              <div data-ocid="blog_post.related.panel" className="mt-10">
                 <h2 className="text-xl font-bold text-[#1e3a5f] mb-4">
                   Related Articles
                 </h2>

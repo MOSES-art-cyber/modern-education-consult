@@ -78,6 +78,16 @@
     --brand-light-blue: 0.94 0.04 252;
     --brand-white-blue: 0.97 0.015 250;
     --brand-whatsapp: 0.72 0.18 149;
+
+    /* Editor UI tokens (admin dark mode) */
+    --editor-bg: 0.15 0.05 262;
+    --editor-sidebar-bg: 0.12 0.04 262;
+    --editor-foreground: 0.93 0.02 0;
+    --editor-border: 0.25 0.06 262;
+    --editor-hover: 0.28 0.07 262;
+    --editor-accent: 0.65 0.15 200;
+    --editor-success: 0.65 0.15 130;
+    --editor-muted: 0.5 0.04 0;
   }
 
   * {
@@ -119,6 +129,81 @@
   .text-brand-blue {
     color: oklch(0.58 0.2 258);
   }
+
+  /* Editor UI utilities */
+  .editor-bg {
+    background-color: oklch(var(--editor-bg));
+  }
+  .editor-sidebar-bg {
+    background-color: oklch(var(--editor-sidebar-bg));
+  }
+  .editor-foreground {
+    color: oklch(var(--editor-foreground));
+  }
+  .editor-border {
+    border-color: oklch(var(--editor-border));
+  }
+  .editor-hover-bg {
+    background-color: oklch(var(--editor-hover));
+  }
+  .editor-accent {
+    color: oklch(var(--editor-accent));
+  }
+  .editor-accent-bg {
+    background-color: oklch(var(--editor-accent));
+  }
+  .editor-success {
+    color: oklch(var(--editor-success));
+  }
+  .editor-muted {
+    color: oklch(var(--editor-muted));
+  }
+
+  /* Hover highlight for editable sections */
+  .editable-section {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+  .editable-section:hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid oklch(var(--editor-accent));
+    border-radius: 0.25rem;
+    background: oklch(var(--editor-accent) / 0.05);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Smooth fade for edit overlay */
+  .edit-overlay-enter {
+    animation: fadeInScale 0.15s ease-out;
+  }
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Section drag handle */
+  .drag-handle {
+    cursor: grab;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  .drag-handle:hover {
+    opacity: 1;
+  }
+  .drag-handle:active {
+    cursor: grabbing;
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }

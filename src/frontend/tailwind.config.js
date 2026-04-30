@@ -66,6 +66,16 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
+        editor: {
+          bg: "oklch(var(--editor-bg))",
+          "sidebar-bg": "oklch(var(--editor-sidebar-bg))",
+          foreground: "oklch(var(--editor-foreground))",
+          border: "oklch(var(--editor-border))",
+          hover: "oklch(var(--editor-hover))",
+          accent: "oklch(var(--editor-accent))",
+          success: "oklch(var(--editor-success))",
+          muted: "oklch(var(--editor-muted))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -81,6 +91,9 @@ export default {
         card: "0 4px 24px -4px rgba(30,58,138,0.12), 0 1px 4px rgba(30,58,138,0.06)",
         "card-hover": "0 8px 40px -8px rgba(30,58,138,0.2), 0 2px 8px rgba(30,58,138,0.1)",
         blue: "0 4px 20px -4px rgba(59,130,246,0.3)",
+        "editor-panel": "0 -4px 16px 0 rgba(0,0,0,0.2)",
+        "editor-hover": "inset 0 0 0 2px rgba(165,180,251,0.3)",
+        "editor-accent": "0 0 0 2px oklch(var(--editor-accent) / 0.3)",
       },
       keyframes: {
         "accordion-down": {
@@ -95,11 +108,26 @@ export default {
           "0%": { transform: "scale(1)", opacity: "0.6" },
           "100%": { transform: "scale(2)", opacity: "0" },
         },
+        "edit-overlay-in": {
+          from: { opacity: "0", transform: "scale(0.98)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        "focus-bar": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "pulse-success": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "wa-pulse": "wa-pulse 2s ease-out infinite",
+        "edit-overlay-in": "edit-overlay-in 0.15s ease-out",
+        "focus-bar": "focus-bar 0.15s ease-out",
+        "pulse-success": "pulse-success 0.3s ease-in-out",
       },
     },
   },

@@ -89,6 +89,11 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface PageVersionSummary {
+    version: bigint;
+    timestamp: bigint;
+    sectionCount: bigint;
+}
 export interface BlogPost {
     id: bigint;
     title: string;
@@ -99,13 +104,88 @@ export interface BlogPost {
     imageUrl: string;
     category: string;
 }
+export type Result_2 = {
+    __kind__: "ok";
+    ok: Array<PageVersionSummary>;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export type Time = bigint;
+export interface NavMenuItem {
+    id: bigint;
+    url: string;
+    order: bigint;
+    text: string;
+}
+export interface Comment {
+    id: string;
+    content: string;
+    authorEmail: string;
+    edited: boolean;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    rejected: boolean;
+    parentId?: string;
+    postId: string;
+}
+export interface PageSection {
+    id: bigint;
+    order: bigint;
+    sectionType: string;
+    fields: Array<SectionField>;
+}
+export interface MediaItem {
+    id: bigint;
+    base64Data: string;
+    mimeType: string;
+    filename: string;
+    uploadedAt: bigint;
+}
+export interface SectionField {
+    key: string;
+    value: string;
+}
+export type Result_1 = {
+    __kind__: "ok";
+    ok: null;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export interface WebsitePage {
+    id: bigint;
+    title: string;
+    createdAt: bigint;
+    slug: string;
+    updatedAt: bigint;
+    isDefault: boolean;
+    sections: Array<PageSection>;
+}
 export interface FileAttachment {
     fileName: string;
     fileSize: bigint;
     fileType: string;
     fileUrl: string;
 }
-export type Time = bigint;
+export type Result = {
+    __kind__: "ok";
+    ok: bigint;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export interface GlobalConfig {
+    siteTitle: string;
+    logoMediaId?: bigint;
+    navigationMenu: Array<NavMenuItem>;
+    updatedAt: bigint;
+    contactEmail: string;
+    footerContent: string;
+    contactAddress: string;
+    contactPhone: string;
+}
 export interface ContactSubmissionV3 {
     attachedFiles: Array<FileAttachment>;
     fullName: string;
@@ -126,16 +206,42 @@ export interface Testimonial {
 }
 export interface backendInterface {
     addBlogPost(title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    approveComment(commentId: string): Promise<boolean>;
+    createWebsitePage(title: string, slug: string): Promise<Result>;
     deleteBlogPost(id: bigint): Promise<void>;
+    deleteComment(commentId: string): Promise<boolean>;
     deleteContact(id: bigint): Promise<void>;
+    deleteMediaItem(id: bigint): Promise<Result_1>;
+    deleteWebsitePage(id: bigint): Promise<Result_1>;
     editBlogPost(id: bigint, title: string, summary: string, content: string, author: string, imageUrl: string, category: string): Promise<void>;
+    editComment(commentId: string, newContent: string): Promise<boolean>;
+    editWebsitePage(id: bigint, title: string, slug: string): Promise<Result_1>;
     getAllBlogPosts(): Promise<Array<BlogPost>>;
+    getAllComments(): Promise<Array<Comment>>;
     getAllContacts(): Promise<Array<[bigint, ContactSubmissionV3]>>;
     getAllTestimonials(): Promise<Array<Testimonial>>;
+    getAllWebsitePages(): Promise<Array<WebsitePage>>;
     getBlogPostById(id: bigint): Promise<BlogPost>;
+    getCommentCount(): Promise<bigint>;
+    getCommentsForPost(postId: string): Promise<Array<Comment>>;
+    getGlobalConfig(): Promise<GlobalConfig | null>;
+    getMediaLibrary(): Promise<Array<MediaItem>>;
+    getPageVersions(slug: string): Promise<Result_2>;
+    getPendingComments(): Promise<Array<Comment>>;
+    getRejectedComments(): Promise<Array<Comment>>;
+    getUnreadApplicationCount(): Promise<bigint>;
+    getWebsitePageById(id: bigint): Promise<WebsitePage | null>;
+    markApplicationsAsRead(): Promise<void>;
+    rejectComment(commentId: string): Promise<boolean>;
+    restorePageVersion(slug: string, version: bigint): Promise<Result_1>;
+    savePageSections(pageId: bigint, sections: Array<PageSection>): Promise<Result_1>;
+    submitComment(postId: string, parentId: string | null, authorName: string, authorEmail: string, content: string): Promise<string>;
     submitContact(fullName: string, phoneNumber: string, email: string, countryOfInterest: string, serviceOfInterest: string | null, message: string, preferredContactMethod: string | null, privacyConsent: boolean, attachedFiles: Array<FileAttachment>): Promise<void>;
+    unapproveComment(commentId: string): Promise<boolean>;
+    updateGlobalConfig(config: GlobalConfig): Promise<Result_1>;
+    uploadMediaItem(filename: string, mimeType: string, base64Data: string): Promise<Result>;
 }
-import type { ContactSubmissionV3 as _ContactSubmissionV3, FileAttachment as _FileAttachment, Time as _Time } from "./declarations/backend.did.d.ts";
+import type { Comment as _Comment, ContactSubmissionV3 as _ContactSubmissionV3, FileAttachment as _FileAttachment, GlobalConfig as _GlobalConfig, NavMenuItem as _NavMenuItem, PageVersionSummary as _PageVersionSummary, Result as _Result, Result_1 as _Result_1, Result_2 as _Result_2, Time as _Time, WebsitePage as _WebsitePage } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async addBlogPost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<void> {
@@ -152,6 +258,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async approveComment(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.approveComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.approveComment(arg0);
+            return result;
+        }
+    }
+    async createWebsitePage(arg0: string, arg1: string): Promise<Result> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.createWebsitePage(arg0, arg1);
+                return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.createWebsitePage(arg0, arg1);
+            return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
     async deleteBlogPost(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
@@ -163,6 +297,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.deleteBlogPost(arg0);
+            return result;
+        }
+    }
+    async deleteComment(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteComment(arg0);
             return result;
         }
     }
@@ -180,6 +328,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async deleteMediaItem(arg0: bigint): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteMediaItem(arg0);
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteMediaItem(arg0);
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async deleteWebsitePage(arg0: bigint): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteWebsitePage(arg0);
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteWebsitePage(arg0);
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
     async editBlogPost(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string): Promise<void> {
         if (this.processError) {
             try {
@@ -192,6 +368,34 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
             return result;
+        }
+    }
+    async editComment(arg0: string, arg1: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editComment(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editComment(arg0, arg1);
+            return result;
+        }
+    }
+    async editWebsitePage(arg0: bigint, arg1: string, arg2: string): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editWebsitePage(arg0, arg1, arg2);
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editWebsitePage(arg0, arg1, arg2);
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
         }
     }
     async getAllBlogPosts(): Promise<Array<BlogPost>> {
@@ -208,18 +412,32 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getAllComments(): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllComments();
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllComments();
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
     async getAllContacts(): Promise<Array<[bigint, ContactSubmissionV3]>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAllContacts();
-                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAllContacts();
-            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
         }
     }
     async getAllTestimonials(): Promise<Array<Testimonial>> {
@@ -233,6 +451,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAllTestimonials();
+            return result;
+        }
+    }
+    async getAllWebsitePages(): Promise<Array<WebsitePage>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllWebsitePages();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllWebsitePages();
             return result;
         }
     }
@@ -250,28 +482,290 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async submitContact(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string | null, arg5: string, arg6: string | null, arg7: boolean, arg8: Array<FileAttachment>): Promise<void> {
+    async getCommentCount(): Promise<bigint> {
         if (this.processError) {
             try {
-                const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n6(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n6(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+                const result = await this.actor.getCommentCount();
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n6(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n6(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+            const result = await this.actor.getCommentCount();
             return result;
         }
     }
+    async getCommentsForPost(arg0: string): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCommentsForPost(arg0);
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCommentsForPost(arg0);
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getGlobalConfig(): Promise<GlobalConfig | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getGlobalConfig();
+                return from_candid_opt_n13(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getGlobalConfig();
+            return from_candid_opt_n13(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getMediaLibrary(): Promise<Array<MediaItem>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getMediaLibrary();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getMediaLibrary();
+            return result;
+        }
+    }
+    async getPageVersions(arg0: string): Promise<Result_2> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPageVersions(arg0);
+                return from_candid_Result_2_n17(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPageVersions(arg0);
+            return from_candid_Result_2_n17(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getPendingComments(): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPendingComments();
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPendingComments();
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getRejectedComments(): Promise<Array<Comment>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getRejectedComments();
+                return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getRejectedComments();
+            return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getUnreadApplicationCount(): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getUnreadApplicationCount();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getUnreadApplicationCount();
+            return result;
+        }
+    }
+    async getWebsitePageById(arg0: bigint): Promise<WebsitePage | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getWebsitePageById(arg0);
+                return from_candid_opt_n19(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getWebsitePageById(arg0);
+            return from_candid_opt_n19(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async markApplicationsAsRead(): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.markApplicationsAsRead();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.markApplicationsAsRead();
+            return result;
+        }
+    }
+    async rejectComment(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.rejectComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.rejectComment(arg0);
+            return result;
+        }
+    }
+    async restorePageVersion(arg0: string, arg1: bigint): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.restorePageVersion(arg0, arg1);
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.restorePageVersion(arg0, arg1);
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async savePageSections(arg0: bigint, arg1: Array<PageSection>): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.savePageSections(arg0, arg1);
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.savePageSections(arg0, arg1);
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitComment(arg0: string, arg1: string | null, arg2: string, arg3: string, arg4: string): Promise<string> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitComment(arg0, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitComment(arg0, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
+            return result;
+        }
+    }
+    async submitContact(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string | null, arg5: string, arg6: string | null, arg7: boolean, arg8: Array<FileAttachment>): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+            return result;
+        }
+    }
+    async unapproveComment(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.unapproveComment(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.unapproveComment(arg0);
+            return result;
+        }
+    }
+    async updateGlobalConfig(arg0: GlobalConfig): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateGlobalConfig(to_candid_GlobalConfig_n21(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateGlobalConfig(to_candid_GlobalConfig_n21(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async uploadMediaItem(arg0: string, arg1: string, arg2: string): Promise<Result> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.uploadMediaItem(arg0, arg1, arg2);
+                return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.uploadMediaItem(arg0, arg1, arg2);
+            return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
 }
-function from_candid_ContactSubmissionV3_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ContactSubmissionV3): ContactSubmissionV3 {
-    return from_candid_record_n4(_uploadFile, _downloadFile, value);
+function from_candid_Comment_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Comment): Comment {
+    return from_candid_record_n7(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+function from_candid_ContactSubmissionV3_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ContactSubmissionV3): ContactSubmissionV3 {
+    return from_candid_record_n12(_uploadFile, _downloadFile, value);
+}
+function from_candid_GlobalConfig_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _GlobalConfig): GlobalConfig {
+    return from_candid_record_n15(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_1_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_1): Result_1 {
+    return from_candid_variant_n4(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_2_n17(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_2): Result_2 {
+    return from_candid_variant_n18(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result): Result {
+    return from_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_GlobalConfig]): GlobalConfig | null {
+    return value.length === 0 ? null : from_candid_GlobalConfig_n14(_uploadFile, _downloadFile, value[0]);
+}
+function from_candid_opt_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [bigint]): bigint | null {
     return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_opt_n19(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_WebsitePage]): WebsitePage | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     attachedFiles: Array<_FileAttachment>;
     fullName: string;
     email: string;
@@ -300,24 +794,183 @@ function from_candid_record_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint
         email: value.email,
         message: value.message,
         timestamp: value.timestamp,
-        serviceOfInterest: record_opt_to_undefined(from_candid_opt_n5(_uploadFile, _downloadFile, value.serviceOfInterest)),
+        serviceOfInterest: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.serviceOfInterest)),
         phoneNumber: value.phoneNumber,
-        preferredContactMethod: record_opt_to_undefined(from_candid_opt_n5(_uploadFile, _downloadFile, value.preferredContactMethod)),
+        preferredContactMethod: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.preferredContactMethod)),
         countryOfInterest: value.countryOfInterest,
         privacyConsent: value.privacyConsent
     };
 }
-function from_candid_tuple_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [bigint, _ContactSubmissionV3]): [bigint, ContactSubmissionV3] {
+function from_candid_record_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    siteTitle: string;
+    logoMediaId: [] | [bigint];
+    navigationMenu: Array<_NavMenuItem>;
+    updatedAt: bigint;
+    contactEmail: string;
+    footerContent: string;
+    contactAddress: string;
+    contactPhone: string;
+}): {
+    siteTitle: string;
+    logoMediaId?: bigint;
+    navigationMenu: Array<NavMenuItem>;
+    updatedAt: bigint;
+    contactEmail: string;
+    footerContent: string;
+    contactAddress: string;
+    contactPhone: string;
+} {
+    return {
+        siteTitle: value.siteTitle,
+        logoMediaId: record_opt_to_undefined(from_candid_opt_n16(_uploadFile, _downloadFile, value.logoMediaId)),
+        navigationMenu: value.navigationMenu,
+        updatedAt: value.updatedAt,
+        contactEmail: value.contactEmail,
+        footerContent: value.footerContent,
+        contactAddress: value.contactAddress,
+        contactPhone: value.contactPhone
+    };
+}
+function from_candid_record_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: string;
+    content: string;
+    authorEmail: string;
+    edited: boolean;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    rejected: boolean;
+    parentId: [] | [string];
+    postId: string;
+}): {
+    id: string;
+    content: string;
+    authorEmail: string;
+    edited: boolean;
+    createdAt: bigint;
+    authorName: string;
+    approved: boolean;
+    rejected: boolean;
+    parentId?: string;
+    postId: string;
+} {
+    return {
+        id: value.id,
+        content: value.content,
+        authorEmail: value.authorEmail,
+        edited: value.edited,
+        createdAt: value.createdAt,
+        authorName: value.authorName,
+        approved: value.approved,
+        rejected: value.rejected,
+        parentId: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.parentId)),
+        postId: value.postId
+    };
+}
+function from_candid_tuple_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [bigint, _ContactSubmissionV3]): [bigint, ContactSubmissionV3] {
     return [
         value[0],
-        from_candid_ContactSubmissionV3_n3(_uploadFile, _downloadFile, value[1])
+        from_candid_ContactSubmissionV3_n11(_uploadFile, _downloadFile, value[1])
     ];
 }
-function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<[bigint, _ContactSubmissionV3]>): Array<[bigint, ContactSubmissionV3]> {
-    return value.map((x)=>from_candid_tuple_n2(_uploadFile, _downloadFile, x));
+function from_candid_variant_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: Array<_PageVersionSummary>;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: Array<PageVersionSummary>;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
 }
-function to_candid_opt_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: string | null): [] | [string] {
+function from_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: bigint;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: bigint;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_variant_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: null;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: null;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_vec_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Comment>): Array<Comment> {
+    return value.map((x)=>from_candid_Comment_n6(_uploadFile, _downloadFile, x));
+}
+function from_candid_vec_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<[bigint, _ContactSubmissionV3]>): Array<[bigint, ContactSubmissionV3]> {
+    return value.map((x)=>from_candid_tuple_n10(_uploadFile, _downloadFile, x));
+}
+function to_candid_GlobalConfig_n21(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: GlobalConfig): _GlobalConfig {
+    return to_candid_record_n22(_uploadFile, _downloadFile, value);
+}
+function to_candid_opt_n20(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: string | null): [] | [string] {
     return value === null ? candid_none() : candid_some(value);
+}
+function to_candid_record_n22(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    siteTitle: string;
+    logoMediaId?: bigint;
+    navigationMenu: Array<NavMenuItem>;
+    updatedAt: bigint;
+    contactEmail: string;
+    footerContent: string;
+    contactAddress: string;
+    contactPhone: string;
+}): {
+    siteTitle: string;
+    logoMediaId: [] | [bigint];
+    navigationMenu: Array<_NavMenuItem>;
+    updatedAt: bigint;
+    contactEmail: string;
+    footerContent: string;
+    contactAddress: string;
+    contactPhone: string;
+} {
+    return {
+        siteTitle: value.siteTitle,
+        logoMediaId: value.logoMediaId ? candid_some(value.logoMediaId) : candid_none(),
+        navigationMenu: value.navigationMenu,
+        updatedAt: value.updatedAt,
+        contactEmail: value.contactEmail,
+        footerContent: value.footerContent,
+        contactAddress: value.contactAddress,
+        contactPhone: value.contactPhone
+    };
 }
 export interface CreateActorOptions {
     agent?: Agent;

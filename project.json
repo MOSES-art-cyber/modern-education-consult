@@ -1,0 +1,25 @@
+{
+  "overview": "Modern Education Consult is a professional international education and career consultancy website. It features a full-stack admin panel with blog management, comments, applications & leads, and a WordPress-style visual website builder for editing all static pages.",
+  "features": [
+    "WordPress-style visual website builder with live preview and click-to-edit",
+    "Section-based page editing with drag-and-drop reorder, add, and delete",
+    "Data-driven pages rendered from backend storage",
+    "Global Website Controls for logo, footer, navigation menu",
+    "14 hardcoded blog posts with full rich text editor and image sliders",
+    "Blog comments system with admin moderation and approval workflow",
+    "Applications & Leads management with WhatsApp notifications",
+    "Country Apply button pre-fill on contact form"
+  ],
+  "category": "education",
+  "tags": [
+    "education",
+    "consultancy",
+    "website-builder",
+    "visual-editor",
+    "blog",
+    "admin-panel",
+    "rwanda",
+    "study-abroad"
+  ],
+  "last_updated": "2026-04-29T11:20:45.841Z"
+}

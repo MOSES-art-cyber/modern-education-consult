@@ -36,3 +36,72 @@ export interface ContactSubmission {
   privacyConsent?: boolean;
   attachedFiles?: FileAttachment[];
 }
+
+export interface Comment {
+  id: string;
+  postId: string;
+  parentId: string | null;
+  authorName: string;
+  authorEmail: string;
+  content: string;
+  createdAt: bigint;
+  approved: boolean;
+  edited: boolean;
+  rejected: boolean;
+}
+
+// ─── Website Editor types ────────────────────────────────────────────────────
+
+export interface SectionField {
+  key: string;
+  value: string;
+}
+
+export interface PageSection {
+  id: bigint;
+  sectionType: string;
+  fields: SectionField[];
+  order: bigint;
+}
+
+export interface WebsitePage {
+  id: bigint;
+  title: string;
+  slug: string;
+  sections: PageSection[];
+  isDefault: boolean;
+  createdAt: bigint;
+  updatedAt: bigint;
+}
+
+export interface MediaItem {
+  id: bigint;
+  filename: string;
+  mimeType: string;
+  base64Data: string;
+  uploadedAt: bigint;
+}
+
+export interface NavMenuItem {
+  id: bigint;
+  text: string;
+  url: string;
+  order: bigint;
+}
+
+export interface GlobalConfig {
+  siteTitle: string;
+  logoMediaId?: bigint;
+  contactPhone: string;
+  contactEmail: string;
+  contactAddress: string;
+  footerContent: string;
+  navigationMenu: NavMenuItem[];
+  updatedAt: bigint;
+}
+
+export interface PageVersionSummary {
+  version: bigint;
+  timestamp: bigint;
+  sectionCount: bigint;
+}

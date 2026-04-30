@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useGetGlobalConfig } from "../../hooks/useQueries";
 
-const footerLinks = [
+const defaultFooterLinks = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
@@ -12,6 +13,16 @@ const footerLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { data: globalConfig } = useGetGlobalConfig();
+
+  const phone = globalConfig?.contactPhone || "+250 798979720";
+  const email =
+    globalConfig?.contactEmail || "moderneducationconsult2026@gmail.com";
+  const address = globalConfig?.contactAddress || "Kigali, Musanze, RWANDA";
+  const tagline =
+    globalConfig?.footerContent ||
+    "Your trusted partner for international education and career opportunities.";
+  const siteTitle = globalConfig?.siteTitle || "Modern Education Consult";
 
   return (
     <footer className="brand-dark-bg text-white">
@@ -22,19 +33,16 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <img
                 src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
-                alt="Modern Education Consult Logo"
+                alt={siteTitle}
                 className="w-12 h-12 object-contain rounded-lg bg-black"
               />
               <span className="font-display font-bold text-white text-base leading-tight">
-                Modern Education
+                {siteTitle.split(" ").slice(0, 2).join(" ")}
                 <br />
-                Consult
+                {siteTitle.split(" ").slice(2).join(" ") || "Consult"}
               </span>
             </div>
-            <p className="text-white/70 text-sm leading-relaxed">
-              Your trusted partner for international education and career
-              opportunities.
-            </p>
+            <p className="text-white/70 text-sm leading-relaxed">{tagline}</p>
           </div>
 
           {/* Quick Links */}
@@ -43,7 +51,7 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {footerLinks.map((link, i) => (
+              {defaultFooterLinks.map((link, i) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
@@ -94,7 +102,7 @@ export default function Footer() {
                   size={15}
                   className="mt-0.5 flex-shrink-0 text-primary"
                 />
-                <span>+250 798979720</span>
+                <span>{phone}</span>
               </li>
               <li className="flex items-start gap-2.5 text-sm">
                 <MessageCircle
@@ -113,10 +121,10 @@ export default function Footer() {
               <li className="flex items-start gap-2.5 text-sm">
                 <Mail size={15} className="mt-0.5 flex-shrink-0 text-primary" />
                 <a
-                  href="mailto:moderneducationconsult2026@gmail.com"
+                  href={`mailto:${email}`}
                   className="text-white/70 hover:text-white transition-colors break-all"
                 >
-                  moderneducationconsult2026@gmail.com
+                  {email}
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-sm text-white/70">
@@ -124,23 +132,24 @@ export default function Footer() {
                   size={15}
                   className="mt-0.5 flex-shrink-0 text-primary"
                 />
-                <span>Kigali, Musanze, RWANDA</span>
+                <span>{address}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/50">
-          <p>© {currentYear} Modern Education Consult. All rights reserved.</p>
+          <p>
+            © {currentYear} {siteTitle}. All rights reserved.
+          </p>
           <div className="flex items-center gap-2">
             <img
               src="/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg"
-              alt="Modern Education Consult Logo"
+              alt={siteTitle}
               className="w-7 h-7 object-contain rounded bg-black"
             />
             <span className="text-white/70">
-              Modern Education Consult &mdash; Where education meets
-              opportunities
+              {siteTitle} &mdash; Where education meets opportunities
             </span>
           </div>
         </div>

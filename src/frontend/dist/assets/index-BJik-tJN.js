@@ -15893,7 +15893,7 @@ function hasAccessControl(actor) {
   return typeof actor === "object" && actor !== null && "_initializeAccessControl" in actor;
 }
 const ACTOR_QUERY_KEY = "actor";
-function useActor(createActor2) {
+function useActor$1(createActor2) {
   const { identity } = useInternetIdentity();
   const queryClient2 = useQueryClient();
   const actorQuery = useQuery({
@@ -33091,77 +33091,99 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$1b = [
+const __iconNode$1n = [
   ["path", { d: "M17 12H7", key: "16if0g" }],
   ["path", { d: "M19 18H5", key: "18s9l3" }],
   ["path", { d: "M21 6H3", key: "1jwq7v" }]
 ];
-const AlignCenter = createLucideIcon("align-center", __iconNode$1b);
+const AlignCenter = createLucideIcon("align-center", __iconNode$1n);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$1a = [
+const __iconNode$1m = [
   ["path", { d: "M3 12h18", key: "1i2n21" }],
   ["path", { d: "M3 18h18", key: "1h113x" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }]
 ];
-const AlignJustify = createLucideIcon("align-justify", __iconNode$1a);
+const AlignJustify = createLucideIcon("align-justify", __iconNode$1m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$19 = [
+const __iconNode$1l = [
   ["path", { d: "M15 12H3", key: "6jk70r" }],
   ["path", { d: "M17 18H3", key: "1amg6g" }],
   ["path", { d: "M21 6H3", key: "1jwq7v" }]
 ];
-const AlignLeft = createLucideIcon("align-left", __iconNode$19);
+const AlignLeft = createLucideIcon("align-left", __iconNode$1l);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$18 = [
+const __iconNode$1k = [
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M21 18H7", key: "1ygte8" }],
   ["path", { d: "M21 6H3", key: "1jwq7v" }]
 ];
-const AlignRight = createLucideIcon("align-right", __iconNode$18);
+const AlignRight = createLucideIcon("align-right", __iconNode$1k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$17 = [
+const __iconNode$1j = [
+  ["path", { d: "M12 5v14", key: "s699le" }],
+  ["path", { d: "m19 12-7 7-7-7", key: "1idqje" }]
+];
+const ArrowDown = createLucideIcon("arrow-down", __iconNode$1j);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$1i = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$17);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$1i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$16 = [
+const __iconNode$1h = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$16);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$1h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$15 = [
+const __iconNode$1g = [
+  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
+  ["path", { d: "M12 19V5", key: "x0mq9r" }]
+];
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$1g);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$1f = [
   [
     "path",
     {
@@ -33171,14 +33193,14 @@ const __iconNode$15 = [
   ],
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const Award = createLucideIcon("award", __iconNode$15);
+const Award = createLucideIcon("award", __iconNode$1f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$14 = [
+const __iconNode$1e = [
   [
     "path",
     {
@@ -33188,27 +33210,27 @@ const __iconNode$14 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const BadgeCheck = createLucideIcon("badge-check", __iconNode$14);
+const BadgeCheck = createLucideIcon("badge-check", __iconNode$1e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$13 = [
+const __iconNode$1d = [
   [
     "path",
     { d: "M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", key: "mg9rjx" }
   ]
 ];
-const Bold = createLucideIcon("bold", __iconNode$13);
+const Bold = createLucideIcon("bold", __iconNode$1d);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$12 = [
+const __iconNode$1c = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -33218,25 +33240,25 @@ const __iconNode$12 = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$12);
+const BookOpen = createLucideIcon("book-open", __iconNode$1c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$11 = [
+const __iconNode$1b = [
   ["path", { d: "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16", key: "jecpp" }],
   ["rect", { width: "20", height: "14", x: "2", y: "6", rx: "2", key: "i6l2r4" }]
 ];
-const Briefcase = createLucideIcon("briefcase", __iconNode$11);
+const Briefcase = createLucideIcon("briefcase", __iconNode$1b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$10 = [
+const __iconNode$1a = [
   ["path", { d: "M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z", key: "1b4qmf" }],
   ["path", { d: "M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2", key: "i71pzd" }],
   ["path", { d: "M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2", key: "10jefs" }],
@@ -33245,7 +33267,108 @@ const __iconNode$10 = [
   ["path", { d: "M10 14h4", key: "kelpxr" }],
   ["path", { d: "M10 18h4", key: "1ulq68" }]
 ];
-const Building2 = createLucideIcon("building-2", __iconNode$10);
+const Building2 = createLucideIcon("building-2", __iconNode$1a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$19 = [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }]
+];
+const Calendar = createLucideIcon("calendar", __iconNode$19);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$18 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$18);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$17 = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$17);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$16 = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$16);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$15 = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$15);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$14 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$14);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$13 = [
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+];
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$13);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$12 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$12);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$11 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$11);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$10 = [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+];
+const Copy = createLucideIcon("copy", __iconNode$10);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33253,139 +33376,30 @@ const Building2 = createLucideIcon("building-2", __iconNode$10);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$$ = [
-  ["path", { d: "M8 2v4", key: "1cmpym" }],
-  ["path", { d: "M16 2v4", key: "4m81vk" }],
-  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
-  ["path", { d: "M3 10h18", key: "8toen8" }]
-];
-const Calendar = createLucideIcon("calendar", __iconNode$$);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$_ = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$_);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$Z = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$Z);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$Y = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$Y);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$X = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$X);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$W = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$W);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$V = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
-];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$V);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$U = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
-];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$U);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$T = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
-];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$T);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$S = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
-];
-const Clock = createLucideIcon("clock", __iconNode$S);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$R = [
-  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
-  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
-];
-const Copy = createLucideIcon("copy", __iconNode$R);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$Q = [
   ["path", { d: "M12 15V3", key: "m9g1x1" }],
   ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
   ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const Download = createLucideIcon("download", __iconNode$Q);
+const Download = createLucideIcon("download", __iconNode$$);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$P = [
+const __iconNode$_ = [
   ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
   ["path", { d: "M10 14 21 3", key: "gplh6r" }],
   ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$P);
+const ExternalLink = createLucideIcon("external-link", __iconNode$_);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$O = [
+const __iconNode$Z = [
   [
     "path",
     {
@@ -33395,28 +33409,28 @@ const __iconNode$O = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Eye = createLucideIcon("eye", __iconNode$O);
+const Eye = createLucideIcon("eye", __iconNode$Z);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$N = [
+const __iconNode$Y = [
   ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
   ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
   ["path", { d: "M10 9H8", key: "b1mrlr" }],
   ["path", { d: "M16 13H8", key: "t4e002" }],
   ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$N);
+const FileText = createLucideIcon("file-text", __iconNode$Y);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [
+const __iconNode$X = [
   [
     "path",
     {
@@ -33425,26 +33439,26 @@ const __iconNode$M = [
     }
   ]
 ];
-const Flame = createLucideIcon("flame", __iconNode$M);
+const Flame = createLucideIcon("flame", __iconNode$X);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$L = [
+const __iconNode$W = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
   ["path", { d: "M2 12h20", key: "9i4pu4" }]
 ];
-const Globe = createLucideIcon("globe", __iconNode$L);
+const Globe = createLucideIcon("globe", __iconNode$W);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$K = [
+const __iconNode$V = [
   [
     "path",
     {
@@ -33455,14 +33469,29 @@ const __iconNode$K = [
   ["path", { d: "M22 10v6", key: "1lu8f3" }],
   ["path", { d: "M6 12.5V16a6 3 0 0 0 12 0v-3.5", key: "1r8lef" }]
 ];
-const GraduationCap = createLucideIcon("graduation-cap", __iconNode$K);
+const GraduationCap = createLucideIcon("graduation-cap", __iconNode$V);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$J = [
+const __iconNode$U = [
+  ["circle", { cx: "9", cy: "12", r: "1", key: "1vctgf" }],
+  ["circle", { cx: "9", cy: "5", r: "1", key: "hp0tcf" }],
+  ["circle", { cx: "9", cy: "19", r: "1", key: "fkjjf6" }],
+  ["circle", { cx: "15", cy: "12", r: "1", key: "1tmaij" }],
+  ["circle", { cx: "15", cy: "5", r: "1", key: "19l28e" }],
+  ["circle", { cx: "15", cy: "19", r: "1", key: "f4zoj3" }]
+];
+const GripVertical = createLucideIcon("grip-vertical", __iconNode$U);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$T = [
   [
     "path",
     {
@@ -33471,63 +33500,80 @@ const __iconNode$J = [
     }
   ]
 ];
-const Heart = createLucideIcon("heart", __iconNode$J);
+const Heart = createLucideIcon("heart", __iconNode$T);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$I = [
+const __iconNode$S = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ];
-const Image$1 = createLucideIcon("image", __iconNode$I);
+const Image$1 = createLucideIcon("image", __iconNode$S);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$H = [
+const __iconNode$R = [
   ["path", { d: "M18 22H4a2 2 0 0 1-2-2V6", key: "pblm9e" }],
   ["path", { d: "m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18", key: "nf6bnh" }],
   ["circle", { cx: "12", cy: "8", r: "2", key: "1822b1" }],
   ["rect", { width: "16", height: "16", x: "6", y: "2", rx: "2", key: "12espp" }]
 ];
-const Images = createLucideIcon("images", __iconNode$H);
+const Images = createLucideIcon("images", __iconNode$R);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$G = [
+const __iconNode$Q = [
+  ["polyline", { points: "22 12 16 12 14 15 10 15 8 12 2 12", key: "o97t9d" }],
+  [
+    "path",
+    {
+      d: "M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z",
+      key: "oot6mr"
+    }
+  ]
+];
+const Inbox = createLucideIcon("inbox", __iconNode$Q);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$P = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "M12 16v-4", key: "1dtifu" }],
   ["path", { d: "M12 8h.01", key: "e9boi3" }]
 ];
-const Info = createLucideIcon("info", __iconNode$G);
+const Info = createLucideIcon("info", __iconNode$P);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$F = [
+const __iconNode$O = [
   ["line", { x1: "19", x2: "10", y1: "4", y2: "4", key: "15jd3p" }],
   ["line", { x1: "14", x2: "5", y1: "20", y2: "20", key: "bu0au3" }],
   ["line", { x1: "15", x2: "9", y1: "4", y2: "20", key: "uljnxc" }]
 ];
-const Italic = createLucideIcon("italic", __iconNode$F);
+const Italic = createLucideIcon("italic", __iconNode$O);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$E = [
+const __iconNode$N = [
   ["path", { d: "m5 8 6 6", key: "1wu5hv" }],
   ["path", { d: "m4 14 6-6 2-3", key: "1k1g8d" }],
   ["path", { d: "M2 5h12", key: "or177f" }],
@@ -33535,26 +33581,26 @@ const __iconNode$E = [
   ["path", { d: "m22 22-5-10-5 10", key: "don7ne" }],
   ["path", { d: "M14 18h6", key: "1m8k6r" }]
 ];
-const Languages = createLucideIcon("languages", __iconNode$E);
+const Languages = createLucideIcon("languages", __iconNode$N);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$D = [
+const __iconNode$M = [
   ["path", { d: "M9 17H7A5 5 0 0 1 7 7h2", key: "8i5ue5" }],
   ["path", { d: "M15 7h2a5 5 0 1 1 0 10h-2", key: "1b9ql8" }],
   ["line", { x1: "8", x2: "16", y1: "12", y2: "12", key: "1jonct" }]
 ];
-const Link2 = createLucideIcon("link-2", __iconNode$D);
+const Link2 = createLucideIcon("link-2", __iconNode$M);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$L = [
   [
     "path",
     {
@@ -33565,14 +33611,14 @@ const __iconNode$C = [
   ["rect", { width: "4", height: "12", x: "2", y: "9", key: "mk3on5" }],
   ["circle", { cx: "4", cy: "4", r: "2", key: "bt5ra8" }]
 ];
-const Linkedin = createLucideIcon("linkedin", __iconNode$C);
+const Linkedin = createLucideIcon("linkedin", __iconNode$L);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
+const __iconNode$K = [
   ["path", { d: "M10 12h11", key: "6m4ad9" }],
   ["path", { d: "M10 18h11", key: "11hvi2" }],
   ["path", { d: "M10 6h11", key: "c7qv1k" }],
@@ -33580,14 +33626,14 @@ const __iconNode$B = [
   ["path", { d: "M4 6h1v4", key: "cnovpq" }],
   ["path", { d: "M6 18H4c0-1 2-2 2-3s-1-1.5-2-1", key: "m9a95d" }]
 ];
-const ListOrdered = createLucideIcon("list-ordered", __iconNode$B);
+const ListOrdered = createLucideIcon("list-ordered", __iconNode$K);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$A = [
+const __iconNode$J = [
   ["path", { d: "M3 12h.01", key: "nlz23k" }],
   ["path", { d: "M3 18h.01", key: "1tta3j" }],
   ["path", { d: "M3 6h.01", key: "1rqtza" }],
@@ -33595,68 +33641,68 @@ const __iconNode$A = [
   ["path", { d: "M8 18h13", key: "1lx6n3" }],
   ["path", { d: "M8 6h13", key: "ik3vkj" }]
 ];
-const List = createLucideIcon("list", __iconNode$A);
+const List = createLucideIcon("list", __iconNode$J);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$z = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$z);
+const __iconNode$I = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$I);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$H = [
   ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
   ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
 ];
-const Lock = createLucideIcon("lock", __iconNode$y);
+const Lock = createLucideIcon("lock", __iconNode$H);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
+const __iconNode$G = [
   ["path", { d: "m10 17 5-5-5-5", key: "1bsop3" }],
   ["path", { d: "M15 12H3", key: "6jk70r" }],
   ["path", { d: "M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4", key: "u53s6r" }]
 ];
-const LogIn = createLucideIcon("log-in", __iconNode$x);
+const LogIn = createLucideIcon("log-in", __iconNode$G);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$w = [
+const __iconNode$F = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-const LogOut = createLucideIcon("log-out", __iconNode$w);
+const LogOut = createLucideIcon("log-out", __iconNode$F);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$v = [
+const __iconNode$E = [
   ["path", { d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", key: "132q7q" }],
   ["rect", { x: "2", y: "4", width: "20", height: "16", rx: "2", key: "izxlao" }]
 ];
-const Mail = createLucideIcon("mail", __iconNode$v);
+const Mail = createLucideIcon("mail", __iconNode$E);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$D = [
   [
     "path",
     {
@@ -33666,54 +33712,66 @@ const __iconNode$u = [
   ],
   ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const MapPin = createLucideIcon("map-pin", __iconNode$u);
+const MapPin = createLucideIcon("map-pin", __iconNode$D);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$C = [
   ["path", { d: "M4 12h16", key: "1lakjw" }],
   ["path", { d: "M4 18h16", key: "19g7jn" }],
   ["path", { d: "M4 6h16", key: "1o0s65" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$t);
+const Menu = createLucideIcon("menu", __iconNode$C);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [
+const __iconNode$B = [
   ["path", { d: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z", key: "vv11sd" }]
 ];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$s);
+const MessageCircle = createLucideIcon("message-circle", __iconNode$B);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [
+const __iconNode$A = [
   ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$r);
+const MessageSquare = createLucideIcon("message-square", __iconNode$A);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [["path", { d: "M5 12h14", key: "1ays0h" }]];
-const Minus = createLucideIcon("minus", __iconNode$q);
+const __iconNode$z = [["path", { d: "M5 12h14", key: "1ays0h" }]];
+const Minus = createLucideIcon("minus", __iconNode$z);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$y = [
+  ["rect", { width: "20", height: "14", x: "2", y: "3", rx: "2", key: "48i651" }],
+  ["line", { x1: "8", x2: "16", y1: "21", y2: "21", key: "1svkeh" }],
+  ["line", { x1: "12", x2: "12", y1: "17", y2: "21", key: "vw1qmm" }]
+];
+const Monitor = createLucideIcon("monitor", __iconNode$y);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$x = [
   ["path", { d: "M14 4.1 12 6", key: "ita8i4" }],
   ["path", { d: "m5.1 8-2.9-.8", key: "1go3kf" }],
   ["path", { d: "m6 12-1.9 2", key: "mnht97" }],
@@ -33726,28 +33784,57 @@ const __iconNode$p = [
     }
   ]
 ];
-const MousePointerClick = createLucideIcon("mouse-pointer-click", __iconNode$p);
+const MousePointerClick = createLucideIcon("mouse-pointer-click", __iconNode$x);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$o = [
+const __iconNode$w = [
   ["rect", { x: "16", y: "16", width: "6", height: "6", rx: "1", key: "4q2zg0" }],
   ["rect", { x: "2", y: "16", width: "6", height: "6", rx: "1", key: "8cvhb9" }],
   ["rect", { x: "9", y: "2", width: "6", height: "6", rx: "1", key: "1egb70" }],
   ["path", { d: "M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3", key: "1jsf9p" }],
   ["path", { d: "M12 12V8", key: "2874zd" }]
 ];
-const Network = createLucideIcon("network", __iconNode$o);
+const Network = createLucideIcon("network", __iconNode$w);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$n = [
+const __iconNode$v = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "M3 9h18", key: "1pudct" }],
+  ["path", { d: "M9 21V9", key: "1oto5p" }]
+];
+const PanelsTopLeft = createLucideIcon("panels-top-left", __iconNode$v);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [
+  ["path", { d: "M13.234 20.252 21 12.3", key: "1cbrk9" }],
+  [
+    "path",
+    {
+      d: "m16 6-8.414 8.586a2 2 0 0 0 0 2.828 2 2 0 0 0 2.828 0l8.414-8.586a4 4 0 0 0 0-5.656 4 4 0 0 0-5.656 0l-8.415 8.585a6 6 0 1 0 8.486 8.486",
+      key: "1pkts6"
+    }
+  ]
+];
+const Paperclip = createLucideIcon("paperclip", __iconNode$u);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
   [
     "path",
     {
@@ -33756,14 +33843,14 @@ const __iconNode$n = [
     }
   ]
 ];
-const Pen = createLucideIcon("pen", __iconNode$n);
+const Pen = createLucideIcon("pen", __iconNode$t);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$m = [
+const __iconNode$s = [
   [
     "path",
     {
@@ -33773,14 +33860,14 @@ const __iconNode$m = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$m);
+const Pencil = createLucideIcon("pencil", __iconNode$s);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [
+const __iconNode$r = [
   [
     "path",
     {
@@ -33789,25 +33876,25 @@ const __iconNode$l = [
     }
   ]
 ];
-const Phone = createLucideIcon("phone", __iconNode$l);
+const Phone = createLucideIcon("phone", __iconNode$r);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$k = [
+const __iconNode$q = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const Plus = createLucideIcon("plus", __iconNode$k);
+const Plus = createLucideIcon("plus", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$j = [
+const __iconNode$p = [
   [
     "path",
     {
@@ -33823,39 +33910,61 @@ const __iconNode$j = [
     }
   ]
 ];
-const Quote = createLucideIcon("quote", __iconNode$j);
+const Quote = createLucideIcon("quote", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [
+const __iconNode$o = [
+  ["path", { d: "m15 14 5-5-5-5", key: "12vg1m" }],
+  ["path", { d: "M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13", key: "6uklza" }]
+];
+const Redo2 = createLucideIcon("redo-2", __iconNode$o);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [
   ["path", { d: "M4 7V4h16v3", key: "9msm58" }],
   ["path", { d: "M5 20h6", key: "1h6pxn" }],
   ["path", { d: "M13 4 8 20", key: "kqq6aj" }],
   ["path", { d: "m15 15 5 5", key: "me55sn" }],
   ["path", { d: "m20 15-5 5", key: "11p7ol" }]
 ];
-const RemoveFormatting = createLucideIcon("remove-formatting", __iconNode$i);
+const RemoveFormatting = createLucideIcon("remove-formatting", __iconNode$n);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [
+const __iconNode$m = [
   ["path", { d: "M20 18v-2a4 4 0 0 0-4-4H4", key: "5vmcpk" }],
   ["path", { d: "m9 17-5-5 5-5", key: "nvlc11" }]
 ];
-const Reply = createLucideIcon("reply", __iconNode$h);
+const Reply = createLucideIcon("reply", __iconNode$m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$g = [
+const __iconNode$l = [
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
+];
+const RotateCcw = createLucideIcon("rotate-ccw", __iconNode$l);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$k = [
   [
     "path",
     {
@@ -33866,25 +33975,42 @@ const __iconNode$g = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$g);
+const Save = createLucideIcon("save", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$f = [
+const __iconNode$j = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-const Search = createLucideIcon("search", __iconNode$f);
+const Search = createLucideIcon("search", __iconNode$j);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$e = [
+const __iconNode$i = [
+  [
+    "path",
+    {
+      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+      key: "1ffxy3"
+    }
+  ],
+  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
+];
+const Send = createLucideIcon("send", __iconNode$i);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$h = [
   [
     "path",
     {
@@ -33894,28 +34020,28 @@ const __iconNode$e = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Settings = createLucideIcon("settings", __iconNode$e);
+const Settings = createLucideIcon("settings", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$d = [
+const __iconNode$g = [
   ["circle", { cx: "18", cy: "5", r: "3", key: "gq8acd" }],
   ["circle", { cx: "6", cy: "12", r: "3", key: "w7nqdw" }],
   ["circle", { cx: "18", cy: "19", r: "3", key: "1xt0gg" }],
   ["line", { x1: "8.59", x2: "15.42", y1: "13.51", y2: "17.49", key: "47mynk" }],
   ["line", { x1: "15.41", x2: "8.59", y1: "6.51", y2: "10.49", key: "1n3mei" }]
 ];
-const Share2 = createLucideIcon("share-2", __iconNode$d);
+const Share2 = createLucideIcon("share-2", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$c = [
+const __iconNode$f = [
   [
     "path",
     {
@@ -33924,7 +34050,47 @@ const __iconNode$c = [
     }
   ]
 ];
-const Shield = createLucideIcon("shield", __iconNode$c);
+const Shield = createLucideIcon("shield", __iconNode$f);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
+  ["rect", { width: "14", height: "20", x: "5", y: "2", rx: "2", ry: "2", key: "1yt0o3" }],
+  ["path", { d: "M12 18h.01", key: "mhygvu" }]
+];
+const Smartphone = createLucideIcon("smartphone", __iconNode$e);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$d = [
+  [
+    "path",
+    {
+      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+      key: "r04s7s"
+    }
+  ]
+];
+const Star = createLucideIcon("star", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
+  ["path", { d: "M12 3v18", key: "108xh3" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "M3 9h18", key: "1pudct" }],
+  ["path", { d: "M3 15h18", key: "5xshup" }]
+];
+const Table = createLucideIcon("table", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33935,12 +34101,13 @@ const __iconNode$b = [
   [
     "path",
     {
-      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
-      key: "r04s7s"
+      d: "M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z",
+      key: "vktsd0"
     }
-  ]
+  ],
+  ["circle", { cx: "7.5", cy: "7.5", r: ".5", fill: "currentColor", key: "kqv944" }]
 ];
-const Star = createLucideIcon("star", __iconNode$b);
+const Tag = createLucideIcon("tag", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33948,12 +34115,11 @@ const Star = createLucideIcon("star", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
-  ["path", { d: "M12 3v18", key: "108xh3" }],
-  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
-  ["path", { d: "M3 9h18", key: "1pudct" }],
-  ["path", { d: "M3 15h18", key: "5xshup" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["circle", { cx: "12", cy: "12", r: "6", key: "1vlfrh" }],
+  ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }]
 ];
-const Table = createLucideIcon("table", __iconNode$a);
+const Target = createLucideIcon("target", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33961,16 +34127,13 @@ const Table = createLucideIcon("table", __iconNode$a);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$9 = [
-  [
-    "path",
-    {
-      d: "M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z",
-      key: "vktsd0"
-    }
-  ],
-  ["circle", { cx: "7.5", cy: "7.5", r: ".5", fill: "currentColor", key: "kqv944" }]
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
 ];
-const Tag = createLucideIcon("tag", __iconNode$9);
+const Trash2 = createLucideIcon("trash-2", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33978,11 +34141,10 @@ const Tag = createLucideIcon("tag", __iconNode$9);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$8 = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["circle", { cx: "12", cy: "12", r: "6", key: "1vlfrh" }],
-  ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }]
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
 ];
-const Target = createLucideIcon("target", __iconNode$8);
+const TrendingUp = createLucideIcon("trending-up", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -33990,31 +34152,6 @@ const Target = createLucideIcon("target", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
-];
-const Trash2 = createLucideIcon("trash-2", __iconNode$7);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
-  ["path", { d: "M16 7h6v6", key: "box55l" }],
-  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
-];
-const TrendingUp = createLucideIcon("trending-up", __iconNode$6);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$5 = [
   [
     "path",
     {
@@ -34023,7 +34160,29 @@ const __iconNode$5 = [
     }
   ]
 ];
-const Twitter = createLucideIcon("twitter", __iconNode$5);
+const Twitter = createLucideIcon("twitter", __iconNode$7);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
+  ["path", { d: "M6 4v6a6 6 0 0 0 12 0V4", key: "9kb039" }],
+  ["line", { x1: "4", x2: "20", y1: "20", y2: "20", key: "nun2al" }]
+];
+const Underline = createLucideIcon("underline", __iconNode$6);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$5 = [
+  ["path", { d: "M9 14 4 9l5-5", key: "102s5s" }],
+  ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
+];
+const Undo2 = createLucideIcon("undo-2", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -34031,10 +34190,11 @@ const Twitter = createLucideIcon("twitter", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
-  ["path", { d: "M6 4v6a6 6 0 0 0 12 0V4", key: "9kb039" }],
-  ["line", { x1: "4", x2: "20", y1: "20", y2: "20", key: "nun2al" }]
+  ["path", { d: "M12 3v12", key: "1x0j5s" }],
+  ["path", { d: "m17 8-5-5-5 5", key: "7q97r8" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
 ];
-const Underline = createLucideIcon("underline", __iconNode$4);
+const Upload = createLucideIcon("upload", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -34042,11 +34202,10 @@ const Underline = createLucideIcon("underline", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["path", { d: "M12 3v12", key: "1x0j5s" }],
-  ["path", { d: "m17 8-5-5-5 5", key: "7q97r8" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
+  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
+  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
 ];
-const Upload = createLucideIcon("upload", __iconNode$3);
+const User = createLucideIcon("user", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -34054,10 +34213,12 @@ const Upload = createLucideIcon("upload", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
-  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
+  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+  ["path", { d: "M16 3.128a4 4 0 0 1 0 7.744", key: "16gr8j" }],
+  ["path", { d: "M22 21v-2a4 4 0 0 0-3-3.87", key: "kshegd" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
 ];
-const User = createLucideIcon("user", __iconNode$2);
+const Users = createLucideIcon("users", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -34065,12 +34226,10 @@ const User = createLucideIcon("user", __iconNode$2);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
-  ["path", { d: "M16 3.128a4 4 0 0 1 0 7.744", key: "16gr8j" }],
-  ["path", { d: "M22 21v-2a4 4 0 0 0-3-3.87", key: "kshegd" }],
-  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
+  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
+  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
-const Users = createLucideIcon("users", __iconNode$1);
+const X = createLucideIcon("x", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -34078,11 +34237,1539 @@ const Users = createLucideIcon("users", __iconNode$1);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode = [
-  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
-  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
+  [
+    "path",
+    {
+      d: "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z",
+      key: "1xq2db"
+    }
+  ]
 ];
-const X = createLucideIcon("x", __iconNode);
-const footerLinks = [
+const Zap = createLucideIcon("zap", __iconNode);
+const Result = Variant({ "ok": Nat, "err": Text });
+const Result_1 = Variant({ "ok": Null, "err": Text });
+const Time = Int;
+const BlogPost = Record({
+  "id": Nat,
+  "title": Text,
+  "content": Text,
+  "publishedDate": Time,
+  "author": Text,
+  "summary": Text,
+  "imageUrl": Text,
+  "category": Text
+});
+const Comment = Record({
+  "id": Text,
+  "content": Text,
+  "authorEmail": Text,
+  "edited": Bool,
+  "createdAt": Int,
+  "authorName": Text,
+  "approved": Bool,
+  "rejected": Bool,
+  "parentId": Opt(Text),
+  "postId": Text
+});
+const FileAttachment = Record({
+  "fileName": Text,
+  "fileSize": Nat,
+  "fileType": Text,
+  "fileUrl": Text
+});
+const ContactSubmissionV3 = Record({
+  "attachedFiles": Vec(FileAttachment),
+  "fullName": Text,
+  "email": Text,
+  "message": Text,
+  "timestamp": Time,
+  "serviceOfInterest": Opt(Text),
+  "phoneNumber": Text,
+  "preferredContactMethod": Opt(Text),
+  "countryOfInterest": Text,
+  "privacyConsent": Bool
+});
+const Testimonial = Record({
+  "country": Text,
+  "clientName": Text,
+  "quote": Text,
+  "photoUrl": Text
+});
+const SectionField = Record({
+  "key": Text,
+  "value": Text
+});
+const PageSection = Record({
+  "id": Nat,
+  "order": Nat,
+  "sectionType": Text,
+  "fields": Vec(SectionField)
+});
+const WebsitePage = Record({
+  "id": Nat,
+  "title": Text,
+  "createdAt": Int,
+  "slug": Text,
+  "updatedAt": Int,
+  "isDefault": Bool,
+  "sections": Vec(PageSection)
+});
+const NavMenuItem = Record({
+  "id": Nat,
+  "url": Text,
+  "order": Nat,
+  "text": Text
+});
+const GlobalConfig = Record({
+  "siteTitle": Text,
+  "logoMediaId": Opt(Nat),
+  "navigationMenu": Vec(NavMenuItem),
+  "updatedAt": Int,
+  "contactEmail": Text,
+  "footerContent": Text,
+  "contactAddress": Text,
+  "contactPhone": Text
+});
+const MediaItem = Record({
+  "id": Nat,
+  "base64Data": Text,
+  "mimeType": Text,
+  "filename": Text,
+  "uploadedAt": Int
+});
+const PageVersionSummary = Record({
+  "version": Nat,
+  "timestamp": Int,
+  "sectionCount": Nat
+});
+const Result_2 = Variant({
+  "ok": Vec(PageVersionSummary),
+  "err": Text
+});
+Service({
+  "addBlogPost": Func(
+    [Text, Text, Text, Text, Text, Text],
+    [],
+    []
+  ),
+  "approveComment": Func([Text], [Bool], []),
+  "createWebsitePage": Func([Text, Text], [Result], []),
+  "deleteBlogPost": Func([Nat], [], []),
+  "deleteComment": Func([Text], [Bool], []),
+  "deleteContact": Func([Nat], [], []),
+  "deleteMediaItem": Func([Nat], [Result_1], []),
+  "deleteWebsitePage": Func([Nat], [Result_1], []),
+  "editBlogPost": Func(
+    [Nat, Text, Text, Text, Text, Text, Text],
+    [],
+    []
+  ),
+  "editComment": Func([Text, Text], [Bool], []),
+  "editWebsitePage": Func([Nat, Text, Text], [Result_1], []),
+  "getAllBlogPosts": Func([], [Vec(BlogPost)], ["query"]),
+  "getAllComments": Func([], [Vec(Comment)], ["query"]),
+  "getAllContacts": Func(
+    [],
+    [Vec(Tuple(Nat, ContactSubmissionV3))],
+    ["query"]
+  ),
+  "getAllTestimonials": Func([], [Vec(Testimonial)], ["query"]),
+  "getAllWebsitePages": Func([], [Vec(WebsitePage)], ["query"]),
+  "getBlogPostById": Func([Nat], [BlogPost], ["query"]),
+  "getCommentCount": Func([], [Nat], ["query"]),
+  "getCommentsForPost": Func([Text], [Vec(Comment)], ["query"]),
+  "getGlobalConfig": Func([], [Opt(GlobalConfig)], ["query"]),
+  "getMediaLibrary": Func([], [Vec(MediaItem)], ["query"]),
+  "getPageVersions": Func([Text], [Result_2], ["query"]),
+  "getPendingComments": Func([], [Vec(Comment)], ["query"]),
+  "getRejectedComments": Func([], [Vec(Comment)], ["query"]),
+  "getUnreadApplicationCount": Func([], [Nat], ["query"]),
+  "getWebsitePageById": Func([Nat], [Opt(WebsitePage)], ["query"]),
+  "markApplicationsAsRead": Func([], [], []),
+  "rejectComment": Func([Text], [Bool], []),
+  "restorePageVersion": Func([Text, Nat], [Result_1], []),
+  "savePageSections": Func(
+    [Nat, Vec(PageSection)],
+    [Result_1],
+    []
+  ),
+  "submitComment": Func(
+    [Text, Opt(Text), Text, Text, Text],
+    [Text],
+    []
+  ),
+  "submitContact": Func(
+    [
+      Text,
+      Text,
+      Text,
+      Text,
+      Opt(Text),
+      Text,
+      Opt(Text),
+      Bool,
+      Vec(FileAttachment)
+    ],
+    [],
+    []
+  ),
+  "unapproveComment": Func([Text], [Bool], []),
+  "updateGlobalConfig": Func([GlobalConfig], [Result_1], []),
+  "uploadMediaItem": Func([Text, Text, Text], [Result], [])
+});
+const idlFactory = ({ IDL: IDL2 }) => {
+  const Result2 = IDL2.Variant({ "ok": IDL2.Nat, "err": IDL2.Text });
+  const Result_12 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
+  const Time2 = IDL2.Int;
+  const BlogPost2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "title": IDL2.Text,
+    "content": IDL2.Text,
+    "publishedDate": Time2,
+    "author": IDL2.Text,
+    "summary": IDL2.Text,
+    "imageUrl": IDL2.Text,
+    "category": IDL2.Text
+  });
+  const Comment2 = IDL2.Record({
+    "id": IDL2.Text,
+    "content": IDL2.Text,
+    "authorEmail": IDL2.Text,
+    "edited": IDL2.Bool,
+    "createdAt": IDL2.Int,
+    "authorName": IDL2.Text,
+    "approved": IDL2.Bool,
+    "rejected": IDL2.Bool,
+    "parentId": IDL2.Opt(IDL2.Text),
+    "postId": IDL2.Text
+  });
+  const FileAttachment2 = IDL2.Record({
+    "fileName": IDL2.Text,
+    "fileSize": IDL2.Nat,
+    "fileType": IDL2.Text,
+    "fileUrl": IDL2.Text
+  });
+  const ContactSubmissionV32 = IDL2.Record({
+    "attachedFiles": IDL2.Vec(FileAttachment2),
+    "fullName": IDL2.Text,
+    "email": IDL2.Text,
+    "message": IDL2.Text,
+    "timestamp": Time2,
+    "serviceOfInterest": IDL2.Opt(IDL2.Text),
+    "phoneNumber": IDL2.Text,
+    "preferredContactMethod": IDL2.Opt(IDL2.Text),
+    "countryOfInterest": IDL2.Text,
+    "privacyConsent": IDL2.Bool
+  });
+  const Testimonial2 = IDL2.Record({
+    "country": IDL2.Text,
+    "clientName": IDL2.Text,
+    "quote": IDL2.Text,
+    "photoUrl": IDL2.Text
+  });
+  const SectionField2 = IDL2.Record({ "key": IDL2.Text, "value": IDL2.Text });
+  const PageSection2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "order": IDL2.Nat,
+    "sectionType": IDL2.Text,
+    "fields": IDL2.Vec(SectionField2)
+  });
+  const WebsitePage2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "title": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "slug": IDL2.Text,
+    "updatedAt": IDL2.Int,
+    "isDefault": IDL2.Bool,
+    "sections": IDL2.Vec(PageSection2)
+  });
+  const NavMenuItem2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "url": IDL2.Text,
+    "order": IDL2.Nat,
+    "text": IDL2.Text
+  });
+  const GlobalConfig2 = IDL2.Record({
+    "siteTitle": IDL2.Text,
+    "logoMediaId": IDL2.Opt(IDL2.Nat),
+    "navigationMenu": IDL2.Vec(NavMenuItem2),
+    "updatedAt": IDL2.Int,
+    "contactEmail": IDL2.Text,
+    "footerContent": IDL2.Text,
+    "contactAddress": IDL2.Text,
+    "contactPhone": IDL2.Text
+  });
+  const MediaItem2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "base64Data": IDL2.Text,
+    "mimeType": IDL2.Text,
+    "filename": IDL2.Text,
+    "uploadedAt": IDL2.Int
+  });
+  const PageVersionSummary2 = IDL2.Record({
+    "version": IDL2.Nat,
+    "timestamp": IDL2.Int,
+    "sectionCount": IDL2.Nat
+  });
+  const Result_22 = IDL2.Variant({
+    "ok": IDL2.Vec(PageVersionSummary2),
+    "err": IDL2.Text
+  });
+  return IDL2.Service({
+    "addBlogPost": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
+    "approveComment": IDL2.Func([IDL2.Text], [IDL2.Bool], []),
+    "createWebsitePage": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteBlogPost": IDL2.Func([IDL2.Nat], [], []),
+    "deleteComment": IDL2.Func([IDL2.Text], [IDL2.Bool], []),
+    "deleteContact": IDL2.Func([IDL2.Nat], [], []),
+    "deleteMediaItem": IDL2.Func([IDL2.Nat], [Result_12], []),
+    "deleteWebsitePage": IDL2.Func([IDL2.Nat], [Result_12], []),
+    "editBlogPost": IDL2.Func(
+      [IDL2.Nat, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
+    "editComment": IDL2.Func([IDL2.Text, IDL2.Text], [IDL2.Bool], []),
+    "editWebsitePage": IDL2.Func([IDL2.Nat, IDL2.Text, IDL2.Text], [Result_12], []),
+    "getAllBlogPosts": IDL2.Func([], [IDL2.Vec(BlogPost2)], ["query"]),
+    "getAllComments": IDL2.Func([], [IDL2.Vec(Comment2)], ["query"]),
+    "getAllContacts": IDL2.Func(
+      [],
+      [IDL2.Vec(IDL2.Tuple(IDL2.Nat, ContactSubmissionV32))],
+      ["query"]
+    ),
+    "getAllTestimonials": IDL2.Func([], [IDL2.Vec(Testimonial2)], ["query"]),
+    "getAllWebsitePages": IDL2.Func([], [IDL2.Vec(WebsitePage2)], ["query"]),
+    "getBlogPostById": IDL2.Func([IDL2.Nat], [BlogPost2], ["query"]),
+    "getCommentCount": IDL2.Func([], [IDL2.Nat], ["query"]),
+    "getCommentsForPost": IDL2.Func([IDL2.Text], [IDL2.Vec(Comment2)], ["query"]),
+    "getGlobalConfig": IDL2.Func([], [IDL2.Opt(GlobalConfig2)], ["query"]),
+    "getMediaLibrary": IDL2.Func([], [IDL2.Vec(MediaItem2)], ["query"]),
+    "getPageVersions": IDL2.Func([IDL2.Text], [Result_22], ["query"]),
+    "getPendingComments": IDL2.Func([], [IDL2.Vec(Comment2)], ["query"]),
+    "getRejectedComments": IDL2.Func([], [IDL2.Vec(Comment2)], ["query"]),
+    "getUnreadApplicationCount": IDL2.Func([], [IDL2.Nat], ["query"]),
+    "getWebsitePageById": IDL2.Func(
+      [IDL2.Nat],
+      [IDL2.Opt(WebsitePage2)],
+      ["query"]
+    ),
+    "markApplicationsAsRead": IDL2.Func([], [], []),
+    "rejectComment": IDL2.Func([IDL2.Text], [IDL2.Bool], []),
+    "restorePageVersion": IDL2.Func([IDL2.Text, IDL2.Nat], [Result_12], []),
+    "savePageSections": IDL2.Func(
+      [IDL2.Nat, IDL2.Vec(PageSection2)],
+      [Result_12],
+      []
+    ),
+    "submitComment": IDL2.Func(
+      [IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Text, IDL2.Text, IDL2.Text],
+      [IDL2.Text],
+      []
+    ),
+    "submitContact": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Opt(IDL2.Text),
+        IDL2.Text,
+        IDL2.Opt(IDL2.Text),
+        IDL2.Bool,
+        IDL2.Vec(FileAttachment2)
+      ],
+      [],
+      []
+    ),
+    "unapproveComment": IDL2.Func([IDL2.Text], [IDL2.Bool], []),
+    "updateGlobalConfig": IDL2.Func([GlobalConfig2], [Result_12], []),
+    "uploadMediaItem": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], [])
+  });
+};
+function candid_some(value) {
+  return [
+    value
+  ];
+}
+function candid_none() {
+  return [];
+}
+function record_opt_to_undefined(arg) {
+  return arg == null ? void 0 : arg;
+}
+class Backend {
+  constructor(actor, _uploadFile, _downloadFile, processError2) {
+    this.actor = actor;
+    this._uploadFile = _uploadFile;
+    this._downloadFile = _downloadFile;
+    this.processError = processError2;
+  }
+  async addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
+      return result;
+    }
+  }
+  async approveComment(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.approveComment(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.approveComment(arg0);
+      return result;
+    }
+  }
+  async createWebsitePage(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.createWebsitePage(arg0, arg1);
+        return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.createWebsitePage(arg0, arg1);
+      return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteBlogPost(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteBlogPost(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteBlogPost(arg0);
+      return result;
+    }
+  }
+  async deleteComment(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteComment(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteComment(arg0);
+      return result;
+    }
+  }
+  async deleteContact(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteContact(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteContact(arg0);
+      return result;
+    }
+  }
+  async deleteMediaItem(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteMediaItem(arg0);
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteMediaItem(arg0);
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteWebsitePage(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteWebsitePage(arg0);
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteWebsitePage(arg0);
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+      return result;
+    }
+  }
+  async editComment(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.editComment(arg0, arg1);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.editComment(arg0, arg1);
+      return result;
+    }
+  }
+  async editWebsitePage(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.editWebsitePage(arg0, arg1, arg2);
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.editWebsitePage(arg0, arg1, arg2);
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getAllBlogPosts() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllBlogPosts();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllBlogPosts();
+      return result;
+    }
+  }
+  async getAllComments() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllComments();
+        return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllComments();
+      return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getAllContacts() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllContacts();
+        return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllContacts();
+      return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getAllTestimonials() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllTestimonials();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllTestimonials();
+      return result;
+    }
+  }
+  async getAllWebsitePages() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllWebsitePages();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllWebsitePages();
+      return result;
+    }
+  }
+  async getBlogPostById(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getBlogPostById(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getBlogPostById(arg0);
+      return result;
+    }
+  }
+  async getCommentCount() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getCommentCount();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getCommentCount();
+      return result;
+    }
+  }
+  async getCommentsForPost(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getCommentsForPost(arg0);
+        return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getCommentsForPost(arg0);
+      return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getGlobalConfig() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getGlobalConfig();
+        return from_candid_opt_n13(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getGlobalConfig();
+      return from_candid_opt_n13(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getMediaLibrary() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getMediaLibrary();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getMediaLibrary();
+      return result;
+    }
+  }
+  async getPageVersions(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getPageVersions(arg0);
+        return from_candid_Result_2_n17(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getPageVersions(arg0);
+      return from_candid_Result_2_n17(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getPendingComments() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getPendingComments();
+        return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getPendingComments();
+      return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getRejectedComments() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getRejectedComments();
+        return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getRejectedComments();
+      return from_candid_vec_n5(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getUnreadApplicationCount() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getUnreadApplicationCount();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getUnreadApplicationCount();
+      return result;
+    }
+  }
+  async getWebsitePageById(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getWebsitePageById(arg0);
+        return from_candid_opt_n19(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getWebsitePageById(arg0);
+      return from_candid_opt_n19(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async markApplicationsAsRead() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.markApplicationsAsRead();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.markApplicationsAsRead();
+      return result;
+    }
+  }
+  async rejectComment(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.rejectComment(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.rejectComment(arg0);
+      return result;
+    }
+  }
+  async restorePageVersion(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.restorePageVersion(arg0, arg1);
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.restorePageVersion(arg0, arg1);
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async savePageSections(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.savePageSections(arg0, arg1);
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.savePageSections(arg0, arg1);
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async submitComment(arg0, arg1, arg2, arg3, arg4) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.submitComment(arg0, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.submitComment(arg0, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
+      return result;
+    }
+  }
+  async submitContact(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n20(this._uploadFile, this._downloadFile, arg6), arg7, arg8);
+      return result;
+    }
+  }
+  async unapproveComment(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.unapproveComment(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.unapproveComment(arg0);
+      return result;
+    }
+  }
+  async updateGlobalConfig(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateGlobalConfig(to_candid_GlobalConfig_n21(this._uploadFile, this._downloadFile, arg0));
+        return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateGlobalConfig(to_candid_GlobalConfig_n21(this._uploadFile, this._downloadFile, arg0));
+      return from_candid_Result_1_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async uploadMediaItem(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.uploadMediaItem(arg0, arg1, arg2);
+        return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.uploadMediaItem(arg0, arg1, arg2);
+      return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+    }
+  }
+}
+function from_candid_Comment_n6(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n7(_uploadFile, _downloadFile, value);
+}
+function from_candid_ContactSubmissionV3_n11(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n12(_uploadFile, _downloadFile, value);
+}
+function from_candid_GlobalConfig_n14(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n15(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_1_n3(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n4(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_2_n17(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n18(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_n1(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n13(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : from_candid_GlobalConfig_n14(_uploadFile, _downloadFile, value[0]);
+}
+function from_candid_opt_n16(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n19(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n8(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n12(_uploadFile, _downloadFile, value) {
+  return {
+    attachedFiles: value.attachedFiles,
+    fullName: value.fullName,
+    email: value.email,
+    message: value.message,
+    timestamp: value.timestamp,
+    serviceOfInterest: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.serviceOfInterest)),
+    phoneNumber: value.phoneNumber,
+    preferredContactMethod: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.preferredContactMethod)),
+    countryOfInterest: value.countryOfInterest,
+    privacyConsent: value.privacyConsent
+  };
+}
+function from_candid_record_n15(_uploadFile, _downloadFile, value) {
+  return {
+    siteTitle: value.siteTitle,
+    logoMediaId: record_opt_to_undefined(from_candid_opt_n16(_uploadFile, _downloadFile, value.logoMediaId)),
+    navigationMenu: value.navigationMenu,
+    updatedAt: value.updatedAt,
+    contactEmail: value.contactEmail,
+    footerContent: value.footerContent,
+    contactAddress: value.contactAddress,
+    contactPhone: value.contactPhone
+  };
+}
+function from_candid_record_n7(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    content: value.content,
+    authorEmail: value.authorEmail,
+    edited: value.edited,
+    createdAt: value.createdAt,
+    authorName: value.authorName,
+    approved: value.approved,
+    rejected: value.rejected,
+    parentId: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.parentId)),
+    postId: value.postId
+  };
+}
+function from_candid_tuple_n10(_uploadFile, _downloadFile, value) {
+  return [
+    value[0],
+    from_candid_ContactSubmissionV3_n11(_uploadFile, _downloadFile, value[1])
+  ];
+}
+function from_candid_variant_n18(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n2(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n4(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_vec_n5(_uploadFile, _downloadFile, value) {
+  return value.map((x3) => from_candid_Comment_n6(_uploadFile, _downloadFile, x3));
+}
+function from_candid_vec_n9(_uploadFile, _downloadFile, value) {
+  return value.map((x3) => from_candid_tuple_n10(_uploadFile, _downloadFile, x3));
+}
+function to_candid_GlobalConfig_n21(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n22(_uploadFile, _downloadFile, value);
+}
+function to_candid_opt_n20(_uploadFile, _downloadFile, value) {
+  return value === null ? candid_none() : candid_some(value);
+}
+function to_candid_record_n22(_uploadFile, _downloadFile, value) {
+  return {
+    siteTitle: value.siteTitle,
+    logoMediaId: value.logoMediaId ? candid_some(value.logoMediaId) : candid_none(),
+    navigationMenu: value.navigationMenu,
+    updatedAt: value.updatedAt,
+    contactEmail: value.contactEmail,
+    footerContent: value.footerContent,
+    contactAddress: value.contactAddress,
+    contactPhone: value.contactPhone
+  };
+}
+function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
+  const agent = options.agent || HttpAgent.createSync({
+    ...options.agentOptions
+  });
+  if (options.agent && options.agentOptions) {
+    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
+  }
+  const actor = Actor.createActor(idlFactory, {
+    agent,
+    canisterId,
+    ...options.actorOptions
+  });
+  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
+}
+function useActor() {
+  const result = useActor$1(() => createActorWithConfig(createActor));
+  return result;
+}
+function useGetAllBlogPosts() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["blogPosts"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllBlogPosts();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useGetBlogPostById(id2) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["blogPost", id2.toString()],
+    queryFn: async () => {
+      if (!actor) return null;
+      return actor.getBlogPostById(id2);
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useGetAllTestimonials() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["testimonials"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllTestimonials();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useGetAllContacts() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["contacts"],
+    queryFn: async () => {
+      if (!actor) return [];
+      const raw = await actor.getAllContacts();
+      return raw.map(([id2, c2]) => {
+        var _a3;
+        return {
+          id: id2,
+          fullName: c2.fullName,
+          phoneNumber: c2.phoneNumber,
+          email: c2.email,
+          countryOfInterest: c2.countryOfInterest,
+          serviceOfInterest: c2.serviceOfInterest,
+          message: c2.message,
+          timestamp: c2.timestamp,
+          preferredContactMethod: c2.preferredContactMethod,
+          privacyConsent: c2.privacyConsent,
+          attachedFiles: (_a3 = c2.attachedFiles) == null ? void 0 : _a3.map((f) => ({
+            fileName: f.fileName,
+            fileSize: Number(f.fileSize),
+            fileType: f.fileType,
+            fileUrl: f.fileUrl
+          }))
+        };
+      });
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useAddBlogPost() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      title,
+      summary,
+      content,
+      author,
+      imageUrl,
+      category
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.addBlogPost(
+        title,
+        summary,
+        content,
+        author,
+        imageUrl,
+        category
+      );
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
+    }
+  });
+}
+function useEditBlogPost() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      id: id2,
+      title,
+      summary,
+      content,
+      author,
+      imageUrl,
+      category
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.editBlogPost(
+        id2,
+        title,
+        summary,
+        content,
+        author,
+        imageUrl,
+        category
+      );
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
+    }
+  });
+}
+function useDeleteBlogPost() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.deleteBlogPost(id2);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
+    }
+  });
+}
+function useDeleteContact() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.deleteContact(id2);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["contacts"] });
+    }
+  });
+}
+function useSubmitContact() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      fullName,
+      phoneNumber,
+      email,
+      serviceOfInterest,
+      countryOfInterest,
+      message,
+      preferredContactMethod,
+      privacyConsent,
+      attachedFiles
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      const backendFiles = (attachedFiles ?? []).map((f) => ({
+        fileName: f.fileName,
+        fileSize: BigInt(f.fileSize),
+        fileType: f.fileType,
+        fileUrl: f.fileUrl
+      }));
+      return actor.submitContact(
+        fullName,
+        phoneNumber,
+        email,
+        countryOfInterest,
+        serviceOfInterest || null,
+        message,
+        preferredContactMethod || null,
+        privacyConsent ?? false,
+        backendFiles
+      );
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["contacts"] });
+    }
+  });
+}
+function normalizeComment(raw) {
+  return {
+    id: raw.id,
+    postId: raw.postId,
+    parentId: raw.parentId ?? null,
+    authorName: raw.authorName,
+    authorEmail: raw.authorEmail,
+    content: raw.content,
+    createdAt: raw.createdAt,
+    approved: raw.approved,
+    edited: raw.edited,
+    rejected: raw.rejected ?? false
+  };
+}
+function useGetCommentsForPost(postId) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["comments", postId],
+    queryFn: async () => {
+      if (!actor) return [];
+      const raw = await actor.getCommentsForPost(postId);
+      return raw.map(normalizeComment);
+    },
+    enabled: !!actor && !isFetching && !!postId
+  });
+}
+function useGetAllComments(options) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["allComments"],
+    queryFn: async () => {
+      if (!actor) return [];
+      const raw = await actor.getAllComments();
+      return raw.map(normalizeComment);
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: options == null ? void 0 : options.refetchInterval
+  });
+}
+function useGetCommentCount() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["commentCount"],
+    queryFn: async () => {
+      if (!actor) return 0;
+      const count2 = await actor.getCommentCount();
+      return Number(count2);
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: 3e4
+  });
+}
+function useSubmitComment() {
+  const { actor, isFetching } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      postId,
+      parentId,
+      authorName,
+      authorEmail,
+      content
+    }) => {
+      if (isFetching) {
+        throw new Error(
+          "Still connecting to the server — please wait a moment and try again."
+        );
+      }
+      if (!actor) {
+        throw new Error(
+          "Connection error — please refresh the page and try again."
+        );
+      }
+      return actor.submitComment(
+        postId,
+        parentId ?? null,
+        authorName,
+        authorEmail,
+        content
+      );
+    },
+    onSuccess: (_data, variables) => {
+      queryClient2.invalidateQueries({
+        queryKey: ["comments", variables.postId]
+      });
+      queryClient2.invalidateQueries({ queryKey: ["commentCount"] });
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+    },
+    onError: (error) => {
+      console.error("[useSubmitComment] Comment submission failed:", error);
+    }
+  });
+}
+function useApproveComment() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (commentId) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.approveComment(commentId);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+      queryClient2.invalidateQueries({ queryKey: ["commentCount"] });
+      queryClient2.invalidateQueries({ queryKey: ["comments"] });
+    }
+  });
+}
+function useRejectComment() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (commentId) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.rejectComment(commentId);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+      queryClient2.invalidateQueries({ queryKey: ["commentCount"] });
+      queryClient2.invalidateQueries({ queryKey: ["comments"] });
+    }
+  });
+}
+function useEditComment() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      commentId,
+      newContent
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.editComment(commentId, newContent);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+      queryClient2.invalidateQueries({ queryKey: ["comments"] });
+    }
+  });
+}
+function useDeleteComment() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (commentId) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.deleteComment(commentId);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+      queryClient2.invalidateQueries({ queryKey: ["commentCount"] });
+      queryClient2.invalidateQueries({ queryKey: ["comments"] });
+      queryClient2.invalidateQueries({ queryKey: ["rejectedComments"] });
+    }
+  });
+}
+function useUnapproveComment() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (commentId) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.unapproveComment(commentId);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["allComments"] });
+      queryClient2.invalidateQueries({ queryKey: ["commentCount"] });
+      queryClient2.invalidateQueries({ queryKey: ["comments"] });
+      queryClient2.invalidateQueries({ queryKey: ["rejectedComments"] });
+    }
+  });
+}
+function useGetRejectedComments(options) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["rejectedComments"],
+    queryFn: async () => {
+      if (!actor) return [];
+      const raw = await actor.getAllComments();
+      return raw.map(normalizeComment).filter((c2) => c2.rejected);
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: options == null ? void 0 : options.refetchInterval
+  });
+}
+function normalizeWebsitePage(raw) {
+  return {
+    ...raw,
+    sections: [...raw.sections].sort(
+      (a2, b2) => Number(a2.order) - Number(b2.order)
+    )
+  };
+}
+function useGetAllWebsitePages() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["websitePages"],
+    queryFn: async () => {
+      if (!actor) return [];
+      const pages = await actor.getAllWebsitePages();
+      return pages.map(normalizeWebsitePage);
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useGetMediaLibrary() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["mediaLibrary"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getMediaLibrary();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useGetGlobalConfig() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["globalConfig"],
+    queryFn: async () => {
+      if (!actor) return null;
+      return actor.getGlobalConfig();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useCreateWebsitePage() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ title, slug }) => {
+      if (!actor) throw new Error("Not connected");
+      const result = await actor.createWebsitePage(title, slug);
+      if (result.__kind__ === "err") throw new Error(result.err);
+      return result.ok;
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["websitePages"] });
+    }
+  });
+}
+function useEditWebsitePage() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      id: id2,
+      title,
+      slug
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      const result = await actor.editWebsitePage(id2, title, slug);
+      if (result.__kind__ === "err") throw new Error(result.err);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["websitePages"] });
+    }
+  });
+}
+function useDeleteWebsitePage() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("Not connected");
+      const result = await actor.deleteWebsitePage(id2);
+      if (result.__kind__ === "err") throw new Error(result.err);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["websitePages"] });
+    }
+  });
+}
+function useSavePageSections() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      pageId,
+      sections
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      const result = await actor.savePageSections(pageId, sections);
+      if (result.__kind__ === "err") throw new Error(result.err);
+    },
+    onSuccess: (_data, variables) => {
+      queryClient2.invalidateQueries({ queryKey: ["websitePages"] });
+      queryClient2.invalidateQueries({
+        queryKey: ["websitePage", variables.pageId.toString()]
+      });
+    }
+  });
+}
+function useUploadMediaItem() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      filename,
+      mimeType,
+      base64Data
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      const result = await actor.uploadMediaItem(
+        filename,
+        mimeType,
+        base64Data
+      );
+      if (result.__kind__ === "err") throw new Error(result.err);
+      return result.ok;
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["mediaLibrary"] });
+    }
+  });
+}
+function useUpdateGlobalConfig() {
+  const { actor } = useActor();
+  const queryClient2 = useQueryClient();
+  return useMutation({
+    mutationFn: async (config) => {
+      if (!actor) throw new Error("Not connected");
+      const normalized = {
+        ...config,
+        navigationMenu: config.navigationMenu.map((item, idx) => ({
+          ...item,
+          order: BigInt(idx)
+        }))
+      };
+      const result = await actor.updateGlobalConfig(normalized);
+      if (result.__kind__ === "err") throw new Error(result.err);
+    },
+    onSuccess: () => {
+      queryClient2.invalidateQueries({ queryKey: ["globalConfig"] });
+    }
+  });
+}
+const defaultFooterLinks = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
@@ -34092,6 +35779,12 @@ const footerLinks = [
 ];
 function Footer() {
   const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
+  const { data: globalConfig } = useGetGlobalConfig();
+  const phone = (globalConfig == null ? void 0 : globalConfig.contactPhone) || "+250 798979720";
+  const email = (globalConfig == null ? void 0 : globalConfig.contactEmail) || "moderneducationconsult2026@gmail.com";
+  const address = (globalConfig == null ? void 0 : globalConfig.contactAddress) || "Kigali, Musanze, RWANDA";
+  const tagline = (globalConfig == null ? void 0 : globalConfig.footerContent) || "Your trusted partner for international education and career opportunities.";
+  const siteTitle = (globalConfig == null ? void 0 : globalConfig.siteTitle) || "Modern Education Consult";
   return /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "brand-dark-bg text-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lg:col-span-1", children: [
@@ -34100,21 +35793,21 @@ function Footer() {
             "img",
             {
               src: "/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg",
-              alt: "Modern Education Consult Logo",
+              alt: siteTitle,
               className: "w-12 h-12 object-contain rounded-lg bg-black"
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-white text-base leading-tight", children: [
-            "Modern Education",
+            siteTitle.split(" ").slice(0, 2).join(" "),
             /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-            "Consult"
+            siteTitle.split(" ").slice(2).join(" ") || "Consult"
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/70 text-sm leading-relaxed", children: "Your trusted partner for international education and career opportunities." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/70 text-sm leading-relaxed", children: tagline })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-semibold text-white text-base mb-4", children: "Quick Links" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-2", children: footerLinks.map((link, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-2", children: defaultFooterLinks.map((link, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Link,
           {
             to: link.to,
@@ -34153,7 +35846,7 @@ function Footer() {
                 className: "mt-0.5 flex-shrink-0 text-primary"
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+250 798979720" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: phone })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-start gap-2.5 text-sm", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -34179,9 +35872,9 @@ function Footer() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "mailto:moderneducationconsult2025@gmail.com",
+                href: `mailto:${email}`,
                 className: "text-white/70 hover:text-white transition-colors break-all",
-                children: "moderneducationconsult2025@gmail.com"
+                children: email
               }
             )
           ] }),
@@ -34193,7 +35886,7 @@ function Footer() {
                 className: "mt-0.5 flex-shrink-0 text-primary"
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Kigali, Musanze, RWANDA" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: address })
           ] })
         ] })
       ] })
@@ -34202,18 +35895,23 @@ function Footer() {
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         "© ",
         currentYear,
-        " Modern Education Consult. All rights reserved."
+        " ",
+        siteTitle,
+        ". All rights reserved."
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "img",
           {
             src: "/assets/uploads/WhatsApp-Image-2026-03-11-at-4.44.17-PM-1.jpeg",
-            alt: "Modern Education Consult Logo",
+            alt: siteTitle,
             className: "w-7 h-7 object-contain rounded bg-black"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white/70", children: "Modern Education Consult — Where education meets opportunities" })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-white/70", children: [
+          siteTitle,
+          " — Where education meets opportunities"
+        ] })
       ] })
     ] })
   ] }) });
@@ -45115,6 +46813,9 @@ function Navbar() {
   const [mobileLanguageExpanded, setMobileLanguageExpanded] = reactExports.useState(false);
   const location2 = useLocation();
   const closeTimer = reactExports.useRef(null);
+  const { data: globalConfig } = useGetGlobalConfig();
+  const logoUrl = "/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg";
+  const siteTitle = (globalConfig == null ? void 0 : globalConfig.siteTitle) || "Modern Education Consult";
   reactExports.useEffect(() => {
     const handleScroll2 = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll2, { passive: true });
@@ -45141,15 +46842,15 @@ function Navbar() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link, { to: "/", className: "flex-shrink-0", "data-ocid": "nav.link.1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "img",
               {
-                src: "/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg",
-                alt: "Modern Education Consult",
+                src: logoUrl,
+                alt: siteTitle,
                 className: "h-20 w-auto object-contain"
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden lg:flex flex-col justify-center border-l border-brand-blue/20 pl-3", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "leading-tight", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-lg text-brand-dark leading-snug", children: "Modern Education" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-lg text-brand-dark leading-snug", children: "Consult" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-lg text-brand-dark leading-snug", children: siteTitle.split(" ").slice(0, 2).join(" ") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-lg text-brand-dark leading-snug", children: siteTitle.split(" ").slice(2).join(" ") || "Consult" })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-brand-blue/70 font-medium tracking-wide mt-0.5", children: "Where Education Meets Opportunity" })
             ] })
@@ -45288,14 +46989,14 @@ function Navbar() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "img",
                     {
-                      src: "/assets/uploads/bd33db92-589d-4260-a870-59b5278d3b02-1.jpg",
-                      alt: "Modern Education Consult",
+                      src: logoUrl,
+                      alt: siteTitle,
                       className: "h-12 w-auto object-contain"
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col justify-center", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-sm text-brand-dark leading-tight", children: "Modern Education" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-sm text-brand-dark leading-tight", children: "Consult" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-sm text-brand-dark leading-tight", children: siteTitle.split(" ").slice(0, 2).join(" ") }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-sm text-brand-dark leading-tight", children: siteTitle.split(" ").slice(2).join(" ") || "Consult" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-brand-blue/70 font-medium leading-tight", children: "Where Education Meets Opportunity" })
                   ] })
                 ]
@@ -45720,6 +47421,1023 @@ function CardContent({ className, ...props }) {
     }
   );
 }
+function getField(section, key, fallback = "") {
+  var _a3;
+  return ((_a3 = section.fields.find((f) => f.key === key)) == null ? void 0 : _a3.value) ?? fallback;
+}
+function EditableText({
+  value,
+  onBlur,
+  className,
+  tag: Tag2 = "span",
+  isEditing,
+  placeholder
+}) {
+  const ref = reactExports.useRef(null);
+  if (!isEditing) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Tag2, { className, children: value || placeholder });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Tag2,
+    {
+      ref,
+      contentEditable: true,
+      suppressContentEditableWarning: true,
+      className: `${className} outline-none ring-2 ring-cyan-400/60 ring-inset rounded cursor-text min-w-[40px]`,
+      onBlur: (e) => onBlur(e.currentTarget.textContent ?? ""),
+      onClick: (e) => e.stopPropagation(),
+      onKeyDown: (e) => e.stopPropagation(),
+      children: value || placeholder
+    }
+  );
+}
+function ImageField({
+  src,
+  alt,
+  className,
+  fieldKey,
+  isEditing,
+  onImagePick
+}) {
+  const [imgError, setImgError] = reactExports.useState(false);
+  if (!src || imgError) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: `${className} bg-gray-200 flex items-center justify-center relative`,
+        onClick: (e) => {
+          if (isEditing) {
+            e.stopPropagation();
+            onImagePick(fieldKey);
+          }
+        },
+        onKeyDown: () => {
+        },
+        role: isEditing ? "button" : void 0,
+        tabIndex: isEditing ? 0 : void 0,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-400 text-sm", children: "No image" }),
+          isEditing && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white text-xs font-medium bg-blue-600 px-3 py-1.5 rounded-lg", children: "Click to set image" }) })
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "relative",
+      onClick: (e) => {
+        if (isEditing) {
+          e.stopPropagation();
+          onImagePick(fieldKey);
+        }
+      },
+      onKeyDown: () => {
+      },
+      role: isEditing ? "button" : void 0,
+      tabIndex: isEditing ? 0 : void 0,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "img",
+          {
+            src,
+            alt,
+            className,
+            onError: () => setImgError(true)
+          }
+        ),
+        isEditing && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white text-xs font-medium bg-blue-600 px-3 py-1.5 rounded-lg", children: "Replace Image" }) })
+      ]
+    }
+  );
+}
+function HeroSection({ section, isEditing, onEditField, onImagePick }) {
+  const heading = getField(
+    section,
+    "heading",
+    "Your Gateway to Global Opportunities"
+  );
+  const subheading = getField(
+    section,
+    "subheading",
+    "Professional guidance for studying and working abroad."
+  );
+  const ctaText = getField(section, "ctaText", "Apply Now");
+  const ctaLink = getField(section, "ctaLink", "/contact");
+  const heroImage = getField(
+    section,
+    "heroImage",
+    "/assets/generated/hero-banner.dim_1600x700.jpg"
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "relative min-h-[400px] flex items-center justify-center overflow-hidden",
+      style: {
+        background: "linear-gradient(135deg, oklch(0.22 0.08 262) 0%, oklch(0.35 0.12 262) 50%, oklch(0.28 0.1 258) 100%)"
+      },
+      children: [
+        heroImage && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0 bg-cover bg-center bg-no-repeat",
+            style: { backgroundImage: `url('${heroImage}')` }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0",
+            style: {
+              background: "linear-gradient(135deg, oklch(0.22 0.08 262 / 0.85) 0%, oklch(0.35 0.12 262 / 0.8) 100%)"
+            }
+          }
+        ),
+        isEditing && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: (e) => {
+              e.stopPropagation();
+              onImagePick("heroImage");
+            },
+            className: "absolute top-3 right-3 z-20 bg-black/60 hover:bg-black/80 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition-colors",
+            children: "Replace Background"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 max-w-4xl mx-auto px-6 py-20 text-center", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            EditableText,
+            {
+              tag: "h1",
+              value: heading,
+              onBlur: (v2) => onEditField("heading", v2),
+              className: "font-display font-bold text-white text-4xl sm:text-5xl leading-tight mb-4",
+              isEditing,
+              placeholder: "Your Headline"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            EditableText,
+            {
+              tag: "p",
+              value: subheading,
+              onBlur: (v2) => onEditField("subheading", v2),
+              className: "text-white/80 text-lg max-w-2xl mx-auto mb-8",
+              isEditing,
+              placeholder: "Subheadline"
+            }
+          ),
+          isEditing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 bg-white/20 rounded-lg px-4 py-2 border border-white/30", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: ctaText,
+                onBlur: (v2) => onEditField("ctaText", v2),
+                className: "text-white font-bold text-sm",
+                isEditing,
+                placeholder: "Button Text"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white/50 text-xs", children: "→" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: ctaLink,
+                onBlur: (v2) => onEditField("ctaLink", v2),
+                className: "text-white/70 text-xs",
+                isEditing,
+                placeholder: "/contact"
+              }
+            )
+          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Link,
+            {
+              to: ctaLink,
+              className: "inline-flex items-center gap-2 bg-white hover:bg-white/90 text-[#1e3a5f] font-bold px-8 py-3 rounded-lg shadow-lg transition-all",
+              children: ctaText
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+function TextBlockSection({ section, isEditing, onEditField }) {
+  const title = getField(section, "title");
+  const content = getField(section, "content");
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "py-16 px-6 max-w-3xl mx-auto", children: [
+    title && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "h2",
+        value: title,
+        onBlur: (v2) => onEditField("title", v2),
+        className: "font-display font-bold text-2xl text-[#1e3a5f] mb-4",
+        isEditing,
+        placeholder: "Section Title"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "p",
+        value: content,
+        onBlur: (v2) => onEditField("content", v2),
+        className: "text-gray-600 text-base leading-relaxed",
+        isEditing,
+        placeholder: "Add your content here..."
+      }
+    )
+  ] });
+}
+function ImageBlockSection({
+  section,
+  isEditing,
+  onEditField,
+  onImagePick
+}) {
+  const src = getField(section, "src");
+  const caption = getField(section, "caption");
+  const alignment = getField(section, "alignment", "center");
+  const alignMap = { left: "mr-auto", center: "mx-auto", right: "ml-auto" };
+  const cls = alignMap[alignment] ?? "mx-auto";
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-12 px-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `max-w-2xl ${cls}`, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ImageField,
+      {
+        src,
+        alt: getField(section, "alt"),
+        className: "w-full rounded-xl shadow-md",
+        fieldKey: "src",
+        isEditing,
+        onImagePick
+      }
+    ),
+    caption && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "p",
+        value: caption,
+        onBlur: (v2) => onEditField("caption", v2),
+        className: "text-center text-sm text-gray-500 mt-2 italic",
+        isEditing,
+        placeholder: "Image caption"
+      }
+    )
+  ] }) });
+}
+function TwoColumnSection({
+  section,
+  isEditing,
+  onEditField,
+  onImagePick
+}) {
+  const heading = getField(section, "heading", "Two Column Section");
+  const text = getField(section, "text");
+  const image = getField(section, "image");
+  const imagePos = getField(section, "imagePosition", "right");
+  const textBlock = /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col justify-center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "h2",
+        value: heading,
+        onBlur: (v2) => onEditField("heading", v2),
+        className: "font-display font-bold text-3xl text-[#1e3a5f] mb-4",
+        isEditing,
+        placeholder: "Heading"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "p",
+        value: text,
+        onBlur: (v2) => onEditField("text", v2),
+        className: "text-gray-600 text-base leading-relaxed",
+        isEditing,
+        placeholder: "Content text..."
+      }
+    )
+  ] });
+  const imgBlock = /* @__PURE__ */ jsxRuntimeExports.jsx(
+    ImageField,
+    {
+      src: image,
+      alt: getField(section, "imageAlt"),
+      className: "w-full rounded-xl shadow-md object-cover",
+      fieldKey: "image",
+      isEditing,
+      onImagePick
+    }
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center", children: imagePos === "left" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    imgBlock,
+    textBlock
+  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    textBlock,
+    imgBlock
+  ] }) }) });
+}
+function CtaSection({ section, isEditing, onEditField }) {
+  const heading = getField(section, "heading", "Ready to Get Started?");
+  const text = getField(section, "text");
+  const ctaText = getField(section, "ctaText", "Apply Now");
+  const ctaLink = getField(section, "ctaLink", "/contact");
+  const cta2Text = getField(section, "cta2Text", "Learn More");
+  const cta2Link = getField(section, "cta2Link", "/about");
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "py-20 px-6 text-center",
+      style: {
+        background: "linear-gradient(135deg, oklch(0.22 0.08 262) 0%, oklch(0.35 0.12 262) 100%)"
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            tag: "h2",
+            value: heading,
+            onBlur: (v2) => onEditField("heading", v2),
+            className: "font-display font-bold text-3xl sm:text-4xl text-white mb-4",
+            isEditing,
+            placeholder: "Section Heading"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            tag: "p",
+            value: text,
+            onBlur: (v2) => onEditField("text", v2),
+            className: "text-white/70 text-lg mb-8",
+            isEditing,
+            placeholder: "Section description..."
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col sm:flex-row gap-3 justify-center", children: isEditing ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 bg-white rounded-lg px-4 py-2 border border-gray-300", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: ctaText,
+                onBlur: (v2) => onEditField("ctaText", v2),
+                className: "font-bold text-[#1e3a5f] text-sm",
+                isEditing,
+                placeholder: "Button 1"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-300 text-xs", children: "|" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: ctaLink,
+                onBlur: (v2) => onEditField("ctaLink", v2),
+                className: "text-gray-500 text-xs",
+                isEditing,
+                placeholder: "/link"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "inline-flex items-center gap-2 bg-white/20 rounded-lg px-4 py-2 border border-white/30", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: cta2Text,
+                onBlur: (v2) => onEditField("cta2Text", v2),
+                className: "font-bold text-white text-sm",
+                isEditing,
+                placeholder: "Button 2"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white/30 text-xs", children: "|" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              EditableText,
+              {
+                value: cta2Link,
+                onBlur: (v2) => onEditField("cta2Link", v2),
+                className: "text-white/50 text-xs",
+                isEditing,
+                placeholder: "/link"
+              }
+            )
+          ] })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Link,
+            {
+              to: ctaLink,
+              className: "inline-block bg-white hover:bg-white/90 text-[#1e3a5f] font-bold px-8 py-3 rounded-lg shadow-lg transition-all",
+              children: ctaText
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Link,
+            {
+              to: cta2Link,
+              className: "inline-block border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-all",
+              children: cta2Text
+            }
+          )
+        ] }) })
+      ] })
+    }
+  );
+}
+function ServicesGridSection({ section, isEditing, onEditField }) {
+  const heading = getField(section, "heading", "Our Services");
+  const subheading = getField(
+    section,
+    "subheading",
+    "Comprehensive solutions for your international journey."
+  );
+  const services = [
+    {
+      icon: "🎓",
+      name: "Study Abroad",
+      desc: "University admissions and scholarship support."
+    },
+    {
+      icon: "💼",
+      name: "Job Placement",
+      desc: "International employment and career guidance."
+    },
+    {
+      icon: "📋",
+      name: "Visa Assistance",
+      desc: "Expert visa processing and documentation."
+    },
+    {
+      icon: "💰",
+      name: "Scholarships",
+      desc: "Financial aid and scholarship applications."
+    },
+    {
+      icon: "🌐",
+      name: "Online Courses",
+      desc: "Accredited international online degrees."
+    },
+    {
+      icon: "🤝",
+      name: "Internships",
+      desc: "Hands-on global work experience placements."
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-gray-50", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-10", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        EditableText,
+        {
+          tag: "h2",
+          value: heading,
+          onBlur: (v2) => onEditField("heading", v2),
+          className: "font-display font-bold text-3xl text-[#1e3a5f] mb-2",
+          isEditing,
+          placeholder: "Section Heading"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        EditableText,
+        {
+          tag: "p",
+          value: subheading,
+          onBlur: (v2) => onEditField("subheading", v2),
+          className: "text-gray-500 text-base",
+          isEditing,
+          placeholder: "Subheading..."
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6", children: services.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl mb-3", children: s2.icon }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-base mb-2", children: s2.name }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-500 text-sm", children: s2.desc })
+        ]
+      },
+      s2.name
+    )) })
+  ] }) });
+}
+function CountriesGridSection({ section, isEditing, onEditField }) {
+  const heading = getField(section, "heading", "Countries We Serve");
+  const countries2 = [
+    { flag: "🇺🇸", name: "USA" },
+    { flag: "🇨🇦", name: "Canada" },
+    { flag: "🇬🇧", name: "UK" },
+    { flag: "🇦🇪", name: "UAE" },
+    { flag: "🇪🇺", name: "Europe" },
+    { flag: "🇨🇳", name: "China" },
+    { flag: "🇦🇺", name: "Australia" }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center mb-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "h2",
+        value: heading,
+        onBlur: (v2) => onEditField("heading", v2),
+        className: "font-display font-bold text-3xl text-[#1e3a5f] mb-2",
+        isEditing,
+        placeholder: "Heading"
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-3 justify-center", children: countries2.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Link,
+      {
+        to: "/contact",
+        search: { country: c2.name },
+        className: "flex items-center gap-2.5 px-5 py-3 rounded-full bg-gray-50 border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all text-sm font-semibold text-[#1e3a5f]",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl", children: c2.flag }),
+          c2.name
+        ]
+      },
+      c2.name
+    )) })
+  ] }) });
+}
+function TeamSection({ section, isEditing, onEditField, onImagePick }) {
+  const heading = getField(section, "heading", "Meet Our Team");
+  const image = getField(
+    section,
+    "image",
+    "/assets/uploads/WhatsApp-Image-2026-03-05-at-12.08.05-1.jpeg"
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-4xl mx-auto text-center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "h2",
+        value: heading,
+        onBlur: (v2) => onEditField("heading", v2),
+        className: "font-display font-bold text-3xl text-[#1e3a5f] mb-8",
+        isEditing,
+        placeholder: "Team Heading"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ImageField,
+      {
+        src: image,
+        alt: "Our Team",
+        className: "w-full rounded-2xl shadow-lg object-cover max-h-80",
+        fieldKey: "image",
+        isEditing,
+        onImagePick
+      }
+    )
+  ] }) });
+}
+function ContactInfoSection({ section, isEditing, onEditField }) {
+  const phone = getField(section, "phone", "+250 798979720");
+  const whatsapp = getField(section, "whatsapp", "+250 795780073");
+  const email = getField(
+    section,
+    "email",
+    "moderneducationconsult2026@gmail.com"
+  );
+  const address = getField(section, "address", "Kigali, Musanze, Rwanda");
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-gray-50", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-2xl text-[#1e3a5f] mb-6 text-center", children: "Contact Information" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-gray-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { size: 18, className: "text-blue-600 flex-shrink-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            value: phone,
+            onBlur: (v2) => onEditField("phone", v2),
+            className: "text-sm text-gray-700",
+            isEditing
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-gray-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { size: 18, className: "text-green-500 flex-shrink-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            value: whatsapp,
+            onBlur: (v2) => onEditField("whatsapp", v2),
+            className: "text-sm text-gray-700",
+            isEditing
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-gray-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { size: 18, className: "text-blue-600 flex-shrink-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            value: email,
+            onBlur: (v2) => onEditField("email", v2),
+            className: "text-sm text-gray-700 break-all",
+            isEditing
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-gray-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { size: 18, className: "text-red-500 flex-shrink-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EditableText,
+          {
+            value: address,
+            onBlur: (v2) => onEditField("address", v2),
+            className: "text-sm text-gray-700",
+            isEditing
+          }
+        )
+      ] })
+    ] })
+  ] }) });
+}
+function ButtonBlockSection({ section, isEditing, onEditField }) {
+  const text = getField(section, "text", "Click Here");
+  const link = getField(section, "link", "/contact");
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-10 px-6 flex justify-center", children: isEditing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-xl px-5 py-3", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        value: text,
+        onBlur: (v2) => onEditField("text", v2),
+        className: "font-bold text-blue-700 text-sm",
+        isEditing,
+        placeholder: "Button text"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-blue-300", children: "→" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        value: link,
+        onBlur: (v2) => onEditField("link", v2),
+        className: "text-blue-400 text-xs",
+        isEditing,
+        placeholder: "/link"
+      }
+    )
+  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Link,
+    {
+      to: link,
+      className: "inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all text-base",
+      children: text
+    }
+  ) });
+}
+function TestimonialsSection() {
+  const { data: testimonials = [] } = useGetAllTestimonials();
+  const display = testimonials.length > 0 ? testimonials.slice(0, 3) : [
+    {
+      clientName: "Amina Uwase",
+      country: "Now studying in Canada",
+      quote: "Modern Education Consult made my dream a reality.",
+      photoUrl: ""
+    },
+    {
+      clientName: "Jean-Pierre Niyonzima",
+      country: "Working in UAE",
+      quote: "Exceptional support throughout the entire process.",
+      photoUrl: ""
+    },
+    {
+      clientName: "Claudine Mukamana",
+      country: "Studying in UK",
+      quote: "The scholarship support they provided saved me thousands.",
+      photoUrl: ""
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-[#1e3a5f]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-3xl text-white mb-8 text-center", children: "Client Success Stories" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-6", children: display.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white/10 rounded-xl p-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-white/80 text-sm italic mb-4", children: [
+        '"',
+        t.quote,
+        '"'
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold text-white", children: t.clientName.charAt(0) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white text-xs font-semibold", children: t.clientName }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/60 text-[10px]", children: t.country })
+        ] })
+      ] })
+    ] }, t.clientName)) })
+  ] }) });
+}
+function BlogPreviewSection() {
+  const { data: posts = [] } = useGetAllBlogPosts();
+  const latest = posts.slice(0, 3);
+  if (latest.length === 0) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-12 px-6 text-center text-gray-400", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: "Blog posts will appear here once published." }) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-gray-50", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-3xl text-[#1e3a5f] mb-8 text-center", children: "Latest from Our Blog" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-6", children: latest.map((post) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-40 bg-gradient-to-br from-[#1e3a5f] to-[#1d4ed8] relative overflow-hidden", children: post.imageUrl && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "img",
+            {
+              src: post.imageUrl,
+              alt: post.title,
+              className: "w-full h-full object-cover"
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-blue-600 font-semibold", children: post.category }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-sm mt-1 line-clamp-2", children: post.title })
+          ] })
+        ]
+      },
+      post.id.toString()
+    )) })
+  ] }) });
+}
+function AboutPreviewSection({
+  section,
+  isEditing,
+  onEditField,
+  onImagePick
+}) {
+  const heading = getField(
+    section,
+    "heading",
+    "About Modern Education Consult"
+  );
+  const text = getField(
+    section,
+    "text",
+    "We provide professional guidance for international education and career opportunities."
+  );
+  const image = getField(
+    section,
+    "image",
+    "/assets/uploads/WhatsApp-Image-2026-03-05-at-12.08.05-1.jpeg"
+  );
+  const ctaText = getField(section, "ctaText", "Learn More");
+  const ctaLink = getField(section, "ctaLink", "/about");
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        EditableText,
+        {
+          tag: "h2",
+          value: heading,
+          onBlur: (v2) => onEditField("heading", v2),
+          className: "font-display font-bold text-3xl text-[#1e3a5f] mb-4",
+          isEditing,
+          placeholder: "Heading"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        EditableText,
+        {
+          tag: "p",
+          value: text,
+          onBlur: (v2) => onEditField("text", v2),
+          className: "text-gray-600 text-base leading-relaxed mb-6",
+          isEditing,
+          placeholder: "Description..."
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { size: 16, className: "text-blue-600" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm text-gray-600", children: "Professional and Ethical Services" })
+      ] }),
+      !isEditing && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Link,
+        {
+          to: ctaLink,
+          className: "inline-block mt-6 border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-semibold px-5 py-2.5 rounded-lg transition-all text-sm",
+          children: ctaText
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ImageField,
+      {
+        src: image,
+        alt: "About us",
+        className: "w-full rounded-2xl shadow-lg object-cover",
+        fieldKey: "image",
+        isEditing,
+        onImagePick
+      }
+    )
+  ] }) });
+}
+function WhyChooseSection({ section, isEditing, onEditField }) {
+  const heading = getField(section, "heading", "Why Choose Us");
+  const items = [
+    {
+      icon: "🛡️",
+      title: "Professional & Ethical",
+      desc: "We uphold the highest standards."
+    },
+    {
+      icon: "✅",
+      title: "Transparent Process",
+      desc: "Clear guidance with no hidden fees."
+    },
+    {
+      icon: "👥",
+      title: "Personalized Support",
+      desc: "Tailored advice for your goals."
+    },
+    {
+      icon: "🌐",
+      title: "Global Network",
+      desc: "Partners worldwide for your success."
+    },
+    {
+      icon: "📚",
+      title: "Step-by-Step Guidance",
+      desc: "Support from start to placement."
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-16 px-6 bg-gray-50", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center mb-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EditableText,
+      {
+        tag: "h2",
+        value: heading,
+        onBlur: (v2) => onEditField("heading", v2),
+        className: "font-display font-bold text-3xl text-[#1e3a5f]",
+        isEditing
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5", children: items.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "bg-white rounded-xl p-5 shadow-sm border border-gray-100",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl block mb-2", children: item.icon }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-sm mb-1", children: item.title }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-500 text-xs", children: item.desc })
+        ]
+      },
+      item.title
+    )) })
+  ] }) });
+}
+function DefaultSection({ section }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-10 px-6 bg-gray-50 flex items-center justify-center text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest mb-2", children: section.sectionType }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-400 text-sm", children: [
+      "This section type (",
+      section.sectionType,
+      ") will render dynamically on the live site."
+    ] })
+  ] }) });
+}
+function PageSectionRenderer({
+  section,
+  isEditing,
+  onEditField,
+  onImagePick
+}) {
+  switch (section.sectionType) {
+    case "hero":
+    case "hero-section":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        HeroSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "text-block":
+    case "textBlock":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TextBlockSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "image-block":
+    case "imageBlock":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ImageBlockSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "two-column":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TwoColumnSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "cta-section":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CtaSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "services-grid":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ServicesGridSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "countries-grid":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CountriesGridSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "team-section":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TeamSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "contact-info":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ContactInfoSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "button-block":
+    case "buttonBlock":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ButtonBlockSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "testimonials":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(TestimonialsSection, {});
+    case "blog-preview":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(BlogPreviewSection, {});
+    case "about-preview":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        AboutPreviewSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    case "why-choose":
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        WhyChooseSection,
+        {
+          section,
+          isEditing,
+          onEditField,
+          onImagePick
+        }
+      );
+    default:
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(DefaultSection, { section });
+  }
+}
 const values = [
   "Integrity and transparency in all client interactions",
   "Commitment to client success and satisfaction",
@@ -45728,6 +48446,23 @@ const values = [
   "Continuous improvement and learning"
 ];
 function AboutPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "about");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -48684,14 +51419,1587 @@ function Textarea({ className, ...props }) {
     }
   );
 }
-const emptyRow = () => ({ url: "", caption: "" });
-function ImageSliderEditor({
-  onInsert
+function MediaPickerModal({
+  open,
+  onClose,
+  onSelect,
+  title = "Select Image"
 }) {
-  const [open, setOpen] = reactExports.useState(false);
+  const [activeTab, setActiveTab] = reactExports.useState("library");
+  const [urlInput, setUrlInput] = reactExports.useState("");
+  const { data: media = [], isLoading } = useGetMediaLibrary();
+  const uploadMedia = useUploadMediaItem();
+  const fileInputRef = reactExports.useRef(null);
+  const handleUpload = (e) => {
+    var _a3;
+    const file = (_a3 = e.target.files) == null ? void 0 : _a3[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      var _a4;
+      const base64Data = (_a4 = ev.target) == null ? void 0 : _a4.result;
+      if (typeof base64Data !== "string") return;
+      try {
+        await uploadMedia.mutateAsync({
+          filename: file.name,
+          mimeType: file.type,
+          base64Data
+        });
+        ue.success(`"${file.name}" uploaded.`);
+        setActiveTab("library");
+      } catch (err) {
+        ue.error(
+          `Upload failed: ${err instanceof Error ? err.message : "Unknown"}`
+        );
+      }
+    };
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
+  const handleUrlSelect = () => {
+    if (!urlInput.trim()) return;
+    onSelect(urlInput.trim());
+    setUrlInput("");
+    onClose();
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "max-w-2xl max-h-[80vh] flex flex-col",
+      "data-ocid": "we.media_picker.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: title }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex border-b border-gray-200 -mx-6 px-6", children: ["library", "upload", "url"].map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: () => setActiveTab(tab),
+            "data-ocid": `we.media_picker.${tab}.tab`,
+            className: `px-4 py-2 text-sm font-medium border-b-2 transition-colors capitalize ${activeTab === tab ? "border-blue-600 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`,
+            children: tab === "library" ? "Media Library" : tab === "upload" ? "Upload New" : "Paste URL"
+          },
+          tab
+        )) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 overflow-y-auto pt-2", children: [
+          activeTab === "library" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 sm:grid-cols-4 gap-3", children: [1, 2, 3, 4, 5, 6].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "aspect-square rounded-lg bg-gray-100 animate-pulse"
+            },
+            i
+          )) }) : media.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "text-center py-12 text-gray-400",
+              "data-ocid": "we.media_picker.empty_state",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 32, className: "mx-auto mb-2" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: "No media uploaded yet." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs mt-1", children: "Switch to the Upload tab to add images." })
+              ]
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "grid grid-cols-3 sm:grid-cols-4 gap-3",
+              "data-ocid": "we.media_picker.grid",
+              children: media.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": `we.media_picker.item.${idx + 1}`,
+                  onClick: () => {
+                    onSelect(item.base64Data);
+                    onClose();
+                  },
+                  className: "group relative aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all",
+                  title: item.filename,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "img",
+                      {
+                        src: item.base64Data,
+                        alt: item.filename,
+                        className: "w-full h-full object-cover"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-blue-700/0 group-hover:bg-blue-700/20 transition-colors flex items-end", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-full text-xs text-white bg-black/50 px-1.5 py-1 truncate opacity-0 group-hover:opacity-100 transition-opacity", children: item.filename }) })
+                  ]
+                },
+                item.id.toString()
+              ))
+            }
+          ) }),
+          activeTab === "upload" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center py-12 gap-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                ref: fileInputRef,
+                type: "file",
+                accept: "image/*",
+                className: "hidden",
+                onChange: handleUpload
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-20 rounded-2xl bg-blue-50 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 28, className: "text-blue-600" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-gray-700 mb-1", children: "Upload an image" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500", children: "PNG, JPG, GIF, WEBP accepted" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                onClick: () => {
+                  var _a3;
+                  return (_a3 = fileInputRef.current) == null ? void 0 : _a3.click();
+                },
+                disabled: uploadMedia.isPending,
+                className: "bg-blue-700 text-white",
+                "data-ocid": "we.media_picker.upload.button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 15, className: "mr-2" }),
+                  uploadMedia.isPending ? "Uploading..." : "Choose File"
+                ]
+              }
+            )
+          ] }),
+          activeTab === "url" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "py-6 space-y-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "label",
+                {
+                  htmlFor: "media-url",
+                  className: "text-sm font-semibold text-gray-700",
+                  children: "Image URL"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "media-url",
+                  value: urlInput,
+                  onChange: (e) => setUrlInput(e.target.value),
+                  placeholder: "https://example.com/image.jpg",
+                  className: "border-gray-200",
+                  "data-ocid": "we.media_picker.url.input",
+                  onKeyDown: (e) => e.key === "Enter" && handleUrlSelect()
+                }
+              )
+            ] }),
+            urlInput && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "rounded-xl overflow-hidden border border-gray-200 bg-gray-50 max-h-40 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "img",
+              {
+                src: urlInput,
+                alt: "Preview",
+                className: "max-h-40 object-contain",
+                onError: (e) => {
+                  e.currentTarget.style.display = "none";
+                }
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                onClick: handleUrlSelect,
+                disabled: !urlInput.trim(),
+                className: "w-full bg-blue-700 text-white",
+                "data-ocid": "we.media_picker.url.submit_button",
+                children: "Use This Image"
+              }
+            )
+          ] })
+        ] })
+      ]
+    }
+  ) });
+}
+function GlobalControlsPanel() {
+  const { data: config, isLoading } = useGetGlobalConfig();
+  const updateConfig = useUpdateGlobalConfig();
+  const [showLogoPicker, setShowLogoPicker] = reactExports.useState(false);
+  const [form, setForm] = reactExports.useState({
+    siteTitle: "Modern Education Consult",
+    contactPhone: "+250 798979720",
+    contactEmail: "moderneducationconsult2026@gmail.com",
+    contactAddress: "Kigali, Musanze, Rwanda",
+    footerContent: "Where education meets opportunities",
+    navigationMenu: [],
+    updatedAt: BigInt(0)
+  });
+  reactExports.useEffect(() => {
+    if (config) {
+      setForm({
+        ...config,
+        navigationMenu: [...config.navigationMenu].sort(
+          (a2, b2) => Number(a2.order) - Number(b2.order)
+        )
+      });
+    }
+  }, [config]);
+  const setField = (key, value) => {
+    setForm((f) => ({ ...f, [key]: value }));
+  };
+  const handleNavChange = (idx, field, value) => {
+    setForm((f) => ({
+      ...f,
+      navigationMenu: f.navigationMenu.map(
+        (item, i) => i === idx ? { ...item, [field]: value } : item
+      )
+    }));
+  };
+  const handleNavAdd = () => {
+    const newItem = {
+      id: BigInt(Date.now()),
+      text: "New Item",
+      url: "/",
+      order: BigInt(form.navigationMenu.length)
+    };
+    setForm((f) => ({ ...f, navigationMenu: [...f.navigationMenu, newItem] }));
+  };
+  const handleNavDelete = (idx) => {
+    setForm((f) => ({
+      ...f,
+      navigationMenu: f.navigationMenu.filter((_2, i) => i !== idx)
+    }));
+  };
+  const handleNavMoveUp = (idx) => {
+    if (idx === 0) return;
+    setForm((f) => {
+      const nav = [...f.navigationMenu];
+      [nav[idx - 1], nav[idx]] = [nav[idx], nav[idx - 1]];
+      return { ...f, navigationMenu: nav };
+    });
+  };
+  const handleNavMoveDown = (idx) => {
+    setForm((f) => {
+      if (idx >= f.navigationMenu.length - 1) return f;
+      const nav = [...f.navigationMenu];
+      [nav[idx], nav[idx + 1]] = [nav[idx + 1], nav[idx]];
+      return { ...f, navigationMenu: nav };
+    });
+  };
+  const handleSave = async () => {
+    const normalized = {
+      ...form,
+      updatedAt: BigInt(Date.now()),
+      navigationMenu: form.navigationMenu.map((item, idx) => ({
+        ...item,
+        order: BigInt(idx)
+      }))
+    };
+    try {
+      await updateConfig.mutateAsync(normalized);
+      ue.success("Global settings saved!");
+    } catch (e) {
+      ue.error(`Failed: ${e instanceof Error ? e.message : "Unknown"}`);
+    }
+  };
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-2", children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "h-10 rounded-lg bg-slate-700/40 animate-pulse"
+      },
+      i
+    )) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 pb-4", "data-ocid": "we.global.panel", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Section, { title: "Branding", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Site Title", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: form.siteTitle,
+          onChange: (e) => setField("siteTitle", e.target.value),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          "data-ocid": "we.global.site_title.input"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Logo", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button,
+        {
+          type: "button",
+          size: "sm",
+          variant: "outline",
+          onClick: () => setShowLogoPicker(true),
+          className: "h-7 text-xs border-slate-600 text-slate-300 hover:bg-slate-700",
+          "data-ocid": "we.global.logo_picker.button",
+          children: "Replace Logo"
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Section, { title: "Contact Information", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Phone", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: form.contactPhone,
+          onChange: (e) => setField("contactPhone", e.target.value),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          "data-ocid": "we.global.phone.input"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Email", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: form.contactEmail,
+          onChange: (e) => setField("contactEmail", e.target.value),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          "data-ocid": "we.global.email.input"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Address", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: form.contactAddress,
+          onChange: (e) => setField("contactAddress", e.target.value),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          "data-ocid": "we.global.address.input"
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Section, { title: "Footer", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-[10px] text-slate-400", children: "Footer Tagline" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Textarea,
+        {
+          value: form.footerContent,
+          onChange: (e) => setField("footerContent", e.target.value),
+          rows: 2,
+          className: "text-xs bg-slate-800 border-slate-600 text-white resize-none",
+          "data-ocid": "we.global.footer.textarea"
+        }
+      )
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Section, { title: "Navigation Menu", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1.5", "data-ocid": "we.global.nav.list", children: form.navigationMenu.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "p",
+        {
+          className: "text-xs text-slate-500 text-center py-2",
+          "data-ocid": "we.global.nav.empty_state",
+          children: "No menu items yet."
+        }
+      ) : form.navigationMenu.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          "data-ocid": `we.global.nav.item.${idx + 1}`,
+          className: "flex items-center gap-1 bg-slate-800/60 rounded-lg p-1.5 border border-slate-700",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-0.5 shrink-0", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => handleNavMoveUp(idx),
+                  disabled: idx === 0,
+                  className: "p-0.5 rounded text-slate-500 hover:text-slate-300 disabled:opacity-30 transition-colors",
+                  "aria-label": "Move up",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { size: 10 })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => handleNavMoveDown(idx),
+                  disabled: idx === form.navigationMenu.length - 1,
+                  className: "p-0.5 rounded text-slate-500 hover:text-slate-300 disabled:opacity-30 transition-colors",
+                  "aria-label": "Move down",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowDown, { size: 10 })
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: item.text,
+                onChange: (e) => handleNavChange(idx, "text", e.target.value),
+                placeholder: "Label",
+                className: "flex-1 h-6 text-xs bg-slate-700 border-slate-600 text-white min-w-0",
+                "data-ocid": `we.global.nav.text.${idx + 1}`
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: item.url,
+                onChange: (e) => handleNavChange(idx, "url", e.target.value),
+                placeholder: "/url",
+                className: "flex-1 h-6 text-xs bg-slate-700 border-slate-600 text-white min-w-0",
+                "data-ocid": `we.global.nav.url.${idx + 1}`
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => handleNavDelete(idx),
+                className: "p-1 rounded hover:bg-red-500/20 text-slate-400 hover:text-red-400 shrink-0 transition-colors",
+                "aria-label": "Remove",
+                "data-ocid": `we.global.nav.delete_button.${idx + 1}`,
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 11 })
+              }
+            )
+          ]
+        },
+        item.id.toString()
+      )) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          onClick: handleNavAdd,
+          className: "w-full flex items-center justify-center gap-1 py-1.5 rounded-lg border border-dashed border-slate-600 text-slate-400 hover:text-cyan-400 hover:border-cyan-500 text-xs font-medium transition-colors mt-1",
+          "data-ocid": "we.global.nav.add_item.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 11 }),
+            "Add Menu Item"
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Button,
+      {
+        onClick: handleSave,
+        disabled: updateConfig.isPending,
+        className: "w-full bg-cyan-600 hover:bg-cyan-700 text-white text-xs h-8 gap-1.5",
+        "data-ocid": "we.global.save_button",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { size: 12 }),
+          updateConfig.isPending ? "Saving..." : "Save Global Settings"
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      MediaPickerModal,
+      {
+        open: showLogoPicker,
+        onClose: () => setShowLogoPicker(false),
+        onSelect: () => {
+          setShowLogoPicker(false);
+          ue.success("Logo selected from library.");
+        },
+        title: "Select Logo Image"
+      }
+    )
+  ] });
+}
+function Section({
+  title,
+  children
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "rounded-lg border border-slate-700 bg-slate-800/30 overflow-hidden", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-3 py-1.5 bg-slate-700/30 border-b border-slate-700", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] font-bold uppercase tracking-wider text-slate-400", children: title }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-3 space-y-2.5", children })
+  ] });
+}
+function FieldRow({
+  label,
+  children
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] text-slate-400 w-14 shrink-0", children: label }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 min-w-0", children })
+  ] });
+}
+const SECTION_TYPES = [
+  {
+    type: "hero",
+    label: "Hero Section",
+    description: "Full-width hero with headline, image and CTA button",
+    icon: "🏆"
+  },
+  {
+    type: "text-block",
+    label: "Text Block",
+    description: "Headline and paragraph content",
+    icon: "📝"
+  },
+  {
+    type: "image-block",
+    label: "Image Block",
+    description: "Single centered image with optional caption",
+    icon: "🖼️"
+  },
+  {
+    type: "two-column",
+    label: "Two Column",
+    description: "Text on one side, image on the other",
+    icon: "⬛⬛"
+  },
+  {
+    type: "about-preview",
+    label: "About Preview",
+    description: "Two column about section with image and CTA",
+    icon: "ℹ️"
+  },
+  {
+    type: "cta-section",
+    label: "CTA Section",
+    description: "Call to action with headline and buttons",
+    icon: "🎯"
+  },
+  {
+    type: "services-grid",
+    label: "Services Grid",
+    description: "Grid of service cards with icons",
+    icon: "⚙️"
+  },
+  {
+    type: "countries-grid",
+    label: "Countries Grid",
+    description: "Country flags and apply buttons",
+    icon: "🌍"
+  },
+  {
+    type: "team-section",
+    label: "Team Section",
+    description: "Team photo with headline",
+    icon: "👥"
+  },
+  {
+    type: "testimonials",
+    label: "Testimonials",
+    description: "Client success stories carousel",
+    icon: "⭐"
+  },
+  {
+    type: "blog-preview",
+    label: "Blog Preview",
+    description: "Latest 3 blog posts preview",
+    icon: "📰"
+  },
+  {
+    type: "why-choose",
+    label: "Why Choose Us",
+    description: "Feature highlights grid",
+    icon: "✅"
+  },
+  {
+    type: "contact-info",
+    label: "Contact Info",
+    description: "Phone, email, address, and WhatsApp",
+    icon: "📞"
+  },
+  {
+    type: "button-block",
+    label: "Button Block",
+    description: "A single large CTA button",
+    icon: "🔘"
+  }
+];
+function SectionTypePicker({ open, onClose, onSelect }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "max-w-2xl max-h-[80vh] flex flex-col",
+      "data-ocid": "we.section_picker.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogHeader, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Add a Section" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Choose a section type to insert into your page." })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-y-auto grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2", children: SECTION_TYPES.map((st2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            type: "button",
+            onClick: () => onSelect(st2.type),
+            "data-ocid": `we.section_picker.${st2.type}.button`,
+            className: "group flex flex-col items-start gap-2 p-4 rounded-xl border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all text-left cursor-pointer",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-2xl", children: st2.icon }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-sm text-gray-800 group-hover:text-blue-700 transition-colors", children: st2.label }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2", children: st2.description })
+              ] })
+            ]
+          },
+          st2.type
+        )) })
+      ]
+    }
+  ) });
+}
+function normalizeOrders(sections) {
+  return sections.map((s2, i) => ({ ...s2, order: BigInt(i) }));
+}
+function VisualPageEditor({ page, previewMode }) {
+  const [localSections, setLocalSections] = reactExports.useState(
+    () => [...page.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order))
+  );
+  const [savedSections, setSavedSections] = reactExports.useState(localSections);
+  const [history, setHistory] = reactExports.useState([localSections]);
+  const [historyIdx, setHistoryIdx] = reactExports.useState(0);
+  const [activeSectionId, setActiveSectionId] = reactExports.useState(null);
+  const [showSectionPicker, setShowSectionPicker] = reactExports.useState(false);
+  const [insertAfterIdx, setInsertAfterIdx] = reactExports.useState(null);
+  const [showPublishConfirm, setShowPublishConfirm] = reactExports.useState(false);
+  const [showMediaFor, setShowMediaFor] = reactExports.useState(null);
+  const [autoSaveMsg, setAutoSaveMsg] = reactExports.useState("");
+  const [dragIdx, setDragIdx] = reactExports.useState(null);
+  const [dropIdx, setDropIdx] = reactExports.useState(null);
+  const saveSections = useSavePageSections();
+  const autoSaveTimer = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    const sorted = [...page.sections].sort(
+      (a2, b2) => Number(a2.order) - Number(b2.order)
+    );
+    setLocalSections(sorted);
+    setSavedSections(sorted);
+    setHistory([sorted]);
+    setHistoryIdx(0);
+  }, [page.id]);
+  const isDirty = JSON.stringify(
+    localSections.map((s2) => ({
+      ...s2,
+      id: s2.id.toString(),
+      order: s2.order.toString()
+    }))
+  ) !== JSON.stringify(
+    savedSections.map((s2) => ({
+      ...s2,
+      id: s2.id.toString(),
+      order: s2.order.toString()
+    }))
+  );
+  const pushHistory = reactExports.useCallback(
+    (sections) => {
+      setHistory((prev) => {
+        const slice = prev.slice(0, historyIdx + 1);
+        const next = [...slice, sections].slice(-20);
+        setHistoryIdx(next.length - 1);
+        return next;
+      });
+    },
+    [historyIdx]
+  );
+  const updateSections = reactExports.useCallback(
+    (sections) => {
+      const normalized = normalizeOrders(sections);
+      setLocalSections(normalized);
+      pushHistory(normalized);
+    },
+    [pushHistory]
+  );
+  const handleUndo = () => {
+    if (historyIdx <= 0) return;
+    const newIdx = historyIdx - 1;
+    setHistoryIdx(newIdx);
+    setLocalSections(history[newIdx]);
+  };
+  const handleRedo = () => {
+    if (historyIdx >= history.length - 1) return;
+    const newIdx = historyIdx + 1;
+    setHistoryIdx(newIdx);
+    setLocalSections(history[newIdx]);
+  };
+  const doSave = reactExports.useCallback(
+    async (silent = false) => {
+      try {
+        await saveSections.mutateAsync({
+          pageId: page.id,
+          sections: localSections
+        });
+        setSavedSections([...localSections]);
+        if (!silent) ue.success("Page saved!");
+        else {
+          setAutoSaveMsg("Auto-saved");
+          setTimeout(() => setAutoSaveMsg(""), 2e3);
+        }
+      } catch (e) {
+        if (!silent)
+          ue.error(
+            `Save failed: ${e instanceof Error ? e.message : "Unknown"}`
+          );
+      }
+    },
+    [saveSections, page.id, localSections]
+  );
+  reactExports.useEffect(() => {
+    if (!isDirty) return;
+    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+    autoSaveTimer.current = setTimeout(() => doSave(true), 5e3);
+    return () => {
+      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+    };
+  }, [isDirty, doSave]);
+  const handleEditField = (sectionId, key, value) => {
+    const updated = localSections.map(
+      (s2) => s2.id === sectionId ? {
+        ...s2,
+        fields: s2.fields.some((f) => f.key === key) ? s2.fields.map((f) => f.key === key ? { ...f, value } : f) : [...s2.fields, { key, value }]
+      } : s2
+    );
+    setLocalSections(updated);
+    pushHistory(updated);
+  };
+  const handleImagePick = (sectionId, fieldKey) => {
+    setShowMediaFor({ sectionId, fieldKey });
+  };
+  const handleMediaSelected = (url) => {
+    if (!showMediaFor) return;
+    handleEditField(showMediaFor.sectionId, showMediaFor.fieldKey, url);
+    setShowMediaFor(null);
+  };
+  const handleAddSection = (sectionType) => {
+    const newSection = {
+      id: BigInt(Date.now()),
+      sectionType,
+      fields: getDefaultFields(sectionType),
+      order: BigInt(
+        insertAfterIdx !== null ? insertAfterIdx + 1 : localSections.length
+      )
+    };
+    const insertAt = insertAfterIdx !== null ? insertAfterIdx + 1 : localSections.length;
+    const updated = [
+      ...localSections.slice(0, insertAt),
+      newSection,
+      ...localSections.slice(insertAt)
+    ];
+    updateSections(updated);
+    setShowSectionPicker(false);
+    setInsertAfterIdx(null);
+  };
+  const handleDeleteSection = (idx) => {
+    updateSections(localSections.filter((_2, i) => i !== idx));
+    if (activeSectionId === localSections[idx].id) setActiveSectionId(null);
+  };
+  const handleMoveUp = (idx) => {
+    if (idx === 0) return;
+    const updated = [...localSections];
+    [updated[idx - 1], updated[idx]] = [updated[idx], updated[idx - 1]];
+    updateSections(updated);
+  };
+  const handleMoveDown = (idx) => {
+    if (idx >= localSections.length - 1) return;
+    const updated = [...localSections];
+    [updated[idx], updated[idx + 1]] = [updated[idx + 1], updated[idx]];
+    updateSections(updated);
+  };
+  const handleDragStart = (idx) => setDragIdx(idx);
+  const handleDragOver = (e, idx) => {
+    e.preventDefault();
+    setDropIdx(idx);
+  };
+  const handleDrop = () => {
+    if (dragIdx === null || dropIdx === null || dragIdx === dropIdx) {
+      setDragIdx(null);
+      setDropIdx(null);
+      return;
+    }
+    const updated = [...localSections];
+    const [removed] = updated.splice(dragIdx, 1);
+    updated.splice(dropIdx, 0, removed);
+    updateSections(updated);
+    setDragIdx(null);
+    setDropIdx(null);
+  };
+  const handleDragEnd = () => {
+    setDragIdx(null);
+    setDropIdx(null);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-0", "data-ocid": "we.visual_editor", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between bg-white border border-gray-200 rounded-t-xl px-4 py-2.5 sticky top-0 z-10 shadow-sm", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        isDirty && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: "w-2 h-2 rounded-full bg-orange-400 animate-pulse",
+            title: "Unsaved changes"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-500 font-medium", children: isDirty ? "Unsaved changes" : autoSaveMsg || "All changes saved" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: handleUndo,
+            disabled: historyIdx <= 0,
+            className: "p-1.5 rounded hover:bg-gray-100 text-gray-500 disabled:opacity-30 transition-colors",
+            title: "Undo",
+            "data-ocid": "we.editor.undo.button",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Undo2, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: handleRedo,
+            disabled: historyIdx >= history.length - 1,
+            className: "p-1.5 rounded hover:bg-gray-100 text-gray-500 disabled:opacity-30 transition-colors",
+            title: "Redo",
+            "data-ocid": "we.editor.redo.button",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Redo2, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            variant: "outline",
+            onClick: () => doSave(false),
+            disabled: saveSections.isPending || !isDirty,
+            className: "gap-1.5 text-gray-700 h-7 text-xs",
+            "data-ocid": "we.editor.save.button",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { size: 12 }),
+              saveSections.isPending ? "Saving..." : "Save Draft"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            onClick: () => setShowPublishConfirm(true),
+            disabled: saveSections.isPending,
+            className: "gap-1.5 bg-blue-700 hover:bg-blue-800 text-white h-7 text-xs",
+            "data-ocid": "we.editor.publish.button",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { size: 12 }),
+              "Publish"
+            ]
+          }
+        )
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: `bg-white border-x border-b border-gray-200 rounded-b-xl overflow-hidden ${previewMode === "mobile" ? "border rounded-xl mt-1" : ""}`,
+        children: localSections.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "text-center py-20 text-gray-400",
+            "data-ocid": "we.editor.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(PanelsTopLeft, { size: 32, className: "mx-auto mb-2 text-gray-300" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium", children: "No sections yet" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs mt-1 mb-4", children: "Click below to add your first section" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => {
+                    setInsertAfterIdx(null);
+                    setShowSectionPicker(true);
+                  },
+                  className: "inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-colors",
+                  "data-ocid": "we.editor.add_first_section.button",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 15 }),
+                    "Add Section"
+                  ]
+                }
+              )
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          localSections.map((section, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: `relative group ${dragIdx === idx ? "opacity-50" : ""} ${dropIdx === idx && dragIdx !== idx ? "ring-2 ring-cyan-400 ring-offset-0" : ""}`,
+              draggable: true,
+              onDragStart: () => handleDragStart(idx),
+              onDragOver: (e) => handleDragOver(e, idx),
+              onDrop: handleDrop,
+              onDragEnd: handleDragEnd,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: `absolute top-0 left-0 right-0 z-20 flex items-center gap-1 px-2 py-1 transition-opacity ${activeSectionId === section.id ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`,
+                    style: {
+                      background: "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "drag-handle cursor-grab p-1 text-white/70 hover:text-white",
+                          title: "Drag to reorder",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { size: 14 })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] font-semibold text-white/80 uppercase tracking-widest flex-1", children: section.sectionType }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          type: "button",
+                          onClick: () => handleMoveUp(idx),
+                          disabled: idx === 0,
+                          className: "p-1 rounded text-white/70 hover:text-white hover:bg-white/20 disabled:opacity-30 transition-colors",
+                          title: "Move up",
+                          "data-ocid": `we.section.up.button.${idx + 1}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { size: 12 })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          type: "button",
+                          onClick: () => handleMoveDown(idx),
+                          disabled: idx === localSections.length - 1,
+                          className: "p-1 rounded text-white/70 hover:text-white hover:bg-white/20 disabled:opacity-30 transition-colors",
+                          title: "Move down",
+                          "data-ocid": `we.section.down.button.${idx + 1}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowDown, { size: 12 })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          type: "button",
+                          onClick: () => {
+                            setInsertAfterIdx(idx);
+                            setShowSectionPicker(true);
+                          },
+                          className: "p-1 rounded text-white/70 hover:text-white hover:bg-white/20 transition-colors",
+                          title: "Add section below",
+                          "data-ocid": `we.section.add_below.button.${idx + 1}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 12 })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "button",
+                          {
+                            type: "button",
+                            className: "p-1 rounded text-white/70 hover:text-red-400 hover:bg-red-500/20 transition-colors",
+                            title: "Delete section",
+                            "data-ocid": `we.section.delete.button.${idx + 1}`,
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 12 })
+                          }
+                        ) }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this section?" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This cannot be undone (but you can use Undo to restore it)." })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              AlertDialogCancel,
+                              {
+                                "data-ocid": `we.section.cancel_delete.${idx + 1}`,
+                                children: "Cancel"
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              AlertDialogAction,
+                              {
+                                className: "bg-red-600 hover:bg-red-700 text-white",
+                                onClick: () => handleDeleteSection(idx),
+                                "data-ocid": `we.section.confirm_delete.${idx + 1}`,
+                                children: "Delete"
+                              }
+                            )
+                          ] })
+                        ] })
+                      ] })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    type: "button",
+                    className: `editable-section w-full text-left transition-all ${activeSectionId === section.id ? "ring-2 ring-cyan-400 ring-inset" : ""}`,
+                    onClick: () => setActiveSectionId(
+                      activeSectionId === section.id ? null : section.id
+                    ),
+                    "aria-label": `Select ${section.sectionType} section`,
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      PageSectionRenderer,
+                      {
+                        section,
+                        isEditing: activeSectionId === section.id,
+                        onEditField: (key, value) => handleEditField(section.id, key, value),
+                        onImagePick: (fieldKey) => handleImagePick(section.id, fieldKey)
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative h-0 group/add", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-0 top-0 flex items-center justify-center opacity-0 group-hover/add:opacity-100 transition-opacity z-10 -translate-y-1/2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "button",
+                  {
+                    type: "button",
+                    onClick: () => {
+                      setInsertAfterIdx(idx);
+                      setShowSectionPicker(true);
+                    },
+                    className: "flex items-center gap-1 px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium shadow-lg transition-colors",
+                    "data-ocid": `we.section.insert_after.button.${idx + 1}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 11 }),
+                      "Add section here"
+                    ]
+                  }
+                ) }) })
+              ]
+            },
+            section.id.toString()
+          )),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "py-4 flex justify-center border-t border-gray-100", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              onClick: () => {
+                setInsertAfterIdx(localSections.length - 1);
+                setShowSectionPicker(true);
+              },
+              className: "flex items-center gap-2 px-5 py-2 rounded-xl border-2 border-dashed border-gray-200 text-gray-400 hover:border-blue-400 hover:text-blue-600 text-sm font-medium transition-colors",
+              "data-ocid": "we.editor.add_section.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 15 }),
+                "Add Section"
+              ]
+            }
+          ) })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      SectionTypePicker,
+      {
+        open: showSectionPicker,
+        onClose: () => setShowSectionPicker(false),
+        onSelect: handleAddSection
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      MediaPickerModal,
+      {
+        open: !!showMediaFor,
+        onClose: () => setShowMediaFor(null),
+        onSelect: handleMediaSelected,
+        title: "Replace Image"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialog,
+      {
+        open: showPublishConfirm,
+        onOpenChange: setShowPublishConfirm,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "we.editor.publish.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Publish Changes?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "These changes will update the live website. This action cannot be undone." })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogCancel,
+              {
+                onClick: () => setShowPublishConfirm(false),
+                "data-ocid": "we.editor.publish.cancel_button",
+                children: "Cancel"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogAction,
+              {
+                className: "bg-blue-700 hover:bg-blue-800 text-white",
+                "data-ocid": "we.editor.publish.confirm_button",
+                onClick: async () => {
+                  setShowPublishConfirm(false);
+                  await doSave(false);
+                  ue.success("Published! Changes are now live.");
+                },
+                children: "Publish"
+              }
+            )
+          ] })
+        ] })
+      }
+    )
+  ] });
+}
+function getDefaultFields(sectionType) {
+  const defaults = {
+    hero: [
+      { key: "heading", value: "Your Headline Here" },
+      {
+        key: "subheading",
+        value: "A compelling subtitle that describes your offer."
+      },
+      { key: "ctaText", value: "Get Started" },
+      { key: "ctaLink", value: "/contact" },
+      { key: "heroImage", value: "" }
+    ],
+    "text-block": [
+      { key: "title", value: "Section Title" },
+      { key: "content", value: "Add your content here." }
+    ],
+    "image-block": [
+      { key: "src", value: "" },
+      { key: "alt", value: "" },
+      { key: "caption", value: "" }
+    ],
+    "two-column": [
+      { key: "heading", value: "Two Column Section" },
+      { key: "text", value: "Describe your content here." },
+      { key: "image", value: "" },
+      { key: "imageAlt", value: "" },
+      { key: "imagePosition", value: "right" }
+    ],
+    "cta-section": [
+      { key: "heading", value: "Ready to Get Started?" },
+      { key: "text", value: "Join our clients and start your journey today." },
+      { key: "ctaText", value: "Apply Now" },
+      { key: "ctaLink", value: "/contact" },
+      { key: "cta2Text", value: "Learn More" },
+      { key: "cta2Link", value: "/about" }
+    ],
+    "services-grid": [
+      { key: "heading", value: "Our Services" },
+      {
+        key: "subheading",
+        value: "Comprehensive solutions for your international journey."
+      }
+    ],
+    "countries-grid": [{ key: "heading", value: "Countries We Serve" }],
+    "team-section": [
+      { key: "heading", value: "Meet Our Team" },
+      {
+        key: "image",
+        value: "/assets/uploads/WhatsApp-Image-2026-03-05-at-12.08.05-1.jpeg"
+      }
+    ],
+    "button-block": [
+      { key: "text", value: "Click Here" },
+      { key: "link", value: "/contact" }
+    ],
+    "contact-info": [
+      { key: "phone", value: "+250 798979720" },
+      { key: "whatsapp", value: "+250 795780073" },
+      { key: "email", value: "moderneducationconsult2026@gmail.com" },
+      { key: "address", value: "Kigali, Musanze, Rwanda" }
+    ]
+  };
+  return defaults[sectionType] ?? [{ key: "content", value: "" }];
+}
+function WebsiteEditorPanel() {
+  const [sidebarTab, setSidebarTab] = reactExports.useState("pages");
+  const [selectedPageId, setSelectedPageId] = reactExports.useState(null);
+  const [previewMode, setPreviewMode] = reactExports.useState(
+    "desktop"
+  );
+  const [showMediaLibrary, setShowMediaLibrary] = reactExports.useState(false);
+  const { data: pages = [], isLoading } = useGetAllWebsitePages();
+  const createPage = useCreateWebsitePage();
+  const editPage = useEditWebsitePage();
+  const deletePage = useDeleteWebsitePage();
+  const [showNewDialog, setShowNewDialog] = reactExports.useState(false);
+  const [newTitle, setNewTitle] = reactExports.useState("");
+  const [newSlug, setNewSlug] = reactExports.useState("");
+  const selectedPage = pages.find((p2) => p2.id === selectedPageId) ?? null;
+  const handleCreate = async () => {
+    if (!newTitle.trim()) return;
+    try {
+      const id2 = await createPage.mutateAsync({
+        title: newTitle.trim(),
+        slug: newSlug.trim() || newTitle.trim().toLowerCase().replace(/\s+/g, "-")
+      });
+      ue.success(`Page "${newTitle}" created.`);
+      setSelectedPageId(id2);
+      setShowNewDialog(false);
+      setNewTitle("");
+      setNewSlug("");
+    } catch (e) {
+      ue.error(
+        `Failed: ${e instanceof Error ? e.message : "Unknown error"}`
+      );
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "flex h-[calc(100vh-200px)] min-h-[600px] bg-[#0f172a] rounded-xl overflow-hidden border border-slate-700",
+      "data-ocid": "we.panel",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: "w-72 flex-shrink-0 bg-[#1e293b] border-r border-slate-700 flex flex-col", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 py-4 border-b border-slate-700", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { size: 16, className: "text-cyan-400" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-white text-sm", children: "Website Editor" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-400", children: "Visual page builder" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "flex border-b border-slate-700",
+              role: "tablist",
+              "data-ocid": "we.sidebar.tabs",
+              children: ["pages", "global"].map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  role: "tab",
+                  "aria-selected": sidebarTab === tab,
+                  onClick: () => setSidebarTab(tab),
+                  "data-ocid": `we.sidebar.${tab}.tab`,
+                  className: `flex-1 py-2.5 text-xs font-semibold transition-colors ${sidebarTab === tab ? "text-cyan-400 border-b-2 border-cyan-400" : "text-slate-400 hover:text-slate-200"}`,
+                  children: tab === "pages" ? "Pages" : "Global Controls"
+                },
+                tab
+              ))
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-y-auto p-3", children: sidebarTab === "pages" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] font-bold uppercase tracking-wider text-slate-500", children: "Pages" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setShowMediaLibrary(true),
+                  className: "p-1 rounded hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors",
+                  title: "Media Library",
+                  "data-ocid": "we.sidebar.media.button",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 13 })
+                }
+              )
+            ] }),
+            isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1.5", children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "h-10 rounded-lg bg-slate-700/50 animate-pulse"
+              },
+              i
+            )) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1", "data-ocid": "we.pages.list", children: pages.map((page, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              PageListItem,
+              {
+                page,
+                index: idx,
+                isActive: selectedPageId === page.id,
+                onSelect: () => setSelectedPageId(page.id),
+                onDelete: async () => {
+                  if (selectedPageId === page.id) setSelectedPageId(null);
+                  try {
+                    await deletePage.mutateAsync(page.id);
+                    ue.success(`"${page.title}" deleted.`);
+                  } catch (e) {
+                    ue.error(
+                      `Failed: ${e instanceof Error ? e.message : "Unknown error"}`
+                    );
+                  }
+                },
+                onRename: async (title, slug) => {
+                  try {
+                    await editPage.mutateAsync({
+                      id: page.id,
+                      title,
+                      slug
+                    });
+                    ue.success("Page renamed.");
+                  } catch (e) {
+                    ue.error(
+                      `Failed: ${e instanceof Error ? e.message : "Unknown error"}`
+                    );
+                  }
+                }
+              },
+              page.id.toString()
+            )) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                onClick: () => setShowNewDialog(true),
+                className: "w-full flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-slate-600 text-slate-400 hover:text-cyan-400 hover:border-cyan-500 text-xs font-medium transition-colors mt-2",
+                "data-ocid": "we.pages.new_page.button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 13 }),
+                  "Add New Page"
+                ]
+              }
+            )
+          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(GlobalControlsPanel, {}) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 flex flex-col min-w-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-4 py-3 bg-[#1e293b] border-b border-slate-700", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(PanelsTopLeft, { size: 14, className: "text-slate-400" }),
+              selectedPage ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-white", children: selectedPage.title }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm text-slate-500", children: "No page selected" })
+            ] }),
+            selectedPage && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center bg-slate-800 rounded-lg p-1 gap-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setPreviewMode("desktop"),
+                  className: `p-1.5 rounded transition-colors ${previewMode === "desktop" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`,
+                  title: "Desktop preview",
+                  "data-ocid": "we.canvas.desktop.toggle",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Monitor, { size: 14 })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setPreviewMode("mobile"),
+                  className: `p-1.5 rounded transition-colors ${previewMode === "mobile" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`,
+                  title: "Mobile preview",
+                  "data-ocid": "we.canvas.mobile.toggle",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Smartphone, { size: 14 })
+                }
+              )
+            ] }) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-auto bg-slate-900 p-4", children: selectedPage ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: `mx-auto transition-all duration-300 ${previewMode === "mobile" ? "max-w-[375px]" : "max-w-full"}`,
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(VisualPageEditor, { page: selectedPage, previewMode })
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "h-full flex flex-col items-center justify-center text-center",
+              "data-ocid": "we.canvas.empty_state",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-16 h-16 rounded-2xl bg-slate-800 flex items-center justify-center mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, { size: 28, className: "text-slate-600" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-white font-semibold text-lg mb-2", children: "Select a page to start editing" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-400 text-sm max-w-xs", children: "Choose a page from the left sidebar to open the visual editor, or create a new page to get started." })
+              ]
+            }
+          ) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Dialog,
+          {
+            open: showNewDialog,
+            onOpenChange: (v2) => !v2 && setShowNewDialog(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              DialogContent,
+              {
+                className: "max-w-md",
+                "data-ocid": "we.pages.new_page.dialog",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Create New Page" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-sm font-semibold", children: "Page Title *" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Input,
+                        {
+                          value: newTitle,
+                          onChange: (e) => {
+                            setNewTitle(e.target.value);
+                            setNewSlug(e.target.value.toLowerCase().replace(/\s+/g, "-"));
+                          },
+                          placeholder: "e.g. Our Team",
+                          "data-ocid": "we.pages.new_title.input"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-sm font-semibold", children: "URL Slug" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Input,
+                        {
+                          value: newSlug,
+                          onChange: (e) => setNewSlug(e.target.value.toLowerCase().replace(/\s+/g, "-")),
+                          placeholder: "e.g. our-team",
+                          "data-ocid": "we.pages.new_slug.input"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 justify-end pt-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          variant: "ghost",
+                          onClick: () => setShowNewDialog(false),
+                          "data-ocid": "we.pages.new_page.cancel_button",
+                          children: "Cancel"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          onClick: handleCreate,
+                          disabled: createPage.isPending || !newTitle.trim(),
+                          className: "bg-blue-700 text-white",
+                          "data-ocid": "we.pages.new_page.submit_button",
+                          children: createPage.isPending ? "Creating..." : "Create Page"
+                        }
+                      )
+                    ] })
+                  ] })
+                ]
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          MediaPickerModal,
+          {
+            open: showMediaLibrary,
+            onClose: () => setShowMediaLibrary(false),
+            onSelect: () => setShowMediaLibrary(false),
+            title: "Media Library"
+          }
+        )
+      ]
+    }
+  );
+}
+function PageListItem({
+  page,
+  index: index2,
+  isActive,
+  onSelect,
+  onDelete,
+  onRename
+}) {
+  const [editing, setEditing] = reactExports.useState(false);
+  const [titleVal, setTitleVal] = reactExports.useState(page.title);
+  const [slugVal, setSlugVal] = reactExports.useState(page.slug);
+  if (editing) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-slate-700/50 rounded-lg p-2 space-y-1.5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: titleVal,
+          onChange: (e) => setTitleVal(e.target.value),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          placeholder: "Page title"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          value: slugVal,
+          onChange: (e) => setSlugVal(e.target.value.toLowerCase().replace(/\s+/g, "-")),
+          className: "h-7 text-xs bg-slate-800 border-slate-600 text-white",
+          placeholder: "url-slug"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: () => {
+              onRename(titleVal, slugVal);
+              setEditing(false);
+            },
+            className: "flex-1 text-xs py-1 rounded bg-cyan-600 hover:bg-cyan-700 text-white transition-colors",
+            "data-ocid": `we.pages.save_button.${index2 + 1}`,
+            children: "Save"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: () => setEditing(false),
+            className: "flex-1 text-xs py-1 rounded bg-slate-600 hover:bg-slate-500 text-white transition-colors",
+            "data-ocid": `we.pages.cancel_button.${index2 + 1}`,
+            children: "Cancel"
+          }
+        )
+      ] })
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "button",
+    {
+      type: "button",
+      "data-ocid": `we.pages.item.${index2 + 1}`,
+      className: `group w-full flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-colors text-left ${isActive ? "bg-cyan-500/20 border border-cyan-500/40" : "hover:bg-slate-700/50 border border-transparent"}`,
+      onClick: onSelect,
+      "aria-label": `Edit ${page.title}`,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          PanelsTopLeft,
+          {
+            size: 13,
+            className: isActive ? "text-cyan-400" : "text-slate-500"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: `text-xs font-medium truncate ${isActive ? "text-cyan-300" : "text-slate-200"}`,
+              children: page.title
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-[10px] text-slate-500 truncate", children: [
+            "/",
+            page.slug
+          ] })
+        ] }),
+        page.isDefault && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[9px] font-bold px-1.5 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/30 shrink-0", children: "Default" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0",
+            onClick: (e) => e.stopPropagation(),
+            onKeyDown: (e) => e.stopPropagation(),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setEditing(true),
+                  className: "p-1 rounded hover:bg-slate-600 text-slate-400 hover:text-slate-200 transition-colors",
+                  title: "Rename",
+                  "data-ocid": `we.pages.rename_button.${index2 + 1}`,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, { size: 11 })
+                }
+              ),
+              !page.isDefault && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: onDelete,
+                  className: "p-1 rounded hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors",
+                  title: "Delete",
+                  "data-ocid": `we.pages.delete_button.${index2 + 1}`,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 11 })
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
+const emptyRow = () => ({ url: "", caption: "" });
+function configToRows(config) {
+  return config.images.map((img) => ({
+    url: img.url,
+    caption: img.caption ?? ""
+  }));
+}
+function ImageSliderEditor({
+  open,
+  onInsert,
+  onClose,
+  initialConfig
+}) {
   const [rows, setRows] = reactExports.useState([emptyRow(), emptyRow()]);
   const [autoplay, setAutoplay] = reactExports.useState(true);
   const fileInputRefs = reactExports.useRef([]);
+  const dragIndexRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    if (open) {
+      if (initialConfig) {
+        setRows(configToRows(initialConfig));
+        setAutoplay(initialConfig.autoplay);
+      } else {
+        setRows([emptyRow(), emptyRow()]);
+        setAutoplay(true);
+      }
+    }
+  }, [open, initialConfig]);
   const filledCount = rows.filter((r2) => r2.url.trim()).length;
   const canInsert = filledCount >= 2;
   const updateRow = (i, field, value) => {
@@ -48717,6 +53025,24 @@ function ImageSliderEditor({
     };
     reader.readAsDataURL(file);
   };
+  const handleDragStart = (i) => {
+    dragIndexRef.current = i;
+  };
+  const handleDragOver = (e, i) => {
+    e.preventDefault();
+    const from = dragIndexRef.current;
+    if (from === null || from === i) return;
+    setRows((prev) => {
+      const next = [...prev];
+      const [moved] = next.splice(from, 1);
+      next.splice(i, 0, moved);
+      return next;
+    });
+    dragIndexRef.current = i;
+  };
+  const handleDragEnd = () => {
+    dragIndexRef.current = null;
+  };
   const handleInsert = () => {
     const images = rows.filter((r2) => r2.url.trim()).map((r2) => ({
       url: r2.url.trim(),
@@ -48725,191 +53051,212 @@ function ImageSliderEditor({
     if (images.length < 2) return;
     const marker = `[SLIDER:${JSON.stringify({ images, autoplay })}]`;
     onInsert(marker);
-    setOpen(false);
-    setRows([emptyRow(), emptyRow()]);
-    setAutoplay(true);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border border-gray-200 rounded-xl overflow-hidden mt-2", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "button",
-      {
-        type: "button",
-        onClick: () => setOpen((v2) => !v2),
-        className: "w-full flex items-center justify-between px-4 py-3 bg-blue-50 hover:bg-blue-100 transition-colors text-left",
-        "data-ocid": "slider_editor.toggle",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-2 font-semibold text-[#1e3a5f] text-sm", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 16, className: "text-blue-600" }),
-            "Image Slider",
-            filledCount >= 2 && !open && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-normal text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full", children: [
-              filledCount,
-              " images ready"
-            ] })
-          ] }),
-          open ? /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { size: 16, className: "text-gray-500" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { size: 16, className: "text-gray-500" })
-        ]
-      }
-    ),
-    open && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 space-y-4 bg-white", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Enter at least 2 image URLs or upload images from your computer to create a carousel slider inside your post." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", children: rows.map((row, i) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: stable row index for editor
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 items-start", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 space-y-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-xs text-[#1e3a5f] font-medium", children: [
-                "Image ",
-                i + 1,
-                " *"
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Dialog,
+    {
+      open,
+      onOpenChange: (v2) => {
+        if (!v2) onClose();
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { className: "max-w-2xl max-h-[90vh] overflow-y-auto", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2 text-[#1e3a5f]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 18, className: "text-blue-600" }),
+          initialConfig ? "Edit Image Slider" : "Insert Image Slider"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-5 pt-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Add at least 2 images to create a carousel. Drag rows to reorder." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: rows.map((row, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              draggable: true,
+              onDragStart: () => handleDragStart(i),
+              onDragOver: (e) => handleDragOver(e, i),
+              onDragEnd: handleDragEnd,
+              className: "flex gap-2 items-start bg-gray-50 border border-gray-200 rounded-lg p-3 cursor-grab active:cursor-grabbing transition-colors hover:border-blue-200",
+              "data-ocid": `slider_editor.row.${i + 1}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-2 text-gray-300 hover:text-gray-500 cursor-grab shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(GripVertical, { size: 16 }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 space-y-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-xs text-[#1e3a5f] font-semibold", children: [
+                      "Image ",
+                      i + 1,
+                      " ",
+                      i < 2 ? "*" : ""
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Input,
+                        {
+                          value: row.url.startsWith("data:") ? "" : row.url,
+                          onChange: (e) => {
+                            updateRow(i, "url", e.target.value);
+                            updateRow(i, "uploadedName", "");
+                          },
+                          placeholder: "Paste image URL…",
+                          className: "border-gray-200 focus:border-blue-500 text-sm h-9 min-w-0",
+                          "data-ocid": "slider_editor.url.input"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "input",
+                        {
+                          ref: (el) => {
+                            fileInputRefs.current[i] = el;
+                          },
+                          type: "file",
+                          accept: "image/*",
+                          className: "hidden",
+                          onChange: (e) => {
+                            var _a3;
+                            const file = (_a3 = e.target.files) == null ? void 0 : _a3[0];
+                            if (file) handleFileUpload(i, file);
+                            e.target.value = "";
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "button",
+                        {
+                          type: "button",
+                          onClick: () => {
+                            var _a3;
+                            return (_a3 = fileInputRefs.current[i]) == null ? void 0 : _a3.click();
+                          },
+                          title: "Upload from computer",
+                          className: "flex items-center gap-1 px-2.5 h-9 text-xs font-medium text-blue-700 border border-blue-200 rounded-md bg-blue-50 hover:bg-blue-100 transition-colors whitespace-nowrap shrink-0",
+                          "data-ocid": "slider_editor.upload_button",
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 13 }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden sm:inline", children: "Upload" })
+                          ]
+                        }
+                      )
+                    ] }),
+                    row.uploadedName && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-green-600 flex items-center gap-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 10 }),
+                      " ",
+                      row.uploadedName
+                    ] }),
+                    row.url && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "img",
+                      {
+                        src: row.url,
+                        alt: `Preview ${i + 1}`,
+                        className: "h-16 w-full object-cover rounded border border-gray-200 mt-1",
+                        onError: (e) => {
+                          e.currentTarget.style.display = "none";
+                        }
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-xs text-[#1e3a5f] font-semibold", children: "Caption (optional)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        value: row.caption,
+                        onChange: (e) => updateRow(i, "caption", e.target.value),
+                        placeholder: "Short caption…",
+                        className: "border-gray-200 focus:border-blue-500 text-sm h-9",
+                        "data-ocid": "slider_editor.caption.input"
+                      }
+                    )
+                  ] })
+                ] }) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Input,
-                  {
-                    value: row.url.startsWith("data:") ? "" : row.url,
-                    onChange: (e) => {
-                      updateRow(i, "url", e.target.value);
-                      updateRow(i, "uploadedName", "");
-                    },
-                    placeholder: "Paste URL or upload →",
-                    className: "border-gray-200 focus:border-blue-500 text-sm h-9 min-w-0",
-                    "data-ocid": "slider_editor.input"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "input",
-                  {
-                    ref: (el) => {
-                      fileInputRefs.current[i] = el;
-                    },
-                    type: "file",
-                    accept: "image/*",
-                    className: "hidden",
-                    onChange: (e) => {
-                      var _a3;
-                      const file = (_a3 = e.target.files) == null ? void 0 : _a3[0];
-                      if (file) handleFileUpload(i, file);
-                      e.target.value = "";
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "button",
                   {
                     type: "button",
-                    onClick: () => {
-                      var _a3;
-                      return (_a3 = fileInputRefs.current[i]) == null ? void 0 : _a3.click();
-                    },
-                    title: "Upload from computer",
-                    className: "flex items-center gap-1 px-2.5 h-9 text-xs font-medium text-blue-700 border border-blue-200 rounded-md bg-blue-50 hover:bg-blue-100 transition-colors whitespace-nowrap shrink-0",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 13 }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden sm:inline", children: "Upload" })
-                    ]
+                    onClick: () => removeRow(i),
+                    disabled: rows.length <= 2,
+                    "aria-label": `Remove image ${i + 1}`,
+                    className: "mt-2 text-gray-400 hover:text-red-500 transition-colors disabled:opacity-30 shrink-0",
+                    "data-ocid": `slider_editor.delete_button.${i + 1}`,
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 16 })
                   }
                 )
-              ] }),
-              row.uploadedName && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-green-600 flex items-center gap-1", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 10 }),
-                row.uploadedName
-              ] }),
-              row.url && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "img",
-                {
-                  src: row.url,
-                  alt: `Slider preview ${i + 1}`,
-                  className: "h-16 w-full object-cover rounded border border-gray-200 mt-1",
-                  onError: (e) => {
-                    e.currentTarget.style.display = "none";
-                  }
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-xs text-[#1e3a5f] font-medium", children: "Caption (optional)" }),
+              ]
+            },
+            i
+          )) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              type: "button",
+              variant: "outline",
+              size: "sm",
+              onClick: addRow,
+              className: "gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50",
+              "data-ocid": "slider_editor.add_image.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 14 }),
+                " Add Image"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 py-1 border-t border-gray-100", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "checkbox",
+                id: "slider-autoplay-modal",
+                checked: autoplay,
+                onChange: (e) => setAutoplay(e.target.checked),
+                className: "w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500",
+                "data-ocid": "slider_editor.autoplay.checkbox"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Label,
+              {
+                htmlFor: "slider-autoplay-modal",
+                className: "text-sm text-gray-600 cursor-pointer",
+                children: "Autoplay — slides advance every 4 seconds, pause on hover"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 pt-1 border-t border-gray-100", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: `text-xs font-medium ${canInsert ? "text-blue-600" : "text-gray-400"}`,
+                children: filledCount < 2 ? `Add ${2 - filledCount} more image${2 - filledCount !== 1 ? "s" : ""} to enable insert` : `${filledCount} image${filledCount !== 1 ? "s" : ""} ready`
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
+                Button,
                 {
-                  value: row.caption,
-                  onChange: (e) => updateRow(i, "caption", e.target.value),
-                  placeholder: "Short caption...",
-                  className: "border-gray-200 focus:border-blue-500 text-sm h-9"
+                  type: "button",
+                  variant: "outline",
+                  size: "sm",
+                  onClick: onClose,
+                  "data-ocid": "slider_editor.cancel_button",
+                  children: "Cancel"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  type: "button",
+                  onClick: handleInsert,
+                  disabled: !canInsert,
+                  className: "bg-blue-700 hover:bg-blue-800 text-white font-semibold gap-2",
+                  "data-ocid": "slider_editor.submit_button",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 14 }),
+                    initialConfig ? "Update Slider" : "Insert Slider"
+                  ]
                 }
               )
             ] })
-          ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: () => removeRow(i),
-              disabled: rows.length <= 2,
-              "aria-label": "Remove image",
-              className: "mt-6 text-gray-400 hover:text-red-500 transition-colors disabled:opacity-30",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 16 })
-            }
-          )
-        ] }, i)
-      )) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Button,
-        {
-          type: "button",
-          variant: "outline",
-          size: "sm",
-          onClick: addRow,
-          className: "gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50",
-          "data-ocid": "slider_editor.secondary_button",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 14 }),
-            " Add Image"
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 pt-1", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "checkbox",
-            id: "slider-autoplay",
-            checked: autoplay,
-            onChange: (e) => setAutoplay(e.target.checked),
-            className: "w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Label,
-          {
-            htmlFor: "slider-autoplay",
-            className: "text-sm text-gray-600 cursor-pointer",
-            children: "Autoplay (slides every 4 seconds)"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "pt-1 flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Button,
-          {
-            type: "button",
-            onClick: handleInsert,
-            disabled: !canInsert,
-            className: "bg-blue-700 hover:bg-blue-800 text-white font-semibold gap-2",
-            "data-ocid": "slider_editor.submit_button",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 15 }),
-              " Insert Slider"
-            ]
-          }
-        ),
-        filledCount >= 2 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-blue-600 font-medium", children: [
-          filledCount,
-          " images ready"
-        ] }),
-        filledCount < 2 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: "Add at least 2 images" })
+          ] })
+        ] })
       ] })
-    ] })
-  ] });
+    }
+  );
 }
 function ToolbarButton({
   onClick,
@@ -48934,6 +53281,64 @@ function ToolbarButton({
 function Divider() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-px h-5 bg-gray-200 mx-0.5" });
 }
+function buildSliderMarker(config) {
+  return `[SLIDER:${JSON.stringify({ images: config.images, autoplay: config.autoplay })}]`;
+}
+function parseSliderMarker(marker) {
+  try {
+    const prefix2 = "[SLIDER:";
+    if (!marker.startsWith(prefix2)) return null;
+    const json = marker.slice(prefix2.length, -1);
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
+}
+function buildSliderPlaceholder(config) {
+  const marker = buildSliderMarker(config);
+  const escaped = marker.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  const previews = config.images.slice(0, 3).map(
+    (img) => `<img src="${img.url}" alt="" style="width:${Math.floor(
+      100 / Math.min(3, config.images.length)
+    )}%;height:64px;object-fit:cover;display:inline-block;margin-right:2px;border-radius:4px;" />`
+  ).join("");
+  return `<div
+    contenteditable="false"
+    data-type="slider"
+    data-marker="${escaped}"
+    style="
+      border:2px solid #3b82f6;
+      border-radius:10px;
+      padding:12px;
+      margin:12px 0;
+      background:#eff6ff;
+      user-select:none;
+      -webkit-user-select:none;
+      cursor:default;
+      position:relative;
+    "
+  >
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/><path d="M3 7h18"/></svg>
+      <span style="font-size:13px;font-weight:700;color:#1e3a5f;">Image Slider</span>
+      <span style="font-size:11px;background:#dbeafe;color:#1d4ed8;border-radius:9999px;padding:2px 8px;font-weight:600;">${config.images.length} slides${config.autoplay ? " · Autoplay" : ""}</span>
+    </div>
+    <div style="display:flex;gap:2px;overflow:hidden;border-radius:6px;margin-bottom:8px;">${previews}</div>
+    <div style="display:flex;gap:6px;">
+      <button
+        type="button"
+        data-action="edit-slider"
+        data-marker="${escaped}"
+        style="font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;background:#2563eb;color:#fff;border:none;cursor:pointer;"
+      >Edit</button>
+      <button
+        type="button"
+        data-action="delete-slider"
+        style="font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;background:#fee2e2;color:#dc2626;border:none;cursor:pointer;"
+      >Remove</button>
+    </div>
+  </div><p></p>`;
+}
 function RichTextEditor({
   value,
   onChange,
@@ -48944,6 +53349,10 @@ function RichTextEditor({
   const editorRef = reactExports.useRef(null);
   const [isInit, setIsInit] = reactExports.useState(false);
   const isComposing2 = reactExports.useRef(false);
+  const savedRangeRef = reactExports.useRef(null);
+  const [sliderModalOpen, setSliderModalOpen] = reactExports.useState(false);
+  const [editingSliderConfig, setEditingSliderConfig] = reactExports.useState(null);
+  const editingSliderNodeRef = reactExports.useRef(null);
   reactExports.useEffect(() => {
     if (editorRef.current && !isInit) {
       editorRef.current.innerHTML = value || "";
@@ -49033,154 +53442,259 @@ function RichTextEditor({
     }
     if (editorRef.current) onChange(editorRef.current.innerHTML);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-blue-400 bg-white", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sticky top-0 z-10 bg-gray-50 border-b border-gray-200 p-1.5 flex flex-wrap gap-0.5 items-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("bold"), title: "Bold", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Bold, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("italic"), title: "Italic", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Italic, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("underline"), title: "Underline", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Underline, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "select",
+  const saveCursor = () => {
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount > 0) {
+      savedRangeRef.current = sel.getRangeAt(0).cloneRange();
+    } else {
+      savedRangeRef.current = null;
+    }
+  };
+  const restoreCursor = () => {
+    const sel = window.getSelection();
+    if (sel && savedRangeRef.current) {
+      sel.removeAllRanges();
+      sel.addRange(savedRangeRef.current);
+    }
+  };
+  const insertHtmlAtSavedCursor = (html) => {
+    const editor = editorRef.current;
+    if (!editor) return;
+    editor.focus();
+    restoreCursor();
+    document.execCommand("insertHTML", false, html);
+    onChange(editor.innerHTML);
+  };
+  const openSliderModal = () => {
+    saveCursor();
+    setEditingSliderConfig(null);
+    editingSliderNodeRef.current = null;
+    setSliderModalOpen(true);
+  };
+  const handleEditorClick = (e) => {
+    const target = e.target;
+    handleSliderAction(target);
+  };
+  const handleEditorKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const target = e.target;
+      handleSliderAction(target);
+    }
+  };
+  const handleSliderAction = (target) => {
+    const action = target.getAttribute("data-action");
+    if (action === "edit-slider") {
+      const marker = target.getAttribute("data-marker") ?? "";
+      const config = parseSliderMarker(
+        marker.replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+      );
+      const block = target.closest(
+        '[data-type="slider"]'
+      );
+      editingSliderNodeRef.current = block;
+      setEditingSliderConfig(config);
+      setSliderModalOpen(true);
+    } else if (action === "delete-slider") {
+      const block = target.closest(
+        '[data-type="slider"]'
+      );
+      if (block) {
+        const next = block.nextSibling;
+        block.remove();
+        if (next && next.nodeName === "P" && next.innerHTML === "") {
+          next.remove();
+        }
+        if (editorRef.current) onChange(editorRef.current.innerHTML);
+      }
+    }
+  };
+  const handleSliderModalInsert = (marker) => {
+    const config = parseSliderMarker(marker);
+    if (!config) return;
+    const html = buildSliderPlaceholder(config);
+    if (editingSliderNodeRef.current) {
+      editingSliderNodeRef.current.outerHTML = html;
+      if (editorRef.current) onChange(editorRef.current.innerHTML);
+      editingSliderNodeRef.current = null;
+    } else {
+      insertHtmlAtSavedCursor(html);
+    }
+    setSliderModalOpen(false);
+    setEditingSliderConfig(null);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-blue-400 bg-white", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sticky top-0 z-10 bg-gray-50 border-b border-gray-200 p-1.5 flex flex-wrap gap-0.5 items-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("bold"), title: "Bold", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Bold, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("italic"), title: "Italic", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Italic, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("underline"), title: "Underline", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Underline, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "select",
+          {
+            title: "Font size",
+            className: "h-7 px-1 text-xs border border-gray-200 rounded bg-white text-gray-600 cursor-pointer",
+            defaultValue: "",
+            onChange: (e) => {
+              if (e.target.value) setFontSize(e.target.value);
+              e.target.value = "";
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Size" }),
+              [
+                "12px",
+                "14px",
+                "16px",
+                "18px",
+                "20px",
+                "24px",
+                "28px",
+                "32px",
+                "36px"
+              ].map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: s2, children: s2.replace("px", "") }, s2))
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "label",
+          {
+            className: "flex items-center gap-0.5 cursor-pointer p-1 rounded hover:bg-gray-200 text-gray-600",
+            title: "Text color",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: "text-xs font-bold",
+                  style: { textDecoration: "underline 2px" },
+                  children: "A"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "color",
+                  className: "w-4 h-4 border-0 p-0 cursor-pointer",
+                  title: "Text color",
+                  onChange: (e) => exec("foreColor", e.target.value)
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "label",
+          {
+            className: "flex items-center gap-0.5 cursor-pointer p-1 rounded hover:bg-gray-200 text-gray-600",
+            title: "Highlight color",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: "text-xs",
+                  style: { background: "yellow", padding: "0 2px" },
+                  children: "H"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "color",
+                  className: "w-4 h-4 border-0 p-0 cursor-pointer",
+                  title: "Highlight",
+                  defaultValue: "#ffff00",
+                  onChange: (e) => exec("hiliteColor", e.target.value)
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("justifyLeft"), title: "Align left", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignLeft, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ToolbarButton,
+          {
+            onClick: () => exec("justifyCenter"),
+            title: "Align center",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignCenter, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ToolbarButton,
+          {
+            onClick: () => exec("justifyRight"),
+            title: "Align right",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignRight, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("justifyFull"), title: "Justify", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignJustify, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ToolbarButton,
+          {
+            onClick: () => exec("insertUnorderedList"),
+            title: "Bullet list",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(List, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ToolbarButton,
+          {
+            onClick: () => exec("insertOrderedList"),
+            title: "Numbered list",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ListOrdered, { size: 14 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertLink, title: "Insert link", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertBlockquote, title: "Blockquote", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Quote, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertHr, title: "Divider line", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Minus, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertTable, title: "Insert table", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Table, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertImage, title: "Insert image", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Image$1, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: openSliderModal, title: "Insert image slider", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 14 }) }),
+        onInsertCta && /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: onInsertCta, title: "Add CTA button", children: /* @__PURE__ */ jsxRuntimeExports.jsx(MousePointerClick, { size: 14 }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ToolbarButton,
+          {
+            onClick: () => exec("removeFormat"),
+            title: "Clear formatting",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(RemoveFormatting, { size: 14 })
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
         {
-          title: "Font size",
-          className: "h-7 px-1 text-xs border border-gray-200 rounded bg-white text-gray-600 cursor-pointer",
-          defaultValue: "",
-          onChange: (e) => {
-            if (e.target.value) setFontSize(e.target.value);
-            e.target.value = "";
+          ref: editorRef,
+          contentEditable: true,
+          suppressContentEditableWarning: true,
+          onInput: handleInput,
+          onClick: handleEditorClick,
+          onKeyDown: handleEditorKeyDown,
+          onCompositionStart: () => {
+            isComposing2.current = true;
           },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Size" }),
-            [
-              "12px",
-              "14px",
-              "16px",
-              "18px",
-              "20px",
-              "24px",
-              "28px",
-              "32px",
-              "36px"
-            ].map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: s2, children: s2.replace("px", "") }, s2))
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "label",
-        {
-          className: "flex items-center gap-0.5 cursor-pointer p-1 rounded hover:bg-gray-200 text-gray-600",
-          title: "Text color",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                className: "text-xs font-bold",
-                style: { textDecoration: "underline 2px" },
-                children: "A"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                type: "color",
-                className: "w-4 h-4 border-0 p-0 cursor-pointer",
-                title: "Text color",
-                onChange: (e) => exec("foreColor", e.target.value)
-              }
-            )
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "label",
-        {
-          className: "flex items-center gap-0.5 cursor-pointer p-1 rounded hover:bg-gray-200 text-gray-600",
-          title: "Highlight color",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                className: "text-xs",
-                style: { background: "yellow", padding: "0 2px" },
-                children: "H"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                type: "color",
-                className: "w-4 h-4 border-0 p-0 cursor-pointer",
-                title: "Highlight",
-                defaultValue: "#ffff00",
-                onChange: (e) => exec("hiliteColor", e.target.value)
-              }
-            )
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("justifyLeft"), title: "Align left", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignLeft, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ToolbarButton,
-        {
-          onClick: () => exec("justifyCenter"),
-          title: "Align center",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignCenter, { size: 14 })
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("justifyRight"), title: "Align right", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignRight, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: () => exec("justifyFull"), title: "Justify", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlignJustify, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ToolbarButton,
-        {
-          onClick: () => exec("insertUnorderedList"),
-          title: "Bullet list",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(List, { size: 14 })
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ToolbarButton,
-        {
-          onClick: () => exec("insertOrderedList"),
-          title: "Numbered list",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ListOrdered, { size: 14 })
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertLink, title: "Insert link", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertBlockquote, title: "Blockquote", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Quote, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertHr, title: "Divider line", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Minus, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertTable, title: "Insert table", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Table, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: insertImage, title: "Insert image", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Image$1, { size: 14 }) }),
-      onInsertCta && /* @__PURE__ */ jsxRuntimeExports.jsx(ToolbarButton, { onClick: onInsertCta, title: "Add CTA button", children: /* @__PURE__ */ jsxRuntimeExports.jsx(MousePointerClick, { size: 14 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ToolbarButton,
-        {
-          onClick: () => exec("removeFormat"),
-          title: "Clear formatting",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RemoveFormatting, { size: 14 })
+          onCompositionEnd: () => {
+            isComposing2.current = false;
+            if (editorRef.current) onChange(editorRef.current.innerHTML);
+          },
+          className: "prose prose-sm max-w-none p-4 outline-none rich-editor",
+          style: { minHeight },
+          "data-placeholder": placeholder
         }
       )
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
+      ImageSliderEditor,
       {
-        ref: editorRef,
-        contentEditable: true,
-        suppressContentEditableWarning: true,
-        onInput: handleInput,
-        onCompositionStart: () => {
-          isComposing2.current = true;
+        open: sliderModalOpen,
+        onInsert: handleSliderModalInsert,
+        onClose: () => {
+          setSliderModalOpen(false);
+          setEditingSliderConfig(null);
+          editingSliderNodeRef.current = null;
         },
-        onCompositionEnd: () => {
-          isComposing2.current = false;
-          if (editorRef.current) onChange(editorRef.current.innerHTML);
-        },
-        className: "prose prose-sm max-w-none p-4 outline-none rich-editor",
-        style: { minHeight },
-        "data-placeholder": placeholder
+        initialConfig: editingSliderConfig
       }
     )
   ] });
@@ -49222,668 +53736,54 @@ function serializePostContent(meta, content) {
   return `[POSTMETA:${JSON.stringify(meta)}]
 ${content}`;
 }
-const Time = Int;
-const BlogPost = Record({
-  "id": Nat,
-  "title": Text,
-  "content": Text,
-  "publishedDate": Time,
-  "author": Text,
-  "summary": Text,
-  "imageUrl": Text,
-  "category": Text
-});
-const ContactSubmission = Record({
-  "fullName": Text,
-  "email": Text,
-  "message": Text,
-  "timestamp": Time,
-  "phoneNumber": Text,
-  "countryOfInterest": Text
-});
-const Testimonial = Record({
-  "country": Text,
-  "clientName": Text,
-  "quote": Text,
-  "photoUrl": Text
-});
-const Comment = Record({
-  "id": Nat,
-  "content": Text,
-  "authorEmail": Text,
-  "createdAt": Int,
-  "authorName": Text,
-  "approved": Bool,
-  "parentId": Opt(Nat),
-  "postId": Text
-});
-Service({
-  "addBlogPost": Func(
-    [Text, Text, Text, Text, Text, Text],
-    [],
-    []
-  ),
-  "approveComment": Func([Nat], [Bool], []),
-  "deleteBlogPost": Func([Nat], [], []),
-  "deleteComment": Func([Nat], [Bool], []),
-  "editBlogPost": Func(
-    [Nat, Text, Text, Text, Text, Text, Text],
-    [],
-    []
-  ),
-  "editComment": Func([Nat, Text], [Bool], []),
-  "getAllBlogPosts": Func([], [Vec(BlogPost)], ["query"]),
-  "getAllContacts": Func([], [Vec(ContactSubmission)], ["query"]),
-  "getAllTestimonials": Func([], [Vec(Testimonial)], ["query"]),
-  "getApprovedComments": Func([Text], [Vec(Comment)], ["query"]),
-  "getBlogPostById": Func([Nat], [BlogPost], ["query"]),
-  "getPendingCommentCount": Func([], [Nat], ["query"]),
-  "getPendingComments": Func([], [Vec(Comment)], ["query"]),
-  "rejectComment": Func([Nat], [Bool], []),
-  "submitComment": Func(
-    [Text, Opt(Nat), Text, Text, Text],
-    [Nat],
-    []
-  ),
-  "submitContact": Func(
-    [Text, Text, Text, Text, Text],
-    [],
-    []
-  )
-});
-const idlFactory = ({ IDL: IDL2 }) => {
-  const Time2 = IDL2.Int;
-  const BlogPost2 = IDL2.Record({
-    "id": IDL2.Nat,
-    "title": IDL2.Text,
-    "content": IDL2.Text,
-    "publishedDate": Time2,
-    "author": IDL2.Text,
-    "summary": IDL2.Text,
-    "imageUrl": IDL2.Text,
-    "category": IDL2.Text
-  });
-  const ContactSubmission2 = IDL2.Record({
-    "fullName": IDL2.Text,
-    "email": IDL2.Text,
-    "message": IDL2.Text,
-    "timestamp": Time2,
-    "phoneNumber": IDL2.Text,
-    "countryOfInterest": IDL2.Text
-  });
-  const Testimonial2 = IDL2.Record({
-    "country": IDL2.Text,
-    "clientName": IDL2.Text,
-    "quote": IDL2.Text,
-    "photoUrl": IDL2.Text
-  });
-  const Comment2 = IDL2.Record({
-    "id": IDL2.Nat,
-    "content": IDL2.Text,
-    "authorEmail": IDL2.Text,
-    "createdAt": IDL2.Int,
-    "authorName": IDL2.Text,
-    "approved": IDL2.Bool,
-    "parentId": IDL2.Opt(IDL2.Nat),
-    "postId": IDL2.Text
-  });
-  return IDL2.Service({
-    "addBlogPost": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "approveComment": IDL2.Func([IDL2.Nat], [IDL2.Bool], []),
-    "deleteBlogPost": IDL2.Func([IDL2.Nat], [], []),
-    "deleteComment": IDL2.Func([IDL2.Nat], [IDL2.Bool], []),
-    "editBlogPost": IDL2.Func(
-      [IDL2.Nat, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "editComment": IDL2.Func([IDL2.Nat, IDL2.Text], [IDL2.Bool], []),
-    "getAllBlogPosts": IDL2.Func([], [IDL2.Vec(BlogPost2)], ["query"]),
-    "getAllContacts": IDL2.Func([], [IDL2.Vec(ContactSubmission2)], ["query"]),
-    "getAllTestimonials": IDL2.Func([], [IDL2.Vec(Testimonial2)], ["query"]),
-    "getApprovedComments": IDL2.Func([IDL2.Text], [IDL2.Vec(Comment2)], ["query"]),
-    "getBlogPostById": IDL2.Func([IDL2.Nat], [BlogPost2], ["query"]),
-    "getPendingCommentCount": IDL2.Func([], [IDL2.Nat], ["query"]),
-    "getPendingComments": IDL2.Func([], [IDL2.Vec(Comment2)], ["query"]),
-    "rejectComment": IDL2.Func([IDL2.Nat], [IDL2.Bool], []),
-    "submitComment": IDL2.Func(
-      [IDL2.Text, IDL2.Opt(IDL2.Nat), IDL2.Text, IDL2.Text, IDL2.Text],
-      [IDL2.Nat],
-      []
-    ),
-    "submitContact": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    )
-  });
-};
-function candid_some(value) {
-  return [
-    value
-  ];
-}
-function candid_none() {
-  return [];
-}
-function record_opt_to_undefined(arg) {
-  return arg == null ? void 0 : arg;
-}
-class Backend {
-  constructor(actor, _uploadFile, _downloadFile, processError2) {
-    this.actor = actor;
-    this._uploadFile = _uploadFile;
-    this._downloadFile = _downloadFile;
-    this.processError = processError2;
+function editorHtmlToContent(html) {
+  if (!html) return html;
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  const sliderBlocks = div.querySelectorAll('[data-type="slider"]');
+  for (const block of sliderBlocks) {
+    const rawMarker = block.getAttribute("data-marker") ?? "";
+    const marker = rawMarker.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+    const text = document.createTextNode(marker);
+    block.replaceWith(text);
   }
-  async addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.addBlogPost(arg0, arg1, arg2, arg3, arg4, arg5);
-      return result;
+  return div.innerHTML;
+}
+function contentToEditorHtml(content) {
+  if (!content) return content;
+  const MARKER_PREFIX = "[SLIDER:";
+  let result = "";
+  let remaining = content;
+  while (remaining.length > 0) {
+    const startIdx = remaining.indexOf(MARKER_PREFIX);
+    if (startIdx === -1) {
+      result += remaining;
+      break;
     }
+    result += remaining.slice(0, startIdx);
+    const jsonStart = startIdx + MARKER_PREFIX.length;
+    const endIdx = remaining.indexOf("}]", jsonStart);
+    if (endIdx === -1) {
+      result += remaining.slice(startIdx);
+      break;
+    }
+    const markerStr = remaining.slice(startIdx, endIdx + 2);
+    const jsonStr = remaining.slice(jsonStart, endIdx + 1);
+    try {
+      const config = JSON.parse(jsonStr);
+      const escaped = markerStr.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      const previews = config.images.slice(0, 3).map(
+        (img) => `<img src="${img.url}" alt="" style="width:${Math.floor(
+          100 / Math.min(3, config.images.length)
+        )}%;height:64px;object-fit:cover;display:inline-block;margin-right:2px;border-radius:4px;" />`
+      ).join("");
+      result += `<div contenteditable="false" data-type="slider" data-marker="${escaped}" style="border:2px solid #3b82f6;border-radius:10px;padding:12px;margin:12px 0;background:#eff6ff;user-select:none;-webkit-user-select:none;cursor:default;position:relative;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/><path d="M3 7h18"/></svg><span style="font-size:13px;font-weight:700;color:#1e3a5f;">Image Slider</span><span style="font-size:11px;background:#dbeafe;color:#1d4ed8;border-radius:9999px;padding:2px 8px;font-weight:600;">${config.images.length} slides${config.autoplay ? " · Autoplay" : ""}</span></div><div style="display:flex;gap:2px;overflow:hidden;border-radius:6px;margin-bottom:8px;">${previews}</div><div style="display:flex;gap:6px;"><button type="button" data-action="edit-slider" data-marker="${escaped}" style="font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;background:#2563eb;color:#fff;border:none;cursor:pointer;">Edit</button><button type="button" data-action="delete-slider" style="font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;background:#fee2e2;color:#dc2626;border:none;cursor:pointer;">Remove</button></div></div><p></p>`;
+    } catch {
+      result += markerStr;
+    }
+    remaining = remaining.slice(endIdx + 2);
   }
-  async approveComment(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.approveComment(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.approveComment(arg0);
-      return result;
-    }
-  }
-  async deleteBlogPost(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.deleteBlogPost(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.deleteBlogPost(arg0);
-      return result;
-    }
-  }
-  async deleteComment(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.deleteComment(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.deleteComment(arg0);
-      return result;
-    }
-  }
-  async editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.editBlogPost(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-      return result;
-    }
-  }
-  async editComment(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.editComment(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.editComment(arg0, arg1);
-      return result;
-    }
-  }
-  async getAllBlogPosts() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllBlogPosts();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllBlogPosts();
-      return result;
-    }
-  }
-  async getAllContacts() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllContacts();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllContacts();
-      return result;
-    }
-  }
-  async getAllTestimonials() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllTestimonials();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllTestimonials();
-      return result;
-    }
-  }
-  async getApprovedComments(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getApprovedComments(arg0);
-        return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getApprovedComments(arg0);
-      return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getBlogPostById(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getBlogPostById(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getBlogPostById(arg0);
-      return result;
-    }
-  }
-  async getPendingCommentCount() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getPendingCommentCount();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getPendingCommentCount();
-      return result;
-    }
-  }
-  async getPendingComments() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getPendingComments();
-        return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getPendingComments();
-      return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async rejectComment(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.rejectComment(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.rejectComment(arg0);
-      return result;
-    }
-  }
-  async submitComment(arg0, arg1, arg2, arg3, arg4) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.submitComment(arg0, to_candid_opt_n5(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.submitComment(arg0, to_candid_opt_n5(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
-      return result;
-    }
-  }
-  async submitContact(arg0, arg1, arg2, arg3, arg4) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, arg4);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.submitContact(arg0, arg1, arg2, arg3, arg4);
-      return result;
-    }
-  }
-}
-function from_candid_Comment_n2(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n3(_uploadFile, _downloadFile, value);
-}
-function from_candid_opt_n4(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_record_n3(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    content: value.content,
-    authorEmail: value.authorEmail,
-    createdAt: value.createdAt,
-    authorName: value.authorName,
-    approved: value.approved,
-    parentId: record_opt_to_undefined(from_candid_opt_n4(_uploadFile, _downloadFile, value.parentId)),
-    postId: value.postId
-  };
-}
-function from_candid_vec_n1(_uploadFile, _downloadFile, value) {
-  return value.map((x3) => from_candid_Comment_n2(_uploadFile, _downloadFile, x3));
-}
-function to_candid_opt_n5(_uploadFile, _downloadFile, value) {
-  return value === null ? candid_none() : candid_some(value);
-}
-function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
-  const agent = options.agent || HttpAgent.createSync({
-    ...options.agentOptions
-  });
-  if (options.agent && options.agentOptions) {
-    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
-  }
-  const actor = Actor.createActor(idlFactory, {
-    agent,
-    canisterId,
-    ...options.actorOptions
-  });
-  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
-}
-function useGetAllBlogPosts() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["blogPosts"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllBlogPosts();
-    },
-    enabled: !!actor && !isFetching
-  });
-}
-function useGetBlogPostById(id2) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["blogPost", id2.toString()],
-    queryFn: async () => {
-      if (!actor) return null;
-      return actor.getBlogPostById(id2);
-    },
-    enabled: !!actor && !isFetching
-  });
-}
-function useGetAllTestimonials() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["testimonials"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllTestimonials();
-    },
-    enabled: !!actor && !isFetching
-  });
-}
-function useAddBlogPost() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      title,
-      summary,
-      content,
-      author,
-      imageUrl,
-      category
-    }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.addBlogPost(
-        title,
-        summary,
-        content,
-        author,
-        imageUrl,
-        category
-      );
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
-    }
-  });
-}
-function useEditBlogPost() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      id: id2,
-      title,
-      summary,
-      content,
-      author,
-      imageUrl,
-      category
-    }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.editBlogPost(
-        id2,
-        title,
-        summary,
-        content,
-        author,
-        imageUrl,
-        category
-      );
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
-    }
-  });
-}
-function useDeleteBlogPost() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async (id2) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.deleteBlogPost(id2);
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["blogPosts"] });
-    }
-  });
-}
-function useSubmitContact() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      fullName,
-      phoneNumber,
-      email,
-      countryOfInterest,
-      message
-    }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.submitContact(
-        fullName,
-        phoneNumber,
-        email,
-        countryOfInterest,
-        message
-      );
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["contacts"] });
-    }
-  });
-}
-function useGetApprovedComments(postId) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["comments", "approved", postId],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getApprovedComments(postId);
-    },
-    enabled: !!actor && !isFetching && !!postId
-  });
-}
-function useSubmitComment() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async ({
-      postId,
-      parentId,
-      authorName,
-      authorEmail,
-      content
-    }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.submitComment(
-        postId,
-        parentId,
-        authorName,
-        authorEmail,
-        content
-      );
-    },
-    onSuccess: (_data, vars) => {
-      queryClient2.invalidateQueries({
-        queryKey: ["comments", "approved", vars.postId]
-      });
-      queryClient2.invalidateQueries({ queryKey: ["comments", "pending"] });
-      queryClient2.invalidateQueries({ queryKey: ["comments", "pendingCount"] });
-    }
-  });
-}
-function useGetPendingComments() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["comments", "pending"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getPendingComments();
-    },
-    enabled: !!actor && !isFetching
-  });
-}
-function useGetPendingCommentCount() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["comments", "pendingCount"],
-    queryFn: async () => {
-      if (!actor) return BigInt(0);
-      return actor.getPendingCommentCount();
-    },
-    enabled: !!actor && !isFetching,
-    refetchInterval: 3e4
-  });
-}
-function useApproveComment() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async (id2) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.approveComment(id2);
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["comments"] });
-    }
-  });
-}
-function useRejectComment() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async (id2) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.rejectComment(id2);
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["comments"] });
-    }
-  });
-}
-function useEditComment() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ id: id2, content }) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.editComment(id2, content);
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["comments"] });
-    }
-  });
-}
-function useDeleteComment() {
-  const { actor } = useActor(createActor);
-  const queryClient2 = useQueryClient();
-  return useMutation({
-    mutationFn: async (id2) => {
-      if (!actor) throw new Error("Not connected");
-      return actor.deleteComment(id2);
-    },
-    onSuccess: () => {
-      queryClient2.invalidateQueries({ queryKey: ["comments"] });
-    }
-  });
+  return result;
 }
 const CATEGORIES$1 = [
   "Study Abroad",
@@ -50059,7 +53959,7 @@ ${marker}` }));
       ...form.meta,
       lastUpdated: (/* @__PURE__ */ new Date()).toISOString()
     };
-    const rawContent = form.meta.bilingualEnabled ? form.enContent : form.content;
+    const rawContent = form.meta.bilingualEnabled ? editorHtmlToContent(form.enContent) : editorHtmlToContent(form.content);
     const serialized = serializePostContent(finalMeta, rawContent);
     onSubmit({ ...form, content: serialized });
     localStorage.removeItem(AUTOSAVE_KEY(postId));
@@ -50269,22 +54169,38 @@ ${marker}` }));
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 text-xs text-gray-400", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 13 }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+              "Tip: Use the toolbar ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "⊞" }),
+              " button to insert a slider at cursor position, or use the button below to append one at the end."
+            ] })
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             Button,
             {
               type: "button",
               variant: "outline",
               size: "sm",
-              onClick: () => setShowSliderEditor((v2) => !v2),
+              onClick: () => setShowSliderEditor(true),
               className: "gap-2 text-blue-700 border-blue-200 hover:bg-blue-50 font-semibold",
               "data-ocid": "admin.slider.open_modal_button",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 15 }),
-                " Add Image Slider"
+                " Add Image Slider (append)"
               ]
             }
           ),
-          showSliderEditor && /* @__PURE__ */ jsxRuntimeExports.jsx(ImageSliderEditor, { onInsert: handleSliderInsert })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            ImageSliderEditor,
+            {
+              open: showSliderEditor,
+              onInsert: handleSliderInsert,
+              onClose: () => setShowSliderEditor(false),
+              initialConfig: null
+            }
+          )
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "xl:col-span-2 space-y-4", children: [
@@ -50632,165 +54548,160 @@ ${marker}` }));
     ] })
   ] });
 }
-function timeAgo$1(nanoseconds) {
-  const ms = Number(nanoseconds) / 1e6;
-  const diff = Date.now() - ms;
-  const mins = Math.floor(diff / 6e4);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
-  const days = Math.floor(hrs / 24);
-  return `${days}d ago`;
+function formatFileSize$1(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
-function CommentRow({ comment, posts, pending }) {
-  var _a3;
-  const approveMutation = useApproveComment();
-  const rejectMutation = useRejectComment();
-  const editMutation = useEditComment();
-  const deleteMutation = useDeleteComment();
-  const [editing, setEditing] = reactExports.useState(false);
-  const [editContent, setEditContent] = reactExports.useState(comment.content);
-  const postTitle = ((_a3 = posts.find((p2) => p2.id.toString() === comment.postId)) == null ? void 0 : _a3.title) ?? `Post #${comment.postId}`;
-  const excerpt = comment.content.length > 100 ? `${comment.content.slice(0, 100)}…` : comment.content;
-  const handleApprove = async () => {
-    try {
-      await approveMutation.mutateAsync(comment.id);
-      ue.success("Comment approved and published.");
-    } catch {
-      ue.error("Failed to approve comment.");
-    }
-  };
-  const handleReject = async () => {
-    try {
-      await rejectMutation.mutateAsync(comment.id);
-      ue.success("Comment rejected.");
-    } catch {
-      ue.error("Failed to reject comment.");
-    }
-  };
-  const handleSaveEdit = async () => {
-    if (!editContent.trim()) return;
-    try {
-      await editMutation.mutateAsync({
-        id: comment.id,
-        content: editContent.trim()
-      });
-      ue.success("Comment updated.");
-      setEditing(false);
-    } catch {
-      ue.error("Failed to update comment.");
-    }
-  };
-  const handleDelete = async () => {
-    try {
-      await deleteMutation.mutateAsync(comment.id);
-      ue.success("Comment deleted.");
-    } catch {
-      ue.error("Failed to delete comment.");
-    }
-  };
+function ContactMethodIcon({ method }) {
+  if (!method) return null;
+  if (method === "WhatsApp")
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { size: 13, className: "text-green-600" });
+  if (method === "Phone Call")
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { size: 13, className: "text-blue-600" });
+  if (method === "Email") return /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { size: 13, className: "text-purple-600" });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Inbox, { size: 13, className: "text-gray-500" });
+}
+function ApplicationsPanel() {
+  const { data: contacts, isLoading } = useGetAllContacts();
+  const deleteContact = useDeleteContact();
+  reactExports.useEffect(() => {
+    const now2 = Date.now().toString();
+    localStorage.setItem("mecLastSeenApplications", now2);
+  }, []);
+  const sorted = [...contacts ?? []].sort(
+    (a2, b2) => Number(b2.timestamp) - Number(a2.timestamp)
+  );
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: [1, 2, 3].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-32"
+      },
+      i
+    )) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-2 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-blue-700", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { size: 15, className: "mt-0.5 flex-shrink-0 text-blue-500" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs leading-relaxed", children: "Email notifications are not available on your current plan. New submissions are tracked here with the notification badge above." })
+    ] }),
+    sorted.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        "data-ocid": "admin.applications.empty_state",
+        className: "text-center py-20 bg-white rounded-2xl border border-gray-100",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Inbox, { size: 36, className: "text-gray-300 mx-auto mb-3" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-gray-500", children: "No applications yet." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-400 mt-1", children: "Applications submitted through the Contact page will appear here." })
+        ]
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-ocid": "admin.applications.list", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-gray-500 mb-3", children: [
+        sorted.length,
+        " application",
+        sorted.length !== 1 ? "s" : "",
+        " received"
+      ] }),
+      sorted.map((app, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ApplicationCard,
+        {
+          app,
+          index: idx + 1,
+          onDelete: () => deleteContact.mutate(app.id),
+          isDeleting: deleteContact.isPending
+        },
+        app.timestamp.toString()
+      ))
+    ] })
+  ] });
+}
+function ApplicationCard({
+  app,
+  index: index2,
+  onDelete,
+  isDeleting
+}) {
+  const date = new Date(Number(app.timestamp) / 1e6);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
-      className: `bg-white rounded-xl border shadow-sm px-5 py-4 space-y-3 ${pending ? "border-amber-200 bg-amber-50/30" : "border-gray-200"}`,
-      "data-ocid": `admin.comment.item.${comment.id}`,
+      "data-ocid": `admin.applications.item.${index2}`,
+      className: "bg-white rounded-xl border border-gray-200 shadow-sm p-5 space-y-4 mb-4",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3 flex-wrap", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-0.5 min-w-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm text-[#1e3a5f]", children: comment.authorName }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: comment.authorEmail }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-300", children: "·" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: timeAgo$1(comment.createdAt) }),
-              comment.parentId !== void 0 && comment.parentId !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Badge,
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-base truncate", children: app.fullName }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-x-4 gap-y-1 mt-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
                 {
-                  variant: "outline",
-                  className: "text-xs text-purple-600 border-purple-200 bg-purple-50",
-                  children: "Reply"
+                  href: `mailto:${app.email}`,
+                  className: "text-sm text-blue-600 hover:underline flex items-center gap-1",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { size: 12 }),
+                    " ",
+                    app.email
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
+                {
+                  href: `tel:${app.phoneNumber}`,
+                  className: "text-sm text-gray-600 flex items-center gap-1",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { size: 12 }),
+                    " ",
+                    app.phoneNumber
+                  ]
                 }
               )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-blue-600 truncate", children: [
-              "On: ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: postTitle })
             ] })
           ] }),
-          pending ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-shrink-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                size: "sm",
-                onClick: handleApprove,
-                disabled: approveMutation.isPending,
-                className: "bg-green-600 hover:bg-green-700 text-white gap-1.5 h-8 px-3 text-xs font-semibold",
-                "data-ocid": `admin.comment.approve.${comment.id}`,
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { size: 12 }),
-                  " Approve"
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                size: "sm",
-                variant: "outline",
-                onClick: handleReject,
-                disabled: rejectMutation.isPending,
-                className: "text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs font-semibold",
-                "data-ocid": `admin.comment.reject.${comment.id}`,
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 12 }),
-                  " Reject"
-                ]
-              }
-            )
-          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-shrink-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                size: "sm",
-                variant: "outline",
-                onClick: () => {
-                  setEditing((v2) => !v2);
-                  setEditContent(comment.content);
-                },
-                className: "text-blue-700 border-blue-200 hover:bg-blue-50 gap-1.5 h-8 px-3 text-xs",
-                "data-ocid": `admin.comment.edit.${comment.id}`,
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { size: 12 }),
-                  " Edit"
-                ]
-              }
-            ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-shrink-0 flex-wrap", children: [
+            app.privacyConsent && /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-green-100 text-green-700 border-green-200 text-xs font-semibold", children: "✓ Agreed" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-gray-400 whitespace-nowrap", children: [
+              date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              }),
+              " ",
+              date.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit"
+              })
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 Button,
                 {
                   size: "sm",
                   variant: "outline",
-                  className: "text-red-600 border-red-200 hover:bg-red-50 gap-1.5 h-8 px-3 text-xs",
-                  "data-ocid": `admin.comment.delete.${comment.id}`,
+                  disabled: isDeleting,
+                  "data-ocid": `admin.applications.delete_button.${index2}`,
+                  className: "gap-1 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400 h-7 px-2 text-xs",
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 12 }),
                     " Delete"
                   ]
                 }
               ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "admin.applications.dialog", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this comment?" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This action cannot be undone." })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this application?" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "Delete this application? This cannot be undone." })
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { children: "Cancel" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "admin.applications.cancel_button", children: "Cancel" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     AlertDialogAction,
                     {
                       className: "bg-red-600 hover:bg-red-700 text-white",
-                      onClick: handleDelete,
+                      onClick: onDelete,
+                      "data-ocid": "admin.applications.confirm_button",
                       children: "Delete"
                     }
                   )
@@ -50799,26 +54710,148 @@ function CommentRow({ comment, posts, pending }) {
             ] })
           ] })
         ] }),
-        editing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-2", children: [
+          app.serviceOfInterest && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200", children: app.serviceOfInterest }),
+          app.countryOfInterest && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200", children: [
+            "📍 ",
+            app.countryOfInterest
+          ] })
+        ] }),
+        app.preferredContactMethod && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-500 font-medium", children: "Preferred contact:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "inline-flex items-center gap-1.5 bg-gray-50 border border-gray-200 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ContactMethodIcon, { method: app.preferredContactMethod }),
+            app.preferredContactMethod
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1", children: "Message" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-700 leading-relaxed whitespace-pre-wrap break-words", children: app.message })
+        ] }),
+        app.attachedFiles && app.attachedFiles.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2", children: [
+            "Attached Files (",
+            app.attachedFiles.length,
+            ")"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-1.5", children: app.attachedFiles.map((file, fi) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "li",
+            {
+              className: "flex items-center gap-2 bg-gray-50 rounded-md px-3 py-2 text-sm border border-gray-100",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Paperclip, { size: 13, className: "text-blue-500 flex-shrink-0" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex-1 truncate min-w-0 text-gray-700", children: file.fileName }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-400 text-xs flex-shrink-0", children: formatFileSize$1(file.fileSize) }),
+                file.fileUrl.startsWith("data:") && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "a",
+                  {
+                    href: file.fileUrl,
+                    download: file.fileName,
+                    className: "flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium flex-shrink-0",
+                    "aria-label": `Download ${file.fileName}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { size: 12 }),
+                      " Download"
+                    ]
+                  }
+                )
+              ]
+            },
+            `${file.fileName}-${fi}`
+          )) })
+        ] })
+      ]
+    }
+  );
+}
+function CommentCard({
+  comment,
+  postTitle,
+  index: index2,
+  filter: filter2,
+  editingId,
+  editContent,
+  onStartEdit,
+  onCancelEdit,
+  onEditContentChange,
+  onSubmitEdit,
+  onApprove,
+  onReject,
+  onUnapprove,
+  onRestore,
+  onDelete,
+  approveIsPending,
+  rejectIsPending,
+  unapproveIsPending,
+  editIsPending,
+  deleteIsPending
+}) {
+  const isEditing = editingId === comment.id;
+  const date = new Date(Number(comment.createdAt) / 1e6);
+  const [expanded, setExpanded] = reactExports.useState(false);
+  const TRUNCATE_LEN = 150;
+  const isLong = comment.content.length > TRUNCATE_LEN;
+  const displayContent = !expanded && isLong ? `${comment.content.slice(0, TRUNCATE_LEN)}…` : comment.content;
+  const statusBadge = comment.approved ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200", children: "Approved" }) : comment.rejected ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-200", children: "Rejected" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200", children: "Pending" });
+  const cardBorder = comment.approved ? "border-gray-200" : comment.rejected ? "border-red-100 bg-red-50/20" : "border-amber-200 bg-amber-50/20";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      "data-ocid": `admin.comments.item.${index2}`,
+      className: `bg-white rounded-xl border shadow-sm p-4 sm:p-5 space-y-3 ${cardBorder}`,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0 flex-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-2 mb-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-[#1e3a5f] text-sm", children: comment.authorName }),
+              comment.authorEmail && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400 truncate max-w-[160px]", children: comment.authorEmail }),
+              comment.edited && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400 italic", children: "(edited)" }),
+              comment.parentId && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-purple-50 text-purple-600 border border-purple-200", children: "↩ Reply" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-2 text-xs text-gray-500", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric"
+                }),
+                " ",
+                date.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit"
+                })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-gray-300", children: "·" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "truncate max-w-[200px] text-blue-600 font-medium", children: postTitle })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1.5 flex-shrink-0 flex-wrap", children: filter2 === "all" && statusBadge })
+        ] }),
+        isEditing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Textarea,
             {
               value: editContent,
-              onChange: (e) => setEditContent(e.target.value),
+              onChange: (e) => onEditContentChange(e.target.value),
               rows: 3,
               className: "text-sm border-gray-200 resize-none",
-              "data-ocid": `admin.comment.edit_textarea.${comment.id}`
+              "data-ocid": `admin.comments.edit.textarea.${index2}`
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
                 size: "sm",
-                onClick: handleSaveEdit,
-                disabled: editMutation.isPending,
-                className: "bg-blue-700 hover:bg-blue-800 text-white h-8 px-4 text-xs",
-                children: editMutation.isPending ? "Saving..." : "Save"
+                disabled: editIsPending || !editContent.trim(),
+                onClick: () => onSubmitEdit(comment.id),
+                className: "bg-blue-700 text-white gap-1 text-xs h-7 px-3",
+                "data-ocid": `admin.comments.save_button.${index2}`,
+                children: [
+                  editIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { size: 11 }),
+                  " ",
+                  "Save"
+                ]
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -50826,123 +54859,440 @@ function CommentRow({ comment, posts, pending }) {
               {
                 size: "sm",
                 variant: "ghost",
-                onClick: () => setEditing(false),
-                className: "h-8 px-3 text-xs text-gray-500",
+                onClick: onCancelEdit,
+                className: "text-xs h-7 px-3 text-gray-500",
+                "data-ocid": `admin.comments.cancel_button.${index2}`,
                 children: "Cancel"
               }
             )
           ] })
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-2 border border-gray-100", children: excerpt })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-700 leading-relaxed whitespace-pre-wrap", children: displayContent }),
+          isLong && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => setExpanded((v2) => !v2),
+              className: "text-xs text-blue-600 hover:underline mt-1",
+              children: expanded ? "Show less" : "Show more"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-1.5 pt-1 border-t border-gray-100", children: [
+          filter2 === "pending" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                disabled: approveIsPending,
+                onClick: () => onApprove(comment.id),
+                className: "h-7 px-2.5 text-xs bg-green-600 hover:bg-green-700 text-white gap-1",
+                "data-ocid": `admin.comments.approve_button.${index2}`,
+                children: [
+                  approveIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" }) : "✓",
+                  " ",
+                  "Approve"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                disabled: rejectIsPending,
+                onClick: () => onReject(comment.id),
+                className: "h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50 gap-1",
+                "data-ocid": `admin.comments.reject_button.${index2}`,
+                children: [
+                  rejectIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-red-400 border-2 border-t-transparent rounded-full animate-spin" }) : "✕",
+                  " ",
+                  "Reject"
+                ]
+              }
+            )
+          ] }),
+          filter2 === "all" && !comment.approved && !comment.rejected && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                disabled: approveIsPending,
+                onClick: () => onApprove(comment.id),
+                className: "h-7 px-2.5 text-xs bg-green-600 hover:bg-green-700 text-white gap-1",
+                "data-ocid": `admin.comments.approve_button.${index2}`,
+                children: [
+                  approveIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" }) : "✓",
+                  " ",
+                  "Approve"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                disabled: rejectIsPending,
+                onClick: () => onReject(comment.id),
+                className: "h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50",
+                "data-ocid": `admin.comments.reject_button.${index2}`,
+                children: "✕ Reject"
+              }
+            )
+          ] }),
+          (filter2 === "approved" || filter2 === "all" && comment.approved) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                onClick: () => isEditing ? onCancelEdit() : onStartEdit(comment),
+                className: "h-7 px-2.5 text-xs text-blue-700 border-blue-200 hover:bg-blue-50 gap-1",
+                "data-ocid": `admin.comments.edit_button.${index2}`,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { size: 11 }),
+                  " ",
+                  isEditing ? "Cancel" : "Edit"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                disabled: unapproveIsPending,
+                onClick: () => onUnapprove(comment.id),
+                className: "h-7 px-2.5 text-xs text-amber-600 border-amber-200 hover:bg-amber-50 gap-1",
+                "data-ocid": `admin.comments.unapprove_button.${index2}`,
+                children: [
+                  unapproveIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-amber-500 border-2 border-t-transparent rounded-full animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(RotateCcw, { size: 11 }),
+                  " ",
+                  "Unapprove"
+                ]
+              }
+            )
+          ] }),
+          (filter2 === "rejected" || filter2 === "all" && comment.rejected) && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              size: "sm",
+              variant: "outline",
+              disabled: unapproveIsPending,
+              onClick: () => onRestore(comment.id),
+              className: "h-7 px-2.5 text-xs text-blue-700 border-blue-200 hover:bg-blue-50 gap-1",
+              "data-ocid": `admin.comments.restore_button.${index2}`,
+              children: [
+                unapproveIsPending ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 border-blue-500 border-2 border-t-transparent rounded-full animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(RotateCcw, { size: 11 }),
+                " ",
+                "Restore to Pending"
+              ]
+            }
+          ),
+          filter2 === "all" && !comment.approved && !comment.rejected && null,
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                disabled: deleteIsPending,
+                className: "h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50 gap-1 ml-auto",
+                "data-ocid": `admin.comments.delete_button.${index2}`,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 11 }),
+                  " ",
+                  filter2 === "rejected" ? "Delete Permanently" : "Delete"
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": `admin.comments.dialog.${index2}`, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this comment?" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: filter2 === "rejected" ? "This comment will be permanently removed and cannot be recovered." : "This action cannot be undone." })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  AlertDialogCancel,
+                  {
+                    "data-ocid": `admin.comments.cancel_button.${index2}`,
+                    children: "Cancel"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  AlertDialogAction,
+                  {
+                    className: "bg-red-600 hover:bg-red-700 text-white",
+                    onClick: () => onDelete(comment.id),
+                    "data-ocid": `admin.comments.confirm_button.${index2}`,
+                    children: "Delete"
+                  }
+                )
+              ] })
+            ] })
+          ] })
+        ] })
       ]
     }
   );
 }
-function CommentsTab({ posts }) {
-  const { data: pendingComments = [], isLoading: isPendingLoading } = useGetPendingComments();
-  const [viewMode, setViewMode] = reactExports.useState("pending");
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-5", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "button",
+function CommentsPanel({ posts }) {
+  const { data: allComments = [], isLoading } = useGetAllComments({
+    refetchInterval: 1e4
+  });
+  const { data: rejectedComments = [] } = useGetRejectedComments({
+    refetchInterval: 1e4
+  });
+  const approveComment = useApproveComment();
+  const rejectComment = useRejectComment();
+  const unapproveComment = useUnapproveComment();
+  const editCommentMutation = useEditComment();
+  const deleteCommentMutation = useDeleteComment();
+  const [filter2, setFilter] = reactExports.useState("pending");
+  const [search, setSearch] = reactExports.useState("");
+  const [editingCommentId, setEditingCommentId] = reactExports.useState(null);
+  const [editContent, setEditContent] = reactExports.useState("");
+  const postTitleMap = Object.fromEntries(
+    posts.map((p2) => [p2.id.toString(), p2.title])
+  );
+  const commentMap = /* @__PURE__ */ new Map();
+  for (const c2 of allComments) commentMap.set(c2.id, c2);
+  for (const c2 of rejectedComments)
+    if (!commentMap.has(c2.id)) commentMap.set(c2.id, c2);
+  const merged = Array.from(commentMap.values());
+  const pendingComments = merged.filter((c2) => !c2.approved && !c2.rejected);
+  const approvedComments = merged.filter((c2) => c2.approved);
+  const rejectedList = merged.filter((c2) => c2.rejected && !c2.approved);
+  const counts = {
+    all: merged.length,
+    pending: pendingComments.length,
+    approved: approvedComments.length,
+    rejected: rejectedList.length
+  };
+  function getFilteredList() {
+    let base;
+    if (filter2 === "pending") base = pendingComments;
+    else if (filter2 === "approved") base = approvedComments;
+    else if (filter2 === "rejected") base = rejectedList;
+    else base = [...merged];
+    base = [...base].sort((a2, b2) => Number(b2.createdAt) - Number(a2.createdAt));
+    if (!search.trim()) return base;
+    const q2 = search.trim().toLowerCase();
+    return base.filter((c2) => {
+      const name = c2.authorName.toLowerCase();
+      const title = (postTitleMap[c2.postId] ?? "").toLowerCase();
+      return name.includes(q2) || title.includes(q2);
+    });
+  }
+  const visibleComments = getFilteredList();
+  function startEdit(comment) {
+    setEditingCommentId(comment.id);
+    setEditContent(comment.content);
+  }
+  async function submitEdit(commentId) {
+    if (!editContent.trim()) return;
+    try {
+      await editCommentMutation.mutateAsync({
+        commentId,
+        newContent: editContent.trim()
+      });
+      ue.success("Comment updated.");
+      setEditingCommentId(null);
+    } catch {
+      ue.error("Failed to update comment.");
+    }
+  }
+  async function handleApprove(commentId) {
+    try {
+      await approveComment.mutateAsync(commentId);
+      ue.success("Comment approved — now visible on blog post.");
+    } catch {
+      ue.error("Failed to approve comment.");
+    }
+  }
+  async function handleReject(commentId) {
+    try {
+      await rejectComment.mutateAsync(commentId);
+      ue.success("Comment rejected.");
+    } catch {
+      ue.error("Failed to reject comment.");
+    }
+  }
+  async function handleUnapprove(commentId) {
+    try {
+      await unapproveComment.mutateAsync(commentId);
+      ue.success("Comment moved back to pending.");
+    } catch {
+      ue.error("Failed to unapprove comment.");
+    }
+  }
+  async function handleRestore(commentId) {
+    try {
+      await unapproveComment.mutateAsync(commentId);
+      ue.success("Comment restored to pending queue.");
+    } catch {
+      ue.error("Failed to restore comment.");
+    }
+  }
+  async function handleDelete(commentId) {
+    try {
+      await deleteCommentMutation.mutateAsync(commentId);
+      ue.success("Comment deleted.");
+    } catch {
+      ue.error("Failed to delete comment.");
+    }
+  }
+  const FILTER_LABELS = [
+    { key: "pending", label: "Pending" },
+    { key: "approved", label: "Approved" },
+    { key: "rejected", label: "Rejected" },
+    { key: "all", label: "All" }
+  ];
+  const sectionHeader = filter2 === "pending" ? "Pending Approval" : filter2 === "approved" ? "Approved Comments" : filter2 === "rejected" ? "Rejected / Spam" : "All Comments";
+  const emptyMessages = {
+    pending: "No pending comments — you're all caught up!",
+    approved: "No approved comments yet.",
+    rejected: "No rejected comments.",
+    all: "No comments yet. Comments submitted on blog posts will appear here for moderation."
+  };
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: [1, 2, 3].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-24"
+      },
+      i
+    )) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Search,
         {
-          type: "button",
-          onClick: () => setViewMode("pending"),
-          className: `px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "pending" ? "bg-amber-500 text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`,
-          "data-ocid": "admin.comments.pending_tab",
-          children: [
-            "Pending",
-            pendingComments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-2 bg-white text-amber-600 text-xs font-bold px-1.5 py-0.5 rounded-full", children: pendingComments.length })
-          ]
+          size: 15,
+          className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "input",
+        {
+          type: "text",
+          value: search,
+          onChange: (e) => setSearch(e.target.value),
+          placeholder: "Search by commenter name or blog post title…",
+          className: "w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+          "data-ocid": "admin.comments.search_input"
+        }
+      ),
+      search && /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
-          onClick: () => setViewMode("approved"),
-          className: `px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${viewMode === "approved" ? "bg-[#1e3a5f] text-white" : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"}`,
-          "data-ocid": "admin.comments.approved_tab",
-          children: "Approved"
+          onClick: () => setSearch(""),
+          className: "absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600",
+          "aria-label": "Clear search",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 14 })
         }
       )
     ] }),
-    viewMode === "pending" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "admin.comments.pending.list", children: isPendingLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center py-10 text-gray-400", children: "Loading..." }) : pendingComments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: "text-center py-14 bg-white rounded-2xl border border-dashed border-gray-200",
-        "data-ocid": "admin.comments.pending.empty",
+        className: "flex flex-wrap gap-1 bg-gray-100 rounded-xl p-1",
+        "data-ocid": "admin.comments.filter.tab",
+        role: "tablist",
+        children: FILTER_LABELS.map(({ key, label }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            type: "button",
+            role: "tab",
+            "aria-selected": filter2 === key,
+            onClick: () => setFilter(key),
+            "data-ocid": `admin.comments.filter.${key}.tab`,
+            className: `flex-1 min-w-[80px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${filter2 === key ? "bg-white text-[#1e3a5f] shadow-sm" : "text-gray-500 hover:text-gray-700"}`,
+            children: [
+              label,
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: `inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-bold leading-none ${filter2 === key ? key === "pending" ? "bg-amber-100 text-amber-700" : key === "approved" ? "bg-green-100 text-green-700" : key === "rejected" ? "bg-red-100 text-red-700" : "bg-blue-100 text-blue-700" : "bg-gray-200 text-gray-500"}`,
+                  children: counts[key]
+                }
+              )
+            ]
+          },
+          key
+        ))
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold text-[#1e3a5f] uppercase tracking-wide", children: sectionHeader }),
+      visibleComments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-gray-400", children: [
+        visibleComments.length,
+        " comment",
+        visibleComments.length !== 1 ? "s" : "",
+        search ? " matching search" : ""
+      ] })
+    ] }),
+    filter2 === "pending" && counts.pending > 0 && !search && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-amber-700", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { size: 15, className: "mt-0.5 flex-shrink-0 text-amber-500" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs leading-relaxed", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: counts.pending }),
+        " comment",
+        counts.pending !== 1 ? "s" : "",
+        " awaiting your approval. Approved comments become immediately visible on the blog post."
+      ] })
+    ] }),
+    visibleComments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        "data-ocid": "admin.comments.empty_state",
+        className: "text-center py-16 bg-white rounded-2xl border border-gray-100",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 32, className: "text-gray-300 mx-auto mb-2" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-gray-400 text-sm", children: "No pending comments" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-400 mt-1", children: "All comments have been reviewed." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 32, className: "text-gray-300 mx-auto mb-3" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-gray-500 text-sm", children: search ? `No comments matching "${search}"` : emptyMessages[filter2] }),
+          search && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => setSearch(""),
+              className: "text-xs text-blue-600 hover:underline mt-2",
+              children: "Clear search"
+            }
+          )
         ]
       }
-    ) : pendingComments.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      CommentRow,
-      {
-        comment: c2,
-        posts,
-        pending: true
-      },
-      c2.id.toString()
-    )) }),
-    viewMode === "approved" && /* @__PURE__ */ jsxRuntimeExports.jsx(ApprovedCommentsList, { posts })
-  ] });
-}
-function ApprovedCommentsList({ posts }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(ApprovedByPost, { posts });
-}
-function ApprovedByPost({ posts }) {
-  var _a3;
-  const [selectedPostId, setSelectedPostId] = reactExports.useState(
-    ((_a3 = posts[0]) == null ? void 0 : _a3.id.toString()) ?? ""
-  );
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-xs font-semibold text-gray-600 uppercase tracking-wide", children: "Select Post" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "select",
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "admin.comments.list", children: visibleComments.map((comment, idx) => {
+      const postTitle = postTitleMap[comment.postId] ?? `Post #${comment.postId}`;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CommentCard,
         {
-          value: selectedPostId,
-          onChange: (e) => setSelectedPostId(e.target.value),
-          className: "w-full h-10 rounded-md border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
-          "data-ocid": "admin.comments.post_filter",
-          children: posts.map((p2) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: p2.id.toString(), children: p2.title }, p2.id.toString()))
-        }
-      )
-    ] }),
-    selectedPostId && /* @__PURE__ */ jsxRuntimeExports.jsx(ApprovedCommentsForPost, { postId: selectedPostId, posts })
+          comment,
+          postTitle,
+          index: idx + 1,
+          filter: filter2,
+          editingId: editingCommentId,
+          editContent,
+          onStartEdit: startEdit,
+          onCancelEdit: () => setEditingCommentId(null),
+          onEditContentChange: setEditContent,
+          onSubmitEdit: submitEdit,
+          onApprove: handleApprove,
+          onReject: handleReject,
+          onUnapprove: handleUnapprove,
+          onRestore: handleRestore,
+          onDelete: handleDelete,
+          approveIsPending: approveComment.isPending,
+          rejectIsPending: rejectComment.isPending,
+          unapproveIsPending: unapproveComment.isPending,
+          editIsPending: editCommentMutation.isPending,
+          deleteIsPending: deleteCommentMutation.isPending
+        },
+        comment.id
+      );
+    }) })
   ] });
-}
-function ApprovedCommentsForPost({
-  postId,
-  posts
-}) {
-  const { data: comments = [], isLoading } = useGetApprovedComments(postId);
-  if (isLoading)
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center py-8 text-gray-400 text-sm", children: "Loading..." });
-  if (comments.length === 0) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        className: "text-center py-10 bg-white rounded-2xl border border-dashed border-gray-200",
-        "data-ocid": "admin.comments.approved.empty",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 28, className: "text-gray-300 mx-auto mb-2" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-gray-400", children: "No approved comments for this post" })
-        ]
-      }
-    );
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "admin.comments.approved.list", children: comments.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-    CommentRow,
-    {
-      comment: c2,
-      posts,
-      pending: false
-    },
-    c2.id.toString()
-  )) });
 }
 function AdminPage() {
   const { identity, login, clear, isInitializing, isLoggingIn } = useInternetIdentity();
@@ -50952,18 +55302,31 @@ function AdminPage() {
     isLoading,
     refetch: refetchPosts
   } = useGetAllBlogPosts();
+  const { data: contacts } = useGetAllContacts();
+  const { data: pendingCommentCount = 0 } = useGetCommentCount();
   const addMutation = useAddBlogPost();
   const editMutation = useEditBlogPost();
   const deleteMutation = useDeleteBlogPost();
-  const { data: pendingCount } = useGetPendingCommentCount();
-  const [activeTab, setActiveTab] = reactExports.useState("posts");
+  const [activeTab, setActiveTab] = reactExports.useState("blog");
   const [showAddForm, setShowAddForm] = reactExports.useState(false);
   const [editingPost, setEditingPost] = reactExports.useState(null);
   const [showDataBanner, setShowDataBanner] = reactExports.useState(true);
   const editFormRef = reactExports.useRef(null);
   const autoEditApplied = reactExports.useRef(false);
   const importFileRef = reactExports.useRef(null);
-  const pendingNum = pendingCount !== void 0 ? Number(pendingCount) : 0;
+  const [lastSeen, setLastSeen] = reactExports.useState(() => {
+    const stored = localStorage.getItem("mecLastSeenApplications");
+    return stored ? Number(stored) : 0;
+  });
+  const newApplicationsCount = (contacts ?? []).filter((c2) => {
+    return Number(c2.timestamp) / 1e6 > lastSeen;
+  }).length;
+  function handleApplicationsTabClick() {
+    setActiveTab("applications");
+    const now2 = Date.now();
+    setLastSeen(now2);
+    localStorage.setItem("mecLastSeenApplications", now2.toString());
+  }
   reactExports.useEffect(() => {
     if (autoEditApplied.current || !posts || posts.length === 0) return;
     const editId = new URLSearchParams(window.location.search).get("editId");
@@ -50973,16 +55336,13 @@ function AdminPage() {
       autoEditApplied.current = true;
       setEditingPost(target);
       setShowAddForm(false);
-      setTimeout(
-        () => {
-          var _a3;
-          return (_a3 = editFormRef.current) == null ? void 0 : _a3.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        },
-        100
-      );
+      setTimeout(() => {
+        var _a3;
+        (_a3 = editFormRef.current) == null ? void 0 : _a3.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 100);
     }
   }, [posts]);
   async function handleAdd(form) {
@@ -51078,11 +55438,12 @@ function AdminPage() {
   }
   function getInitialFormFromPost(post) {
     const { meta, content } = parsePostContent(post.content);
+    const editorContent = contentToEditorHtml(content);
     return {
       title: post.title,
       summary: post.summary,
-      content: meta.bilingualEnabled ? "" : content,
-      enContent: meta.bilingualEnabled ? content : "",
+      content: meta.bilingualEnabled ? "" : editorContent,
+      enContent: meta.bilingualEnabled ? editorContent : "",
       author: post.author,
       imageUrl: post.imageUrl,
       category: post.category,
@@ -51126,10 +55487,10 @@ function AdminPage() {
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between gap-4 flex-wrap", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-2xl font-bold text-[#1e3a5f]", children: "Admin Panel" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 mt-0.5", children: "Manage blog posts and moderate comments." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 mt-0.5", children: "Manage blog posts and view contact applications." })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
-          activeTab === "posts" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          activeTab === "blog" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
@@ -51150,6 +55511,7 @@ function AdminPage() {
               {
                 variant: "outline",
                 onClick: handleExportPosts,
+                title: "Download all blog posts as a JSON backup file",
                 className: "gap-2 text-emerald-700 border-emerald-300 hover:bg-emerald-50",
                 "data-ocid": "admin.export.button",
                 children: [
@@ -51166,6 +55528,7 @@ function AdminPage() {
                   var _a3;
                   return (_a3 = importFileRef.current) == null ? void 0 : _a3.click();
                 },
+                title: "Import blog posts from a JSON backup file",
                 className: "gap-2 text-blue-700 border-blue-200 hover:bg-blue-50",
                 "data-ocid": "admin.import.button",
                 children: [
@@ -51190,17 +55553,17 @@ function AdminPage() {
           )
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex border-t border-gray-100", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-0 border-t border-gray-100", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "button",
           {
             type: "button",
-            onClick: () => setActiveTab("posts"),
-            className: `px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "posts" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`,
-            "data-ocid": "admin.tab.posts",
+            "data-ocid": "admin.blog.tab",
+            onClick: () => setActiveTab("blog"),
+            className: `flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "blog" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-800"}`,
             children: [
-              "Blog Posts ",
-              posts ? `(${posts.length})` : ""
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 15 }),
+              " Blog Posts"
             ]
           }
         ),
@@ -51208,19 +55571,46 @@ function AdminPage() {
           "button",
           {
             type: "button",
+            "data-ocid": "admin.comments.tab",
             onClick: () => setActiveTab("comments"),
-            className: `px-5 py-3 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${activeTab === "comments" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-700"}`,
-            "data-ocid": "admin.tab.comments",
+            className: `flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "comments" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-800"}`,
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 14 }),
-              "Comments",
-              pendingNum > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center leading-none", children: pendingNum > 99 ? "99+" : pendingNum })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 15 }),
+              " Comments",
+              pendingCommentCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs font-bold leading-none", children: pendingCommentCount > 99 ? "99+" : pendingCommentCount })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            type: "button",
+            "data-ocid": "admin.applications.tab",
+            onClick: handleApplicationsTabClick,
+            className: `flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "applications" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-800"}`,
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Inbox, { size: 15 }),
+              " Applications & Leads",
+              newApplicationsCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs font-bold leading-none", children: newApplicationsCount > 99 ? "99+" : newApplicationsCount })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            type: "button",
+            "data-ocid": "admin.website_editor.tab",
+            onClick: () => setActiveTab("website-editor"),
+            className: `flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${activeTab === "website-editor" ? "border-blue-700 text-blue-700" : "border-transparent text-gray-500 hover:text-gray-800"}`,
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Images, { size: 15 }),
+              " Website Editor"
             ]
           }
         )
-      ] }) })
+      ] })
     ] }),
-    showDataBanner && activeTab === "posts" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    showDataBanner && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         className: "flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-blue-700",
@@ -51247,181 +55637,178 @@ function AdminPage() {
         ]
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8", children: [
-      activeTab === "posts" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        showAddForm && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl border border-gray-200 shadow-sm p-6", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-5", children: "New Blog Post" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            BlogForm,
-            {
-              initial: emptyForm,
-              postId: "new",
-              onSubmit: handleAdd,
-              onCancel: () => setShowAddForm(false),
-              isPending: addMutation.isPending,
-              submitLabel: "Publish Post"
-            },
-            "new"
-          )
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8", children: activeTab === "applications" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ApplicationsPanel, {}) : activeTab === "comments" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CommentsPanel, { posts: posts ?? [] }) : activeTab === "website-editor" ? /* @__PURE__ */ jsxRuntimeExports.jsx(WebsiteEditorPanel, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      showAddForm && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl border border-gray-200 shadow-sm p-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-5", children: "New Blog Post" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          BlogForm,
+          {
+            initial: emptyForm,
+            postId: "new",
+            onSubmit: handleAdd,
+            onCancel: () => setShowAddForm(false),
+            isPending: addMutation.isPending,
+            submitLabel: "Publish Post"
+          },
+          "new"
+        )
+      ] }),
+      editingPost && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          ref: editFormRef,
+          className: "bg-white rounded-2xl border border-gray-200 shadow-sm p-6",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-5", children: [
+              "Edit Post:",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-blue-700", children: editingPost.title })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              BlogForm,
+              {
+                initial: getInitialFormFromPost(editingPost),
+                postId: editingPost.id.toString(),
+                onSubmit: handleEdit,
+                onCancel: () => setEditingPost(null),
+                isPending: editMutation.isPending,
+                submitLabel: "Save Changes"
+              },
+              editingPost.id.toString()
+            )
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-4", children: isLoading ? "Loading posts..." : `All Posts (${(posts == null ? void 0 : posts.length) ?? 0})` }),
+        !isLoading && (!posts || posts.length === 0) && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center py-16 text-gray-400 bg-white rounded-2xl border border-gray-100", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold", children: "No blog posts yet." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1", children: 'Click "New Post" above to create your first one.' })
         ] }),
-        editingPost && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "admin.posts.list", children: posts == null ? void 0 : posts.map((post, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
           {
-            ref: editFormRef,
-            className: "bg-white rounded-2xl border border-gray-200 shadow-sm p-6",
+            "data-ocid": `admin.posts.item.${idx + 1}`,
+            className: "bg-white rounded-xl border border-gray-200 shadow-sm px-5 py-4 flex items-start gap-4 hover:shadow-md transition-shadow",
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-5", children: [
-                "Edit Post:",
-                " ",
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-blue-700", children: editingPost.title })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                BlogForm,
+              post.imageUrl && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "img",
                 {
-                  initial: getInitialFormFromPost(editingPost),
-                  postId: editingPost.id.toString(),
-                  onSubmit: handleEdit,
-                  onCancel: () => setEditingPost(null),
-                  isPending: editMutation.isPending,
-                  submitLabel: "Save Changes"
-                },
-                editingPost.id.toString()
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-[#1e3a5f] mb-4", children: isLoading ? "Loading posts..." : `All Posts (${(posts == null ? void 0 : posts.length) ?? 0})` }),
-          !isLoading && (!posts || posts.length === 0) && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center py-16 text-gray-400 bg-white rounded-2xl border border-gray-100", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold", children: "No blog posts yet." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1", children: 'Click "New Post" above to create your first one.' })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "admin.posts.list", children: posts == null ? void 0 : posts.map((post, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              "data-ocid": `admin.posts.item.${idx + 1}`,
-              className: "bg-white rounded-xl border border-gray-200 shadow-sm px-5 py-4 flex items-start gap-4 hover:shadow-md transition-shadow",
-              children: [
-                post.imageUrl && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "img",
+                  src: post.imageUrl,
+                  alt: post.title,
+                  className: "w-16 h-16 object-cover rounded-lg flex-shrink-0 border border-gray-100",
+                  onError: (e) => {
+                    e.currentTarget.style.display = "none";
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1 flex-wrap", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200", children: post.category || "General" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: new Date(
+                    Number(post.publishedDate) / 1e6
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                  }) }),
+                  (() => {
+                    const { meta } = parsePostContent(post.content);
+                    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      meta.bilingualEnabled && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Badge,
+                        {
+                          variant: "outline",
+                          className: "text-xs text-purple-700 border-purple-200 bg-purple-50",
+                          children: "Bilingual"
+                        }
+                      ),
+                      meta.status === "draft" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Badge,
+                        {
+                          variant: "outline",
+                          className: "text-xs text-gray-500 border-gray-200",
+                          children: "Draft"
+                        }
+                      ),
+                      meta.tags.slice(0, 2).map((tag) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "text-xs text-gray-400 bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded-full",
+                          children: tag
+                        },
+                        tag
+                      ))
+                    ] });
+                  })()
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-base truncate", children: post.title }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 line-clamp-2 mt-0.5", children: post.summary })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-shrink-0 mt-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
                   {
-                    src: post.imageUrl,
-                    alt: post.title,
-                    className: "w-16 h-16 object-cover rounded-lg flex-shrink-0 border border-gray-100",
-                    onError: (e) => {
-                      e.currentTarget.style.display = "none";
-                    }
+                    size: "sm",
+                    variant: "outline",
+                    className: "gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50 hover:border-blue-400",
+                    "data-ocid": `admin.posts.edit_button.${idx + 1}`,
+                    onClick: () => {
+                      setEditingPost(post);
+                      setShowAddForm(false);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { size: 13 }),
+                      " Edit"
+                    ]
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1 flex-wrap", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200", children: post.category || "General" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: new Date(
-                      Number(post.publishedDate) / 1e6
-                    ).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric"
-                    }) }),
-                    (() => {
-                      const { meta } = parsePostContent(post.content);
-                      return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                        meta.bilingualEnabled && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Badge,
-                          {
-                            variant: "outline",
-                            className: "text-xs text-purple-700 border-purple-200 bg-purple-50",
-                            children: "Bilingual"
-                          }
-                        ),
-                        meta.status === "draft" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Badge,
-                          {
-                            variant: "outline",
-                            className: "text-xs text-gray-500 border-gray-200",
-                            children: "Draft"
-                          }
-                        ),
-                        meta.tags.slice(0, 2).map((tag) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            className: "text-xs text-gray-400 bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded-full",
-                            children: tag
-                          },
-                          tag
-                        ))
-                      ] });
-                    })()
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-[#1e3a5f] text-base truncate", children: post.title }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 line-clamp-2 mt-0.5", children: post.summary })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-shrink-0 mt-1", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     Button,
                     {
                       size: "sm",
                       variant: "outline",
-                      className: "gap-1.5 text-blue-700 border-blue-200 hover:bg-blue-50 hover:border-blue-400",
-                      "data-ocid": `admin.posts.edit_button.${idx + 1}`,
-                      onClick: () => {
-                        setEditingPost(post);
-                        setShowAddForm(false);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      },
+                      className: "gap-1.5 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400",
+                      disabled: deleteMutation.isPending,
+                      "data-ocid": `admin.posts.delete_button.${idx + 1}`,
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { size: 13 }),
-                        " Edit"
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 13 }),
+                        " Delete"
                       ]
                     }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      Button,
-                      {
-                        size: "sm",
-                        variant: "outline",
-                        className: "gap-1.5 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-400",
-                        disabled: deleteMutation.isPending,
-                        "data-ocid": `admin.posts.delete_button.${idx + 1}`,
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 13 }),
-                          " Delete"
-                        ]
-                      }
-                    ) }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this post?" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogDescription, { children: [
-                          '"',
-                          post.title,
-                          '" will be permanently removed. This cannot be undone.'
-                        ] })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "admin.delete.cancel_button", children: "Cancel" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          AlertDialogAction,
-                          {
-                            className: "bg-red-600 hover:bg-red-700 text-white",
-                            onClick: () => handleDelete(post.id),
-                            "data-ocid": "admin.delete.confirm_button",
-                            children: "Delete"
-                          }
-                        )
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete this post?" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogDescription, { children: [
+                        '"',
+                        post.title,
+                        '" will be permanently removed. This cannot be undone.'
                       ] })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "admin.delete.cancel_button", children: "Cancel" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        AlertDialogAction,
+                        {
+                          className: "bg-red-600 hover:bg-red-700 text-white",
+                          onClick: () => handleDelete(post.id),
+                          "data-ocid": "admin.delete.confirm_button",
+                          children: "Delete"
+                        }
+                      )
                     ] })
                   ] })
                 ] })
-              ]
-            },
-            post.id.toString()
-          )) })
-        ] })
-      ] }),
-      activeTab === "comments" && /* @__PURE__ */ jsxRuntimeExports.jsx(CommentsTab, { posts: posts ?? [] })
-    ] })
+              ] })
+            ]
+          },
+          post.id.toString()
+        )) })
+      ] })
+    ] }) })
   ] });
 }
 function Skeleton({ className, ...props }) {
@@ -51803,6 +56190,295 @@ function BlogPage() {
     ) }) })
   ] });
 }
+function formatCommentDate(nanoseconds) {
+  const ms = Number(nanoseconds) / 1e6;
+  return new Date(ms).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+function generateMathChallenge() {
+  const a2 = Math.floor(Math.random() * 9) + 1;
+  const b2 = Math.floor(Math.random() * 9) + 1;
+  return { question: `${a2} + ${b2}`, answer: a2 + b2 };
+}
+function CommentForm({
+  postId,
+  parentId = null,
+  onSuccess,
+  onCancel,
+  compact = false
+}) {
+  const [name, setName] = reactExports.useState("");
+  const [email, setEmail] = reactExports.useState("");
+  const [content, setContent] = reactExports.useState("");
+  const [mathAnswer, setMathAnswer] = reactExports.useState("");
+  const [submitted, setSubmitted] = reactExports.useState(false);
+  const [challenge] = reactExports.useState(generateMathChallenge);
+  const { actor, isFetching: actorFetching } = useActor();
+  const isActorReady = !!actor && !actorFetching;
+  const submitComment = useSubmitComment();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !content.trim()) {
+      ue.error("Please fill in all required fields.");
+      return;
+    }
+    if (Number.parseInt(mathAnswer, 10) !== challenge.answer) {
+      ue.error("Incorrect answer to the spam check. Please try again.");
+      return;
+    }
+    if (!isActorReady) {
+      ue.error("Connection error — please refresh the page and try again.");
+      return;
+    }
+    try {
+      await submitComment.mutateAsync({
+        postId,
+        parentId,
+        authorName: name.trim(),
+        authorEmail: email.trim(),
+        content: content.trim()
+      });
+      setSubmitted(true);
+      onSuccess == null ? void 0 : onSuccess();
+    } catch (err) {
+      console.error("[CommentForm] Failed to submit comment:", err);
+      const message = err instanceof Error ? err.message : "Failed to submit comment. Please try again.";
+      ue.error(message);
+    }
+  }
+  if (submitted) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-green-50 border border-green-200 rounded-xl p-4 text-green-700 text-sm font-medium flex items-start gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-green-500 mt-0.5", children: "✓" }),
+      "Your comment has been submitted and is awaiting approval."
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "form",
+    {
+      onSubmit: handleSubmit,
+      className: compact ? "space-y-3" : "space-y-4",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: `grid gap-3 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`,
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-semibold text-gray-700", children: [
+                  "Name ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: name,
+                    onChange: (e) => setName(e.target.value),
+                    placeholder: "Your name",
+                    required: true,
+                    className: "border-gray-200 focus:border-blue-500 text-sm"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-semibold text-gray-700", children: [
+                  "Email ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "email",
+                    value: email,
+                    onChange: (e) => setEmail(e.target.value),
+                    placeholder: "your@email.com",
+                    required: true,
+                    className: "border-gray-200 focus:border-blue-500 text-sm"
+                  }
+                )
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-semibold text-gray-700", children: [
+            "Comment ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Textarea,
+            {
+              value: content,
+              onChange: (e) => setContent(e.target.value),
+              placeholder: compact ? "Write your reply..." : "Share your thoughts, questions, or feedback...",
+              rows: compact ? 3 : 4,
+              required: true,
+              className: "border-gray-200 focus:border-blue-500 text-sm resize-none"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-semibold text-gray-700", children: [
+            "Spam check: What is ",
+            challenge.question,
+            "?",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              type: "number",
+              value: mathAnswer,
+              onChange: (e) => setMathAnswer(e.target.value),
+              placeholder: "Enter the answer",
+              required: true,
+              className: "border-gray-200 focus:border-blue-500 text-sm w-40"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              type: "submit",
+              disabled: submitComment.isPending || !isActorReady,
+              className: "bg-blue-700 hover:bg-blue-800 text-white font-semibold gap-2",
+              size: compact ? "sm" : "default",
+              "data-ocid": "comment.submit_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { size: 14 }),
+                submitComment.isPending ? "Posting..." : actorFetching ? "Connecting..." : "Post Comment"
+              ]
+            }
+          ),
+          onCancel && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              type: "button",
+              variant: "ghost",
+              size: "sm",
+              onClick: onCancel,
+              className: "text-gray-500",
+              "data-ocid": "comment.cancel_button",
+              children: "Cancel"
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+function CommentItem({ comment, replies, postId }) {
+  const [showReplyForm, setShowReplyForm] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-xl border border-gray-200 p-5 shadow-sm", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(User, { size: 16, className: "text-blue-600" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 mb-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-[#1e3a5f] text-sm", children: comment.authorName }),
+            comment.edited && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400 italic", children: "(edited)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1 text-xs text-gray-400", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { size: 11 }),
+              formatCommentDate(comment.createdAt)
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700 text-sm leading-relaxed whitespace-pre-wrap", children: comment.content }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              onClick: () => setShowReplyForm((v2) => !v2),
+              className: "mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Reply, { size: 12 }),
+                " Reply"
+              ]
+            }
+          )
+        ] })
+      ] }),
+      showReplyForm && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-4 pl-12", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CommentForm,
+        {
+          postId,
+          parentId: comment.id,
+          compact: true,
+          onSuccess: () => setShowReplyForm(false),
+          onCancel: () => setShowReplyForm(false)
+        }
+      ) })
+    ] }),
+    replies.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pl-8 space-y-3", children: replies.map((reply) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "bg-blue-50 rounded-xl border border-blue-100 p-4",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-7 h-7 rounded-full bg-blue-200 flex items-center justify-center flex-shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(User, { size: 13, className: "text-blue-700" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 mb-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-[#1e3a5f] text-sm", children: reply.authorName }),
+              reply.edited && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400 italic", children: "(edited)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1 text-xs text-gray-400", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { size: 11 }),
+                formatCommentDate(reply.createdAt)
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-700 text-sm leading-relaxed whitespace-pre-wrap", children: reply.content })
+          ] })
+        ] })
+      },
+      reply.id
+    )) })
+  ] });
+}
+function CommentSection({ postId }) {
+  const { data: comments = [], isLoading } = useGetCommentsForPost(postId);
+  const topLevelComments = reactExports.useMemo(
+    () => comments.filter((c2) => c2.parentId === null || c2.parentId === void 0),
+    [comments]
+  );
+  const getReplies = (commentId) => comments.filter((c2) => c2.parentId === commentId);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "mt-10", "aria-label": "Comments", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 20, className: "text-blue-600" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-xl font-bold text-[#1e3a5f]", children: [
+        "Comments",
+        comments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-2 text-sm font-normal text-gray-500", children: [
+          "(",
+          comments.length,
+          ")"
+        ] })
+      ] })
+    ] }),
+    isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4 mb-8", children: [1, 2].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-24"
+      },
+      i
+    )) }) : topLevelComments.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-gray-50 rounded-xl border border-gray-200 p-8 text-center mb-8", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 32, className: "text-gray-300 mx-auto mb-3" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-500 font-medium", children: "No comments yet." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-400 text-sm mt-1", children: "Be the first to share your thoughts!" })
+    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-6 mb-8", children: topLevelComments.map((comment) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      CommentItem,
+      {
+        comment,
+        replies: getReplies(comment.id),
+        postId
+      },
+      comment.id
+    )) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl border border-gray-200 shadow-sm p-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-base font-bold text-[#1e3a5f] mb-4", children: "Leave a Comment" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CommentForm, { postId })
+    ] })
+  ] });
+}
 function ImageSlider({
   images,
   autoplay = true
@@ -51925,19 +56601,6 @@ function formatDate(nanoseconds) {
     day: "numeric"
   });
 }
-function timeAgo(nanoseconds) {
-  const ms = Number(nanoseconds) / 1e6;
-  const diff = Date.now() - ms;
-  const mins = Math.floor(diff / 6e4);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins} minute${mins !== 1 ? "s" : ""} ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs} hour${hrs !== 1 ? "s" : ""} ago`;
-  const days = Math.floor(hrs / 24);
-  if (days < 30) return `${days} day${days !== 1 ? "s" : ""} ago`;
-  const months = Math.floor(days / 30);
-  return `${months} month${months !== 1 ? "s" : ""} ago`;
-}
 function getPostImage(imageUrl, category) {
   if (imageUrl) return imageUrl;
   const cat = (category == null ? void 0 : category.toLowerCase()) ?? "";
@@ -51950,15 +56613,22 @@ function getPostImage(imageUrl, category) {
   return "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80";
 }
 function processContent(rawContent) {
-  const withCta = rawContent.replace(/\[CTA:(\{[^\]]+\})\]/g, (_2, json) => {
-    try {
-      const { text, url, style: style2 } = JSON.parse(json);
-      const cls = style2 === "primary" ? "cta-btn cta-btn-primary" : style2 === "secondary" ? "cta-btn cta-btn-secondary" : "cta-btn cta-btn-outline";
-      return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-    } catch {
-      return "";
+  const withoutPlaceholders = rawContent.replace(
+    /<div[^>]*data-type="slider"[^>]*>[\s\S]*?<\/div>/gi,
+    ""
+  );
+  const withCta = withoutPlaceholders.replace(
+    /\[CTA:(\{[^\]]+\})\]/g,
+    (_2, json) => {
+      try {
+        const { text, url, style: style2 } = JSON.parse(json);
+        const cls = style2 === "primary" ? "cta-btn cta-btn-primary" : style2 === "secondary" ? "cta-btn cta-btn-secondary" : "cta-btn cta-btn-outline";
+        return `<a href="${url}" class="${cls}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      } catch {
+        return "";
+      }
     }
-  });
+  );
   const segments = [];
   const MARKER_PREFIX = "[SLIDER:";
   let remaining = withCta;
@@ -51988,321 +56658,6 @@ function processContent(rawContent) {
     remaining = remaining.slice(endIdx + 2);
   }
   return segments;
-}
-function generateCaptcha() {
-  const a2 = Math.floor(Math.random() * 9) + 1;
-  const b2 = Math.floor(Math.random() * 9) + 1;
-  const useAdd = Math.random() > 0.5;
-  if (useAdd) {
-    return { question: `${a2} + ${b2}`, answer: a2 + b2 };
-  }
-  const hi = Math.max(a2, b2);
-  const lo = Math.min(a2, b2);
-  return { question: `${hi} − ${lo}`, answer: hi - lo };
-}
-function CommentForm({
-  postId,
-  parentId = null,
-  onSuccess,
-  onCancel,
-  compact = false
-}) {
-  const submitMutation = useSubmitComment();
-  const [name, setName] = reactExports.useState("");
-  const [email, setEmail] = reactExports.useState("");
-  const [content, setContent] = reactExports.useState("");
-  const [captchaInput, setCaptchaInput] = reactExports.useState("");
-  const [submitted, setSubmitted] = reactExports.useState(false);
-  const [errors, setErrors] = reactExports.useState({});
-  const captcha = reactExports.useRef(generateCaptcha());
-  const validate = () => {
-    const e = {};
-    if (!name.trim()) e.name = "Name is required";
-    if (!email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      e.email = "Enter a valid email";
-    if (!content.trim()) e.content = "Comment is required";
-    if (content.trim().length < 5) e.content = "Comment is too short";
-    const ans = Number.parseInt(captchaInput, 10);
-    if (Number.isNaN(ans) || ans !== captcha.current.answer)
-      e.captcha = "Incorrect answer";
-    return e;
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
-    }
-    try {
-      await submitMutation.mutateAsync({
-        postId,
-        parentId,
-        authorName: name.trim(),
-        authorEmail: email.trim(),
-        content: content.trim()
-      });
-      setSubmitted(true);
-      onSuccess();
-    } catch {
-      ue.error("Failed to submit comment. Please try again.");
-    }
-  };
-  if (submitted) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-xl", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { size: 14, className: "text-green-600" }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-green-800", children: "Comment submitted!" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-green-600 mt-0.5", children: "Your comment is awaiting admin approval and will appear once reviewed." })
-      ] })
-    ] });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-3", noValidate: true, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        className: `grid gap-3 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`,
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                type: "text",
-                placeholder: "Your name *",
-                value: name,
-                onChange: (e) => {
-                  setName(e.target.value);
-                  setErrors((p2) => ({ ...p2, name: "" }));
-                },
-                className: `w-full h-10 rounded-lg border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${errors.name ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"}`,
-                "data-ocid": "comment.name.input"
-              }
-            ),
-            errors.name && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-1", children: errors.name })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                type: "email",
-                placeholder: "Your email * (not displayed)",
-                value: email,
-                onChange: (e) => {
-                  setEmail(e.target.value);
-                  setErrors((p2) => ({ ...p2, email: "" }));
-                },
-                className: `w-full h-10 rounded-lg border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${errors.email ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"}`,
-                "data-ocid": "comment.email.input"
-              }
-            ),
-            errors.email && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-1", children: errors.email })
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "textarea",
-        {
-          placeholder: parentId ? "Write your reply..." : "Share your thoughts on this post...",
-          value: content,
-          onChange: (e) => {
-            setContent(e.target.value);
-            setErrors((p2) => ({ ...p2, content: "" }));
-          },
-          rows: compact ? 3 : 4,
-          className: `w-full rounded-lg border px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 resize-none ${errors.content ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"}`,
-          "data-ocid": "comment.content.textarea"
-        }
-      ),
-      errors.content && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-1", children: errors.content })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 flex-wrap", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-semibold text-[#1e3a5f] bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg min-w-[80px] text-center select-none", children: [
-          captcha.current.question,
-          " = ?"
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "number",
-            placeholder: "Answer",
-            value: captchaInput,
-            onChange: (e) => {
-              setCaptchaInput(e.target.value);
-              setErrors((p2) => ({ ...p2, captcha: "" }));
-            },
-            className: `w-20 h-9 rounded-lg border px-2 text-sm text-center focus:outline-none focus:ring-2 focus:ring-[#00bcd4]/50 ${errors.captcha ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"}`,
-            "data-ocid": "comment.captcha.input"
-          }
-        )
-      ] }),
-      errors.captcha && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500", children: errors.captcha }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 ml-auto", children: [
-        onCancel && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            onClick: onCancel,
-            className: "text-sm text-gray-500 hover:text-gray-700 px-3 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors",
-            children: "Cancel"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "submit",
-            disabled: submitMutation.isPending,
-            className: "text-sm font-semibold text-white bg-[#1e3a5f] hover:bg-[#152d4a] px-4 py-1.5 rounded-lg transition-colors disabled:opacity-60",
-            "data-ocid": "comment.submit.button",
-            children: submitMutation.isPending ? "Submitting..." : parentId ? "Post Reply" : "Post Comment"
-          }
-        )
-      ] })
-    ] })
-  ] });
-}
-function CommentItem({
-  comment,
-  replies,
-  postId,
-  depth = 0
-}) {
-  const [showReplyForm, setShowReplyForm] = reactExports.useState(false);
-  const initials = comment.authorName.split(" ").map((w2) => w2[0]).join("").toUpperCase().slice(0, 2);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: depth > 0 ? "ml-8 sm:ml-12 mt-3" : "", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-9 h-9 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#00bcd4] flex items-center justify-center flex-shrink-0 text-white text-xs font-bold", children: initials }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1.5 flex-wrap", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm text-[#1e3a5f]", children: comment.authorName }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-400", children: timeAgo(comment.createdAt) }),
-            depth > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-[#00bcd4] font-medium flex items-center gap-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Reply, { size: 10 }),
-              " Reply"
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-700 leading-relaxed whitespace-pre-line", children: comment.content })
-        ] }),
-        depth === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            onClick: () => setShowReplyForm((v2) => !v2),
-            className: "mt-1.5 flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#1e3a5f] transition-colors px-1",
-            "data-ocid": "comment.reply.button",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Reply, { size: 12 }),
-              " Reply"
-            ]
-          }
-        ),
-        showReplyForm && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-2 bg-blue-50/60 rounded-xl p-3 border border-blue-100", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          CommentForm,
-          {
-            postId,
-            parentId: comment.id,
-            onSuccess: () => setShowReplyForm(false),
-            onCancel: () => setShowReplyForm(false),
-            compact: true
-          }
-        ) })
-      ] })
-    ] }),
-    replies.map((reply) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      CommentItem,
-      {
-        comment: reply,
-        replies: [],
-        postId,
-        depth: 1
-      },
-      reply.id.toString()
-    ))
-  ] });
-}
-function CommentSection({ postId }) {
-  const { data: comments = [], isLoading } = useGetApprovedComments(postId);
-  const [formKey, setFormKey] = reactExports.useState(0);
-  const topLevel = reactExports.useMemo(
-    () => comments.filter((c2) => c2.parentId === void 0 || c2.parentId === null),
-    [comments]
-  );
-  const repliesByParent = reactExports.useMemo(() => {
-    const map = /* @__PURE__ */ new Map();
-    for (const c2 of comments) {
-      if (c2.parentId !== void 0 && c2.parentId !== null) {
-        const key = c2.parentId.toString();
-        const arr = map.get(key) ?? [];
-        arr.push(c2);
-        map.set(key, arr);
-      }
-    }
-    return map;
-  }, [comments]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "section",
-    {
-      className: "mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 sm:p-8",
-      "data-ocid": "comments.section",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6 pb-4 border-b border-gray-100", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 20, className: "text-[#00bcd4]" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-lg font-bold text-[#1e3a5f]", children: [
-            "Comments",
-            comments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-2 text-sm font-normal text-gray-400", children: [
-              "(",
-              comments.length,
-              ")"
-            ] })
-          ] })
-        ] }),
-        isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4 mb-8", children: [1, 2].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "w-9 h-9 rounded-full flex-shrink-0" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 space-y-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-3 w-32" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-12 w-full rounded-xl" })
-          ] })
-        ] }, i)) }) : topLevel.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "text-center py-8 mb-8 bg-gray-50 rounded-xl border border-dashed border-gray-200",
-            "data-ocid": "comments.empty.state",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 32, className: "text-gray-300 mx-auto mb-2" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 font-medium", children: "Be the first to share your thoughts on this post!" })
-            ]
-          }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-5 mb-8", "data-ocid": "comments.list", children: topLevel.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          CommentItem,
-          {
-            comment: c2,
-            replies: repliesByParent.get(c2.id.toString()) ?? [],
-            postId
-          },
-          c2.id.toString()
-        )) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-t border-gray-100 pt-6", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold text-[#1e3a5f] uppercase tracking-wide mb-4", children: "Leave a Comment" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            CommentForm,
-            {
-              postId,
-              onSuccess: () => setFormKey((k2) => k2 + 1)
-            },
-            formKey
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-gray-400 mt-3 flex items-center gap-1", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 11 }),
-            "Comments are reviewed before appearing publicly."
-          ] })
-        ] })
-      ]
-    }
-  );
 }
 function BlogPostPage() {
   const { id: id2 } = useParams({ from: "/blog/$id" });
@@ -52462,7 +56817,7 @@ function BlogPostPage() {
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  className: "hidden md:grid gap-6 mb-4",
+                  className: `hidden md:grid gap-6 mb-4 ${meta.langOrder === "en-fr" ? "" : ""}`,
                   style: { gridTemplateColumns: "1fr 1fr" },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-bold text-2xl text-[#1e3a5f] leading-tight", children: meta.langOrder === "en-fr" ? post.title : meta.frenchTitle }),
@@ -52647,7 +57002,7 @@ function BlogPostPage() {
               )
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CommentSection, { postId: id2 }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CommentSection, { postId: post.id.toString() }),
           relatedPosts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-ocid": "blog_post.related.panel", className: "mt-10", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-[#1e3a5f] mb-4", children: "Related Articles" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4", children: relatedPosts.map((rp, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -52726,29 +57081,285 @@ function ContentRenderer({
     })
   ] });
 }
+const SERVICE_OPTIONS = [
+  "Study Abroad Consultation & Processing",
+  "Work Abroad Consultation & Processing",
+  "Scholarships & Financial Aid",
+  "Visa Assistance",
+  "Online Degree Courses",
+  "Online Professional Courses",
+  "Professional Internship",
+  "Language Test Preparation - English (IELTS / TOEFL / Duolingo)",
+  "Language Test Preparation - Français (TEF Canada / TCF Canada)",
+  "Document Review & Application Support"
+];
+const COUNTRY_REQUIRED_SERVICES = /* @__PURE__ */ new Set([
+  "Study Abroad Consultation & Processing",
+  "Work Abroad Consultation & Processing",
+  "Scholarships & Financial Aid",
+  "Visa Assistance",
+  "Professional Internship"
+]);
+const MESSAGE_PLACEHOLDERS = {
+  "Study Abroad Consultation & Processing": "Tell us your preferred country, level of study, and intake",
+  "Work Abroad Consultation & Processing": "Tell us your preferred country and job type",
+  "Scholarships & Financial Aid": "Tell us your preferred country, academic background and goals",
+  "Visa Assistance": "Tell us the destination country, visa type, and your current application status",
+  "Online Degree Courses": "Tell us your field of interest, preferred study mode, and highest qualification",
+  "Online Professional Courses": "Tell us the skill or career area you want to improve and your experience level",
+  "Professional Internship": "Tell us your field of study, preferred country, and internship duration",
+  "Language Test Preparation - English (IELTS / TOEFL / Duolingo)": "Tell us the test (IELTS, TOEFL, Duolingo, TEF Canada, TCF Canada), your target score, and preferred schedule",
+  "Language Test Preparation - Français (TEF Canada / TCF Canada)": "Tell us the test (IELTS, TOEFL, Duolingo, TEF Canada, TCF Canada), your target score, and preferred schedule",
+  "Document Review & Application Support": "Tell us which documents you need reviewed and the purpose of your application"
+};
+const DEFAULT_MESSAGE_PLACEHOLDER = "Tell us about your goals, background, and how we can help you...";
+const CONTACT_METHOD_OPTIONS = [
+  "WhatsApp",
+  "Phone Call",
+  "Email",
+  "All / Any of them"
+];
+const ACCEPTED_FILE_TYPES = ".pdf,.doc,.docx,.jpg,.jpeg,.png";
+const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+function formatFileSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function generateCaptcha() {
+  const a2 = randomInt(1, 9);
+  const b2 = randomInt(1, 9);
+  return { a: a2, b: b2, answer: a2 + b2 };
+}
 function ContactPage() {
+  var _a3;
+  const { country: countryParam } = useSearch({ from: "/contact" });
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "contact");
+  const heroSection = (_a3 = pageData == null ? void 0 : pageData.sections) == null ? void 0 : _a3.slice().sort((a2, b2) => Number(a2.order) - Number(b2.order)).find((s2) => s2.sectionType === "hero" || s2.sectionType === "hero-section");
+  const initialService = countryParam ? "Study Abroad Consultation & Processing" : "";
+  const initialCountry = countryParam ?? "";
   const [form, setForm] = reactExports.useState({
     fullName: "",
     phoneNumber: "",
     email: "",
-    countryOfInterest: "",
+    serviceOfInterest: initialService,
+    countryOfInterest: initialCountry,
     message: ""
   });
-  const [submitted, setSubmitted] = reactExports.useState(false);
+  const [uploadedFiles, setUploadedFiles] = reactExports.useState([]);
+  const [fileErrors, setFileErrors] = reactExports.useState([]);
+  const [preferredContactMethod, setPreferredContactMethod] = reactExports.useState("");
+  const [privacyConsent, setPrivacyConsent] = reactExports.useState(false);
+  const [isDragOver, setIsDragOver] = reactExports.useState(false);
+  const [successInfo, setSuccessInfo] = reactExports.useState(null);
+  const [fieldErrors, setFieldErrors] = reactExports.useState({});
+  const [isSubmitting, setIsSubmitting] = reactExports.useState(false);
+  const fileInputRef = reactExports.useRef(null);
+  const [captcha, setCaptcha] = reactExports.useState(generateCaptcha);
+  const [captchaInput, setCaptchaInput] = reactExports.useState("");
   const submitContact = useSubmitContact();
-  const handleSubmit = async (e) => {
+  const showCountryField = COUNTRY_REQUIRED_SERVICES.has(
+    form.serviceOfInterest
+  );
+  const messagePlaceholder = MESSAGE_PLACEHOLDERS[form.serviceOfInterest] ?? DEFAULT_MESSAGE_PLACEHOLDER;
+  const isFirstRender = reactExports.useRef(true);
+  reactExports.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (!COUNTRY_REQUIRED_SERVICES.has(form.serviceOfInterest)) {
+      setForm((prev) => ({ ...prev, countryOfInterest: "" }));
+    }
+  }, [form.serviceOfInterest]);
+  function addFiles(newFiles) {
+    const errors = [];
+    const valid = [];
+    for (const file of Array.from(newFiles)) {
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        errors.push(`"${file.name}" exceeds ${MAX_FILE_SIZE_MB}MB limit.`);
+      } else {
+        valid.push(file);
+      }
+    }
+    setFileErrors(errors);
+    setUploadedFiles((prev) => [...prev, ...valid]);
+  }
+  function removeFile(idx) {
+    setUploadedFiles((prev) => prev.filter((_2, i) => i !== idx));
+  }
+  async function readFilesAsBase64(files) {
+    return Promise.all(
+      files.map(
+        (file) => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            var _a4;
+            resolve({
+              fileName: file.name,
+              fileSize: file.size,
+              fileType: file.type,
+              fileUrl: (_a4 = ev.target) == null ? void 0 : _a4.result
+            });
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        })
+      )
+    );
+  }
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  function validateForm() {
+    const errors = {};
+    if (!form.fullName.trim()) errors.fullName = "Full name is required.";
+    if (!form.phoneNumber.trim())
+      errors.phoneNumber = "Phone number is required.";
+    if (!form.email.trim()) {
+      errors.email = "Email address is required.";
+    } else if (!validateEmail(form.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+    if (!form.serviceOfInterest)
+      errors.serviceOfInterest = "Please select a service.";
+    if (!form.message.trim()) errors.message = "Message is required.";
+    if (!preferredContactMethod)
+      errors.preferredContactMethod = "Please select a preferred contact method.";
+    if (!privacyConsent)
+      errors.privacyConsent = "You must agree to the privacy policy to proceed.";
+    const captchaVal = Number.parseInt(captchaInput.trim(), 10);
+    if (Number.isNaN(captchaVal) || captchaVal !== captcha.answer) {
+      errors.captcha = "Incorrect answer, please try again.";
+    }
+    return errors;
+  }
+  function buildWhatsappUrl() {
+    const documentsInfo = uploadedFiles.length > 0 ? `${uploadedFiles.length} file(s): ${uploadedFiles.map((f) => f.name).join(", ")}` : "None";
+    const whatsappMessage = [
+      "🔔 New Application Received",
+      "━━━━━━━━━━━━━━━━━━━━━",
+      `👤 Full Name: ${form.fullName}`,
+      `📞 Phone: ${form.phoneNumber}`,
+      `📧 Email: ${form.email}`,
+      `🎯 Service: ${form.serviceOfInterest}`,
+      `🌍 Country: ${form.countryOfInterest || "N/A"}`,
+      `📬 Preferred Contact: ${preferredContactMethod || "Not specified"}`,
+      `📎 Documents: ${documentsInfo}`,
+      `💬 Message: ${form.message}`,
+      "━━━━━━━━━━━━━━━━━━━━━",
+      "Sent from Modern Education Consult Website"
+    ].join("\n");
+    return `https://wa.me/250795780073?text=${encodeURIComponent(whatsappMessage)}`;
+  }
+  function resetFormState() {
+    setForm({
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      serviceOfInterest: "",
+      countryOfInterest: "",
+      message: ""
+    });
+    setUploadedFiles([]);
+    setFileErrors([]);
+    setPreferredContactMethod("");
+    setPrivacyConsent(false);
+    setCaptchaInput("");
+    setCaptcha(generateCaptcha());
+    setFieldErrors({});
+  }
+  async function handleWhatsAppSubmit(e) {
     e.preventDefault();
+    const errors = validateForm();
+    setFieldErrors(errors);
+    if (errors.captcha) {
+      setCaptcha(generateCaptcha());
+      setCaptchaInput("");
+    }
+    if (Object.keys(errors).length > 0) return;
+    const whatsappUrl = buildWhatsappUrl();
+    window.open(whatsappUrl, "_blank");
+    setIsSubmitting(true);
     try {
-      await submitContact.mutateAsync(form);
-      setSubmitted(true);
+      const attachedFiles = await readFilesAsBase64(uploadedFiles);
+      await submitContact.mutateAsync({
+        ...form,
+        preferredContactMethod,
+        privacyConsent,
+        attachedFiles
+      });
     } catch (_err) {
+    } finally {
+      setIsSubmitting(false);
+    }
+    setSuccessInfo({ mode: "whatsapp", whatsappFallbackUrl: whatsappUrl });
+    resetFormState();
+  }
+  async function handleEmailSubmit(e) {
+    e.preventDefault();
+    const errors = validateForm();
+    setFieldErrors(errors);
+    if (errors.captcha) {
+      setCaptcha(generateCaptcha());
+      setCaptchaInput("");
+    }
+    if (Object.keys(errors).length > 0) return;
+    setIsSubmitting(true);
+    try {
+      const attachedFiles = await readFilesAsBase64(uploadedFiles);
+      await submitContact.mutateAsync({
+        ...form,
+        preferredContactMethod,
+        privacyConsent,
+        attachedFiles
+      });
+    } catch (_err) {
+    } finally {
+      setIsSubmitting(false);
+    }
+    setSuccessInfo({ mode: "email" });
+    resetFormState();
+  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: void 0 }));
     }
   };
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const FieldError = reactExports.useMemo(
+    () => ({ id: id2 }) => fieldErrors[id2] ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "p",
+      {
+        "data-ocid": `contact.${id2}.field_error`,
+        className: "text-xs text-destructive flex items-center gap-1 mt-1",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 12 }),
+          " ",
+          fieldErrors[id2]
+        ]
+      }
+    ) : null,
+    [fieldErrors]
+  );
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
+    heroSection ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section: heroSection,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
@@ -52830,9 +57441,9 @@ function ContactPage() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "a",
                     {
-                      href: "mailto:moderneducationconsult2025@gmail.com",
+                      href: "mailto:moderneducationconsult2026@gmail.com",
                       className: "text-white font-medium hover:text-primary transition-colors break-all text-sm",
-                      children: "moderneducationconsult2025@gmail.com"
+                      children: "moderneducationconsult2026@gmail.com"
                     }
                   )
                 ] })
@@ -52874,23 +57485,16 @@ function ContactPage() {
           viewport: { once: true },
           transition: { duration: 0.6, delay: 0.1 },
           className: "lg:col-span-3",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "border-0 shadow-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-8", children: [
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "border-0 shadow-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-6 sm:p-8", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-2xl text-brand-dark mb-2", children: "Send Your Application" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/60 text-sm mb-8", children: "Fill in the form below and our team will get back to you within 24 hours." }),
-            submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/60 text-sm mb-8", children: "Fill in the form below and submit via WhatsApp or Email. Our team will get back to you within 24 hours." }),
+            successInfo ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SuccessScreen,
               {
-                "data-ocid": "contact.success_state",
-                initial: { opacity: 0, scale: 0.95 },
-                animate: { opacity: 1, scale: 1 },
-                className: "text-center py-12",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 36, className: "text-green-600" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-bold text-2xl text-brand-dark mb-2", children: "Application Sent!" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/60 max-w-sm mx-auto", children: "Thank you for reaching out. Our team will contact you within 24 hours to discuss your requirements." })
-                ]
+                info: successInfo,
+                onReset: () => setSuccessInfo(null)
               }
-            ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-5", children: [
+            ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { className: "space-y-5", noValidate: true, children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-5", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -52914,10 +57518,10 @@ function ContactPage() {
                       placeholder: "Your full name",
                       value: form.fullName,
                       onChange: handleChange,
-                      required: true,
-                      className: "border-border focus:border-primary"
+                      className: `border-border focus:border-primary ${fieldErrors.fullName ? "border-destructive focus:border-destructive" : ""}`
                     }
-                  )
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "fullName" })
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -52941,64 +57545,111 @@ function ContactPage() {
                       placeholder: "+250 7XX XXX XXX",
                       value: form.phoneNumber,
                       onChange: handleChange,
-                      required: true,
-                      className: "border-border focus:border-primary"
+                      className: `border-border focus:border-primary ${fieldErrors.phoneNumber ? "border-destructive focus:border-destructive" : ""}`
                     }
-                  )
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "phoneNumber" })
                 ] })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-5", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Label,
+                  {
+                    htmlFor: "email",
+                    className: "text-sm font-medium text-foreground/80",
+                    children: [
+                      "Email Address",
+                      " ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "email",
+                    name: "email",
+                    type: "email",
+                    "data-ocid": "contact.input.3",
+                    placeholder: "your@email.com",
+                    value: form.email,
+                    onChange: handleChange,
+                    className: `border-border focus:border-primary ${fieldErrors.email ? "border-destructive focus:border-destructive" : ""}`
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "email" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Label,
+                  {
+                    htmlFor: "serviceOfInterest",
+                    className: "text-sm font-medium text-foreground/80",
+                    children: [
+                      "Service of Interest",
+                      " ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Label,
+                    "select",
                     {
-                      htmlFor: "email",
-                      className: "text-sm font-medium text-foreground/80",
+                      id: "serviceOfInterest",
+                      name: "serviceOfInterest",
+                      "data-ocid": "contact.select",
+                      value: form.serviceOfInterest,
+                      onChange: handleChange,
+                      className: `w-full appearance-none rounded-md border bg-background px-3 py-2 pr-10 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${fieldErrors.serviceOfInterest ? "border-destructive focus:ring-destructive/30" : "border-border focus:border-primary"}`,
                       children: [
-                        "Email Address",
-                        " ",
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Select a service you are interested in" }),
+                        SERVICE_OPTIONS.map((opt) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: opt, children: opt }, opt))
                       ]
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Input,
+                    ChevronDown,
                     {
-                      id: "email",
-                      name: "email",
-                      type: "email",
-                      "data-ocid": "contact.input.3",
-                      placeholder: "your@email.com",
-                      value: form.email,
-                      onChange: handleChange,
-                      required: true,
-                      className: "border-border focus:border-primary"
+                      size: 16,
+                      className: "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-foreground/50"
                     }
                   )
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Label,
-                    {
-                      htmlFor: "countryOfInterest",
-                      className: "text-sm font-medium text-foreground/80",
-                      children: "Country of Interest"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Input,
-                    {
-                      id: "countryOfInterest",
-                      name: "countryOfInterest",
-                      "data-ocid": "contact.input.4",
-                      placeholder: "e.g. Canada, UK, UAE",
-                      value: form.countryOfInterest,
-                      onChange: handleChange,
-                      className: "border-border focus:border-primary"
-                    }
-                  )
-                ] })
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "serviceOfInterest" })
               ] }),
+              showCountryField && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: { opacity: 0, height: 0 },
+                  animate: { opacity: 1, height: "auto" },
+                  exit: { opacity: 0, height: 0 },
+                  transition: { duration: 0.2 },
+                  className: "space-y-1.5",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Label,
+                      {
+                        htmlFor: "countryOfInterest",
+                        className: "text-sm font-medium text-foreground/80",
+                        children: "Country of Interest"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "countryOfInterest",
+                        name: "countryOfInterest",
+                        "data-ocid": "contact.input.4",
+                        placeholder: "e.g. Canada, UK, UAE, Germany",
+                        value: form.countryOfInterest,
+                        onChange: handleChange,
+                        className: "border-border focus:border-primary"
+                      }
+                    )
+                  ]
+                }
+              ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   Label,
@@ -53006,7 +57657,8 @@ function ContactPage() {
                     htmlFor: "message",
                     className: "text-sm font-medium text-foreground/80",
                     children: [
-                      "Message ",
+                      "Message / Application Details",
+                      " ",
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
                     ]
                   }
@@ -53017,14 +57669,243 @@ function ContactPage() {
                     id: "message",
                     name: "message",
                     "data-ocid": "contact.textarea",
-                    placeholder: "Tell us about your goals, background, and how we can help you...",
+                    placeholder: messagePlaceholder,
                     value: form.message,
                     onChange: handleChange,
-                    required: true,
                     rows: 5,
-                    className: "border-border focus:border-primary resize-none"
+                    className: `border-border focus:border-primary resize-none ${fieldErrors.message ? "border-destructive focus:border-destructive" : ""}`
                   }
-                )
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "message" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-medium text-foreground/80", children: [
+                  "Upload Documents",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground/40 font-normal", children: "(Optional)" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50", children: "Upload CV, passport, certificates, transcripts, or any supporting documents." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    "data-ocid": "contact.dropzone",
+                    onDragOver: (e) => {
+                      e.preventDefault();
+                      setIsDragOver(true);
+                    },
+                    onDragLeave: () => setIsDragOver(false),
+                    onDrop: (e) => {
+                      e.preventDefault();
+                      setIsDragOver(false);
+                      addFiles(e.dataTransfer.files);
+                    },
+                    className: `flex flex-col items-center justify-center gap-2 border-2 border-dashed rounded-lg px-4 py-6 transition-colors ${isDragOver ? "border-primary bg-primary/5" : "border-border hover:border-primary/50 hover:bg-muted/30"}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Upload,
+                        {
+                          size: 22,
+                          className: isDragOver ? "text-primary" : "text-foreground/30"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground/60 text-center", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "button",
+                          {
+                            type: "button",
+                            className: "font-medium text-primary hover:underline",
+                            onClick: () => {
+                              var _a4;
+                              return (_a4 = fileInputRef.current) == null ? void 0 : _a4.click();
+                            },
+                            children: "Click to upload"
+                          }
+                        ),
+                        " ",
+                        "or drag and drop"
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-foreground/40 text-center", children: [
+                        "PDF, DOC, DOCX, JPG, JPEG, PNG — max",
+                        " ",
+                        MAX_FILE_SIZE_MB,
+                        "MB per file"
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "input",
+                        {
+                          ref: fileInputRef,
+                          type: "file",
+                          multiple: true,
+                          accept: ACCEPTED_FILE_TYPES,
+                          className: "hidden",
+                          "data-ocid": "contact.upload_button",
+                          onChange: (e) => {
+                            if (e.target.files) addFiles(e.target.files);
+                            e.target.value = "";
+                          }
+                        }
+                      )
+                    ]
+                  }
+                ),
+                fileErrors.map((err) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "p",
+                  {
+                    className: "text-xs text-destructive flex items-center gap-1",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 12 }),
+                      " ",
+                      err
+                    ]
+                  },
+                  err
+                )),
+                uploadedFiles.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-1.5 mt-1", children: uploadedFiles.map((file, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "li",
+                  {
+                    "data-ocid": `contact.file.item.${idx + 1}`,
+                    className: "flex items-center gap-2 bg-muted/40 rounded-md px-3 py-2 text-sm",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Paperclip,
+                        {
+                          size: 13,
+                          className: "text-primary flex-shrink-0"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex-1 truncate min-w-0 text-foreground/80", children: file.name }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground/40 text-xs flex-shrink-0", children: formatFileSize(file.size) }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          type: "button",
+                          "aria-label": `Remove ${file.name}`,
+                          "data-ocid": `contact.file.delete_button.${idx + 1}`,
+                          onClick: () => removeFile(idx),
+                          className: "text-foreground/40 hover:text-destructive transition-colors flex-shrink-0",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 14 })
+                        }
+                      )
+                    ]
+                  },
+                  `${file.name}-${idx}`
+                )) })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Label,
+                  {
+                    htmlFor: "preferredContactMethod",
+                    className: "text-sm font-medium text-foreground/80",
+                    children: [
+                      "Preferred Contact Method",
+                      " ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "select",
+                    {
+                      id: "preferredContactMethod",
+                      "data-ocid": "contact.contact_method.select",
+                      value: preferredContactMethod,
+                      onChange: (e) => {
+                        setPreferredContactMethod(e.target.value);
+                        if (e.target.value)
+                          setFieldErrors((prev) => ({
+                            ...prev,
+                            preferredContactMethod: void 0
+                          }));
+                      },
+                      className: `w-full appearance-none rounded-md border bg-background px-3 py-2 pr-10 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${fieldErrors.preferredContactMethod ? "border-destructive focus:ring-destructive/30" : "border-border focus:border-primary"}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", disabled: true, children: "Select preferred contact method" }),
+                        CONTACT_METHOD_OPTIONS.map((opt) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: opt, children: opt }, opt))
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    ChevronDown,
+                    {
+                      size: 16,
+                      className: "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-foreground/50"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "preferredContactMethod" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "input",
+                    {
+                      type: "checkbox",
+                      id: "privacyConsent",
+                      "data-ocid": "contact.privacy_consent.checkbox",
+                      checked: privacyConsent,
+                      onChange: (e) => {
+                        setPrivacyConsent(e.target.checked);
+                        if (e.target.checked)
+                          setFieldErrors((prev) => ({
+                            ...prev,
+                            privacyConsent: void 0
+                          }));
+                      },
+                      className: "mt-0.5 h-4 w-4 cursor-pointer rounded border-border accent-primary flex-shrink-0"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "label",
+                    {
+                      htmlFor: "privacyConsent",
+                      className: "text-sm text-foreground/70 cursor-pointer leading-relaxed",
+                      children: [
+                        "I agree to the processing of my personal data for consultation purposes.",
+                        " ",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                      ]
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "privacyConsent" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 rounded-lg border border-border bg-muted/20 p-4", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label, { className: "text-sm font-medium text-foreground/80", children: [
+                  "Spam Protection",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground/70", children: [
+                  "What is",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { className: "text-foreground", children: [
+                    captcha.a,
+                    " + ",
+                    captcha.b
+                  ] }),
+                  "?"
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "number",
+                    "data-ocid": "contact.captcha.input",
+                    placeholder: "Enter your answer",
+                    value: captchaInput,
+                    onChange: (e) => {
+                      setCaptchaInput(e.target.value);
+                      if (e.target.value)
+                        setFieldErrors((prev) => ({
+                          ...prev,
+                          captcha: void 0
+                        }));
+                    },
+                    className: `w-32 border-border focus:border-primary ${fieldErrors.captcha ? "border-destructive focus:border-destructive" : ""}`
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FieldError, { id: "captcha" })
               ] }),
               submitContact.isError && /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
@@ -53037,26 +57918,124 @@ function ContactPage() {
                   ]
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Button,
-                {
-                  type: "submit",
-                  "data-ocid": "contact.submit_button",
-                  disabled: submitContact.isPending,
-                  className: "w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 text-base shadow-blue hover:-translate-y-0.5 transition-all",
-                  size: "lg",
-                  children: submitContact.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
-                    "Sending Application..."
-                  ] }) : "Send Application"
-                }
-              )
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "pt-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50 text-center mb-3", children: "Choose how you'd like to submit your application:" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-3", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      "data-ocid": "contact.whatsapp_submit_button",
+                      disabled: isSubmitting,
+                      onClick: handleWhatsAppSubmit,
+                      className: "flex-1 flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-bold text-white text-sm sm:text-base transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-md",
+                      style: {
+                        backgroundColor: isSubmitting ? "#1ebe5d" : "#25D366"
+                      },
+                      children: isSubmitting ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { size: 18, className: "animate-spin" }),
+                        "Sending..."
+                      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { size: 20 }),
+                        "Apply via WhatsApp"
+                      ] })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      "data-ocid": "contact.email_submit_button",
+                      disabled: isSubmitting,
+                      onClick: handleEmailSubmit,
+                      className: "flex-1 flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-bold text-white text-sm sm:text-base transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-md bg-primary hover:bg-primary/90",
+                      children: isSubmitting ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { size: 18, className: "animate-spin" }),
+                        "Sending..."
+                      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { size: 20 }),
+                        "Apply via Email"
+                      ] })
+                    }
+                  )
+                ] })
+              ] })
             ] })
           ] }) })
         }
       )
     ] }) }) })
   ] });
+}
+function SuccessScreen({
+  info,
+  onReset
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      "data-ocid": "contact.success_state",
+      initial: { opacity: 0, scale: 0.95 },
+      animate: { opacity: 1, scale: 1 },
+      className: "text-center py-10",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 36, className: "text-green-600" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-bold text-2xl text-brand-dark mb-3", children: "Application Received!" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground/70 max-w-sm mx-auto text-base leading-relaxed font-medium mb-6", children: "Thank you for your application. Our team will contact you within 24 hours or Earlier." }),
+        info.mode === "whatsapp" && info.whatsappFallbackUrl && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-5 flex flex-col items-center gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground/50", children: "If WhatsApp didn't open automatically, use the link below:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "a",
+            {
+              href: info.whatsappFallbackUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              "data-ocid": "contact.whatsapp_fallback_link",
+              className: "inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-white text-sm transition-all hover:opacity-90 hover:-translate-y-0.5",
+              style: { backgroundColor: "#25D366" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { size: 17 }),
+                "Send via WhatsApp"
+              ]
+            }
+          )
+        ] }),
+        info.mode === "email" && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            "data-ocid": "contact.email_notice",
+            className: "mx-auto max-w-sm mb-5 rounded-xl border border-border bg-muted/30 px-5 py-4 text-sm text-foreground/70 text-left space-y-1",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-foreground/80", children: "📧 Email Submission Saved" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Your application has been saved! Our team will contact you via your preferred method." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-foreground/50 pt-1", children: [
+                "Email delivery is being set up — you may also reach us directly at",
+                " ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: "mailto:moderneducationconsult2026@gmail.com",
+                    className: "text-primary underline break-all",
+                    children: "moderneducationconsult2026@gmail.com"
+                  }
+                )
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            "data-ocid": "contact.submit_another_button",
+            onClick: onReset,
+            className: "text-sm text-primary hover:underline font-medium transition-colors",
+            children: "Submit another application"
+          }
+        )
+      ]
+    }
+  );
 }
 const countries$1 = [
   {
@@ -53145,6 +58124,23 @@ const countries$1 = [
   }
 ];
 function CountriesPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "countries");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -53222,7 +58218,7 @@ function CountriesPage() {
                 asChild: true,
                 size: "sm",
                 className: "w-full bg-primary hover:bg-primary/90 text-white font-semibold text-xs",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/contact", children: [
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/contact", search: { country: country.name }, children: [
                   "Apply for ",
                   country.name
                 ] })
@@ -53639,11 +58635,25 @@ function UpdatesSection() {
 }
 function HomePage() {
   const { data: testimonials, isLoading: testimonialsLoading } = useGetAllTestimonials();
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "home");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
   const displayTestimonials = testimonials && testimonials.length > 0 ? testimonials.slice(0, 4).map((t, i) => ({
     ...t,
     photoUrl: t.photoUrl || localPhotos[i] || ""
   })) : fallbackTestimonials;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { children: dynamicSections ? dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    PageSectionRenderer,
+    {
+      section,
+      isEditing: false,
+      onEditField: () => {
+      },
+      onImagePick: () => {
+      }
+    },
+    section.id.toString()
+  )) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "section",
       {
@@ -54225,7 +59235,7 @@ function HomePage() {
         ]
       }
     ) }) })
-  ] });
+  ] }) });
 }
 function DropZone({
   label = "Documents & Files",
@@ -54526,6 +59536,23 @@ function AdminDropZone({
   return /* @__PURE__ */ jsxRuntimeExports.jsx(DropZone, { label, ocidPrefix });
 }
 function LanguageProficiencyPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "language-proficiency");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -54723,6 +59750,23 @@ const highlights$2 = [
   }
 ];
 function OnlineDegreePage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "online-degree-courses");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -54828,6 +59872,23 @@ const highlights$1 = [
   }
 ];
 function OnlineProfessionalCoursesPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "online-professional-courses");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -54940,6 +60001,23 @@ const highlights = [
   }
 ];
 function ProfessionalInternshipsPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "professional-internships");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -55098,6 +60176,23 @@ const jobPlacementServices = [
   }
 ];
 function ServicesPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages == null ? void 0 : pages.find((p2) => p2.slug === "services");
+  const dynamicSections = (pageData == null ? void 0 : pageData.sections) && pageData.sections.length > 0 ? [...pageData.sections].sort((a2, b2) => Number(a2.order) - Number(b2.order)) : null;
+  if (dynamicSections) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "pt-16 lg:pt-20", children: dynamicSections.map((section) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PageSectionRenderer,
+      {
+        section,
+        isEditing: false,
+        onEditField: () => {
+        },
+        onImagePick: () => {
+        }
+      },
+      section.id.toString()
+    )) });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "pt-16 lg:pt-20", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "brand-dark-bg py-24 relative overflow-hidden", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -55413,7 +60508,10 @@ const blogPostRoute = createRoute({
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact",
-  component: ContactPage
+  component: ContactPage,
+  validateSearch: (search) => ({
+    country: search.country || void 0
+  })
 });
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,

@@ -8,6 +8,8 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const Result = IDL.Variant({ 'ok' : IDL.Nat, 'err' : IDL.Text });
+export const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
 export const Time = IDL.Int;
 export const BlogPost = IDL.Record({
   'id' : IDL.Nat,
@@ -18,6 +20,18 @@ export const BlogPost = IDL.Record({
   'summary' : IDL.Text,
   'imageUrl' : IDL.Text,
   'category' : IDL.Text,
+});
+export const Comment = IDL.Record({
+  'id' : IDL.Text,
+  'content' : IDL.Text,
+  'authorEmail' : IDL.Text,
+  'edited' : IDL.Bool,
+  'createdAt' : IDL.Int,
+  'authorName' : IDL.Text,
+  'approved' : IDL.Bool,
+  'rejected' : IDL.Bool,
+  'parentId' : IDL.Opt(IDL.Text),
+  'postId' : IDL.Text,
 });
 export const FileAttachment = IDL.Record({
   'fileName' : IDL.Text,
@@ -43,6 +57,57 @@ export const Testimonial = IDL.Record({
   'quote' : IDL.Text,
   'photoUrl' : IDL.Text,
 });
+export const SectionField = IDL.Record({
+  'key' : IDL.Text,
+  'value' : IDL.Text,
+});
+export const PageSection = IDL.Record({
+  'id' : IDL.Nat,
+  'order' : IDL.Nat,
+  'sectionType' : IDL.Text,
+  'fields' : IDL.Vec(SectionField),
+});
+export const WebsitePage = IDL.Record({
+  'id' : IDL.Nat,
+  'title' : IDL.Text,
+  'createdAt' : IDL.Int,
+  'slug' : IDL.Text,
+  'updatedAt' : IDL.Int,
+  'isDefault' : IDL.Bool,
+  'sections' : IDL.Vec(PageSection),
+});
+export const NavMenuItem = IDL.Record({
+  'id' : IDL.Nat,
+  'url' : IDL.Text,
+  'order' : IDL.Nat,
+  'text' : IDL.Text,
+});
+export const GlobalConfig = IDL.Record({
+  'siteTitle' : IDL.Text,
+  'logoMediaId' : IDL.Opt(IDL.Nat),
+  'navigationMenu' : IDL.Vec(NavMenuItem),
+  'updatedAt' : IDL.Int,
+  'contactEmail' : IDL.Text,
+  'footerContent' : IDL.Text,
+  'contactAddress' : IDL.Text,
+  'contactPhone' : IDL.Text,
+});
+export const MediaItem = IDL.Record({
+  'id' : IDL.Nat,
+  'base64Data' : IDL.Text,
+  'mimeType' : IDL.Text,
+  'filename' : IDL.Text,
+  'uploadedAt' : IDL.Int,
+});
+export const PageVersionSummary = IDL.Record({
+  'version' : IDL.Nat,
+  'timestamp' : IDL.Int,
+  'sectionCount' : IDL.Nat,
+});
+export const Result_2 = IDL.Variant({
+  'ok' : IDL.Vec(PageVersionSummary),
+  'err' : IDL.Text,
+});
 
 export const idlService = IDL.Service({
   'addBlogPost' : IDL.Func(
@@ -50,21 +115,52 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
+  'approveComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'createWebsitePage' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
   'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
+  'deleteComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
   'deleteContact' : IDL.Func([IDL.Nat], [], []),
+  'deleteMediaItem' : IDL.Func([IDL.Nat], [Result_1], []),
+  'deleteWebsitePage' : IDL.Func([IDL.Nat], [Result_1], []),
   'editBlogPost' : IDL.Func(
       [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
       [],
       [],
     ),
+  'editComment' : IDL.Func([IDL.Text, IDL.Text], [IDL.Bool], []),
+  'editWebsitePage' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [Result_1], []),
   'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
+  'getAllComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
   'getAllContacts' : IDL.Func(
       [],
       [IDL.Vec(IDL.Tuple(IDL.Nat, ContactSubmissionV3))],
       ['query'],
     ),
   'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
+  'getAllWebsitePages' : IDL.Func([], [IDL.Vec(WebsitePage)], ['query']),
   'getBlogPostById' : IDL.Func([IDL.Nat], [BlogPost], ['query']),
+  'getCommentCount' : IDL.Func([], [IDL.Nat], ['query']),
+  'getCommentsForPost' : IDL.Func([IDL.Text], [IDL.Vec(Comment)], ['query']),
+  'getGlobalConfig' : IDL.Func([], [IDL.Opt(GlobalConfig)], ['query']),
+  'getMediaLibrary' : IDL.Func([], [IDL.Vec(MediaItem)], ['query']),
+  'getPageVersions' : IDL.Func([IDL.Text], [Result_2], ['query']),
+  'getPendingComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+  'getRejectedComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+  'getUnreadApplicationCount' : IDL.Func([], [IDL.Nat], ['query']),
+  'getWebsitePageById' : IDL.Func([IDL.Nat], [IDL.Opt(WebsitePage)], ['query']),
+  'markApplicationsAsRead' : IDL.Func([], [], []),
+  'rejectComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'restorePageVersion' : IDL.Func([IDL.Text, IDL.Nat], [Result_1], []),
+  'savePageSections' : IDL.Func(
+      [IDL.Nat, IDL.Vec(PageSection)],
+      [Result_1],
+      [],
+    ),
+  'submitComment' : IDL.Func(
+      [IDL.Text, IDL.Opt(IDL.Text), IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Text],
+      [],
+    ),
   'submitContact' : IDL.Func(
       [
         IDL.Text,
@@ -80,11 +176,16 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
+  'unapproveComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'updateGlobalConfig' : IDL.Func([GlobalConfig], [Result_1], []),
+  'uploadMediaItem' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const Result = IDL.Variant({ 'ok' : IDL.Nat, 'err' : IDL.Text });
+  const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
   const Time = IDL.Int;
   const BlogPost = IDL.Record({
     'id' : IDL.Nat,
@@ -95,6 +196,18 @@ export const idlFactory = ({ IDL }) => {
     'summary' : IDL.Text,
     'imageUrl' : IDL.Text,
     'category' : IDL.Text,
+  });
+  const Comment = IDL.Record({
+    'id' : IDL.Text,
+    'content' : IDL.Text,
+    'authorEmail' : IDL.Text,
+    'edited' : IDL.Bool,
+    'createdAt' : IDL.Int,
+    'authorName' : IDL.Text,
+    'approved' : IDL.Bool,
+    'rejected' : IDL.Bool,
+    'parentId' : IDL.Opt(IDL.Text),
+    'postId' : IDL.Text,
   });
   const FileAttachment = IDL.Record({
     'fileName' : IDL.Text,
@@ -120,6 +233,54 @@ export const idlFactory = ({ IDL }) => {
     'quote' : IDL.Text,
     'photoUrl' : IDL.Text,
   });
+  const SectionField = IDL.Record({ 'key' : IDL.Text, 'value' : IDL.Text });
+  const PageSection = IDL.Record({
+    'id' : IDL.Nat,
+    'order' : IDL.Nat,
+    'sectionType' : IDL.Text,
+    'fields' : IDL.Vec(SectionField),
+  });
+  const WebsitePage = IDL.Record({
+    'id' : IDL.Nat,
+    'title' : IDL.Text,
+    'createdAt' : IDL.Int,
+    'slug' : IDL.Text,
+    'updatedAt' : IDL.Int,
+    'isDefault' : IDL.Bool,
+    'sections' : IDL.Vec(PageSection),
+  });
+  const NavMenuItem = IDL.Record({
+    'id' : IDL.Nat,
+    'url' : IDL.Text,
+    'order' : IDL.Nat,
+    'text' : IDL.Text,
+  });
+  const GlobalConfig = IDL.Record({
+    'siteTitle' : IDL.Text,
+    'logoMediaId' : IDL.Opt(IDL.Nat),
+    'navigationMenu' : IDL.Vec(NavMenuItem),
+    'updatedAt' : IDL.Int,
+    'contactEmail' : IDL.Text,
+    'footerContent' : IDL.Text,
+    'contactAddress' : IDL.Text,
+    'contactPhone' : IDL.Text,
+  });
+  const MediaItem = IDL.Record({
+    'id' : IDL.Nat,
+    'base64Data' : IDL.Text,
+    'mimeType' : IDL.Text,
+    'filename' : IDL.Text,
+    'uploadedAt' : IDL.Int,
+  });
+  const PageVersionSummary = IDL.Record({
+    'version' : IDL.Nat,
+    'timestamp' : IDL.Int,
+    'sectionCount' : IDL.Nat,
+  });
+  const Result_2 = IDL.Variant({
+    'ok' : IDL.Vec(PageVersionSummary),
+    'err' : IDL.Text,
+  });
   
   return IDL.Service({
     'addBlogPost' : IDL.Func(
@@ -127,21 +288,56 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
+    'approveComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'createWebsitePage' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
     'deleteBlogPost' : IDL.Func([IDL.Nat], [], []),
+    'deleteComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
     'deleteContact' : IDL.Func([IDL.Nat], [], []),
+    'deleteMediaItem' : IDL.Func([IDL.Nat], [Result_1], []),
+    'deleteWebsitePage' : IDL.Func([IDL.Nat], [Result_1], []),
     'editBlogPost' : IDL.Func(
         [IDL.Nat, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [],
         [],
       ),
+    'editComment' : IDL.Func([IDL.Text, IDL.Text], [IDL.Bool], []),
+    'editWebsitePage' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text], [Result_1], []),
     'getAllBlogPosts' : IDL.Func([], [IDL.Vec(BlogPost)], ['query']),
+    'getAllComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
     'getAllContacts' : IDL.Func(
         [],
         [IDL.Vec(IDL.Tuple(IDL.Nat, ContactSubmissionV3))],
         ['query'],
       ),
     'getAllTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
+    'getAllWebsitePages' : IDL.Func([], [IDL.Vec(WebsitePage)], ['query']),
     'getBlogPostById' : IDL.Func([IDL.Nat], [BlogPost], ['query']),
+    'getCommentCount' : IDL.Func([], [IDL.Nat], ['query']),
+    'getCommentsForPost' : IDL.Func([IDL.Text], [IDL.Vec(Comment)], ['query']),
+    'getGlobalConfig' : IDL.Func([], [IDL.Opt(GlobalConfig)], ['query']),
+    'getMediaLibrary' : IDL.Func([], [IDL.Vec(MediaItem)], ['query']),
+    'getPageVersions' : IDL.Func([IDL.Text], [Result_2], ['query']),
+    'getPendingComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+    'getRejectedComments' : IDL.Func([], [IDL.Vec(Comment)], ['query']),
+    'getUnreadApplicationCount' : IDL.Func([], [IDL.Nat], ['query']),
+    'getWebsitePageById' : IDL.Func(
+        [IDL.Nat],
+        [IDL.Opt(WebsitePage)],
+        ['query'],
+      ),
+    'markApplicationsAsRead' : IDL.Func([], [], []),
+    'rejectComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'restorePageVersion' : IDL.Func([IDL.Text, IDL.Nat], [Result_1], []),
+    'savePageSections' : IDL.Func(
+        [IDL.Nat, IDL.Vec(PageSection)],
+        [Result_1],
+        [],
+      ),
+    'submitComment' : IDL.Func(
+        [IDL.Text, IDL.Opt(IDL.Text), IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Text],
+        [],
+      ),
     'submitContact' : IDL.Func(
         [
           IDL.Text,
@@ -157,6 +353,9 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
+    'unapproveComment' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'updateGlobalConfig' : IDL.Func([GlobalConfig], [Result_1], []),
+    'uploadMediaItem' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
   });
 };
 

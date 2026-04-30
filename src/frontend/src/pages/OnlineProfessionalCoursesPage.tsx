@@ -9,6 +9,8 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "motion/react";
+import PageSectionRenderer from "../components/admin/PageSectionRenderer";
+import { useGetAllWebsitePages } from "../hooks/useQueries";
 
 const highlights = [
   {
@@ -29,6 +31,29 @@ const highlights = [
 ];
 
 export default function OnlineProfessionalCoursesPage() {
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages?.find((p) => p.slug === "online-professional-courses");
+  const dynamicSections =
+    pageData?.sections && pageData.sections.length > 0
+      ? [...pageData.sections].sort((a, b) => Number(a.order) - Number(b.order))
+      : null;
+
+  if (dynamicSections) {
+    return (
+      <main className="pt-16 lg:pt-20">
+        {dynamicSections.map((section) => (
+          <PageSectionRenderer
+            key={section.id.toString()}
+            section={section}
+            isEditing={false}
+            onEditField={() => {}}
+            onImagePick={() => {}}
+          />
+        ))}
+      </main>
+    );
+  }
+
   return (
     <main className="pt-16 lg:pt-20">
       {/* Hero */}

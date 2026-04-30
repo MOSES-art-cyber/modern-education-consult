@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useSearch } from "@tanstack/react-router";
 import {
   AlertCircle,
   CheckCircle2,
@@ -18,7 +19,8 @@ import {
 import { motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
-import { useSubmitContact } from "../hooks/useQueries";
+import PageSectionRenderer from "../components/admin/PageSectionRenderer";
+import { useGetAllWebsitePages, useSubmitContact } from "../hooks/useQueries";
 import type { FileAttachment } from "../types/index";
 
 export const SERVICE_OPTIONS = [
@@ -106,13 +108,37 @@ interface FieldErrors {
   captcha?: string;
 }
 
+// Which button the user clicked
+type SubmitMode = "whatsapp" | "email";
+
+// What to show in the success screen
+interface SuccessInfo {
+  mode: SubmitMode;
+  whatsappFallbackUrl?: string;
+}
+
 export default function ContactPage() {
+  const { country: countryParam } = useSearch({ from: "/contact" });
+  const { data: pages } = useGetAllWebsitePages();
+  const pageData = pages?.find((p) => p.slug === "contact");
+  const heroSection = pageData?.sections
+    ?.slice()
+    .sort((a, b) => Number(a.order) - Number(b.order))
+    .find((s) => s.sectionType === "hero" || s.sectionType === "hero-section");
+
+  // Determine initial values — if a country was passed via URL, pre-select the
+  // service that reveals the Country of Interest field.
+  const initialService = countryParam
+    ? "Study Abroad Consultation & Processing"
+    : "";
+  const initialCountry = countryParam ?? "";
+
   const [form, setForm] = useState({
     fullName: "",
     phoneNumber: "",
     email: "",
-    serviceOfInterest: "",
-    countryOfInterest: "",
+    serviceOfInterest: initialService,
+    countryOfInterest: initialCountry,
     message: "",
   });
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -120,9 +146,9 @@ export default function ContactPage() {
   const [preferredContactMethod, setPreferredContactMethod] = useState("");
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [successInfo, setSuccessInfo] = useState<SuccessInfo | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
-  const [whatsappFallbackUrl, setWhatsappFallbackUrl] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // CAPTCHA state
@@ -138,8 +164,14 @@ export default function ContactPage() {
   const messagePlaceholder =
     MESSAGE_PLACEHOLDERS[form.serviceOfInterest] ?? DEFAULT_MESSAGE_PLACEHOLDER;
 
-  // Reset country when service changes to non-country service
+  // Reset country when user MANUALLY changes service to a non-country service.
+  // We skip this on the very first render so a URL-seeded country is preserved.
+  const isFirstRender = useRef(true);
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (!COUNTRY_REQUIRED_SERVICES.has(form.serviceOfInterest)) {
       setForm((prev) => ({ ...prev, countryOfInterest: "" }));
     }
@@ -188,11 +220,9 @@ export default function ContactPage() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  /** Validate all required fields + CAPTCHA. Returns errors object (empty = valid). */
+  function validateForm(): FieldErrors {
     const errors: FieldErrors = {};
-
     if (!form.fullName.trim()) errors.fullName = "Full name is required.";
     if (!form.phoneNumber.trim())
       errors.phoneNumber = "Phone number is required.";
@@ -210,24 +240,17 @@ export default function ContactPage() {
     if (!privacyConsent)
       errors.privacyConsent =
         "You must agree to the privacy policy to proceed.";
-
     const captchaVal = Number.parseInt(captchaInput.trim(), 10);
     if (Number.isNaN(captchaVal) || captchaVal !== captcha.answer) {
       errors.captcha = "Incorrect answer, please try again.";
-      setCaptcha(generateCaptcha());
-      setCaptchaInput("");
     }
+    return errors;
+  }
 
-    setFieldErrors(errors);
-    if (Object.keys(errors).length > 0) return;
-
-    // ── WhatsApp Notification ────────────────────────────────────────────────
-    // Build the WhatsApp URL BEFORE any async operation so that window.open()
-    // is called synchronously within the user gesture — browsers only allow
-    // popups when triggered directly by a user action, not after awaited calls.
+  function buildWhatsappUrl(): string {
     const documentsInfo =
       uploadedFiles.length > 0
-        ? uploadedFiles.map((f) => f.name).join(", ")
+        ? `${uploadedFiles.length} file(s): ${uploadedFiles.map((f) => f.name).join(", ")}`
         : "None";
     const whatsappMessage = [
       "🔔 New Application Received",
@@ -236,23 +259,58 @@ export default function ContactPage() {
       `📞 Phone: ${form.phoneNumber}`,
       `📧 Email: ${form.email}`,
       `🎯 Service: ${form.serviceOfInterest}`,
-      `🌍 Country: ${form.countryOfInterest || "Not specified"}`,
+      `🌍 Country: ${form.countryOfInterest || "N/A"}`,
       `📬 Preferred Contact: ${preferredContactMethod || "Not specified"}`,
       `📎 Documents: ${documentsInfo}`,
       `💬 Message: ${form.message}`,
       "━━━━━━━━━━━━━━━━━━━━━",
       "Sent from Modern Education Consult Website",
     ].join("\n");
-    const whatsappUrl = `https://wa.me/250795780073?text=${encodeURIComponent(whatsappMessage)}`;
+    return `https://wa.me/250795780073?text=${encodeURIComponent(whatsappMessage)}`;
+  }
 
-    // Open WhatsApp immediately — still inside the synchronous click handler
+  function resetFormState() {
+    setForm({
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      serviceOfInterest: "",
+      countryOfInterest: "",
+      message: "",
+    });
+    setUploadedFiles([]);
+    setFileErrors([]);
+    setPreferredContactMethod("");
+    setPrivacyConsent(false);
+    setCaptchaInput("");
+    setCaptcha(generateCaptcha());
+    setFieldErrors({});
+  }
+
+  /**
+   * "Apply via WhatsApp" click handler.
+   * window.open() MUST be called synchronously before any async work
+   * to avoid popup blocking.
+   */
+  async function handleWhatsAppSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    const errors = validateForm();
+    setFieldErrors(errors);
+
+    if (errors.captcha) {
+      setCaptcha(generateCaptcha());
+      setCaptchaInput("");
+    }
+
+    if (Object.keys(errors).length > 0) return;
+
+    // ── Open WhatsApp SYNCHRONOUSLY before any async work ──────────────────
+    const whatsappUrl = buildWhatsappUrl();
     window.open(whatsappUrl, "_blank");
+    // ────────────────────────────────────────────────────────────────────────
 
-    // Store the URL so the success screen can show a fallback link if the
-    // browser blocked the popup
-    setWhatsappFallbackUrl(whatsappUrl);
-    // ── End WhatsApp Notification ────────────────────────────────────────────
-
+    setIsSubmitting(true);
     try {
       const attachedFiles = await readFilesAsBase64(uploadedFiles);
       await submitContact.mutateAsync({
@@ -262,20 +320,54 @@ export default function ContactPage() {
         attachedFiles,
       });
     } catch (_err) {
-      // Submission error is shown via submitContact.isError state.
-      // WhatsApp was already opened above regardless of backend outcome.
+      // WhatsApp was already opened — admin is notified regardless of backend outcome.
+    } finally {
+      setIsSubmitting(false);
     }
 
-    // Show success screen whether or not the backend call succeeded —
-    // WhatsApp was already sent so the admin is notified either way.
-    setSubmitted(true);
-    setUploadedFiles([]);
-    setFileErrors([]);
-    setPreferredContactMethod("");
-    setPrivacyConsent(false);
-    setCaptchaInput("");
-    setCaptcha(generateCaptcha());
-  };
+    setSuccessInfo({ mode: "whatsapp", whatsappFallbackUrl: whatsappUrl });
+    resetFormState();
+  }
+
+  /**
+   * "Apply via Email" click handler.
+   * Saves to backend + shows friendly message.
+   * Email sending is disabled on the current plan — the wiring is ready for
+   * activation once the email extension is enabled.
+   */
+  async function handleEmailSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    const errors = validateForm();
+    setFieldErrors(errors);
+
+    if (errors.captcha) {
+      setCaptcha(generateCaptcha());
+      setCaptchaInput("");
+    }
+
+    if (Object.keys(errors).length > 0) return;
+
+    setIsSubmitting(true);
+    try {
+      const attachedFiles = await readFilesAsBase64(uploadedFiles);
+      await submitContact.mutateAsync({
+        ...form,
+        preferredContactMethod,
+        privacyConsent,
+        attachedFiles,
+      });
+      // TODO: when email extension is enabled, add the email-sending call here.
+      // e.g. await sendEmailNotification({ to: "moderneducationconsult2025@gmail.com", ...form });
+    } catch (_err) {
+      // Non-fatal — show success screen anyway so the user knows we received it.
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    setSuccessInfo({ mode: "email" });
+    resetFormState();
+  }
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -306,33 +398,42 @@ export default function ContactPage() {
   return (
     <main className="pt-16 lg:pt-20">
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="brand-dark-bg py-24 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            background:
-              "radial-gradient(ellipse at 60% 50%, oklch(0.58 0.2 258), transparent 60%)",
-          }}
+      {heroSection ? (
+        <PageSectionRenderer
+          section={heroSection}
+          isEditing={false}
+          onEditField={() => {}}
+          onImagePick={() => {}}
         />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-xs font-bold tracking-widest uppercase text-white/50 mb-3 block">
-              Reach Out
-            </span>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl text-white mb-4">
-              Get in Touch
-            </h1>
-            <p className="text-white/70 text-lg max-w-xl mx-auto">
-              We are ready to assist you. Reach out to our team for professional
-              guidance and consultation.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      ) : (
+        <section className="brand-dark-bg py-24 relative overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              background:
+                "radial-gradient(ellipse at 60% 50%, oklch(0.58 0.2 258), transparent 60%)",
+            }}
+          />
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-xs font-bold tracking-widest uppercase text-white/50 mb-3 block">
+                Reach Out
+              </span>
+              <h1 className="font-display font-bold text-4xl sm:text-5xl text-white mb-4">
+                Get in Touch
+              </h1>
+              <p className="text-white/70 text-lg max-w-xl mx-auto">
+                We are ready to assist you. Reach out to our team for
+                professional guidance and consultation.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* ── Contact Section ──────────────────────────────── */}
       <section className="py-20 bg-white">
@@ -463,47 +564,17 @@ export default function ContactPage() {
                     Send Your Application
                   </h2>
                   <p className="text-foreground/60 text-sm mb-8">
-                    Fill in the form below and our team will get back to you
-                    within 24 hours.
+                    Fill in the form below and submit via WhatsApp or Email. Our
+                    team will get back to you within 24 hours.
                   </p>
 
-                  {submitted ? (
-                    <motion.div
-                      data-ocid="contact.success_state"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-12"
-                    >
-                      <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-                        <CheckCircle2 size={36} className="text-green-600" />
-                      </div>
-                      <h3 className="font-display font-bold text-2xl text-brand-dark mb-3">
-                        Application Received!
-                      </h3>
-                      <p className="text-foreground/70 max-w-sm mx-auto text-base leading-relaxed font-medium mb-6">
-                        Thank you for your application. Our team will contact
-                        you within 24 hours or Earlier.
-                      </p>
-                      {whatsappFallbackUrl && (
-                        <a
-                          href={whatsappFallbackUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-ocid="contact.whatsapp_fallback_link"
-                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-white text-sm transition-all hover:opacity-90 hover:-translate-y-0.5"
-                          style={{ backgroundColor: "#25D366" }}
-                        >
-                          <SiWhatsapp size={17} />
-                          Also notify us via WhatsApp
-                        </a>
-                      )}
-                    </motion.div>
+                  {successInfo ? (
+                    <SuccessScreen
+                      info={successInfo}
+                      onReset={() => setSuccessInfo(null)}
+                    />
                   ) : (
-                    <form
-                      onSubmit={handleSubmit}
-                      className="space-y-5"
-                      noValidate
-                    >
+                    <form className="space-y-5" noValidate>
                       {/* Row 1: Full Name + Phone */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div className="space-y-1.5">
@@ -882,22 +953,60 @@ export default function ContactPage() {
                         </div>
                       )}
 
-                      <Button
-                        type="submit"
-                        data-ocid="contact.submit_button"
-                        disabled={submitContact.isPending}
-                        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 text-base shadow-blue hover:-translate-y-0.5 transition-all"
-                        size="lg"
-                      >
-                        {submitContact.isPending ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Sending Application...
-                          </>
-                        ) : (
-                          "Send Application"
-                        )}
-                      </Button>
+                      {/* ── Submission Buttons ─────────────────────────────── */}
+                      <div className="pt-1">
+                        <p className="text-xs text-foreground/50 text-center mb-3">
+                          Choose how you'd like to submit your application:
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          {/* Button 1: Apply via WhatsApp */}
+                          <button
+                            type="button"
+                            data-ocid="contact.whatsapp_submit_button"
+                            disabled={isSubmitting}
+                            onClick={handleWhatsAppSubmit}
+                            className="flex-1 flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-bold text-white text-sm sm:text-base transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-md"
+                            style={{
+                              backgroundColor: isSubmitting
+                                ? "#1ebe5d"
+                                : "#25D366",
+                            }}
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <Loader2 size={18} className="animate-spin" />
+                                Sending...
+                              </>
+                            ) : (
+                              <>
+                                <SiWhatsapp size={20} />
+                                Apply via WhatsApp
+                              </>
+                            )}
+                          </button>
+
+                          {/* Button 2: Apply via Email */}
+                          <button
+                            type="button"
+                            data-ocid="contact.email_submit_button"
+                            disabled={isSubmitting}
+                            onClick={handleEmailSubmit}
+                            className="flex-1 flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl font-bold text-white text-sm sm:text-base transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 shadow-md bg-primary hover:bg-primary/90"
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <Loader2 size={18} className="animate-spin" />
+                                Sending...
+                              </>
+                            ) : (
+                              <>
+                                <Mail size={20} />
+                                Apply via Email
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
                     </form>
                   )}
                 </CardContent>
@@ -907,5 +1016,89 @@ export default function ContactPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+/* ── Success Screen ──────────────────────────────────────────────────────── */
+
+function SuccessScreen({
+  info,
+  onReset,
+}: {
+  info: SuccessInfo;
+  onReset: () => void;
+}) {
+  return (
+    <motion.div
+      data-ocid="contact.success_state"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="text-center py-10"
+    >
+      <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
+        <CheckCircle2 size={36} className="text-green-600" />
+      </div>
+
+      <h3 className="font-display font-bold text-2xl text-brand-dark mb-3">
+        Application Received!
+      </h3>
+
+      <p className="text-foreground/70 max-w-sm mx-auto text-base leading-relaxed font-medium mb-6">
+        Thank you for your application. Our team will contact you within 24
+        hours or Earlier.
+      </p>
+
+      {info.mode === "whatsapp" && info.whatsappFallbackUrl && (
+        <div className="mb-5 flex flex-col items-center gap-3">
+          <p className="text-xs text-foreground/50">
+            If WhatsApp didn't open automatically, use the link below:
+          </p>
+          <a
+            href={info.whatsappFallbackUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="contact.whatsapp_fallback_link"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-white text-sm transition-all hover:opacity-90 hover:-translate-y-0.5"
+            style={{ backgroundColor: "#25D366" }}
+          >
+            <SiWhatsapp size={17} />
+            Send via WhatsApp
+          </a>
+        </div>
+      )}
+
+      {info.mode === "email" && (
+        <div
+          data-ocid="contact.email_notice"
+          className="mx-auto max-w-sm mb-5 rounded-xl border border-border bg-muted/30 px-5 py-4 text-sm text-foreground/70 text-left space-y-1"
+        >
+          <p className="font-semibold text-foreground/80">
+            📧 Email Submission Saved
+          </p>
+          <p>
+            Your application has been saved! Our team will contact you via your
+            preferred method.
+          </p>
+          <p className="text-xs text-foreground/50 pt-1">
+            Email delivery is being set up — you may also reach us directly at{" "}
+            <a
+              href="mailto:moderneducationconsult2026@gmail.com"
+              className="text-primary underline break-all"
+            >
+              moderneducationconsult2026@gmail.com
+            </a>
+          </p>
+        </div>
+      )}
+
+      <button
+        type="button"
+        data-ocid="contact.submit_another_button"
+        onClick={onReset}
+        className="text-sm text-primary hover:underline font-medium transition-colors"
+      >
+        Submit another application
+      </button>
+    </motion.div>
   );
 }

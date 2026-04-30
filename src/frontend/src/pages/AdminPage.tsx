@@ -39,10 +39,13 @@ import {
   LogIn,
   LogOut,
   Mail,
+  MessageSquare,
   Paperclip,
   Phone,
   Plus,
+  RotateCcw,
   Save,
+  Search,
   Trash2,
   Upload,
   X,
@@ -50,24 +53,35 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 import { toast } from "sonner";
+import WebsiteEditorPanel from "../components/admin/WebsiteEditorPanel";
 import ImageSliderEditor from "../components/blog/ImageSliderEditor";
 import RichTextEditor from "../components/blog/RichTextEditor";
 import {
   DEFAULT_META,
   type PostMeta,
+  contentToEditorHtml,
+  editorHtmlToContent,
   parsePostContent,
   serializePostContent,
 } from "../components/blog/postMetaUtils";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import {
   useAddBlogPost,
+  useApproveComment,
   useDeleteBlogPost,
+  useDeleteComment,
   useDeleteContact,
   useEditBlogPost,
+  useEditComment,
   useGetAllBlogPosts,
+  useGetAllComments,
   useGetAllContacts,
+  useGetCommentCount,
+  useGetRejectedComments,
+  useRejectComment,
+  useUnapproveComment,
 } from "../hooks/useQueries";
-import type { BlogPost, ContactSubmission } from "../types/index";
+import type { BlogPost, Comment, ContactSubmission } from "../types/index";
 
 const CATEGORIES = [
   "Study Abroad",
@@ -227,6 +241,7 @@ function BlogForm({
   };
 
   const handleSliderInsert = (marker: string) => {
+    // Standalone section: append slider marker to end of active content
     if (form.meta.bilingualEnabled) {
       setForm((f) => ({
         ...f,
@@ -274,10 +289,10 @@ function BlogForm({
       ...form.meta,
       lastUpdated: new Date().toISOString(),
     };
-    // If bilingual, merge en content into main content with meta
+    // Convert editor HTML (may contain slider placeholder blocks) → clean text markers
     const rawContent = form.meta.bilingualEnabled
-      ? form.enContent
-      : form.content;
+      ? editorHtmlToContent(form.enContent)
+      : editorHtmlToContent(form.content);
     const serialized = serializePostContent(finalMeta, rawContent);
     onSubmit({ ...form, content: serialized });
     localStorage.removeItem(AUTOSAVE_KEY(postId));
@@ -515,21 +530,32 @@ function BlogForm({
             </div>
           )}
 
-          {/* Image Slider */}
+          {/* Image Slider — standalone fallback (toolbar button is primary) */}
           <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <Images size={13} />
+              <span>
+                Tip: Use the toolbar <strong>⊞</strong> button to insert a
+                slider at cursor position, or use the button below to append one
+                at the end.
+              </span>
+            </div>
             <Button
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => setShowSliderEditor((v) => !v)}
+              onClick={() => setShowSliderEditor(true)}
               className="gap-2 text-blue-700 border-blue-200 hover:bg-blue-50 font-semibold"
               data-ocid="admin.slider.open_modal_button"
             >
-              <Images size={15} /> Add Image Slider
+              <Images size={15} /> Add Image Slider (append)
             </Button>
-            {showSliderEditor && (
-              <ImageSliderEditor onInsert={handleSliderInsert} />
-            )}
+            <ImageSliderEditor
+              open={showSliderEditor}
+              onInsert={handleSliderInsert}
+              onClose={() => setShowSliderEditor(false)}
+              initialConfig={null}
+            />
           </div>
         </div>
 
@@ -1186,6 +1212,662 @@ function ApplicationCard({
   );
 }
 
+type CommentFilter = "all" | "pending" | "approved" | "rejected";
+
+function CommentCard({
+  comment,
+  postTitle,
+  index,
+  filter,
+  editingId,
+  editContent,
+  onStartEdit,
+  onCancelEdit,
+  onEditContentChange,
+  onSubmitEdit,
+  onApprove,
+  onReject,
+  onUnapprove,
+  onRestore,
+  onDelete,
+  approveIsPending,
+  rejectIsPending,
+  unapproveIsPending,
+  editIsPending,
+  deleteIsPending,
+}: {
+  comment: Comment;
+  postTitle: string;
+  index: number;
+  filter: CommentFilter;
+  editingId: string | null;
+  editContent: string;
+  onStartEdit: (c: Comment) => void;
+  onCancelEdit: () => void;
+  onEditContentChange: (v: string) => void;
+  onSubmitEdit: (id: string) => void;
+  onApprove: (id: string) => void;
+  onReject: (id: string) => void;
+  onUnapprove: (id: string) => void;
+  onRestore: (id: string) => void;
+  onDelete: (id: string) => void;
+  approveIsPending: boolean;
+  rejectIsPending: boolean;
+  unapproveIsPending: boolean;
+  editIsPending: boolean;
+  deleteIsPending: boolean;
+}) {
+  const isEditing = editingId === comment.id;
+  const date = new Date(Number(comment.createdAt) / 1_000_000);
+  const [expanded, setExpanded] = useState(false);
+  const TRUNCATE_LEN = 150;
+  const isLong = comment.content.length > TRUNCATE_LEN;
+  const displayContent =
+    !expanded && isLong
+      ? `${comment.content.slice(0, TRUNCATE_LEN)}…`
+      : comment.content;
+
+  const statusBadge = comment.approved ? (
+    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200">
+      Approved
+    </span>
+  ) : comment.rejected ? (
+    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-200">
+      Rejected
+    </span>
+  ) : (
+    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">
+      Pending
+    </span>
+  );
+
+  const cardBorder = comment.approved
+    ? "border-gray-200"
+    : comment.rejected
+      ? "border-red-100 bg-red-50/20"
+      : "border-amber-200 bg-amber-50/20";
+
+  return (
+    <div
+      data-ocid={`admin.comments.item.${index}`}
+      className={`bg-white rounded-xl border shadow-sm p-4 sm:p-5 space-y-3 ${cardBorder}`}
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <span className="font-bold text-[#1e3a5f] text-sm">
+              {comment.authorName}
+            </span>
+            {comment.authorEmail && (
+              <span className="text-xs text-gray-400 truncate max-w-[160px]">
+                {comment.authorEmail}
+              </span>
+            )}
+            {comment.edited && (
+              <span className="text-xs text-gray-400 italic">(edited)</span>
+            )}
+            {comment.parentId && (
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-purple-50 text-purple-600 border border-purple-200">
+                ↩ Reply
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+            <span>
+              {date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}{" "}
+              {date.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </span>
+            <span className="text-gray-300">·</span>
+            <span className="truncate max-w-[200px] text-blue-600 font-medium">
+              {postTitle}
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5 flex-shrink-0 flex-wrap">
+          {filter === "all" && statusBadge}
+        </div>
+      </div>
+
+      {/* Content */}
+      {isEditing ? (
+        <div className="space-y-2">
+          <Textarea
+            value={editContent}
+            onChange={(e) => onEditContentChange(e.target.value)}
+            rows={3}
+            className="text-sm border-gray-200 resize-none"
+            data-ocid={`admin.comments.edit.textarea.${index}`}
+          />
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              disabled={editIsPending || !editContent.trim()}
+              onClick={() => onSubmitEdit(comment.id)}
+              className="bg-blue-700 text-white gap-1 text-xs h-7 px-3"
+              data-ocid={`admin.comments.save_button.${index}`}
+            >
+              {editIsPending ? (
+                <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <Save size={11} />
+              )}{" "}
+              Save
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={onCancelEdit}
+              className="text-xs h-7 px-3 text-gray-500"
+              data-ocid={`admin.comments.cancel_button.${index}`}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+            {displayContent}
+          </p>
+          {isLong && (
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              className="text-xs text-blue-600 hover:underline mt-1"
+            >
+              {expanded ? "Show less" : "Show more"}
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Action buttons */}
+      <div className="flex flex-wrap gap-1.5 pt-1 border-t border-gray-100">
+        {/* Pending actions */}
+        {filter === "pending" && (
+          <>
+            <Button
+              size="sm"
+              disabled={approveIsPending}
+              onClick={() => onApprove(comment.id)}
+              className="h-7 px-2.5 text-xs bg-green-600 hover:bg-green-700 text-white gap-1"
+              data-ocid={`admin.comments.approve_button.${index}`}
+            >
+              {approveIsPending ? (
+                <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                "✓"
+              )}{" "}
+              Approve
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={rejectIsPending}
+              onClick={() => onReject(comment.id)}
+              className="h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50 gap-1"
+              data-ocid={`admin.comments.reject_button.${index}`}
+            >
+              {rejectIsPending ? (
+                <span className="w-3 h-3 border-red-400 border-2 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                "✕"
+              )}{" "}
+              Reject
+            </Button>
+          </>
+        )}
+
+        {/* All view: show approve/reject based on status */}
+        {filter === "all" && !comment.approved && !comment.rejected && (
+          <>
+            <Button
+              size="sm"
+              disabled={approveIsPending}
+              onClick={() => onApprove(comment.id)}
+              className="h-7 px-2.5 text-xs bg-green-600 hover:bg-green-700 text-white gap-1"
+              data-ocid={`admin.comments.approve_button.${index}`}
+            >
+              {approveIsPending ? (
+                <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                "✓"
+              )}{" "}
+              Approve
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={rejectIsPending}
+              onClick={() => onReject(comment.id)}
+              className="h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50"
+              data-ocid={`admin.comments.reject_button.${index}`}
+            >
+              ✕ Reject
+            </Button>
+          </>
+        )}
+
+        {/* Approved actions */}
+        {(filter === "approved" || (filter === "all" && comment.approved)) && (
+          <>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() =>
+                isEditing ? onCancelEdit() : onStartEdit(comment)
+              }
+              className="h-7 px-2.5 text-xs text-blue-700 border-blue-200 hover:bg-blue-50 gap-1"
+              data-ocid={`admin.comments.edit_button.${index}`}
+            >
+              <Edit2 size={11} /> {isEditing ? "Cancel" : "Edit"}
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={unapproveIsPending}
+              onClick={() => onUnapprove(comment.id)}
+              className="h-7 px-2.5 text-xs text-amber-600 border-amber-200 hover:bg-amber-50 gap-1"
+              data-ocid={`admin.comments.unapprove_button.${index}`}
+            >
+              {unapproveIsPending ? (
+                <span className="w-3 h-3 border-amber-500 border-2 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <RotateCcw size={11} />
+              )}{" "}
+              Unapprove
+            </Button>
+          </>
+        )}
+
+        {/* Rejected actions */}
+        {(filter === "rejected" || (filter === "all" && comment.rejected)) && (
+          <Button
+            size="sm"
+            variant="outline"
+            disabled={unapproveIsPending}
+            onClick={() => onRestore(comment.id)}
+            className="h-7 px-2.5 text-xs text-blue-700 border-blue-200 hover:bg-blue-50 gap-1"
+            data-ocid={`admin.comments.restore_button.${index}`}
+          >
+            {unapproveIsPending ? (
+              <span className="w-3 h-3 border-blue-500 border-2 border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <RotateCcw size={11} />
+            )}{" "}
+            Restore to Pending
+          </Button>
+        )}
+
+        {/* Edit for all-view approved (already included above) */}
+        {filter === "all" && !comment.approved && !comment.rejected && null}
+
+        {/* Delete — shown in all views */}
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={deleteIsPending}
+              className="h-7 px-2.5 text-xs text-red-600 border-red-200 hover:bg-red-50 gap-1 ml-auto"
+              data-ocid={`admin.comments.delete_button.${index}`}
+            >
+              <Trash2 size={11} />{" "}
+              {filter === "rejected" ? "Delete Permanently" : "Delete"}
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent data-ocid={`admin.comments.dialog.${index}`}>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete this comment?</AlertDialogTitle>
+              <AlertDialogDescription>
+                {filter === "rejected"
+                  ? "This comment will be permanently removed and cannot be recovered."
+                  : "This action cannot be undone."}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel
+                data-ocid={`admin.comments.cancel_button.${index}`}
+              >
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                className="bg-red-600 hover:bg-red-700 text-white"
+                onClick={() => onDelete(comment.id)}
+                data-ocid={`admin.comments.confirm_button.${index}`}
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
+    </div>
+  );
+}
+
+function CommentsPanel({ posts }: { posts: BlogPost[] }) {
+  const { data: allComments = [], isLoading } = useGetAllComments({
+    refetchInterval: 10_000,
+  });
+  const { data: rejectedComments = [] } = useGetRejectedComments({
+    refetchInterval: 10_000,
+  });
+  const approveComment = useApproveComment();
+  const rejectComment = useRejectComment();
+  const unapproveComment = useUnapproveComment();
+  const editCommentMutation = useEditComment();
+  const deleteCommentMutation = useDeleteComment();
+
+  const [filter, setFilter] = useState<CommentFilter>("pending");
+  const [search, setSearch] = useState("");
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+  const [editContent, setEditContent] = useState("");
+
+  const postTitleMap = Object.fromEntries(
+    posts.map((p) => [p.id.toString(), p.title]),
+  );
+
+  // Merge: allComments + rejectedComments (deduped by id)
+  const commentMap = new Map<string, Comment>();
+  for (const c of allComments) commentMap.set(c.id, c);
+  for (const c of rejectedComments)
+    if (!commentMap.has(c.id)) commentMap.set(c.id, c);
+  const merged = Array.from(commentMap.values());
+
+  const pendingComments = merged.filter((c) => !c.approved && !c.rejected);
+  const approvedComments = merged.filter((c) => c.approved);
+  const rejectedList = merged.filter((c) => c.rejected && !c.approved);
+
+  const counts = {
+    all: merged.length,
+    pending: pendingComments.length,
+    approved: approvedComments.length,
+    rejected: rejectedList.length,
+  };
+
+  function getFilteredList(): Comment[] {
+    let base: Comment[];
+    if (filter === "pending") base = pendingComments;
+    else if (filter === "approved") base = approvedComments;
+    else if (filter === "rejected") base = rejectedList;
+    else base = [...merged];
+
+    // Sort: by date descending
+    base = [...base].sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
+
+    if (!search.trim()) return base;
+    const q = search.trim().toLowerCase();
+    return base.filter((c) => {
+      const name = c.authorName.toLowerCase();
+      const title = (postTitleMap[c.postId] ?? "").toLowerCase();
+      return name.includes(q) || title.includes(q);
+    });
+  }
+
+  const visibleComments = getFilteredList();
+
+  function startEdit(comment: Comment) {
+    setEditingCommentId(comment.id);
+    setEditContent(comment.content);
+  }
+
+  async function submitEdit(commentId: string) {
+    if (!editContent.trim()) return;
+    try {
+      await editCommentMutation.mutateAsync({
+        commentId,
+        newContent: editContent.trim(),
+      });
+      toast.success("Comment updated.");
+      setEditingCommentId(null);
+    } catch {
+      toast.error("Failed to update comment.");
+    }
+  }
+
+  async function handleApprove(commentId: string) {
+    try {
+      await approveComment.mutateAsync(commentId);
+      toast.success("Comment approved — now visible on blog post.");
+    } catch {
+      toast.error("Failed to approve comment.");
+    }
+  }
+
+  async function handleReject(commentId: string) {
+    try {
+      await rejectComment.mutateAsync(commentId);
+      toast.success("Comment rejected.");
+    } catch {
+      toast.error("Failed to reject comment.");
+    }
+  }
+
+  async function handleUnapprove(commentId: string) {
+    try {
+      await unapproveComment.mutateAsync(commentId);
+      toast.success("Comment moved back to pending.");
+    } catch {
+      toast.error("Failed to unapprove comment.");
+    }
+  }
+
+  async function handleRestore(commentId: string) {
+    try {
+      await unapproveComment.mutateAsync(commentId);
+      toast.success("Comment restored to pending queue.");
+    } catch {
+      toast.error("Failed to restore comment.");
+    }
+  }
+
+  async function handleDelete(commentId: string) {
+    try {
+      await deleteCommentMutation.mutateAsync(commentId);
+      toast.success("Comment deleted.");
+    } catch {
+      toast.error("Failed to delete comment.");
+    }
+  }
+
+  const FILTER_LABELS: { key: CommentFilter; label: string }[] = [
+    { key: "pending", label: "Pending" },
+    { key: "approved", label: "Approved" },
+    { key: "rejected", label: "Rejected" },
+    { key: "all", label: "All" },
+  ];
+
+  const sectionHeader =
+    filter === "pending"
+      ? "Pending Approval"
+      : filter === "approved"
+        ? "Approved Comments"
+        : filter === "rejected"
+          ? "Rejected / Spam"
+          : "All Comments";
+
+  const emptyMessages: Record<CommentFilter, string> = {
+    pending: "No pending comments — you're all caught up!",
+    approved: "No approved comments yet.",
+    rejected: "No rejected comments.",
+    all: "No comments yet. Comments submitted on blog posts will appear here for moderation.",
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-3">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl border border-gray-200 p-5 animate-pulse h-24"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Search */}
+      <div className="relative">
+        <Search
+          size={15}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+        />
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search by commenter name or blog post title…"
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          data-ocid="admin.comments.search_input"
+        />
+        {search && (
+          <button
+            type="button"
+            onClick={() => setSearch("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            aria-label="Clear search"
+          >
+            <X size={14} />
+          </button>
+        )}
+      </div>
+
+      {/* Filter tabs */}
+      <div
+        className="flex flex-wrap gap-1 bg-gray-100 rounded-xl p-1"
+        data-ocid="admin.comments.filter.tab"
+        role="tablist"
+      >
+        {FILTER_LABELS.map(({ key, label }) => (
+          <button
+            key={key}
+            type="button"
+            role="tab"
+            aria-selected={filter === key}
+            onClick={() => setFilter(key)}
+            data-ocid={`admin.comments.filter.${key}.tab`}
+            className={`flex-1 min-w-[80px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+              filter === key
+                ? "bg-white text-[#1e3a5f] shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            {label}
+            <span
+              className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-bold leading-none ${
+                filter === key
+                  ? key === "pending"
+                    ? "bg-amber-100 text-amber-700"
+                    : key === "approved"
+                      ? "bg-green-100 text-green-700"
+                      : key === "rejected"
+                        ? "bg-red-100 text-red-700"
+                        : "bg-blue-100 text-blue-700"
+                  : "bg-gray-200 text-gray-500"
+              }`}
+            >
+              {counts[key]}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Section header */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-bold text-[#1e3a5f] uppercase tracking-wide">
+          {sectionHeader}
+        </h3>
+        {visibleComments.length > 0 && (
+          <span className="text-xs text-gray-400">
+            {visibleComments.length} comment
+            {visibleComments.length !== 1 ? "s" : ""}
+            {search ? " matching search" : ""}
+          </span>
+        )}
+      </div>
+
+      {/* Pending notice banner */}
+      {filter === "pending" && counts.pending > 0 && !search && (
+        <div className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-amber-700">
+          <Info size={15} className="mt-0.5 flex-shrink-0 text-amber-500" />
+          <p className="text-xs leading-relaxed">
+            <strong>{counts.pending}</strong> comment
+            {counts.pending !== 1 ? "s" : ""} awaiting your approval. Approved
+            comments become immediately visible on the blog post.
+          </p>
+        </div>
+      )}
+
+      {/* Comments list or empty state */}
+      {visibleComments.length === 0 ? (
+        <div
+          data-ocid="admin.comments.empty_state"
+          className="text-center py-16 bg-white rounded-2xl border border-gray-100"
+        >
+          <MessageSquare size={32} className="text-gray-300 mx-auto mb-3" />
+          <p className="font-semibold text-gray-500 text-sm">
+            {search
+              ? `No comments matching "${search}"`
+              : emptyMessages[filter]}
+          </p>
+          {search && (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              className="text-xs text-blue-600 hover:underline mt-2"
+            >
+              Clear search
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-3" data-ocid="admin.comments.list">
+          {visibleComments.map((comment, idx) => {
+            const postTitle =
+              postTitleMap[comment.postId] ?? `Post #${comment.postId}`;
+            return (
+              <CommentCard
+                key={comment.id}
+                comment={comment}
+                postTitle={postTitle}
+                index={idx + 1}
+                filter={filter}
+                editingId={editingCommentId}
+                editContent={editContent}
+                onStartEdit={startEdit}
+                onCancelEdit={() => setEditingCommentId(null)}
+                onEditContentChange={setEditContent}
+                onSubmitEdit={submitEdit}
+                onApprove={handleApprove}
+                onReject={handleReject}
+                onUnapprove={handleUnapprove}
+                onRestore={handleRestore}
+                onDelete={handleDelete}
+                approveIsPending={approveComment.isPending}
+                rejectIsPending={rejectComment.isPending}
+                unapproveIsPending={unapproveComment.isPending}
+                editIsPending={editCommentMutation.isPending}
+                deleteIsPending={deleteCommentMutation.isPending}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AdminPage() {
   const { identity, login, clear, isInitializing, isLoggingIn } =
     useInternetIdentity();
@@ -1197,11 +1879,14 @@ export default function AdminPage() {
     refetch: refetchPosts,
   } = useGetAllBlogPosts();
   const { data: contacts } = useGetAllContacts();
+  const { data: pendingCommentCount = 0 } = useGetCommentCount();
   const addMutation = useAddBlogPost();
   const editMutation = useEditBlogPost();
   const deleteMutation = useDeleteBlogPost();
 
-  const [activeTab, setActiveTab] = useState<"blog" | "applications">("blog");
+  const [activeTab, setActiveTab] = useState<
+    "blog" | "applications" | "comments" | "website-editor"
+  >("blog");
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [showDataBanner, setShowDataBanner] = useState(true);
@@ -1355,11 +2040,13 @@ export default function AdminPage() {
 
   function getInitialFormFromPost(post: BlogPost): FormData {
     const { meta, content } = parsePostContent(post.content);
+    // Convert [SLIDER:{...}] text markers → editor HTML placeholder blocks
+    const editorContent = contentToEditorHtml(content);
     return {
       title: post.title,
       summary: post.summary,
-      content: meta.bilingualEnabled ? "" : content,
-      enContent: meta.bilingualEnabled ? content : "",
+      content: meta.bilingualEnabled ? "" : editorContent,
+      enContent: meta.bilingualEnabled ? editorContent : "",
       author: post.author,
       imageUrl: post.imageUrl,
       category: post.category,
@@ -1477,6 +2164,23 @@ export default function AdminPage() {
           </button>
           <button
             type="button"
+            data-ocid="admin.comments.tab"
+            onClick={() => setActiveTab("comments")}
+            className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === "comments"
+                ? "border-blue-700 text-blue-700"
+                : "border-transparent text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            <MessageSquare size={15} /> Comments
+            {pendingCommentCount > 0 && (
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-500 text-white text-xs font-bold leading-none">
+                {pendingCommentCount > 99 ? "99+" : pendingCommentCount}
+              </span>
+            )}
+          </button>
+          <button
+            type="button"
             data-ocid="admin.applications.tab"
             onClick={handleApplicationsTabClick}
             className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
@@ -1491,6 +2195,18 @@ export default function AdminPage() {
                 {newApplicationsCount > 99 ? "99+" : newApplicationsCount}
               </span>
             )}
+          </button>
+          <button
+            type="button"
+            data-ocid="admin.website_editor.tab"
+            onClick={() => setActiveTab("website-editor")}
+            className={`flex items-center gap-2 px-5 py-3 text-sm font-semibold border-b-2 transition-colors ${
+              activeTab === "website-editor"
+                ? "border-blue-700 text-blue-700"
+                : "border-transparent text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            <Images size={15} /> Website Editor
           </button>
         </div>
       </div>
@@ -1524,6 +2240,10 @@ export default function AdminPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {activeTab === "applications" ? (
           <ApplicationsPanel />
+        ) : activeTab === "comments" ? (
+          <CommentsPanel posts={posts ?? []} />
+        ) : activeTab === "website-editor" ? (
+          <WebsiteEditorPanel />
         ) : (
           <>
             {/* Add form */}
